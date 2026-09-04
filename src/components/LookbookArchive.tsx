@@ -3,6 +3,7 @@ import { Search, Gamepad2, Sparkles, ArrowUpRight } from 'lucide-react';
 import type { TriviaItem, GameEra, TriviaTag } from '../types/trivia';
 import { GAME_ERAS, TRIVIA_TAGS } from '../data/triviaData';
 import { sound } from '../audio/soundEngine';
+import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 
 interface LookbookArchiveProps {
   items: TriviaItem[];
@@ -114,7 +115,11 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
 
       {/* Grid of Catalog Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map((item, idx) => (
+        {filteredItems.map((item, idx) => {
+          const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle];
+          const cardImg = visual?.characterImageUrl || visual?.boxArtImageUrl;
+
+          return (
           <div
             key={item.id}
             onClick={() => {
@@ -126,7 +131,7 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
           >
             <div>
               {/* Card Header & Number */}
-              <div className="flex items-center justify-between border-b-2 border-black/40 pb-3 mb-4">
+              <div className="flex items-center justify-between border-b-2 border-black/40 pb-3 mb-3">
                 <span className="font-['Press_Start_2P'] text-[9px] text-[#FFE600]">
                   #{String(idx + 1).padStart(2, '0')} // {item.platform}
                 </span>
@@ -138,6 +143,22 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
                   {item.rarityTier}
                 </span>
               </div>
+
+              {/* Photo Thumbnail */}
+              {cardImg && (
+                <div className="relative mb-3 h-28 w-full overflow-hidden rounded-sm border-2 border-black bg-black/60">
+                  <img
+                    src={cardImg}
+                    alt={item.gameTitle}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute bottom-1.5 left-2 font-['Press_Start_2P'] text-[6px] text-[#00F5D4] bg-black/70 px-1.5 py-0.5 rounded border border-black/40">
+                    {visual?.characterName || item.gameTitle}
+                  </span>
+                </div>
+              )}
 
               {/* Game Title & Badge */}
               <div className="flex items-center gap-2 mb-2">
@@ -170,7 +191,8 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {filteredItems.length === 0 && (
@@ -182,16 +204,40 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
       )}
 
       {/* Inspect Modal */}
-      {activeModalItem && (
+      {activeModalItem && (() => {
+        const modalVisual = TRIVIA_VISUALS_MAP[activeModalItem.id] || TRIVIA_VISUALS_MAP[activeModalItem.gameTitle];
+        const modalImg = modalVisual?.characterImageUrl || modalVisual?.boxArtImageUrl;
+
+        return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="relative w-full max-w-2xl rounded-lg border-3 border-black bg-[#14161F] p-6 sm:p-8 brutal-shadow-lg space-y-5">
+          <div className="relative w-full max-w-2xl rounded-lg border-3 border-black bg-[#14161F] p-6 sm:p-8 brutal-shadow-lg space-y-4 max-h-[90vh] overflow-y-auto">
             {/* Modal Close */}
             <button
               onClick={() => setActiveModalItem(null)}
-              className="absolute right-4 top-4 rounded-xs border-2 border-black bg-[#FF2A85] px-2.5 py-1 font-['Press_Start_2P'] text-[9px] text-black font-bold brutal-shadow-sm hover:bg-[#ff4396]"
+              className="absolute right-4 top-4 rounded-xs border-2 border-black bg-[#FF2A85] px-2.5 py-1 font-['Press_Start_2P'] text-[9px] text-black font-bold brutal-shadow-sm hover:bg-[#ff4396] z-10"
             >
               ESC ✕
             </button>
+
+            {/* Modal Photo Banner */}
+            {modalImg && (
+              <div className="relative h-44 sm:h-52 w-full overflow-hidden rounded-md border-2 border-black bg-black/70">
+                <img
+                  src={modalImg}
+                  alt={activeModalItem.gameTitle}
+                  className="h-full w-full object-cover object-center"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#14161F] via-transparent to-transparent" />
+                <div className="absolute bottom-2 left-3 flex items-center gap-2">
+                  <span className="rounded-xs border border-black bg-[#FF2A85] px-2 py-0.5 font-['Press_Start_2P'] text-[7px] text-black font-bold uppercase">
+                    {modalVisual?.characterName || activeModalItem.gameTitle}
+                  </span>
+                  <span className="font-['Space_Grotesk'] text-xs text-zinc-300 font-bold hidden sm:inline">
+                    {modalVisual?.characterTitle || activeModalItem.developer}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Modal Badges */}
             <div className="flex flex-wrap items-center gap-2">
@@ -207,7 +253,7 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
             </div>
 
             {/* Headline */}
-            <h2 className="font-['Syne'] text-2xl sm:text-3xl font-black text-white leading-tight">
+            <h2 className="font-['Syne'] text-xl sm:text-2xl font-black text-white leading-tight">
               {activeModalItem.headline}
             </h2>
 
@@ -244,7 +290,8 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
     </div>
   );
 };

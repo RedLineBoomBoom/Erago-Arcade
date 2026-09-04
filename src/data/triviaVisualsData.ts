@@ -1,3 +1,8 @@
+import { TRIVIA_VISUALS_BATCH_2 } from './triviaVisualsBatch2';
+import { TRIVIA_VISUALS_BATCH_3 } from './triviaVisualsBatch3';
+import { TRIVIA_VISUALS_BATCH_4 } from './triviaVisualsBatch4';
+import { TRIVIA_VISUALS_BATCH_5 } from './triviaVisualsBatch5';
+
 export interface TriviaVisualInfo {
   characterName: string;
   characterTitle: string;
@@ -16,8 +21,8 @@ export interface TriviaVisualInfo {
   colorHex: string;
 }
 
-// Map indexed by BOTH item.id ('t-01' to 't-30') and item.gameTitle to guarantee 100% exact alignment
-export const TRIVIA_VISUALS_MAP: Record<string, TriviaVisualInfo> = {
+// Initial batch covering t-01 to t-40
+const INITIAL_TRIVIA_VISUALS: Record<string, TriviaVisualInfo> = {
   // -------------------------------------------------------------
   // t-01: Super Mario Bros. (1985)
   // -------------------------------------------------------------
@@ -1442,3 +1447,12 @@ export const TRIVIA_VISUALS_MAP: Record<string, TriviaVisualInfo> = {
     colorHex: '#00F5D4'
   }
 };
+
+export const TRIVIA_VISUALS_MAP: Record<string, TriviaVisualInfo> = {
+  ...INITIAL_TRIVIA_VISUALS,
+  ...TRIVIA_VISUALS_BATCH_2,
+  ...TRIVIA_VISUALS_BATCH_3,
+  ...TRIVIA_VISUALS_BATCH_4,
+  ...TRIVIA_VISUALS_BATCH_5,
+};
+
