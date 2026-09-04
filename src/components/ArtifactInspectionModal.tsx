@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { X, ZoomIn, ShieldCheck, Sparkles, Award } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { X, ZoomIn, ShieldCheck, Sparkles, Award, ExternalLink } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
 
@@ -19,6 +19,9 @@ export interface InspectionModalData {
   }[];
   loreSnippet: string;
   themeColor: string;
+  steamDbUrl?: string | null;
+  steamAppId?: number | null;
+  candidateUrls?: string[];
 }
 
 interface ArtifactInspectionModalProps {
@@ -27,6 +30,23 @@ interface ArtifactInspectionModalProps {
 }
 
 export const ArtifactInspectionModal: React.FC<ArtifactInspectionModalProps> = ({ data, onClose }) => {
+  const [candidateIndex, setCandidateIndex] = useState(0);
+
+
+  const candidates = data?.candidateUrls && data.candidateUrls.length > 0 
+    ? data.candidateUrls 
+    : (data?.imageUrl ? [data.imageUrl] : []);
+
+  const currentImageUrl = candidateIndex < candidates.length ? candidates[candidateIndex] : null;
+
+  const handleImgError = () => {
+    if (candidateIndex + 1 < candidates.length) {
+      setCandidateIndex((prev) => prev + 1);
+    } else {
+      setCandidateIndex(candidates.length);
+    }
+  };
+
   useEffect(() => {
     if (!data) return;
 
@@ -97,15 +117,20 @@ export const ArtifactInspectionModal: React.FC<ArtifactInspectionModalProps> = (
           <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
             {/* Image Frame */}
             <div className="relative w-48 sm:w-64 h-60 sm:h-80 shrink-0 bg-black/70 border-4 border-black rounded-xl overflow-hidden shadow-[6px_6px_0px_#000] flex items-center justify-center group">
-              <img 
-                src={data.imageUrl} 
-                alt={data.title}
-                className="w-full h-full object-cover sm:object-contain transition-transform duration-500 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {currentImageUrl ? (
+                <img 
+                  src={currentImageUrl} 
+                  alt={data.title}
+                  className="w-full h-full object-cover sm:object-contain transition-transform duration-500 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                  onError={handleImgError}
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center p-4 text-center text-zinc-500">
+                  <ShieldCheck className="w-10 h-10 mb-2 opacity-50" />
+                  <span className="font-mono text-[10px] text-zinc-400">ARCHIVE VISUAL CLASSIFIED</span>
+                </div>
+              )}
               {/* Scanline CRT overlay */}
               <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] pointer-events-none opacity-40" />
 
@@ -141,12 +166,27 @@ export const ArtifactInspectionModal: React.FC<ArtifactInspectionModalProps> = (
                 </div>
               )}
 
-              {/* Verified Seal */}
-              <div className="flex items-center justify-center sm:justify-start gap-2 pt-1">
+              {/* Verified Seal & SteamDB Badge */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#00F5D4]/15 border border-[#00F5D4]/40 font-mono text-[11px] font-black text-[#00F5D4] uppercase">
                   <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
                   AUTHENTIC RETRO ROM VERIFIED
                 </span>
+
+                {data.steamDbUrl && (
+                  <a
+                    href={data.steamDbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1b2838] border border-[#66c0f4]/50 font-mono text-[11px] font-black text-[#66c0f4] hover:bg-[#2a475e] hover:text-white transition-colors"
+                    title={`Lihat basis data SteamDB (AppID: ${data.steamAppId || 'Official'})`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#66c0f4] animate-pulse" />
+                    <span>STEAMDB CATALOG</span>
+                    {data.steamAppId && <span className="opacity-75">#{data.steamAppId}</span>}
+                    <ExternalLink className="w-3 h-3 ml-0.5" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -191,11 +231,22 @@ export const ArtifactInspectionModal: React.FC<ArtifactInspectionModalProps> = (
 
 
         {/* Footer Actions */}
-
-        <div className="flex items-center justify-between px-4 py-3 bg-[#0d0d11] border-t-4 border-black font-mono text-xs">
-          <span className="text-gray-500 font-bold uppercase hidden sm:inline">
-            ERAGO ARCADE ARCHIVE // PRESS [ESC] TO CLOSE
-          </span>
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 bg-[#0d0d11] border-t-4 border-black font-mono text-xs">
+          {data.steamDbUrl ? (
+            <a
+              href={data.steamDbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-[#1b2838] text-[#66c0f4] hover:bg-[#2a475e] hover:text-white font-mono font-bold text-xs uppercase rounded-lg border border-[#66c0f4]/40 transition-colors shadow-sm"
+            >
+              <span>BUKA STEAMDB.INFO</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          ) : (
+            <span className="text-gray-500 font-bold uppercase hidden sm:inline">
+              ERAGO ARCADE ARCHIVE // PRESS [ESC] TO CLOSE
+            </span>
+          )}
 
           <button
             onClick={() => {

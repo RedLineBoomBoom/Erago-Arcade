@@ -4,13 +4,13 @@ import type { TriviaItem } from '../types/trivia';
 import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
+import { getCandidateImageUrls, getSteamDbPageUrl, getSteamAppId } from '../utils/steamDbResolver';
 
 interface GameArtifactWingProps {
   item: TriviaItem;
 }
 
 export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
-  const [imgError, setImgError] = useState(false);
   const [isInspectOpen, setIsInspectOpen] = useState(false);
 
   const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle] || {
@@ -24,6 +24,21 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
     colorHex: item.theme.secondary
   };
 
+  const candidates = getCandidateImageUrls(visual.boxArtImageUrl, item.id, 'boxart');
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const steamDbUrl = getSteamDbPageUrl(item.id);
+  const steamAppId = getSteamAppId(item.id);
+
+  const currentImgUrl = candidateIndex >= 0 && candidateIndex < candidates.length ? candidates[candidateIndex] : null;
+
+  const handleImgError = () => {
+    if (candidateIndex + 1 < candidates.length) {
+      setCandidateIndex((prev) => prev + 1);
+    } else {
+      setCandidateIndex(-1);
+    }
+  };
+
   const handleInspect = () => {
     sound.playClick();
     setIsInspectOpen(true);
@@ -35,11 +50,13 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
     subtitle: `${visual.developerStudio} // ${visual.releaseDate}`,
     badge: `ROM SERIAL: ${visual.serialNumber}`,
     japanese: `${item.gameTitle} [${item.platform}]`,
-    imageUrl: visual.boxArtImageUrl,
+    imageUrl: currentImgUrl || visual.boxArtImageUrl,
     themeColor: visual.colorHex || item.theme.secondary,
     loreSnippet: item.verifiedFact || item.story,
+    steamDbUrl,
+    steamAppId,
+    candidateUrls: candidates,
     details: [
-
       { label: 'RELEASE DATE', value: visual.releaseDate, icon: <Calendar className="w-3.5 h-3.5" /> },
       { label: 'MEDIA FORMAT', value: visual.mediaFormat, icon: <Cpu className="w-3.5 h-3.5" /> },
       { label: 'DEVELOPER', value: visual.developerStudio, icon: <Database className="w-3.5 h-3.5" /> },
@@ -76,18 +93,32 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
               <Disc className="h-3 w-3 animate-spin-slow text-[#FFE600]" />
               ORIGINAL RELEASE
             </span>
-            <span className="font-mono text-[9px] text-zinc-400">
-              {visual.serialNumber}
-            </span>
+            <div className="flex items-center gap-1.5 shrink-0">
+              {steamDbUrl && (
+                <a
+                  href={steamDbUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded bg-[#1b2838] px-1 py-0.5 text-[#66c0f4] border border-[#66c0f4]/40 hover:bg-[#2a475e] hover:text-white transition-colors text-[7px]"
+                  title={`SteamDB App #${steamAppId}`}
+                >
+                  STEAMDB
+                </a>
+              )}
+              <span className="font-mono text-[9px] text-zinc-400">
+                {visual.serialNumber}
+              </span>
+            </div>
           </div>
 
           {/* High-Res Vertical Box Art Frame */}
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md border-2 border-black bg-black/90 shadow-inner flex items-center justify-center">
-            {visual.boxArtImageUrl && !imgError ? (
+            {currentImgUrl ? (
               <img
-                src={visual.boxArtImageUrl}
+                src={currentImgUrl}
                 alt={visual.boxArtTitle}
-                onError={() => setImgError(true)}
+                onError={handleImgError}
                 referrerPolicy="no-referrer"
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -191,6 +222,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
       {/* Archival Box Art Inspection Lightbox Modal */}
       {isInspectOpen && (
         <ArtifactInspectionModal 
+          key={inspectData.imageUrl}
           data={inspectData} 
           onClose={() => setIsInspectOpen(false)} 
         />

@@ -4,13 +4,13 @@ import type { TriviaItem } from '../types/trivia';
 import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
+import { getCandidateImageUrls, getSteamDbPageUrl, getSteamAppId } from '../utils/steamDbResolver';
 
 interface CharacterSpotlightWingProps {
   item: TriviaItem;
 }
 
 export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ item }) => {
-  const [imgError, setImgError] = useState(false);
   const [isInspectOpen, setIsInspectOpen] = useState(false);
 
   const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle] || {
@@ -21,6 +21,21 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
     characterBadge: 'RETRO ARCHIVE',
     characterJapanese: item.genre,
     colorHex: item.theme.primary
+  };
+
+  const candidates = getCandidateImageUrls(visual.characterImageUrl, item.id, 'character');
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const steamDbUrl = getSteamDbPageUrl(item.id);
+  const steamAppId = getSteamAppId(item.id);
+
+  const currentImgUrl = candidateIndex >= 0 && candidateIndex < candidates.length ? candidates[candidateIndex] : null;
+
+  const handleImgError = () => {
+    if (candidateIndex + 1 < candidates.length) {
+      setCandidateIndex((prev) => prev + 1);
+    } else {
+      setCandidateIndex(-1);
+    }
   };
 
   const handleInspect = () => {
@@ -34,10 +49,13 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
     subtitle: visual.characterTitle,
     badge: visual.characterBadge,
     japanese: visual.characterJapanese,
-    imageUrl: visual.characterImageUrl,
+    imageUrl: currentImgUrl || visual.characterImageUrl,
     quote: visual.characterQuote,
     themeColor: visual.colorHex || item.theme.primary,
     loreSnippet: item.story || item.headline,
+    steamDbUrl,
+    steamAppId,
+    candidateUrls: candidates,
     details: [
       { label: 'ORIGIN GAME', value: item.gameTitle },
       { label: 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
@@ -76,18 +94,32 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
               {visual.characterJapanese || 'HERO ARCHIVE'}
             </span>
 
-            <span className="rounded bg-black/60 px-1.5 py-0.5 text-zinc-300 border border-black">
-              {item.releaseYear}
-            </span>
+            <div className="flex items-center gap-1.5 shrink-0">
+              {steamDbUrl && (
+                <a
+                  href={steamDbUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="rounded bg-[#1b2838] px-1 py-0.5 text-[#66c0f4] border border-[#66c0f4]/40 hover:bg-[#2a475e] hover:text-white transition-colors text-[7px]"
+                  title={`SteamDB App #${steamAppId}`}
+                >
+                  STEAMDB
+                </a>
+              )}
+              <span className="rounded bg-black/60 px-1.5 py-0.5 text-zinc-300 border border-black">
+                {item.releaseYear}
+              </span>
+            </div>
           </div>
 
           {/* Photo Frame with Scanline CRT Effect */}
           <div className="relative aspect-square w-full overflow-hidden rounded-md border-2 border-black bg-black/80 shadow-inner flex items-center justify-center">
-            {visual.characterImageUrl && !imgError ? (
+            {currentImgUrl ? (
               <img
-                src={visual.characterImageUrl}
+                src={currentImgUrl}
                 alt={visual.characterName}
-                onError={() => setImgError(true)}
+                onError={handleImgError}
                 referrerPolicy="no-referrer"
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -172,6 +204,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
       {/* Archival Dossier Inspection Lightbox Modal */}
       {isInspectOpen && (
         <ArtifactInspectionModal 
+          key={inspectData.imageUrl}
           data={inspectData} 
           onClose={() => setIsInspectOpen(false)} 
         />
