@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown } from 'lucide-react';
+import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 import { CoinBankModal } from './CoinBankModal';
@@ -192,6 +192,22 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Terminal className="h-3 w-3" />
             <span className="hidden md:inline">CHEATS</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playClick();
+              onViewChange('news');
+            }}
+            data-cursor="NEWS"
+            className={`flex items-center gap-1.5 rounded-xs px-2.5 py-1.5 font-['Press_Start_2P'] text-[8px] sm:text-[9px] transition-all ${
+              currentView === 'news'
+                ? 'bg-[#00F5D4] text-black font-bold shadow-inner'
+                : 'text-zinc-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Newspaper className="h-3 w-3" />
+            <span className="hidden md:inline">NEWS</span>
           </button>
         </nav>
 

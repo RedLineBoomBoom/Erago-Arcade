@@ -28,6 +28,8 @@ import { DosTerminalModal } from './components/DosTerminalModal';
 import { CardBinderModal } from './components/CardBinderModal';
 import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
+import { GamingNewsSection } from './components/GamingNewsSection';
+import { NewsStrip } from './components/NewsStrip';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
@@ -264,6 +266,9 @@ export function App() {
               coins={coins}
             />
 
+            {/* Quick Access Gaming News Press Wire Strip */}
+            <NewsStrip onOpenNewsView={() => setCurrentView('news')} />
+
           </div>
         )}
 
@@ -286,6 +291,10 @@ export function App() {
 
         {currentView === 'cheats' && (
           <CheatCodesPage />
+        )}
+
+        {currentView === 'news' && (
+          <GamingNewsSection onBackToArcade={() => setCurrentView('arcade')} />
         )}
       </main>
 
