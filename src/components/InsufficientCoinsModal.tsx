@@ -23,24 +23,24 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
   const { formatted, progressPercent } = currencyManager.getPlaytimeRemaining();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none">
-      <div className="relative w-full max-w-lg rounded-2xl border-4 border-black bg-[#14161F] p-5 sm:p-6 shadow-[8px_8px_0px_#000] space-y-5 text-white animate-scale-up">
-        {/* Header */}
-        <div className="flex items-center justify-between border-b-2 border-white/10 pb-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white shadow-[2px_2px_0px_#000]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md overflow-y-auto animate-fade-in select-none">
+      <div className="relative w-full max-w-lg max-h-[92vh] flex flex-col rounded-2xl border-4 border-black bg-[#14161F] shadow-[8px_8px_0px_#FF2A85] text-white my-auto overflow-hidden animate-scale-up">
+        {/* Sticky Fixed Header */}
+        <div className="flex items-center justify-between border-b-3 border-black px-4 sm:px-5 py-3 bg-[#0B0C10] shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white shadow-[2px_2px_0px_#000]">
               <AlertTriangle className="w-5 h-5 animate-bounce" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-['Syne'] font-black text-lg sm:text-xl text-white">
+                <h2 className="font-['Syne'] font-black text-base sm:text-lg text-white leading-tight">
                   INSUFFICIENT COINS!
                 </h2>
                 <span className="px-2 py-0.5 rounded-xs bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[7px] font-bold">
                   CREDITS: 0
                 </span>
               </div>
-              <p className="font-mono text-[10px] text-zinc-400">
+              <p className="font-mono text-[9px] text-zinc-400">
                 KOIN TIDAK CUKUP UNTUK MEMUTAR TRIVIA
               </p>
             </div>
@@ -57,105 +57,108 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
           </button>
         </div>
 
-        {/* Balance Status Box */}
-        <div className="rounded-xl border-3 border-black bg-[#0B0C10] p-4 text-center space-y-2 shadow-[3px_3px_0px_#000]">
-          <div className="flex items-center justify-center gap-2">
-            <Coins className="w-6 h-6 text-[#FFE600] animate-pulse" />
-            <span className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#FFE600]">
-              {currentCoins} <span className="text-xs text-zinc-400">COINS</span>
-            </span>
-          </div>
-          <p className="font-mono text-xs text-zinc-300">
-            Setiap putaran roulette trivia membutuhkan <strong className="text-[#FF2A85]">10 Koin</strong>.
-          </p>
-        </div>
-
-        {/* How to Earn Coins Section */}
-        <div className="space-y-3">
-          <div className="font-['Press_Start_2P'] text-[8px] text-[#00F5D4] uppercase tracking-wider">
-            CARA MENDAPATKAN KOIN:
+        {/* Scrollable Content Body */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-5 space-y-3.5">
+          {/* Balance Status Box */}
+          <div className="rounded-xl border-3 border-black bg-[#0B0C10] p-4 text-center space-y-1.5 shadow-[3px_3px_0px_#000]">
+            <div className="flex items-center justify-center gap-2">
+              <Coins className="w-6 h-6 text-[#FFE600] animate-pulse" />
+              <span className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#FFE600]">
+                {currentCoins} <span className="text-xs text-zinc-400">COINS</span>
+              </span>
+            </div>
+            <p className="font-mono text-xs text-zinc-300">
+              Setiap putaran roulette trivia membutuhkan <strong className="text-[#FF2A85]">10 Koin</strong>.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-2.5">
-            {/* Play Mini Games */}
-            <button
-              onClick={() => {
-                sound.playClick();
-                onClose();
-                onOpenMiniGames();
-              }}
-              className="flex items-center justify-between p-3 rounded-xl border-2 border-black bg-[#1E2230] hover:bg-[#00F5D4] hover:text-black transition-all group shadow-[3px_3px_0px_#000] text-left"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/40 border border-white/10 group-hover:bg-black group-hover:text-[#00F5D4] text-xl">
-                  <Gamepad2 className="w-5 h-5 text-[#00F5D4] group-hover:text-[#00F5D4]" />
-                </div>
-                <div>
-                  <div className="font-['Syne'] font-black text-sm group-hover:text-black">
-                    MAIN MINI GAME (5 GAMES)
-                  </div>
-                  <div className="font-mono text-[10px] text-zinc-400 group-hover:text-black/80">
-                    Setiap 100 Poin yang diraih = 10 Koin!
-                  </div>
-                </div>
-              </div>
-              <span className="font-['Press_Start_2P'] text-[9px] px-2 py-1 rounded bg-[#00F5D4] text-black font-bold group-hover:bg-black group-hover:text-white">
-                PLAY ➔
-              </span>
-            </button>
+          {/* How to Earn Coins Section */}
+          <div className="space-y-2.5">
+            <div className="font-['Press_Start_2P'] text-[8px] text-[#00F5D4] uppercase tracking-wider">
+              CARA MENDAPATKAN KOIN:
+            </div>
 
-            {/* Boss Battle */}
-            <button
-              onClick={() => {
-                sound.playClick();
-                onClose();
-                onOpenBossBattle();
-              }}
-              className="flex items-center justify-between p-3 rounded-xl border-2 border-black bg-[#1E2230] hover:bg-[#FF2A85] hover:text-white transition-all group shadow-[3px_3px_0px_#000] text-left"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/40 border border-white/10 group-hover:bg-black text-xl">
-                  <Swords className="w-5 h-5 text-[#FF2A85] group-hover:text-[#FF2A85]" />
-                </div>
-                <div>
-                  <div className="font-['Syne'] font-black text-sm">
-                    TRIVIA BOSS RUSH
+            <div className="grid grid-cols-1 gap-2.5">
+              {/* Play Mini Games */}
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  onClose();
+                  onOpenMiniGames();
+                }}
+                className="flex items-center justify-between p-3 rounded-xl border-2 border-black bg-[#1E2230] hover:bg-[#00F5D4] hover:text-black transition-all group shadow-[3px_3px_0px_#000] text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/40 border border-white/10 group-hover:bg-black group-hover:text-[#00F5D4] text-xl">
+                    <Gamepad2 className="w-5 h-5 text-[#00F5D4] group-hover:text-[#00F5D4]" />
                   </div>
-                  <div className="font-mono text-[10px] text-zinc-400 group-hover:text-white/90">
-                    Serang boss & menang untuk dapat koin berlimpah!
+                  <div>
+                    <div className="font-['Syne'] font-black text-sm group-hover:text-black">
+                      MAIN MINI GAME (5 GAMES)
+                    </div>
+                    <div className="font-mono text-[10px] text-zinc-400 group-hover:text-black/80">
+                      Setiap 100 Poin yang diraih = 10 Koin!
+                    </div>
                   </div>
                 </div>
-              </div>
-              <span className="font-['Press_Start_2P'] text-[9px] px-2 py-1 rounded bg-[#FF2A85] text-white font-bold group-hover:bg-black">
-                FIGHT ➔
-              </span>
-            </button>
+                <span className="font-['Press_Start_2P'] text-[9px] px-2 py-1 rounded bg-[#00F5D4] text-black font-bold group-hover:bg-black group-hover:text-white">
+                  PLAY ➔
+                </span>
+              </button>
 
-            {/* Time Bonus Reminder */}
-            <div className="p-3 rounded-xl border-2 border-black bg-[#1E2230] shadow-[3px_3px_0px_#000] space-y-2">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#FFE600]" />
-                  <span className="text-zinc-300">
-                    Hadiah Waktu Pasif: <strong className="text-[#FFE600]">+100 Koin</strong> / 10 menit
+              {/* Boss Battle */}
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  onClose();
+                  onOpenBossBattle();
+                }}
+                className="flex items-center justify-between p-3 rounded-xl border-2 border-black bg-[#1E2230] hover:bg-[#FF2A85] hover:text-white transition-all group shadow-[3px_3px_0px_#000] text-left"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-black/40 border border-white/10 group-hover:bg-black text-xl">
+                    <Swords className="w-5 h-5 text-[#FF2A85] group-hover:text-[#FF2A85]" />
+                  </div>
+                  <div>
+                    <div className="font-['Syne'] font-black text-sm">
+                      TRIVIA BOSS RUSH
+                    </div>
+                    <div className="font-mono text-[10px] text-zinc-400 group-hover:text-white/90">
+                      Serang boss & menang untuk dapat koin berlimpah!
+                    </div>
+                  </div>
+                </div>
+                <span className="font-['Press_Start_2P'] text-[9px] px-2 py-1 rounded bg-[#FF2A85] text-white font-bold group-hover:bg-black">
+                  FIGHT ➔
+                </span>
+              </button>
+
+              {/* Time Bonus Reminder */}
+              <div className="p-3 rounded-xl border-2 border-black bg-[#1E2230] shadow-[3px_3px_0px_#000] space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#FFE600]" />
+                    <span className="text-zinc-300">
+                      Hadiah Waktu Pasif: <strong className="text-[#FFE600]">+100 Koin</strong> / 10 menit
+                    </span>
+                  </div>
+                  <span className="font-['Press_Start_2P'] text-[9px] text-[#FFE600]">
+                    {formatted}
                   </span>
                 </div>
-                <span className="font-['Press_Start_2P'] text-[9px] text-[#FFE600]">
-                  {formatted}
-                </span>
-              </div>
-              <div className="w-full bg-black/60 rounded-full h-2 overflow-hidden border border-white/10">
-                <div
-                  className="bg-gradient-to-r from-[#FFE600] to-[#00F5D4] h-full transition-all duration-300"
-                  style={{ width: `${progressPercent}%` }}
-                />
+                <div className="w-full bg-black/60 rounded-full h-2 overflow-hidden border border-white/10">
+                  <div
+                    className="bg-gradient-to-r from-[#FFE600] to-[#00F5D4] h-full transition-all duration-300"
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="pt-2 flex justify-end">
+        {/* Sticky Fixed Footer */}
+        <div className="p-3 sm:p-4 bg-[#0B0C10] border-t-2 border-white/10 flex justify-end shrink-0">
           <button
             onClick={() => {
               sound.playClick();
