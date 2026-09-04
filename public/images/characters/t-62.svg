@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0c12" />
+      <stop offset="50%" stop-color="#151722" />
+      <stop offset="100%" stop-color="#08090d" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FF2A85" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="arcadeGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#bgGrad)" />
+  <rect width="600" height="800" fill="url(#arcadeGrid)" />
+  <circle cx="300" cy="360" r="240" fill="url(#glowGrad)" />
+
+  <!-- Outer Cyber Border -->
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="none" stroke="#FF2A85" stroke-width="3" />
+  <rect x="32" y="32" width="536" height="736" rx="10" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+
+  <!-- Header Category -->
+  <rect x="50" y="50" width="500" height="38" rx="6" fill="#000" stroke="#FF2A85" stroke-width="1.5" />
+  <text x="300" y="74" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#FF2A85" text-anchor="middle" letter-spacing="2">
+    EXHIBIT A // HERO PROFILE
+  </text>
+
+  <!-- Central Icon or Emblem -->
+  <circle cx="300" cy="300" r="100" fill="#0b0c10" stroke="#FF2A85" stroke-width="4" />
+  
+    <!-- Retro Hero Avatar Silhouette -->
+    <circle cx="300" cy="270" r="38" fill="#FF2A85" opacity="0.9" />
+    <path d="M 240 370 C 240 320, 360 320, 360 370 Z" fill="#FF2A85" opacity="0.9" />
+  
+
+  <!-- Title & Subtitle -->
+  <text x="300" y="470" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle">
+    Duck Hunt
+  </text>
+  <text x="300" y="510" font-family="system-ui, sans-serif" font-size="15" font-weight="600" fill="#FFE600" text-anchor="middle">
+    NES
+  </text>
+  <text x="300" y="545" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#FF2A85" text-anchor="middle">
+    CLASSIC ERA RELEASE // 1984
+  </text>
+
+  <!-- Badge Pill -->
+  <rect x="140" y="610" width="320" height="42" rx="21" fill="#000" stroke="#FF2A85" stroke-width="2" />
+  <text x="300" y="636" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#FF2A85" text-anchor="middle" letter-spacing="1">
+    Player 2 Could Secretly Co..
+  </text>
+
+  <!-- Footer Seal -->
+  <text x="300" y="725" font-family="'Courier New', monospace" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="3">
+    ERAGO RETRO TIME CAPSULE CERTIFIED
+  </text>
+</svg>
