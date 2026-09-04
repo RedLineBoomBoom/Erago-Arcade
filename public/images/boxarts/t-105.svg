@@ -6,7 +6,7 @@
       <stop offset="100%" stop-color="#08090d"/>
     </linearGradient>
     <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00F5D4"/>
+      <stop offset="0%" stop-color="#9D4EDD"/>
       <stop offset="100%" stop-color="#00F5D4"/>
     </linearGradient>
     <filter id="glow">
@@ -70,35 +70,35 @@
   </g>
 
   <!-- Outer Border Frame -->
-  <rect x="20" y="20" width="560" height="860" rx="16" fill="none" stroke="#00F5D4" stroke-width="6"/>
+  <rect x="20" y="20" width="560" height="860" rx="16" fill="none" stroke="#9D4EDD" stroke-width="6"/>
   <rect x="32" y="32" width="536" height="836" rx="12" fill="none" stroke="#000000" stroke-width="4"/>
 
   <!-- Top Retro Badge Header -->
-  <rect x="40" y="50" width="520" height="40" rx="4" fill="#000000" stroke="#00F5D4" stroke-width="2"/>
-  <text x="60" y="76" font-family="'Courier New', monospace" font-size="16" font-weight="900" fill="#00F5D4" letter-spacing="3">AUTHENTIC RETRO ARCHIVE</text>
-  <text x="530" y="76" font-family="'Courier New', monospace" font-size="16" font-weight="900" fill="#FFE600" text-anchor="end">1994</text>
+  <rect x="40" y="50" width="520" height="40" rx="4" fill="#000000" stroke="#9D4EDD" stroke-width="2"/>
+  <text x="60" y="76" font-family="'Courier New', monospace" font-size="16" font-weight="900" fill="#9D4EDD" letter-spacing="3">AUTHENTIC RETRO ARCHIVE</text>
+  <text x="530" y="76" font-family="'Courier New', monospace" font-size="16" font-weight="900" fill="#FFE600" text-anchor="end">1998</text>
 
   <!-- Center Graphic Cartridge Area -->
-  <rect x="60" y="130" width="480" height="480" rx="12" fill="#050608" stroke="#00F5D4" stroke-width="3" filter="url(#glow)"/>
+  <rect x="60" y="130" width="480" height="480" rx="12" fill="#050608" stroke="#9D4EDD" stroke-width="3" filter="url(#glow)"/>
   
   <!-- Arcade Art Badge Inside -->
-  <circle cx="300" cy="350" r="140" fill="none" stroke="#00F5D4" stroke-dasharray="8 6" stroke-width="3"/>
+  <circle cx="300" cy="350" r="140" fill="none" stroke="#9D4EDD" stroke-dasharray="8 6" stroke-width="3"/>
   <circle cx="300" cy="350" r="110" fill="#141724" stroke="#00F5D4" stroke-width="4"/>
 
   <!-- Retro Icon Glyphs -->
-  <polygon points="300,270 330,340 370,350 335,385 345,430 300,400 255,430 265,385 230,350 270,340" fill="#00F5D4" opacity="0.9"/>
+  <polygon points="300,270 330,340 370,350 335,385 345,430 300,400 255,430 265,385 230,350 270,340" fill="#9D4EDD" opacity="0.9"/>
   <circle cx="300" cy="350" r="30" fill="#000000"/>
   <text x="300" y="358" font-family="'Courier New', monospace" font-size="24" font-weight="bold" fill="#00F5D4" text-anchor="middle">★</text>
 
   <!-- Game Title on Box -->
   <rect x="60" y="520" width="480" height="80" rx="6" fill="#000000" opacity="0.85"/>
-  <text x="300" y="565" font-family="'Impact', 'Arial Black', sans-serif" font-size="34" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="2">EARTHWORM JIM</text>
-  <text x="300" y="590" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#00F5D4" text-anchor="middle" letter-spacing="1">GROOVY SUPER-SUIT ANNELID HERO</text>
+  <text x="300" y="565" font-family="'Impact', 'Arial Black', sans-serif" font-size="34" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="2">MEDIEVIL</text>
+  <text x="300" y="590" font-family="'Courier New', monospace" font-size="14" font-weight="bold" fill="#00F5D4" text-anchor="middle" letter-spacing="1">SIR DANIEL FORTESQUE: THE HERO OF GALLOWMERE</text>
 
   <!-- Bottom Details -->
   <rect x="60" y="650" width="480" height="190" rx="8" fill="#0d0e14" stroke="#222538" stroke-width="2"/>
   <text x="90" y="695" font-family="'Courier New', monospace" font-size="16" fill="#8892b0">PUBLISHER / DEV:</text>
-  <text x="510" y="695" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="end">Shiny Entertainment</text>
+  <text x="510" y="695" font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="end">SCE Cambridge Studio</text>
   
   <line x1="90" y1="715" x2="510" y2="715" stroke="#222538" stroke-width="1"/>
 
