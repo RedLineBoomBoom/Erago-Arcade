@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", sans-serif;
+  --font-mono-arcade: "Press Start 2P", monospace;
+  --font-body: "Space Grotesk", sans-serif;
+  
+  --color-arcade-pink: #ff2a85;
+  --color-arcade-yellow: #ffe600;
+  --color-arcade-cyan: #00f5d4;
+  --color-arcade-purple: #9d4edd;
+  --color-arcade-green: #38b000;
+  --color-arcade-dark: #0b0c10;
+  --color-arcade-card: #14161f;
+  --color-arcade-cream: #fffdf0;
+}
+
+:root {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+@media (pointer: fine) {
+  body, button, a, input {
+    cursor: none !important;
+  }
+}
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0c10;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff2a85;
+  border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffe600;
+}
+
+/* Retro Memphis & Brutalist Drop Shadows */
+.brutal-shadow {
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.brutal-shadow-sm {
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.brutal-shadow-lg {
+  box-shadow: 10px 10px 0px #000000;
+}
+
+.brutal-shadow-pink {
+  box-shadow: 6px 6px 0px #ff2a85;
+}
+
+.brutal-shadow-cyan {
+  box-shadow: 6px 6px 0px #00f5d4;
+}
+
+.brutal-shadow-yellow {
+  box-shadow: 6px 6px 0px #ffe600;
+}
+
+/* CRT Scanlines and Phosphor Flicker */
+.crt-screen {
+  position: relative;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+  z-index: 999;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+.crt-screen::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 998;
+}
+
+/* Holographic Foil Layer for 3D Card */
+.holo-foil {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 42, 133, 0) 0%,
+    rgba(255, 230, 0, 0.15) 25%,
+    rgba(0, 245, 212, 0.25) 50%,
+    rgba(157, 78, 221, 0.2) 75%,
+    rgba(255, 42, 133, 0) 100%
+  );
+  mix-blend-mode: color-dodge;
+  transition: opacity 0.3s ease;
+}
+
+/* Rainbow Iridescent Sheen on Tilt */
+.holo-sheen {
+  background: linear-gradient(
+    var(--holo-angle, 115deg),
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(0, 245, 212, 0.4) 50%,
+    rgba(255, 42, 133, 0.4) 55%,
+    transparent 80%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Arcade Lever Bounce */
+@keyframes arcade-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.animate-arcade-pulse {
+  animation: arcade-pulse 2s ease-in-out infinite;
+}
+
+/* Reel Shuffle Blur effect */
+@keyframes reel-blur {
+  0% { transform: translateY(0); filter: blur(0); }
+  25% { transform: translateY(-8px); filter: blur(2px); }
+  50% { transform: translateY(8px); filter: blur(2px); }
+  75% { transform: translateY(-4px); filter: blur(1px); }
+  100% { transform: translateY(0); filter: blur(0); }
+}
+
+/* Cartridge Slam 3D Insertion Animation */
+@keyframes cartridge-slam {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) translateY(-50px) scale(0.92) rotateX(16deg);
+    filter: blur(6px) brightness(2);
+    box-shadow: 0 0 50px rgba(0, 245, 212, 0.8), 0 0 100px rgba(255, 42, 133, 0.6);
+  }
+  35% {
+    opacity: 1;
+    filter: blur(0) brightness(1.4);
+  }
+  65% {
+    transform: perspective(1200px) translateY(8px) scale(1.025) rotateX(-4deg);
+    box-shadow: 12px 12px 0px #000, 0 0 35px rgba(255, 230, 0, 0.5);
+  }
+  82% {
+    transform: perspective(1200px) translateY(-3px) scale(0.99) rotateX(2deg);
+  }
+  100% {
+    transform: perspective(1200px) translateY(0) scale(1) rotateX(0deg);
+    filter: brightness(1);
+    box-shadow: 8px 8px 0px #000;
+  }
+}
+
+.animate-cartridge-slam {
+  animation: cartridge-slam 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  will-change: transform, opacity, filter, box-shadow;
+}
+
+/* Flanking Exhibit Wing Animations */
+@keyframes wing-slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.95);
+    filter: blur(4px);
+  }
+  70% {
+    transform: translateX(4px) scale(1.01);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-wing-left {
+  animation: wing-slide-left 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes wing-slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+    filter: blur(4px);
+  }
+  70% {
+    transform: translateX(-4px) scale(1.01);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-wing-right {
+  animation: wing-slide-right 0.55s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Holographic Laser Scanner Sweep across the Card */
+@keyframes laser-scan {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+.animate-laser-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00F5D4, #FFE600, #FF2A85, transparent);
+  box-shadow: 0 0 15px #00F5D4, 0 0 25px #FF2A85;
+  animation: laser-scan 0.85s ease-in-out forwards;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Text stroke outline utility */
+.text-stroke-black {
+
+  -webkit-text-stroke: 2px #000;
+}
+.text-stroke-white {
+  -webkit-text-stroke: 1px #fff;
+}
+
+/* Retro Console Theme Overlays */
+.theme-game-boy-1989 {
+  filter: sepia(1) hue-rotate(52deg) saturate(2.6) contrast(1.2) brightness(0.92);
+}
+
+.theme-virtual-boy-1995 {
+  filter: grayscale(1) sepia(1) hue-rotate(315deg) saturate(14) contrast(1.4) brightness(0.85);
+}
+
+.theme-synthwave-2088 {
+  filter: contrast(1.1) saturate(1.3) hue-rotate(12deg);
+}
+

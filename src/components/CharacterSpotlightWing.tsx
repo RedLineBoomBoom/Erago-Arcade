@@ -1,0 +1,181 @@
+import React, { useState } from 'react';
+import { User, Sparkles, ShieldAlert, ZoomIn } from 'lucide-react';
+import type { TriviaItem } from '../types/trivia';
+import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
+import { sound } from '../audio/soundEngine';
+import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
+
+interface CharacterSpotlightWingProps {
+  item: TriviaItem;
+}
+
+export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ item }) => {
+  const [imgError, setImgError] = useState(false);
+  const [isInspectOpen, setIsInspectOpen] = useState(false);
+
+  const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle] || {
+    characterName: item.gameTitle,
+    characterTitle: item.developer,
+    characterQuote: item.headline,
+    characterImageUrl: '',
+    characterBadge: 'RETRO ARCHIVE',
+    characterJapanese: item.genre,
+    colorHex: item.theme.primary
+  };
+
+  const handleInspect = () => {
+    sound.playClick();
+    setIsInspectOpen(true);
+  };
+
+  const inspectData: InspectionModalData = {
+    type: 'character',
+    title: visual.characterName,
+    subtitle: visual.characterTitle,
+    badge: visual.characterBadge,
+    japanese: visual.characterJapanese,
+    imageUrl: visual.characterImageUrl,
+    quote: visual.characterQuote,
+    themeColor: visual.colorHex || item.theme.primary,
+    loreSnippet: item.story || item.headline,
+    details: [
+      { label: 'ORIGIN GAME', value: item.gameTitle },
+      { label: 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
+      { label: 'PLATFORM', value: item.platform },
+      { label: 'DEVELOPER', value: item.developer },
+      { label: 'RARITY TIER', value: item.rarityTier },
+      { label: 'MINDBLOWN FACTOR', value: `${item.mindblownScore}%` }
+    ]
+  };
+
+
+  return (
+    <>
+      <aside 
+        className="hidden xl:flex flex-col w-72 2xl:w-80 shrink-0 sticky top-24 self-start animate-wing-left transition-all duration-300 select-none"
+        aria-label="Character Spotlight Exhibit"
+      >
+
+        {/* Neo-retro Tape Pin on Top */}
+        <div className="relative mx-auto -mb-3 z-10">
+          <div className="rounded-xs border border-black bg-[#FFE600] px-3 py-1 font-['Press_Start_2P'] text-[7px] text-black font-bold uppercase shadow-sm rotate-[-2deg]">
+            EXHIBIT A // HERO PROFILE
+          </div>
+        </div>
+
+        {/* Polaroid Museum Card Shell */}
+        <div 
+          data-cursor="INSPECT"
+          onClick={handleInspect}
+          className="group relative rounded-lg border-3 border-black bg-[#14161F] p-4 brutal-shadow hover:border-[#00F5D4] transition-all duration-200 cursor-pointer overflow-hidden space-y-3.5"
+          title="Click to inspect character dossier"
+        >
+          {/* Top Japanese & Era Header */}
+          <div className="flex items-center justify-between border-b border-black/40 pb-2 text-[9px] font-['Press_Start_2P']">
+            <span className="text-[#00F5D4] flex-1 break-words leading-tight pr-2">
+              {visual.characterJapanese || 'HERO ARCHIVE'}
+            </span>
+
+            <span className="rounded bg-black/60 px-1.5 py-0.5 text-zinc-300 border border-black">
+              {item.releaseYear}
+            </span>
+          </div>
+
+          {/* Photo Frame with Scanline CRT Effect */}
+          <div className="relative aspect-square w-full overflow-hidden rounded-md border-2 border-black bg-black/80 shadow-inner flex items-center justify-center">
+            {visual.characterImageUrl && !imgError ? (
+              <img
+                src={visual.characterImageUrl}
+                alt={visual.characterName}
+                onError={() => setImgError(true)}
+                referrerPolicy="no-referrer"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            ) : (
+              /* Fallback Retro Vector Avatar Badge */
+              <div 
+                className="flex flex-col items-center justify-center p-4 text-center h-full w-full"
+                style={{ background: `radial-gradient(circle at center, ${visual.colorHex}22, #0d0e15)` }}
+              >
+                <div 
+                  className="w-16 h-16 rounded-full border-2 border-black flex items-center justify-center mb-2 shadow-md"
+                  style={{ backgroundColor: visual.colorHex }}
+                >
+                  <User className="w-8 h-8 text-black" />
+                </div>
+                <span className="font-['Press_Start_2P'] text-[8px] text-white uppercase tracking-wider">
+                  {visual.characterName}
+                </span>
+                <span className="font-['Space_Grotesk'] text-[10px] text-zinc-400 mt-1 font-bold">
+                  ARCHIVE CLASSIFIED
+                </span>
+              </div>
+            )}
+
+            {/* Retro CRT Scanlines Overlay */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.35)_50%)] bg-[length:100%_4px] opacity-40" />
+
+            {/* Neo-retro Sticker Badge */}
+            <div className="absolute bottom-2 left-2 rounded-xs border border-black bg-[#00F5D4] px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] text-black font-bold uppercase shadow-sm">
+              {visual.characterBadge}
+            </div>
+
+            {/* Inspect Icon Hover Cue */}
+            <div className="absolute top-2 right-2 rounded-full bg-black/80 p-1.5 text-white opacity-80 group-hover:opacity-100 transition-opacity border border-white/20">
+              <ZoomIn className="h-3.5 w-3.5 text-[#00F5D4]" />
+            </div>
+          </div>
+
+          {/* Character Identity & Titles */}
+          <div className="space-y-1">
+            <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-['Press_Start_2P']">
+              <Sparkles className="h-3 w-3 text-[#FFE600]" />
+              <span className="text-[8px] text-[#FFE600]">ARCHIVAL SUBJECT:</span>
+            </div>
+            <h3 className="font-['Syne'] text-lg font-black text-white leading-tight group-hover:text-[#00F5D4] transition-colors">
+              {visual.characterName}
+            </h3>
+            <p className="font-['Space_Grotesk'] text-xs font-medium text-zinc-300 leading-snug">
+              {visual.characterTitle}
+            </p>
+          </div>
+
+          {/* Dialogue / Signature Quote Speech Bubble */}
+          <div className="relative rounded-sm border-2 border-black bg-black/70 p-3 font-['Space_Grotesk'] text-xs text-zinc-300 italic brutal-shadow-sm">
+            <div className="absolute -top-2 left-4 h-0 w-0 border-x-4 border-x-transparent border-b-4 border-b-black" />
+            <p className="leading-relaxed">
+              {visual.characterQuote}
+            </p>
+          </div>
+
+          {/* Bottom Metadata Bar */}
+          <div className="flex items-center justify-between border-t border-black/40 pt-2 text-[8px] font-['Press_Start_2P'] text-zinc-400">
+            <span className="flex items-center gap-1">
+              <ShieldAlert className="h-3 w-3 text-[#FF2A85]" />
+              CONFIDENTIAL
+            </span>
+            <button 
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleInspect();
+              }}
+              className="text-[#00F5D4] hover:underline flex items-center gap-1 cursor-pointer font-bold"
+            >
+              <ZoomIn className="w-2.5 h-2.5" />
+              CLICK TO INSPECT
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Archival Dossier Inspection Lightbox Modal */}
+      {isInspectOpen && (
+        <ArtifactInspectionModal 
+          data={inspectData} 
+          onClose={() => setIsInspectOpen(false)} 
+        />
+      )}
+    </>
+  );
+};
