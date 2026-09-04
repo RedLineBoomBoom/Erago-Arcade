@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import type { TriviaItem } from '../types/trivia';
 import { sound } from '../audio/soundEngine';
-import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 
 interface TriviaCardProps {
   item: TriviaItem;
@@ -26,11 +25,6 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
   const [reacted, setReacted] = useState(false);
   const [decryptedHeadline, setDecryptedHeadline] = useState(item.headline);
   const [isScanning, setIsScanning] = useState(true);
-  const [failedPhotoId, setFailedPhotoId] = useState<string | null>(null);
-
-  const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle];
-  const photoUrl = visual?.characterImageUrl || visual?.boxArtImageUrl;
-  const isPhotoError = failedPhotoId === item.id;
 
   // Digital Decrypt Text Scramble Effect upon card mount/change
   useEffect(() => {
@@ -242,39 +236,6 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
           <h1 className="font-['Syne'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-[1.15] text-white tracking-tight min-h-[1.15em]">
             {decryptedHeadline}
           </h1>
-
-          {/* Archive Photo Exhibit Banner */}
-          {photoUrl && !isPhotoError && (
-            <div className="relative overflow-hidden rounded-md border-2 border-black bg-black/60 shadow-inner group/photo">
-              <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full max-h-64 overflow-hidden flex items-center justify-center bg-black/40">
-                <img
-                  src={photoUrl}
-                  alt={item.gameTitle}
-                  onError={() => setFailedPhotoId(item.id)}
-                  className="w-full h-full object-cover object-center group-hover/photo:scale-105 transition-transform duration-500"
-                />
-                {/* Subtle CRT Scanline */}
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%)] bg-[length:100%_4px] opacity-40" />
-                {/* Vignette Overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-                {/* Bottom Photo Caption */}
-                <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between pointer-events-none">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-xs border border-black bg-[#FF2A85] px-2 py-0.5 font-['Press_Start_2P'] text-[7px] font-bold text-black uppercase shadow-xs">
-                      {visual?.characterName || item.gameTitle}
-                    </span>
-                    <span className="hidden sm:inline font-['Space_Grotesk'] text-xs text-zinc-300 font-semibold truncate max-w-xs">
-                      {visual?.characterTitle || item.developer}
-                    </span>
-                  </div>
-                  <span className="font-['Press_Start_2P'] text-[7px] text-[#00F5D4] bg-black/60 px-1.5 py-0.5 rounded border border-black/40">
-                    EXHIBIT PHOTO
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Deep Dive Story */}
           <div className="relative rounded-sm border-l-4 border-[#FF2A85] bg-black/40 p-4 sm:p-5 text-base sm:text-lg leading-relaxed text-zinc-200">
