@@ -3,6 +3,7 @@ import { RotateCcw, ArrowLeft, Heart } from 'lucide-react';
 import { sound } from '../../audio/soundEngine';
 import { unlockAchievement } from '../../utils/achievements';
 import { triggerArcadeConfetti } from '../../utils/arcadeConfetti';
+import { currencyManager } from '../../utils/currencyManager';
 
 interface PixelInvadersGameProps {
   onBack: () => void;
@@ -193,6 +194,7 @@ export const PixelInvadersGame: React.FC<PixelInvadersGameProps> = ({ onBack }) 
             sound.playExplosion();
             state.score += 150;
             setScore(state.score);
+            currencyManager.convertPoints(150, 'PIXEL_INVADERS');
 
             if (state.score > highScore) {
               setHighScore(state.score);
@@ -351,8 +353,11 @@ export const PixelInvadersGame: React.FC<PixelInvadersGameProps> = ({ onBack }) 
             {gameState === 'won' && (
               <div className="absolute inset-0 bg-black/85 flex flex-col items-center justify-center space-y-3 p-4 animate-scale-up">
                 <div className="text-4xl">🏆</div>
-                <h4 className="font-['Syne'] text-2xl font-black text-[#00F5D4]">WAVE DEFENDED!</h4>
-                <p className="font-mono text-sm">Score: {score} PTS</p>
+                <h4 className="font-['Syne'] text-2xl font-black text-[#00F5D4]">GALAXY DEFENDED!</h4>
+                <p className="font-mono text-sm text-white">Score: {score} PTS</p>
+                <div className="px-3 py-1 bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow">
+                  +{Math.floor(score / 10)} COINS EARNED! 🪙
+                </div>
                 <button
                   onClick={startGame}
                   className="px-4 py-2 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border-2 border-black shadow"
@@ -366,7 +371,10 @@ export const PixelInvadersGame: React.FC<PixelInvadersGameProps> = ({ onBack }) 
               <div className="absolute inset-0 bg-black/85 flex flex-col items-center justify-center space-y-3 p-4 animate-scale-up">
                 <div className="text-4xl">💥</div>
                 <h4 className="font-['Syne'] text-2xl font-black text-[#FF2A85]">BASE BREACHED!</h4>
-                <p className="font-mono text-xs text-zinc-300">The invaders took over the arcade.</p>
+                <p className="font-mono text-xs text-zinc-300">The invaders took over the arcade. Score: {score} PTS</p>
+                <div className="px-3 py-1 bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow">
+                  +{Math.floor(score / 10)} COINS EARNED! 🪙
+                </div>
                 <button
                   onClick={startGame}
                   className="flex items-center gap-1.5 px-4 py-2 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border-2 border-black shadow"

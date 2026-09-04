@@ -3,6 +3,7 @@ import { RotateCcw, ArrowLeft, Trophy } from 'lucide-react';
 import { sound } from '../../audio/soundEngine';
 import { unlockAchievement } from '../../utils/achievements';
 import { triggerArcadeConfetti } from '../../utils/arcadeConfetti';
+import { currencyManager } from '../../utils/currencyManager';
 
 interface CyberSnakeGameProps {
   onBack: () => void;
@@ -152,6 +153,7 @@ export const CyberSnakeGame: React.FC<CyberSnakeGameProps> = ({ onBack }) => {
         sound.playCoin();
         state.score += 100;
         setScore(state.score);
+        currencyManager.convertPoints(100, 'CYBER_SNAKE');
         state.food = generateFood(newSnake);
 
         if (state.score > highScore) {
@@ -293,6 +295,9 @@ export const CyberSnakeGame: React.FC<CyberSnakeGameProps> = ({ onBack }) => {
                 <div className="text-4xl">💀</div>
                 <h4 className="font-['Syne'] text-2xl font-black text-[#FF2A85]">CRASHED! GAME OVER</h4>
                 <p className="font-mono text-sm text-zinc-200">Final Score: {score} PTS</p>
+                <div className="px-3 py-1 bg-[#00F566] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow">
+                  +{Math.floor(score / 10)} COINS EARNED! 🪙
+                </div>
                 <button
                   onClick={startGame}
                   className="flex items-center gap-1.5 px-4 py-2 bg-[#00F566] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border-2 border-black shadow"

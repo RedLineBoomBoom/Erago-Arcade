@@ -77,6 +77,24 @@ export const BonusStageHub: React.FC<BonusStageHubProps> = ({ isOpen, onClose })
           {activeGameId === null ? (
             /* Game Selection Library */
             <div className="p-5 sm:p-6 space-y-6">
+              {/* Coin Conversion Rate Header Banner */}
+              <div className="flex items-center justify-between gap-3 p-3 rounded-xl border-2 border-black bg-gradient-to-r from-[#FFE600] to-[#00F5D4] text-black shadow-[3px_3px_0px_#000]">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xl animate-bounce">🪙</span>
+                  <div>
+                    <div className="font-['Syne'] font-black text-xs sm:text-sm uppercase tracking-wide">
+                      COIN EARNING ZONE: 100 POINTS = 10 COINS!
+                    </div>
+                    <div className="font-mono text-[10px] text-zinc-900">
+                      Mainkan mini game apa saja untuk mengumpulkan poin dan otomatis convert ke coin arcade!
+                    </div>
+                  </div>
+                </div>
+                <span className="hidden sm:inline-block px-2 py-1 rounded bg-black text-[#FFE600] font-['Press_Start_2P'] text-[7px] font-bold">
+                  RATE 10:1
+                </span>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {MINI_GAMES_CATALOG.map((game: MiniGameMeta) => {
                   const hiScore = getHighScore(game.storageKey);

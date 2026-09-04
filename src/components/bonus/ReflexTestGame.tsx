@@ -3,6 +3,7 @@ import { RotateCcw, ArrowLeft, Zap, Trophy } from 'lucide-react';
 import { sound } from '../../audio/soundEngine';
 import { unlockAchievement } from '../../utils/achievements';
 import { triggerArcadeConfetti } from '../../utils/arcadeConfetti';
+import { currencyManager } from '../../utils/currencyManager';
 
 interface ReflexTestGameProps {
   onBack: () => void;
@@ -54,6 +55,9 @@ export const ReflexTestGame: React.FC<ReflexTestGameProps> = ({ onBack }) => {
       const elapsed = Math.round(performance.now() - startTimeRef.current);
       setReactionTime(elapsed);
       setStage('result');
+
+      const reflexPoints = elapsed < 240 ? 400 : elapsed < 320 ? 300 : elapsed < 420 ? 200 : 100;
+      currencyManager.convertPoints(reflexPoints, 'REFLEX_TEST');
 
       if (elapsed < 240) {
         sound.playJackpot();
@@ -213,6 +217,11 @@ export const ReflexTestGame: React.FC<ReflexTestGameProps> = ({ onBack }) => {
                     </div>
                     <div className="font-mono text-xs text-zinc-300 uppercase tracking-widest">
                       {rankInfo.label}
+                    </div>
+                    <div className="pt-1">
+                      <span className="px-3 py-1 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow inline-block">
+                        +{Math.floor((reactionTime < 240 ? 400 : reactionTime < 320 ? 300 : reactionTime < 420 ? 200 : 100) / 10)} COINS EARNED! 🪙
+                      </span>
                     </div>
                   </div>
                 );

@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Timer, RotateCcw, ArrowLeft } from 'lucide-react';
 import { sound } from '../../audio/soundEngine';
-
 import { unlockAchievement } from '../../utils/achievements';
 import { triggerArcadeConfetti } from '../../utils/arcadeConfetti';
+import { currencyManager } from '../../utils/currencyManager';
 
 interface MemoryMatchGameProps {
   onBack: () => void;
@@ -111,6 +111,7 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({ onBack }) => {
       if (firstCard && firstCard.pairId === secondCard.pairId) {
         sound.playCorrect();
         const earned = 500 + timeLeft * 20;
+        currencyManager.convertPoints(earned, 'MEMORY_MATCH');
         setScore((prev) => {
           const newTotal = prev + earned;
           if (newTotal > highScore) {
@@ -249,6 +250,9 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({ onBack }) => {
             <p className="font-mono text-sm text-white">
               Final Score: <span className="text-[#00F5D4] font-black">{score} PTS</span>
             </p>
+            <div className="px-3 py-1 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow inline-block">
+              +{Math.floor(score / 10)} COINS EARNED! 🪙
+            </div>
             <div className="flex items-center justify-center gap-2 pt-2">
               <button
                 onClick={startNewGame}

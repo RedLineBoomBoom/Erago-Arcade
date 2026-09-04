@@ -4,6 +4,7 @@ import { Trophy, RefreshCw, CheckCircle, XCircle, Gamepad2 } from 'lucide-react'
 import type { TriviaItem } from '../types/trivia';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
+import { currencyManager } from '../utils/currencyManager';
 
 
 interface QuizModeProps {
@@ -31,6 +32,7 @@ export const QuizMode: React.FC<QuizModeProps> = ({ triviaList, onBackToArcade }
       sound.playCorrect();
       unlockAchievement('QUIZ_MASTER');
       const points = 100 * (streak + 1);
+      currencyManager.convertPoints(points, 'QUIZ_MODE');
 
       setScore((prev) => prev + points);
       setStreak((prev) => prev + 1);

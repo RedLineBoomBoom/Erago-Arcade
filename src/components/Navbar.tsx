@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
-
+import { currencyManager, type CurrencyState } from '../utils/currencyManager';
+import { CoinBankModal } from './CoinBankModal';
 
 import type { ViewMode } from '../types/trivia';
 
@@ -49,14 +50,26 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isMuted, setIsMuted] = useState(sound.isMuted);
   const [isBgmActive, setIsBgmActive] = useState(sound.isBgmActive);
   const [isExtrasOpen, setIsExtrasOpen] = useState(false);
+  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
+  const [currencyState, setCurrencyState] = useState<CurrencyState>(() => ({
+    coins: currencyManager.getCoins(),
+    accumulatedPoints: currencyManager.getAccumulatedPoints(),
+    playtimeSeconds: 0,
+  }));
   const extrasMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const unsub = sound.subscribe(() => {
+    const unsubSound = sound.subscribe(() => {
       setIsMuted(sound.isMuted);
       setIsBgmActive(sound.isBgmActive);
     });
-    return unsub;
+    const unsubCurrency = currencyManager.subscribe((state) => {
+      setCurrencyState(state);
+    });
+    return () => {
+      unsubSound();
+      unsubCurrency();
+    };
   }, []);
 
   useEffect(() => {
@@ -185,6 +198,21 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Action Controls: Sound / BGM / CRT / Cartridge Counter & Toys */}
         <div className="flex items-center gap-2">
+          {/* Arcade Coin Counter Widget */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              setIsBankModalOpen(true);
+            }}
+            data-cursor="COINS"
+            title="Erago Coin Bank & Rewards Info"
+            className="flex h-8 sm:h-9 items-center gap-1.5 rounded-sm border-2 border-black bg-[#1A1C26] hover:bg-[#FFE600] text-[#FFE600] hover:text-black px-2 sm:px-2.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold transition-all shadow-[2px_2px_0px_#000] group"
+          >
+            <span className="text-xs sm:text-sm group-hover:scale-110 transition-transform">🪙</span>
+            <span>{currencyState.coins.toLocaleString()}</span>
+            <span className="hidden xl:inline text-[6px] text-zinc-400 group-hover:text-black">COINS</span>
+          </button>
+
           {/* Unified Arcade Extras Hub Dropdown */}
           <div className="relative" ref={extrasMenuRef}>
             <button
@@ -418,6 +446,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Arcade Coin Bank & Rewards Information Modal */}
+      <CoinBankModal
+        isOpen={isBankModalOpen}
+        onClose={() => setIsBankModalOpen(false)}
+        coins={currencyState.coins}
+        accumulatedPoints={currencyState.accumulatedPoints}
+        onOpenMiniGames={onOpenBonusStage}
+        onOpenBossBattle={onOpenBossBattle}
+      />
     </header>
   );
 };

@@ -3,6 +3,7 @@ import { RotateCcw, ArrowLeft } from 'lucide-react';
 import { sound } from '../../audio/soundEngine';
 import { unlockAchievement } from '../../utils/achievements';
 import { triggerArcadeConfetti } from '../../utils/arcadeConfetti';
+import { currencyManager } from '../../utils/currencyManager';
 
 interface BrickBreakerGameProps {
   onBack: () => void;
@@ -215,6 +216,7 @@ export const BrickBreakerGame: React.FC<BrickBreakerGameProps> = ({ onBack }) =>
           sound.playPowerUp();
           state.score += 100;
           setScore(state.score);
+          currencyManager.convertPoints(100, 'BRICK_BREAKER');
 
           if (state.score > highScore) {
             setHighScore(state.score);
@@ -348,6 +350,9 @@ export const BrickBreakerGame: React.FC<BrickBreakerGameProps> = ({ onBack }) =>
                 <div className="text-4xl">🏆</div>
                 <h4 className="font-['Syne'] text-2xl font-black text-[#FFE600]">ALL BRICKS SMASHED!</h4>
                 <p className="font-mono text-sm text-white">Score: {score} PTS</p>
+                <div className="px-3 py-1 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow">
+                  +{Math.floor(score / 10)} COINS EARNED! 🪙
+                </div>
                 <button
                   onClick={startGame}
                   className="px-4 py-2 bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border-2 border-black shadow"
@@ -362,6 +367,9 @@ export const BrickBreakerGame: React.FC<BrickBreakerGameProps> = ({ onBack }) =>
                 <div className="text-4xl">💔</div>
                 <h4 className="font-['Syne'] text-2xl font-black text-[#FF2A85]">BALL DROPPED!</h4>
                 <p className="font-mono text-sm text-zinc-200">Final Score: {score} PTS</p>
+                <div className="px-3 py-1 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border border-black shadow">
+                  +{Math.floor(score / 10)} COINS EARNED! 🪙
+                </div>
                 <button
                   onClick={startGame}
                   className="flex items-center gap-1.5 px-4 py-2 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold rounded border-2 border-black shadow"

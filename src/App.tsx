@@ -26,6 +26,9 @@ import { BossBattleModal } from './components/BossBattleModal';
 import { CabinetThemeModal } from './components/CabinetThemeModal';
 import { DosTerminalModal } from './components/DosTerminalModal';
 import { CardBinderModal } from './components/CardBinderModal';
+import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
+import { TimeRewardBanner } from './components/TimeRewardBanner';
+import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
 
@@ -53,10 +56,23 @@ export function App() {
   const [isThemeModalOpen, setIsThemeModalOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isCardBinderOpen, setIsCardBinderOpen] = useState(false);
+  const [isInsufficientCoinsOpen, setIsInsufficientCoinsOpen] = useState(false);
+  const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
+  const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
 
-  // Apply active console theme on mount
+  // Apply active console theme on mount and subscribe to currency
   useEffect(() => {
     setActiveTheme(getActiveTheme());
+    const unsub = currencyManager.subscribe((state) => {
+      setCoins(state.coins);
+    });
+    const unsubReward = currencyManager.onTimeReward((awarded) => {
+      setTimeRewardCoins(awarded);
+    });
+    return () => {
+      unsub();
+      unsubReward();
+    };
   }, []);
 
 
@@ -74,9 +90,19 @@ export function App() {
     });
   }, [selectedEra, selectedTag]);
 
-  // Roll new trivia with slot animation
+  // Roll new trivia with slot animation (Costs 10 Coins)
   const handleRollTrivia = useCallback(() => {
     if (isRolling) return;
+
+    // Check coin balance (10 coins per roll)
+    const success = currencyManager.spendCoins(ROLL_COST);
+    if (!success) {
+      sound.playError();
+      setIsInsufficientCoinsOpen(true);
+      return;
+    }
+
+    sound.playCoin();
     setIsRolling(true);
     unlockAchievement('FIRST_COIN');
 
@@ -103,7 +129,8 @@ export function App() {
     isBossBattleOpen ||
     isThemeModalOpen ||
     isTerminalOpen ||
-    isCardBinderOpen;
+    isCardBinderOpen ||
+    isInsufficientCoinsOpen;
 
   // Hotkey listeners for CRT ('c'), Mute ('m'), and Terminal ('~')
   useEffect(() => {
@@ -234,6 +261,7 @@ export function App() {
               selectedTag={selectedTag}
               onSelectTag={setSelectedTag}
               disabledHotkeys={isAnyModalOpen}
+              coins={coins}
             />
 
           </div>
@@ -346,6 +374,21 @@ export function App() {
         isOpen={isCardBinderOpen}
         onClose={() => setIsCardBinderOpen(false)}
         discoveredIds={unlockedIds}
+      />
+
+      {/* 10. Insufficient Coins Arcade Warning & Refill Options */}
+      <InsufficientCoinsModal
+        isOpen={isInsufficientCoinsOpen}
+        onClose={() => setIsInsufficientCoinsOpen(false)}
+        onOpenMiniGames={() => setIsBonusStageOpen(true)}
+        onOpenBossBattle={() => setIsBossBattleOpen(true)}
+        currentCoins={coins}
+      />
+
+      {/* 11. Passive 10-Minute Playtime Reward Banner Toast */}
+      <TimeRewardBanner
+        coinsAwarded={timeRewardCoins}
+        onDismiss={() => setTimeRewardCoins(null)}
       />
     </div>
 

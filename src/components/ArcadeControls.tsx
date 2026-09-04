@@ -13,6 +13,7 @@ interface ArcadeControlsProps {
   selectedTag: TriviaTag;
   onSelectTag: (tag: TriviaTag) => void;
   disabledHotkeys?: boolean;
+  coins?: number;
 }
 
 export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
@@ -23,6 +24,7 @@ export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
   selectedTag,
   onSelectTag,
   disabledHotkeys = false,
+  coins = 2000,
 }) => {
   // Global spacebar listener to roll trivia
   useEffect(() => {
@@ -34,7 +36,6 @@ export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
 
       if (e.code === 'Space') {
         e.preventDefault();
-        sound.playCoin();
         onRoll();
       }
     };
@@ -45,9 +46,10 @@ export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
 
 
   const handleRollClick = () => {
-    sound.playCoin();
     onRoll();
   };
+
+  const hasEnoughCoins = coins >= 10;
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-4 space-y-5">
@@ -56,8 +58,10 @@ export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
         <button
           onClick={handleRollClick}
           disabled={isRolling}
-          data-cursor="INSERT COIN"
-          className="group relative flex items-center justify-center gap-3 rounded-md border-3 border-black bg-[#FF2A85] px-8 py-4 font-['Syne'] text-lg sm:text-xl font-black text-black uppercase tracking-wider brutal-shadow hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#000] active:translate-x-1.5 active:translate-y-1.5 active:shadow-none transition-all disabled:opacity-75 disabled:pointer-events-none"
+          data-cursor={hasEnoughCoins ? "INSERT 10 COINS" : "NEED 10 COINS"}
+          className={`group relative flex items-center justify-center gap-3 rounded-md border-3 border-black px-8 py-4 font-['Syne'] text-lg sm:text-xl font-black text-black uppercase tracking-wider brutal-shadow hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[3px_3px_0px_#000] active:translate-x-1.5 active:translate-y-1.5 active:shadow-none transition-all disabled:opacity-75 disabled:pointer-events-none ${
+            hasEnoughCoins ? 'bg-[#FF2A85]' : 'bg-[#FF5555]'
+          }`}
         >
           {/* Animated Coin Indicator */}
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFE600] border-2 border-black group-hover:rotate-12 transition-transform">
@@ -65,12 +69,17 @@ export const ArcadeControls: React.FC<ArcadeControlsProps> = ({
           </div>
 
           <div className="text-left">
-            <div className="leading-tight text-black flex items-center gap-1.5">
-              <span>{isRolling ? 'SHUFFLING MEMORY...' : 'INSERT COIN / ROLL'}</span>
+            <div className="leading-tight text-black flex items-center gap-2">
+              <span>{isRolling ? 'SHUFFLING MEMORY...' : 'INSERT 10 COINS / ROLL'}</span>
+              <span className="px-1.5 py-0.5 rounded bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold border border-black shadow-[1px_1px_0px_#000]">
+                -10 🪙
+              </span>
               <Sparkles className="h-4 w-4 text-[#FFE600]" />
             </div>
             <span className="font-['Press_Start_2P'] text-[8px] text-zinc-900 tracking-tighter block mt-0.5">
-              PRESS [SPACEBAR] OR CLICK TO SHUFFLE
+              {hasEnoughCoins 
+                ? 'PRESS [SPACEBAR] OR CLICK TO SHUFFLE' 
+                : '⚠️ INSUFFICIENT COINS! CLICK FOR HELP'}
             </span>
           </div>
         </button>
