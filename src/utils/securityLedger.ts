@@ -2,11 +2,12 @@
  * Cryptographic Anti-Tamper Security Ledger for Erago Arcade Vault
  * 
  * Provides:
- * - Device Vault Identity & Cryptographic Hardware Binding
- * - Encrypted & Obfuscated Storage Envelope ('erago_vault_secure_ledger')
- * - Dual-Tier Verification: Fast Sync Multi-Pass Keyed Hash + Async Web Crypto HMAC-SHA256
- * - Transaction Sanity Bounds & Anti-Clock-Warp Detection
- * - Real-Time Tamper Detection & Auto-Quarantine Recovery
+ * - Dynamic Device & Origin Bound Entropy (No Static Pepper)
+ * - Strict Hard Ceiling (25,000 Coins Maximum) to Prevent Infinite Injections
+ * - Dual-Tier Verification: Fast Keyed Murmur/FNV Mix + Async Web Crypto HMAC-SHA256
+ * - Merkle Chained Previous-Hash Storage Envelope
+ * - Zero-Trust Legacy Purge (No Unverified Plaintext Key Imports)
+ * - Automatic Quarantine & Instant Baseline Reversion on Tamper
  */
 
 export const LEDGER_STORAGE_KEY = 'erago_vault_secure_ledger';
@@ -16,9 +17,8 @@ const LEGACY_STORAGE_KEY_COINS = 'erago_arcade_coins';
 const LEGACY_STORAGE_KEY_POINTS = 'erago_arcade_points_acc';
 const LEGACY_STORAGE_KEY_PLAYTIME = 'erago_arcade_playtime_sec';
 
-// Hardcoded application internal pepper (mixed with device-unique salt)
-const VAULT_INTERNAL_PEPPER = 'ERAGO_ARCADE_VAULT_INTEGRITY_SALT_V1_2026_NEVER_TAMPER';
 export const SAFE_BASELINE_COINS = 2000;
+export const MAX_COIN_CEILING = 25000; // Absolute maximum legitimate coin capacity
 
 export interface VaultStatePayload {
   coins: number;
@@ -26,6 +26,7 @@ export interface VaultStatePayload {
   playtimeSeconds: number;
   timestamp: number;
   nonce: number;
+  chainHash?: string;
 }
 
 export interface SecureVaultEnvelope {
@@ -35,7 +36,8 @@ export interface SecureVaultEnvelope {
   nonce: number;
   payloadCipher: string;
   syncSignature: string;
-  signature?: string; // Async Web Crypto HMAC-SHA256 signature
+  previousSignature?: string;
+  signature?: string; // Async Web Crypto HMAC-SHA256
 }
 
 export interface TamperIncident {
@@ -51,6 +53,7 @@ class SecurityLedgerManager {
   private vaultId: string = '';
   private deviceSalt: string = '';
   private lastKnownNonce: number = 0;
+  private lastKnownSignature: string = 'GENESIS_SIG_0';
   private tamperListeners: Set<TamperListener> = new Set();
   private tamperViolationCount: number = 0;
   private lastVerifiedTimestamp: number = Date.now();
@@ -61,10 +64,15 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Initializes or loads device-unique entropy and ID
+   * Initializes device-unique entropy and purges dangerous legacy keys
    */
   private initDeviceSecurity() {
     try {
+      // Purge any legacy plaintext keys immediately
+      localStorage.removeItem(LEGACY_STORAGE_KEY_COINS);
+      localStorage.removeItem(LEGACY_STORAGE_KEY_POINTS);
+      localStorage.removeItem(LEGACY_STORAGE_KEY_PLAYTIME);
+
       let vId = localStorage.getItem(DEVICE_ID_KEY);
       if (!vId || !vId.startsWith('VAULT-')) {
         vId = this.generateRandomVaultId();
@@ -79,7 +87,6 @@ class SecurityLedgerManager {
       }
       this.deviceSalt = salt;
     } catch {
-      // Fallback in memory if storage fails
       this.vaultId = 'VAULT-FALLBACK-SESSION';
       this.deviceSalt = '7f8c12e9b04d5a6390145efc1938ab42';
     }
@@ -107,18 +114,20 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Derived composite encryption and signing key
+   * Derives composite dynamic key combining origin, device salt, and runtime seeds
    */
   private getCompositeKey(nonce: number): string {
-    return `${this.vaultId}:${this.deviceSalt}:${VAULT_INTERNAL_PEPPER}:${nonce}`;
+    const origin = typeof window !== 'undefined' ? window.location.origin || 'erago.local' : 'erago.local';
+    const dynamicSeed = 0x5a17c0de ^ (nonce * 0x1f3d5b79);
+    return `${this.vaultId}:${this.deviceSalt}:${origin}:${dynamicSeed.toString(16)}:${nonce}`;
   }
 
   /**
-   * Fast multi-pass 64-bit FNV-1a / Murmur3 mix for synchronous validation
+   * Fast multi-pass 64-bit keyed hash for synchronous validation
    */
-  private computeSyncSignature(payloadCipher: string, nonce: number, timestamp: number): string {
+  private computeSyncSignature(payloadCipher: string, nonce: number, timestamp: number, previousSig: string = ''): string {
     const key = this.getCompositeKey(nonce);
-    const input = `${this.vaultId}#${timestamp}#${nonce}#${payloadCipher}#${key}`;
+    const input = `${this.vaultId}#${timestamp}#${nonce}#${payloadCipher}#${previousSig}#${key}`;
 
     let h1 = 0x811c9dc5;
     let h2 = 0x9e3779b9;
@@ -145,7 +154,7 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Asynchronous Web Crypto HMAC-SHA256 calculation
+   * Asynchronous Web Crypto HMAC-SHA256 signature
    */
   public async computeHmacSha256(dataString: string): Promise<string> {
     if (typeof window === 'undefined' || !window.crypto?.subtle) {
@@ -153,7 +162,8 @@ class SecurityLedgerManager {
     }
     try {
       const enc = new TextEncoder();
-      const secret = `${this.deviceSalt}:${VAULT_INTERNAL_PEPPER}`;
+      const origin = window.location.origin || 'erago.local';
+      const secret = `${this.deviceSalt}:${origin}:VAULT_HMAC_GUARD_V2`;
       const keyData = enc.encode(secret);
       const key = await window.crypto.subtle.importKey(
         'raw',
@@ -171,7 +181,7 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Encrypt / Obfuscate JSON state with dynamic keystream
+   * Dynamic keystream XOR cipher with base64 envelope
    */
   private encryptPayload(payload: VaultStatePayload): string {
     const jsonStr = JSON.stringify(payload);
@@ -181,17 +191,16 @@ class SecurityLedgerManager {
     for (let i = 0; i < jsonStr.length; i++) {
       const charCode = jsonStr.charCodeAt(i);
       const keyChar = key.charCodeAt(i % key.length);
-      const xor = charCode ^ keyChar ^ ((payload.nonce * (i + 1)) & 0xff);
+      const xor = charCode ^ keyChar ^ ((payload.nonce * (i + 1) + 0x37) & 0xff);
       output.push(xor);
     }
 
-    // Convert to base64 string
     const binStr = String.fromCharCode(...output);
     return btoa(binStr);
   }
 
   /**
-   * Decrypt payload and check integrity
+   * Decrypts and validates payload structure
    */
   private decryptPayload(cipherText: string, nonce: number): VaultStatePayload | null {
     try {
@@ -202,7 +211,7 @@ class SecurityLedgerManager {
       for (let i = 0; i < binStr.length; i++) {
         const charCode = binStr.charCodeAt(i);
         const keyChar = key.charCodeAt(i % key.length);
-        const orig = charCode ^ keyChar ^ ((nonce * (i + 1)) & 0xff);
+        const orig = charCode ^ keyChar ^ ((nonce * (i + 1) + 0x37) & 0xff);
         decodedChars.push(String.fromCharCode(orig));
       }
 
@@ -226,7 +235,7 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Register a callback when security tampering is detected
+   * Registers a callback when tampering is detected
    */
   public onTamperDetected(listener: TamperListener): () => void {
     this.tamperListeners.add(listener);
@@ -235,7 +244,7 @@ class SecurityLedgerManager {
     };
   }
 
-  private notifyTamper(reason: string, revertedToCoins: number) {
+  public notifyTamper(reason: string, revertedToCoins: number = SAFE_BASELINE_COINS) {
     this.tamperViolationCount++;
     this.isSecured = false;
     const incident: TamperIncident = {
@@ -244,7 +253,7 @@ class SecurityLedgerManager {
       vaultId: this.vaultId,
       revertedToCoins,
     };
-    console.warn(`[ERAGO VAULT SECURITY ALERT] Tamper attempt detected: ${reason}`);
+    console.warn(`%c[ERAGO SECURITY ALERT] ${reason}`, 'background: #FF2A85; color: white; font-weight: bold; padding: 4px;');
     this.tamperListeners.forEach((l) => {
       try {
         l(incident);
@@ -255,10 +264,10 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Check if state passes security sanity bounds
+   * Strict Sanity Verification: Enforces Hard Ceiling and Integer Bounds
    */
   private validateSanity(payload: VaultStatePayload): boolean {
-    if (!Number.isInteger(payload.coins) || payload.coins < 0 || payload.coins > 10_000_000) {
+    if (!Number.isInteger(payload.coins) || payload.coins < 0 || payload.coins > MAX_COIN_CEILING) {
       return false;
     }
     if (!Number.isInteger(payload.accumulatedPoints) || payload.accumulatedPoints < 0 || payload.accumulatedPoints >= 100) {
@@ -274,50 +283,62 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Persists state securely into encrypted & signed envelope
+   * Persists vault state into encrypted and signed envelope
    */
   public saveSecureVault(state: { coins: number; accumulatedPoints: number; playtimeSeconds: number }): boolean {
     try {
+      // Hard ceiling clamp before encryption
+      if (state.coins > MAX_COIN_CEILING) {
+        this.notifyTamper(
+          `Percobaan manipulasi koin ke ${state.coins.toLocaleString()} melampaui batas wajar (Plafon ${MAX_COIN_CEILING.toLocaleString()})`,
+          SAFE_BASELINE_COINS
+        );
+        state.coins = SAFE_BASELINE_COINS;
+      }
+
       this.lastKnownNonce += 1;
       const nonce = this.lastKnownNonce;
       const timestamp = Date.now();
 
       const payload: VaultStatePayload = {
-        coins: Math.max(0, Math.floor(state.coins)),
-        accumulatedPoints: Math.max(0, Math.floor(state.accumulatedPoints)),
-        playtimeSeconds: Math.max(0, Math.floor(state.playtimeSeconds)),
+        coins: Math.max(0, Math.min(MAX_COIN_CEILING, Math.floor(state.coins))),
+        accumulatedPoints: Math.max(0, Math.floor(state.accumulatedPoints % 100)),
+        playtimeSeconds: Math.max(0, Math.floor(state.playtimeSeconds % 600)),
         timestamp,
         nonce,
+        chainHash: this.lastKnownSignature,
       };
 
       if (!this.validateSanity(payload)) {
-        console.error('[ERAGO VAULT] State rejected due to invalid sanity bounds');
+        this.notifyTamper('Validasi integritas parameter gagal saat menyimpan brankas', SAFE_BASELINE_COINS);
         return false;
       }
 
       const payloadCipher = this.encryptPayload(payload);
-      const syncSignature = this.computeSyncSignature(payloadCipher, nonce, timestamp);
+      const syncSignature = this.computeSyncSignature(payloadCipher, nonce, timestamp, this.lastKnownSignature);
 
       const envelope: SecureVaultEnvelope = {
-        version: 1,
+        version: 2,
         vaultId: this.vaultId,
         timestamp,
         nonce,
         payloadCipher,
         syncSignature,
+        previousSignature: this.lastKnownSignature,
       };
 
-      // Synchronously write envelope
+      this.lastKnownSignature = syncSignature;
+
       localStorage.setItem(LEDGER_STORAGE_KEY, JSON.stringify(envelope));
       this.lastVerifiedTimestamp = timestamp;
 
-      // Clean up legacy keys if they still linger
+      // Clean up legacy keys
       localStorage.removeItem(LEGACY_STORAGE_KEY_COINS);
       localStorage.removeItem(LEGACY_STORAGE_KEY_POINTS);
       localStorage.removeItem(LEGACY_STORAGE_KEY_PLAYTIME);
 
-      // Async background HMAC-SHA256 signature calculation to seal envelope
-      this.computeHmacSha256(`${envelope.vaultId}:${envelope.timestamp}:${envelope.nonce}:${envelope.payloadCipher}`).then(
+      // Async HMAC-SHA256 seal
+      this.computeHmacSha256(`${envelope.vaultId}:${envelope.timestamp}:${envelope.nonce}:${envelope.payloadCipher}:${syncSignature}`).then(
         (sig) => {
           try {
             const raw = localStorage.getItem(LEDGER_STORAGE_KEY);
@@ -329,7 +350,7 @@ class SecurityLedgerManager {
               }
             }
           } catch {
-            // Ignore async update failure
+            // Ignore
           }
         }
       );
@@ -343,20 +364,12 @@ class SecurityLedgerManager {
 
   /**
    * Loads and cryptographically validates vault state
-   * If tampered, quarantines data, restores to baseline 2000 coins, and notifies listeners.
    */
   public loadSecureVault(): { coins: number; accumulatedPoints: number; playtimeSeconds: number } {
     try {
-      // 1. Check legacy migration first
-      const legacyData = this.checkLegacyMigration();
-      if (legacyData) {
-        this.saveSecureVault(legacyData);
-        return legacyData;
-      }
-
       const raw = localStorage.getItem(LEDGER_STORAGE_KEY);
       if (!raw) {
-        // First run: brand new vault
+        // First initialization
         const freshState = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
         this.saveSecureVault(freshState);
         return freshState;
@@ -366,16 +379,14 @@ class SecurityLedgerManager {
       try {
         envelope = JSON.parse(raw);
       } catch {
-        // Raw string is not even valid JSON! Definite tampering
         this.notifyTamper('Penyimpanan ledger rusak atau diedit secara manual di DevTools', SAFE_BASELINE_COINS);
         const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
         this.saveSecureVault(restored);
         return restored;
       }
 
-      // Check structural properties
+      // Check structural envelope integrity
       if (
-        envelope.version !== 1 ||
         !envelope.vaultId ||
         !envelope.payloadCipher ||
         !envelope.syncSignature ||
@@ -388,16 +399,17 @@ class SecurityLedgerManager {
         return restored;
       }
 
-      // Check vault ID binding (prevents importing ledger from another machine/browser)
+      // Check vault ID binding (prevents importing forged ledger from other device)
       if (envelope.vaultId !== this.vaultId) {
-        this.notifyTamper('ID Brankas tidak cocok dengan hardware/browser perangkat ini (Kloning terdeteksi)', SAFE_BASELINE_COINS);
+        this.notifyTamper('ID Brankas tidak cocok dengan perangkat ini (Kloning terdeteksi)', SAFE_BASELINE_COINS);
         const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
         this.saveSecureVault(restored);
         return restored;
       }
 
-      // Verify synchronous signature
-      const expectedSyncSig = this.computeSyncSignature(envelope.payloadCipher, envelope.nonce, envelope.timestamp);
+      // Verify sync signature
+      const prevSig = envelope.previousSignature || 'GENESIS_SIG_0';
+      const expectedSyncSig = this.computeSyncSignature(envelope.payloadCipher, envelope.nonce, envelope.timestamp, prevSig);
       if (envelope.syncSignature !== expectedSyncSig) {
         this.notifyTamper('Tanda tangan digital brankas tidak cocok (Manipulasi koin terdeteksi)', SAFE_BASELINE_COINS);
         const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
@@ -414,21 +426,25 @@ class SecurityLedgerManager {
         return restored;
       }
 
-      // Validate sanity bounds
+      // Check strict ceiling & sanity
       if (!this.validateSanity(payload)) {
-        this.notifyTamper('Nilai koin berada di luar batas integritas yang diizinkan sistem', SAFE_BASELINE_COINS);
+        this.notifyTamper(
+          `Nilai koin (${payload.coins.toLocaleString()}) melampaui batas wajar permainan (Plafon ${MAX_COIN_CEILING.toLocaleString()})`,
+          SAFE_BASELINE_COINS
+        );
         const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
         this.saveSecureVault(restored);
         return restored;
       }
 
       this.lastKnownNonce = envelope.nonce;
+      this.lastKnownSignature = envelope.syncSignature;
       this.lastVerifiedTimestamp = envelope.timestamp;
       this.isSecured = true;
 
-      // Async verification of HMAC-SHA256 if signature present
+      // Async HMAC check if signature exists
       if (envelope.signature) {
-        this.computeHmacSha256(`${envelope.vaultId}:${envelope.timestamp}:${envelope.nonce}:${envelope.payloadCipher}`).then(
+        this.computeHmacSha256(`${envelope.vaultId}:${envelope.timestamp}:${envelope.nonce}:${envelope.payloadCipher}:${envelope.syncSignature}`).then(
           (expectedHmac) => {
             if (envelope.signature && envelope.signature !== expectedHmac) {
               this.notifyTamper('Verifikasi HMAC-SHA256 gagal (Modifikasi tanda tangan)', SAFE_BASELINE_COINS);
@@ -453,46 +469,6 @@ class SecurityLedgerManager {
   }
 
   /**
-   * Safely migrates legacy plaintext keys into encrypted ledger
-   */
-  private checkLegacyMigration(): { coins: number; accumulatedPoints: number; playtimeSeconds: number } | null {
-    try {
-      const storedCoins = localStorage.getItem(LEGACY_STORAGE_KEY_COINS);
-      if (storedCoins === null) return null;
-
-      const parsedCoins = parseInt(storedCoins, 10);
-      const validCoins = Number.isNaN(parsedCoins) ? SAFE_BASELINE_COINS : Math.min(100_000, Math.max(0, parsedCoins));
-
-      let validPoints = 0;
-      const storedPoints = localStorage.getItem(LEGACY_STORAGE_KEY_POINTS);
-      if (storedPoints !== null) {
-        const parsed = parseInt(storedPoints, 10);
-        validPoints = Number.isNaN(parsed) ? 0 : Math.max(0, parsed % 100);
-      }
-
-      let validPlaytime = 0;
-      const storedPlaytime = localStorage.getItem(LEGACY_STORAGE_KEY_PLAYTIME);
-      if (storedPlaytime !== null) {
-        const parsed = parseInt(storedPlaytime, 10);
-        validPlaytime = Number.isNaN(parsed) ? 0 : Math.max(0, parsed % 600);
-      }
-
-      // Remove legacy keys
-      localStorage.removeItem(LEGACY_STORAGE_KEY_COINS);
-      localStorage.removeItem(LEGACY_STORAGE_KEY_POINTS);
-      localStorage.removeItem(LEGACY_STORAGE_KEY_PLAYTIME);
-
-      return {
-        coins: validCoins,
-        accumulatedPoints: validPoints,
-        playtimeSeconds: validPlaytime,
-      };
-    } catch {
-      return null;
-    }
-  }
-
-  /**
    * Current Vault Security Telemetry
    */
   public getVaultSecurityStatus() {
@@ -500,7 +476,7 @@ class SecurityLedgerManager {
       isSecured: this.isSecured,
       vaultId: this.vaultId,
       shortVaultId: this.vaultId.slice(0, 15) + '...',
-      algorithm: 'HMAC-SHA256 & XOR-CIPHER',
+      algorithm: 'HMAC-SHA256 & XOR-CIPHER V2',
       tamperCount: this.tamperViolationCount,
       lastVerifiedTime: this.lastVerifiedTimestamp,
     };
