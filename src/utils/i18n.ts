@@ -489,6 +489,44 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     en: 'BACK TO ARCADE [ESC]',
   },
 
+  // Cryptographic Vault Security Ledger & Anti-Tamper
+  'vault_security_title': {
+    id: 'AUDIT KEAMANAN BRANKAS KRIPTOGRAFIS',
+    en: 'CRYPTOGRAPHIC VAULT SECURITY AUDIT',
+  },
+  'vault_security_badge': {
+    id: 'BRANKAS TERENKRIPSI // HMAC-SHA256 & DEVICE LOCK',
+    en: 'ENCRYPTED VAULT // HMAC-SHA256 & DEVICE LOCK',
+  },
+  'vault_status_secured': {
+    id: 'TERVERIFIKASI & AMAN',
+    en: 'VERIFIED & SECURED',
+  },
+  'vault_status_tampered': {
+    id: 'PERINGATAN: MANIPULASI TERDETEKSI',
+    en: 'WARNING: TAMPERING DETECTED',
+  },
+  'vault_device_id_label': {
+    id: 'ID PERANGKAT UNIK',
+    en: 'UNIQUE DEVICE ID',
+  },
+  'vault_anti_tamper_desc': {
+    id: 'Koin dilindungi segel digital HMAC-SHA256. Setiap modifikasi ilegal di DevTools akan terdeteksi dan saldo otomatis dikarantina ke 2.000 koin aman.',
+    en: 'Coins are secured with HMAC-SHA256 digital seals. Any illegal DevTools modification is detected and quarantined to 2,000 baseline coins.',
+  },
+  'tamper_alert_title': {
+    id: '⚠️ DETEKSI MANIPULASI BRANKAS',
+    en: '⚠️ VAULT TAMPERING DETECTED',
+  },
+  'tamper_alert_desc': {
+    id: 'Perubahan saldo koin tidak sah terdeteksi di penyimpanan browser! Sistem kriptografis telah memulihkan saldo Anda ke nilai aman.',
+    en: 'Unauthorized balance alteration detected in browser storage! Cryptographic ledger restored your balance to a safe baseline.',
+  },
+  'tamper_alert_dismiss': {
+    id: 'MENGERTI',
+    en: 'ACKNOWLEDGE',
+  },
+
   // App & Footer
   'memory_cartridge_label': {
     id: 'KATRID MEMORI SAAT INI:',

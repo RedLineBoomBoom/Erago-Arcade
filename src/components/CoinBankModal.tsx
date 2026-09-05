@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { X, Coins, Clock, Sparkles, Gamepad2, Swords, RefreshCw } from 'lucide-react';
+import { X, Coins, Clock, Sparkles, Gamepad2, Swords, RefreshCw, ShieldCheck, ShieldAlert } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
 import { useLanguage } from '../utils/i18n';
@@ -23,6 +23,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
 }) => {
   const { language, t } = useLanguage();
   const [playtime, setPlaytime] = useState(() => currencyManager.getPlaytimeRemaining());
+  const [securityStatus, setSecurityStatus] = useState(() => currencyManager.getSecurityStatus());
 
   // Close on Escape key
   useEffect(() => {
@@ -37,13 +38,18 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Live countdown timer while modal is open
+  // Live countdown timer & security telemetry while modal is open
   useEffect(() => {
     if (!isOpen) return;
 
     // Subscribe to currencyManager which emits every second
     const unsub = currencyManager.subscribe(() => {
       setPlaytime(currencyManager.getPlaytimeRemaining());
+      setSecurityStatus(currencyManager.getSecurityStatus());
+    });
+
+    const unsubTamper = currencyManager.onTamperDetected(() => {
+      setSecurityStatus(currencyManager.getSecurityStatus());
     });
 
     // Secondary interval ticker for guaranteed 1000ms live ticks
@@ -53,6 +59,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
 
     return () => {
       unsub();
+      unsubTamper();
       clearInterval(intervalId);
     };
   }, [isOpen]);
@@ -203,6 +210,61 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
                 <span className="font-bold text-white">{language === 'id' ? '2.000 Koin Gratis' : '2,000 Free Coins'}</span>
               </div>
             </div>
+          </div>
+
+          {/* Cryptographic Vault Security Audit Card */}
+          <div className="rounded-xl border-2 border-[#00F5D4]/40 bg-[#0C131A] p-3.5 space-y-2 shadow-[2px_2px_0px_#000]">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#00F5D4] bg-[#00F5D4]/10 text-[#00F5D4] shadow-[1px_1px_0px_#000]">
+                  {securityStatus.isSecured ? (
+                    <ShieldCheck className="w-4 h-4" />
+                  ) : (
+                    <ShieldAlert className="w-4 h-4 text-[#FF2A85]" />
+                  )}
+                </div>
+                <div>
+                  <div className="font-['Press_Start_2P'] text-[7px] text-[#00F5D4] tracking-tight">
+                    {t('vault_security_title')}
+                  </div>
+                  <div className="font-mono text-[9px] text-zinc-400">
+                    {t('vault_security_badge')}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className={`px-2 py-1 rounded border text-[7px] font-['Press_Start_2P'] flex items-center gap-1.5 shrink-0 ${
+                  securityStatus.isSecured
+                    ? 'border-[#00F5D4] bg-[#00F5D4]/10 text-[#00F5D4]'
+                    : 'border-[#FF2A85] bg-[#FF2A85]/20 text-[#FF2A85]'
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    securityStatus.isSecured ? 'bg-[#00F5D4] animate-pulse' : 'bg-[#FF2A85] animate-ping'
+                  }`}
+                />
+                <span>{securityStatus.isSecured ? t('vault_status_secured') : t('vault_status_tampered')}</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 pt-1 font-mono text-[10px] border-t border-white/10">
+              <div>
+                <span className="text-zinc-500 block text-[8px] uppercase">{t('vault_device_id_label')}:</span>
+                <span className="text-zinc-300 font-bold tracking-wider">{securityStatus.shortVaultId}</span>
+              </div>
+              <div className="text-right">
+                <span className="text-zinc-500 block text-[8px] uppercase">ANTI-TAMPER STATUS:</span>
+                <span className={securityStatus.tamperCount === 0 ? 'text-[#00F5D4] font-bold' : 'text-[#FF2A85] font-bold'}>
+                  {securityStatus.tamperCount === 0 ? '0 ANOMALIES (ACTIVE)' : `${securityStatus.tamperCount} TAMPER BLOCKED`}
+                </span>
+              </div>
+            </div>
+
+            <p className="font-mono text-[9px] text-zinc-400 leading-relaxed pt-0.5">
+              {t('vault_anti_tamper_desc')}
+            </p>
           </div>
         </div>
 

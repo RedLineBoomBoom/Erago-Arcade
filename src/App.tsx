@@ -30,9 +30,11 @@ import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
 import { CoinBankModal } from './components/CoinBankModal';
 import { GamingNewsModal } from './components/GamingNewsModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
+import { VaultTamperBanner } from './components/VaultTamperBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
 import { NewsStrip } from './components/NewsStrip';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
+import type { TamperIncident } from './utils/securityLedger';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
 import { useLanguage } from './utils/i18n';
@@ -67,6 +69,7 @@ export function App() {
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [newsOutletFilter, setNewsOutletFilter] = useState<string>('all');
   const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
+  const [tamperIncident, setTamperIncident] = useState<TamperIncident | null>(null);
   const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
   const [accumulatedPoints, setAccumulatedPoints] = useState<number>(() => currencyManager.getAccumulatedPoints());
 
@@ -80,9 +83,13 @@ export function App() {
     const unsubReward = currencyManager.onTimeReward((awarded) => {
       setTimeRewardCoins(awarded);
     });
+    const unsubTamper = currencyManager.onTamperDetected((incident) => {
+      setTamperIncident(incident);
+    });
     return () => {
       unsub();
       unsubReward();
+      unsubTamper();
     };
   }, []);
 
@@ -433,6 +440,12 @@ export function App() {
       <TimeRewardBanner
         coinsAwarded={timeRewardCoins}
         onDismiss={() => setTimeRewardCoins(null)}
+      />
+
+      {/* Cryptographic Anti-Tamper Security Violation Toast */}
+      <VaultTamperBanner
+        incident={tamperIncident}
+        onDismiss={() => setTamperIncident(null)}
       />
 
       {/* 12. Arcade Coin Bank & Rewards Information Modal */}

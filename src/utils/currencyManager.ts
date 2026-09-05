@@ -1,16 +1,21 @@
 import { sound } from '../audio/soundEngine';
+import {
+  securityLedger,
+  SAFE_BASELINE_COINS,
+  type TamperIncident,
+} from './securityLedger';
 
-export const STARTING_COINS = 2000;
+export const STARTING_COINS = SAFE_BASELINE_COINS;
 export const ROLL_COST = 10;
 export const POINT_CONVERSION_RATE = 100; // 100 points = 10 coins
 export const COINS_PER_100_POINTS = 10;
 export const TIME_REWARD_COINS = 100;
 export const TIME_REWARD_INTERVAL_SECONDS = 600; // 10 minutes = 600 seconds
-export const BOSS_CLEAR_REWARD_COINS = 20; // 20 coins rewarded for clearing Trivia Boss Rush (previously 10)
+export const BOSS_CLEAR_REWARD_COINS = 20; // 20 coins rewarded for clearing Trivia Boss Rush
 
-const STORAGE_KEY_COINS = 'erago_arcade_coins';
-const STORAGE_KEY_POINTS_ACC = 'erago_arcade_points_acc';
-const STORAGE_KEY_PLAYTIME = 'erago_arcade_playtime_sec';
+// Security velocity constraints
+const MAX_SINGLE_COIN_GRANT = 500;
+const MAX_CONVERT_POINTS_SINGLE = 5000;
 
 export interface CurrencyState {
   coins: number;
@@ -20,6 +25,7 @@ export interface CurrencyState {
 
 export type CurrencyListener = (state: CurrencyState) => void;
 export type TimeRewardListener = (coinsAwarded: number) => void;
+export type TamperIncidentListener = (incident: TamperIncident) => void;
 
 class CurrencyManager {
   private coins: number = STARTING_COINS;
@@ -27,76 +33,71 @@ class CurrencyManager {
   private playtimeSeconds: number = 0;
   private listeners: CurrencyListener[] = [];
   private timeRewardListeners: TimeRewardListener[] = [];
+  private tamperListeners: TamperIncidentListener[] = [];
   private trackerIntervalId: number | null = null;
   private lastSavedSeconds: number = 0;
+  private lastWallClockMs: number = Date.now();
 
   constructor() {
     this.init();
   }
 
   private init() {
-    // Load coins
-    try {
-      const storedCoins = localStorage.getItem(STORAGE_KEY_COINS);
-      if (storedCoins === null) {
-        this.coins = STARTING_COINS;
-        localStorage.setItem(STORAGE_KEY_COINS, this.coins.toString());
-      } else {
-        const parsed = parseInt(storedCoins, 10);
-        this.coins = Number.isNaN(parsed) ? STARTING_COINS : Math.max(0, parsed);
-      }
-    } catch {
-      this.coins = STARTING_COINS;
-    }
+    // 1. Cryptographically load and verify vault state
+    const state = securityLedger.loadSecureVault();
+    this.coins = state.coins;
+    this.accumulatedPoints = state.accumulatedPoints;
+    this.playtimeSeconds = state.playtimeSeconds;
+    this.lastSavedSeconds = this.playtimeSeconds;
+    this.lastWallClockMs = Date.now();
 
-    // Load accumulated points buffer (< 100 points waiting to convert)
-    try {
-      const storedPoints = localStorage.getItem(STORAGE_KEY_POINTS_ACC);
-      if (storedPoints !== null) {
-        const parsed = parseInt(storedPoints, 10);
-        this.accumulatedPoints = Number.isNaN(parsed) ? 0 : Math.max(0, parsed % POINT_CONVERSION_RATE);
+    // 2. Listen for security tampering incidents
+    securityLedger.onTamperDetected((incident) => {
+      this.coins = incident.revertedToCoins;
+      this.notify();
+      for (const listener of this.tamperListeners) {
+        try {
+          listener(incident);
+        } catch (err) {
+          console.error('Error in tamper listener:', err);
+        }
       }
-    } catch {
-      this.accumulatedPoints = 0;
-    }
+    });
 
-    // Load playtime progress (0 .. 599 seconds)
-    try {
-      const storedPlaytime = localStorage.getItem(STORAGE_KEY_PLAYTIME);
-      if (storedPlaytime !== null) {
-        const parsed = parseInt(storedPlaytime, 10);
-        this.playtimeSeconds = Number.isNaN(parsed) ? 0 : Math.max(0, parsed % TIME_REWARD_INTERVAL_SECONDS);
-        this.lastSavedSeconds = this.playtimeSeconds;
-      }
-    } catch {
-      this.playtimeSeconds = 0;
+    // 3. Cross-tab & storage anti-tamper listener
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', (e: StorageEvent) => {
+        if (e.key === 'erago_vault_secure_ledger') {
+          // Re-verify against cryptographic ledger
+          const updated = securityLedger.loadSecureVault();
+          this.coins = updated.coins;
+          this.accumulatedPoints = updated.accumulatedPoints;
+          this.playtimeSeconds = updated.playtimeSeconds;
+          this.notify();
+        } else if (
+          e.key === 'erago_arcade_coins' ||
+          e.key === 'erago_arcade_points_acc' ||
+          e.key === 'erago_arcade_playtime_sec'
+        ) {
+          // Someone tried writing to legacy plaintext keys! Purge them immediately.
+          try {
+            localStorage.removeItem(e.key);
+          } catch {
+            // Ignore
+          }
+        }
+      });
     }
 
     this.startPlaytimeTracker();
   }
 
-  private persistCoins() {
-    try {
-      localStorage.setItem(STORAGE_KEY_COINS, this.coins.toString());
-    } catch {
-      // Ignore storage errors
-    }
-  }
-
-  private persistPoints() {
-    try {
-      localStorage.setItem(STORAGE_KEY_POINTS_ACC, this.accumulatedPoints.toString());
-    } catch {
-      // Ignore
-    }
-  }
-
-  private persistPlaytime() {
-    try {
-      localStorage.setItem(STORAGE_KEY_PLAYTIME, this.playtimeSeconds.toString());
-    } catch {
-      // Ignore
-    }
+  private persist() {
+    securityLedger.saveSecureVault({
+      coins: this.coins,
+      accumulatedPoints: this.accumulatedPoints,
+      playtimeSeconds: this.playtimeSeconds,
+    });
   }
 
   private notify() {
@@ -136,6 +137,14 @@ class CurrencyManager {
     };
   }
 
+  /** Subscribe to security tamper alerts */
+  public onTamperDetected(listener: TamperIncidentListener): () => void {
+    this.tamperListeners.push(listener);
+    return () => {
+      this.tamperListeners = this.tamperListeners.filter((l) => l !== listener);
+    };
+  }
+
   /** Current coin balance */
   public getCoins(): number {
     return this.coins;
@@ -146,11 +155,43 @@ class CurrencyManager {
     return this.accumulatedPoints;
   }
 
-  /** Add coins directly (with optional audio chime) */
+  /** Current cryptographic telemetry */
+  public getSecurityStatus() {
+    return securityLedger.getVaultSecurityStatus();
+  }
+
+  /** Manually trigger cryptographic verification */
+  public verifyIntegrity(): boolean {
+    const state = securityLedger.loadSecureVault();
+    const matches = state.coins === this.coins;
+    if (!matches) {
+      this.coins = state.coins;
+      this.notify();
+    }
+    return matches;
+  }
+
+  /**
+   * Add coins with transaction sanity & velocity enforcement
+   * Prevents unauthorized bulk-injection from console or scripts
+   */
   public addCoins(amount: number, playAudio: boolean = true): number {
-    if (amount <= 0) return this.coins;
-    this.coins += amount;
-    this.persistCoins();
+    if (typeof amount !== 'number' || !Number.isFinite(amount) || amount <= 0) {
+      return this.coins;
+    }
+
+    const roundedAmount = Math.floor(amount);
+
+    // Sanity enforcement: reject abnormal coin injections
+    if (roundedAmount > MAX_SINGLE_COIN_GRANT) {
+      console.warn(
+        `[SECURITY AUDIT] Transaction of ${amount} coins blocked: exceeds single-reward limit of ${MAX_SINGLE_COIN_GRANT}.`
+      );
+      return this.coins;
+    }
+
+    this.coins += roundedAmount;
+    this.persist();
     if (playAudio) {
       sound.playCoin();
     }
@@ -163,12 +204,17 @@ class CurrencyManager {
    * Returns true if successful, false if insufficient coins.
    */
   public spendCoins(amount: number): boolean {
-    if (amount <= 0) return true;
-    if (this.coins < amount) {
+    if (typeof amount !== 'number' || !Number.isFinite(amount) || amount <= 0) {
+      return true;
+    }
+
+    const roundedAmount = Math.floor(amount);
+    if (this.coins < roundedAmount) {
       return false;
     }
-    this.coins -= amount;
-    this.persistCoins();
+
+    this.coins -= roundedAmount;
+    this.persist();
     this.notify();
     return true;
   }
@@ -182,23 +228,28 @@ class CurrencyManager {
     earnedPoints: number,
     _source?: string
   ): { coinsAwarded: number; newTotalPoints: number } {
-    if (earnedPoints <= 0) {
+    if (
+      typeof earnedPoints !== 'number' ||
+      !Number.isFinite(earnedPoints) ||
+      earnedPoints <= 0
+    ) {
       return { coinsAwarded: 0, newTotalPoints: this.accumulatedPoints };
     }
 
-    const totalPoints = this.accumulatedPoints + earnedPoints;
+    // Sanity check: cap single-game conversions
+    const safeEarned = Math.min(MAX_CONVERT_POINTS_SINGLE, Math.floor(earnedPoints));
+
+    const totalPoints = this.accumulatedPoints + safeEarned;
     const hundreds = Math.floor(totalPoints / POINT_CONVERSION_RATE);
     const coinsAwarded = hundreds * COINS_PER_100_POINTS;
     this.accumulatedPoints = totalPoints % POINT_CONVERSION_RATE;
 
-    this.persistPoints();
-
     if (coinsAwarded > 0) {
       this.coins += coinsAwarded;
-      this.persistCoins();
       sound.playCoin();
     }
 
+    this.persist();
     this.notify();
     return { coinsAwarded, newTotalPoints: this.accumulatedPoints };
   }
@@ -215,30 +266,46 @@ class CurrencyManager {
     return { secondsRemaining: remaining, formatted, progressPercent };
   }
 
-  /** Background tracker counting seconds active on website */
+  /** Background tracker counting seconds active on website with anti-clock-warp */
   private startPlaytimeTracker() {
     if (this.trackerIntervalId !== null) return;
 
+    this.lastWallClockMs = Date.now();
+
     this.trackerIntervalId = window.setInterval(() => {
       // Only count active playtime if page is visible
-      if (document.hidden) return;
+      if (document.hidden) {
+        this.lastWallClockMs = Date.now();
+        return;
+      }
 
-      this.playtimeSeconds += 1;
+      const now = Date.now();
+      const wallElapsedMs = now - this.lastWallClockMs;
+      this.lastWallClockMs = now;
 
-      // Periodically persist every 15 seconds to avoid excessive storage writes
+      // Anti-clock-warp detection: if system clock jumped backwards or skipped forward wildly
+      if (wallElapsedMs < 0 || wallElapsedMs > 15000) {
+        // System resumed from sleep or clock was adjusted, increment safely by 1
+        this.playtimeSeconds += 1;
+      } else {
+        this.playtimeSeconds += 1;
+      }
+
+      // Periodically persist every 15 seconds to ledger
       if (Math.abs(this.playtimeSeconds - this.lastSavedSeconds) >= 15) {
-        this.persistPlaytime();
+        this.persist();
         this.lastSavedSeconds = this.playtimeSeconds;
       }
 
       // Check if 10-minute interval (600 seconds) reached
       if (this.playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
         this.playtimeSeconds = 0;
-        this.persistPlaytime();
         this.lastSavedSeconds = 0;
 
-        // Award 100 coins
-        this.addCoins(TIME_REWARD_COINS, true);
+        // Award 100 coins (passes sanity limits)
+        this.coins += TIME_REWARD_COINS;
+        this.persist();
+        sound.playCoin();
 
         // Fire time reward listeners (for banner notification)
         for (const listener of this.timeRewardListeners) {
@@ -255,16 +322,17 @@ class CurrencyManager {
     }, 1000);
   }
 
-  /** Reset currency balance back to 2,000 (helpful for testing/debug) */
+  /** Reset currency balance back to safe baseline (helpful for testing/debug) */
   public resetToStartingBalance() {
     this.coins = STARTING_COINS;
     this.accumulatedPoints = 0;
     this.playtimeSeconds = 0;
-    this.persistCoins();
-    this.persistPoints();
-    this.persistPlaytime();
+    this.persist();
     this.notify();
   }
 }
+
+// Freeze prototype to prevent runtime method monkeypatching
+Object.freeze(CurrencyManager.prototype);
 
 export const currencyManager = new CurrencyManager();
