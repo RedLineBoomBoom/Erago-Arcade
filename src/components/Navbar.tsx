@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper } from 'lucide-react';
+import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper, Tag } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 
@@ -27,6 +27,7 @@ interface NavbarProps {
   onOpenCardBinder: () => void;
   onOpenBankModal: () => void;
   onOpenNewsModal?: () => void;
+  onOpenSalesModal?: () => void;
   onRebootConsole?: () => void;
 }
 
@@ -49,6 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCardBinder,
   onOpenBankModal,
   onOpenNewsModal,
+  onOpenSalesModal,
   onRebootConsole,
 }) => {
   const { language, toggleLanguage, t } = useLanguage();
@@ -214,6 +216,24 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Newspaper className="h-3 w-3" />
             <span className="hidden md:inline">{t('tab_news')}</span>
           </button>
+
+          {onOpenSalesModal && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenSalesModal();
+              }}
+              data-cursor="SALES"
+              title="SteamDB Live Game Sales"
+              className="flex items-center gap-1.5 rounded-xs px-2.5 py-1.5 font-['Press_Start_2P'] text-[8px] sm:text-[9px] text-[#FFE600] hover:bg-[#FFE600] hover:text-black transition-all"
+            >
+              <Tag className="h-3 w-3" />
+              <span className="hidden md:inline">{t('tab_sales')}</span>
+              <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[6px] text-white font-bold animate-pulse">
+                -90%
+              </span>
+            </button>
+          )}
         </nav>
 
 
@@ -412,6 +432,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                       <span className="px-1.5 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
                         12 SITES
+                      </span>
+                    </button>
+                  )}
+
+                  {/* Steam Sales & SteamDB Tracker */}
+                  {onOpenSalesModal && (
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setIsExtrasOpen(false);
+                        onOpenSalesModal();
+                      }}
+                      className="col-span-2 flex items-center justify-between p-2 rounded-lg border-2 border-black bg-gradient-to-r from-[#1E2230] to-[#2B1B34] text-left hover:bg-[#FFE600] text-white hover:text-black transition-all group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🏷️</span>
+                        <div>
+                          <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_sales')}</div>
+                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_sales_desc')}</div>
+                        </div>
+                      </div>
+                      <span className="px-1.5 py-0.5 rounded bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold">
+                        STEAMDB
                       </span>
                     </button>
                   )}
@@ -638,6 +681,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Newspaper className="h-2.5 w-2.5" />
             <span>{t('tab_news')}</span>
           </button>
+
+          {onOpenSalesModal && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenSalesModal();
+              }}
+              className="flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] bg-[#14161F] text-[#FFE600] hover:bg-[#FFE600] hover:text-black transition-all"
+            >
+              <Tag className="h-2.5 w-2.5" />
+              <span>{t('tab_sales')}</span>
+            </button>
+          )}
         </nav>
       </div>
     </header>

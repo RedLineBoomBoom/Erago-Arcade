@@ -29,6 +29,7 @@ import { CardBinderModal } from './components/CardBinderModal';
 import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
 import { CoinBankModal } from './components/CoinBankModal';
 import { GamingNewsModal } from './components/GamingNewsModal';
+import { SteamSalesModal } from './components/SteamSalesModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { VaultTamperBanner } from './components/VaultTamperBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
@@ -69,6 +70,7 @@ export function App() {
   const [isInsufficientCoinsOpen, setIsInsufficientCoinsOpen] = useState(false);
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
+  const [isSalesModalOpen, setIsSalesModalOpen] = useState(false);
   const [newsOutletFilter, setNewsOutletFilter] = useState<string>('all');
   const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
   const [tamperIncident, setTamperIncident] = useState<TamperIncident | null>(null);
@@ -166,9 +168,10 @@ export function App() {
     isCardBinderOpen ||
     isInsufficientCoinsOpen ||
     isBankModalOpen ||
-    isNewsModalOpen;
+    isNewsModalOpen ||
+    isSalesModalOpen;
 
-  // Hotkey listeners for CRT ('c'), Mute ('m'), and Terminal ('~')
+  // Hotkey listeners for CRT ('c'), Mute ('m'), Sales ('s'), and Terminal ('~')
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
@@ -181,6 +184,12 @@ export function App() {
       }
 
       if (isAnyModalOpen) return;
+
+      if (e.key === 's' || e.key === 'S') {
+        sound.playClick();
+        setIsSalesModalOpen(true);
+        return;
+      }
 
       if (e.key === 'c' || e.key === 'C') {
         sound.playCrtBuzz();
@@ -242,6 +251,7 @@ export function App() {
             setNewsOutletFilter('all');
             setIsNewsModalOpen(true);
           }}
+          onOpenSalesModal={() => setIsSalesModalOpen(true)}
           onRebootConsole={() => setIsBooting(true)}
         />
 
@@ -312,6 +322,7 @@ export function App() {
                 setNewsOutletFilter(outletId || 'all');
                 setIsNewsModalOpen(true);
               }}
+              onOpenSalesModal={() => setIsSalesModalOpen(true)}
             />
 
           </div>
@@ -470,7 +481,13 @@ export function App() {
         initialOutletId={newsOutletFilter}
       />
 
-      {/* 14. Retro Console Boot Loader & Power-On Sequence */}
+      {/* 14. Real-Time Steam Game Sales & SteamDB Tracker Modal */}
+      <SteamSalesModal
+        isOpen={isSalesModalOpen}
+        onClose={() => setIsSalesModalOpen(false)}
+      />
+
+      {/* 15. Retro Console Boot Loader & Power-On Sequence */}
       {isBooting && (
         <ConsoleBootLoader
           onComplete={() => setIsBooting(false)}

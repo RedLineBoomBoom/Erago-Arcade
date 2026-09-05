@@ -190,6 +190,18 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'Berita 12 Outlet Game',
     en: '12 Outlets News',
   },
+  'hub_sales': {
+    id: 'DISKON STEAM',
+    en: 'STEAM SALES',
+  },
+  'hub_sales_desc': {
+    id: 'Diskon Real-Time & SteamDB',
+    en: 'Live Deals & SteamDB',
+  },
+  'tab_sales': {
+    id: 'DISKON',
+    en: 'SALES',
+  },
   'hub_reboot': {
     id: 'REBOOT KONSOL',
     en: 'REBOOT CONSOLE',
@@ -657,6 +669,112 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
   'tamper_alert_dismiss': {
     id: 'MENGERTI',
     en: 'ACKNOWLEDGE',
+  },
+
+  // Steam Sales & SteamDB Integration Modal
+  'sales_modal_title': {
+    id: 'RADAR DISKON STEAM // STEAMDB SALES',
+    en: 'LIVE STEAM DISCOUNTS // STEAMDB TRACKER',
+  },
+  'sales_modal_subtitle': {
+    id: 'Diskon game Steam real-time terhubung langsung ke basis data SteamDB & toko resmi Steam.',
+    en: 'Real-time Steam game discounts synced directly with SteamDB database and official Steam store.',
+  },
+  'sales_live_badge': {
+    id: 'RADAR AKTIF',
+    en: 'LIVE SYNC',
+  },
+  'sales_search_placeholder': {
+    id: 'Cari game diskon di Steam...',
+    en: 'Search discounted Steam games...',
+  },
+  'sales_tier_all': {
+    id: 'Semua Diskon',
+    en: 'All Deals',
+  },
+  'sales_tier_75plus': {
+    id: 'Diskon 75%+',
+    en: '75%+ OFF',
+  },
+  'sales_tier_50plus': {
+    id: 'Diskon 50%+',
+    en: '50%+ OFF',
+  },
+  'sales_tier_under5': {
+    id: '< $5 (Rp 80rb)',
+    en: 'Under $5',
+  },
+  'sales_tier_under10': {
+    id: '< $10 (Rp 160rb)',
+    en: 'Under $10',
+  },
+  'sales_tier_top_rated': {
+    id: 'Rating 90%+',
+    en: 'Top Rated 90%+',
+  },
+  'sales_sort_discount': {
+    id: 'Diskon Tertinggi',
+    en: 'Highest Discount',
+  },
+  'sales_sort_rating': {
+    id: 'Rating Steam',
+    en: 'Steam Rating',
+  },
+  'sales_sort_price_asc': {
+    id: 'Harga Termurah',
+    en: 'Lowest Price',
+  },
+  'sales_sort_deal': {
+    id: 'Skor Value',
+    en: 'Deal Rating',
+  },
+  'sales_sort_title': {
+    id: 'Judul A-Z',
+    en: 'Title A-Z',
+  },
+  'sales_store_btn': {
+    id: 'STORE STEAM',
+    en: 'STEAM STORE',
+  },
+  'sales_steamdb_btn': {
+    id: 'STEAMDB INFO',
+    en: 'STEAMDB INFO',
+  },
+  'sales_browse_steamdb_hub': {
+    id: 'BUKA STEAMDB SALES RESMI (STEAMDB.INFO/SALES)',
+    en: 'OPEN OFFICIAL STEAMDB SALES (STEAMDB.INFO/SALES)',
+  },
+  'sales_refresh_btn': {
+    id: 'SEGARKAN',
+    en: 'REFRESH',
+  },
+  'sales_refresh_success': {
+    id: 'Data diskon Steam & SteamDB berhasil diperbarui!',
+    en: 'Steam & SteamDB sales updated successfully!',
+  },
+  'sales_deals_found': {
+    id: '{count} game diskon ditemukan',
+    en: '{count} discounted games found',
+  },
+  'sales_currency_label': {
+    id: 'KURS:',
+    en: 'CURRENCY:',
+  },
+  'sales_approx_idr': {
+    id: 'Perkiraan Rp 16.300 / USD',
+    en: 'Est. Rp 16,300 / USD',
+  },
+  'sales_empty_title': {
+    id: 'TIDAK ADA DISKON YANG COCOK',
+    en: 'NO MATCHING DEALS FOUND',
+  },
+  'sales_empty_desc': {
+    id: 'Coba ubah kata kunci pencarian atau sesuaikan pilihan filter diskon Anda.',
+    en: 'Try modifying your search keywords or adjusting your discount filter settings.',
+  },
+  'sales_empty_reset': {
+    id: 'RESET FILTER',
+    en: 'RESET FILTERS',
   },
 
   // App & Footer
