@@ -1,17 +1,16 @@
 import React from 'react';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowRight, Newspaper } from 'lucide-react';
 import { NEWS_OUTLETS_DATABASE } from '../data/newsOutletsData';
 import { sound } from '../audio/soundEngine';
 
 interface NewsStripProps {
-  onOpenNewsView: () => void;
+  onOpenNewsModal: (outletId?: string) => void;
 }
 
-export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsView }) => {
-  const handleOutletClick = (e: React.MouseEvent, url: string) => {
-    e.stopPropagation();
+export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
+  const handleOutletClick = (outletId: string) => {
     sound.playClick();
-    window.open(url, '_blank', 'noopener,noreferrer');
+    onOpenNewsModal(outletId);
   };
 
   return (
@@ -20,7 +19,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsView }) => {
         {/* Header Bar */}
         <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded bg-[#FFE600] text-black border border-black text-sm">
+            <span className="flex h-7 w-7 items-center justify-center rounded bg-[#FFE600] text-black border border-black text-sm shadow-[1px_1px_0px_#000]">
               📰
             </span>
             <div>
@@ -41,10 +40,11 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsView }) => {
           <button
             onClick={() => {
               sound.playClick();
-              onOpenNewsView();
+              onOpenNewsModal('all');
             }}
             data-cursor="NEWS"
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded border border-black bg-[#FFE600] text-black hover:bg-white font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] transition-colors shrink-0"
+            title="Buka Popup Berita 12 Portal"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded border border-black bg-[#FFE600] text-black hover:bg-white font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] transition-colors shrink-0 cursor-pointer"
           >
             <span>SEMUA</span>
             <ArrowRight className="w-2.5 h-2.5" />
@@ -56,16 +56,16 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsView }) => {
           {NEWS_OUTLETS_DATABASE.map((outlet) => (
             <button
               key={outlet.id}
-              onClick={(e) => handleOutletClick(e, outlet.url)}
+              onClick={() => handleOutletClick(outlet.id)}
               data-cursor={outlet.name}
-              title={`Buka ${outlet.name} (${outlet.url})`}
-              className="flex items-center justify-between p-2 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-white text-white hover:text-black font-mono text-[11px] font-bold transition-all shadow-[2px_2px_0px_#000] group text-left"
+              title={`Buka berita dari ${outlet.name}`}
+              className="flex items-center justify-between p-2 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-white text-white hover:text-black font-mono text-[11px] font-bold transition-all shadow-[2px_2px_0px_#000] group text-left cursor-pointer"
             >
               <div className="flex items-center gap-1.5 truncate">
                 <span className="text-xs">{outlet.icon}</span>
                 <span className="truncate">{outlet.name}</span>
               </div>
-              <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-black shrink-0 ml-1" />
+              <Newspaper className="w-3 h-3 text-zinc-400 group-hover:text-black shrink-0 ml-1 opacity-80" />
             </button>
           ))}
         </div>

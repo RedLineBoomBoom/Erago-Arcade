@@ -25,6 +25,7 @@ interface NavbarProps {
   onOpenTerminal: () => void;
   onOpenCardBinder: () => void;
   onOpenBankModal: () => void;
+  onOpenNewsModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -45,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTerminal,
   onOpenCardBinder,
   onOpenBankModal,
+  onOpenNewsModal,
 }) => {
 
 
@@ -386,6 +388,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Soundboard</div>
                     </div>
                   </button>
+
+                  {/* Gaming News Press Wire */}
+                  {onOpenNewsModal && (
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setIsExtrasOpen(false);
+                        onOpenNewsModal();
+                      }}
+                      className="col-span-2 flex items-center justify-between p-2 rounded-lg border-2 border-black bg-gradient-to-r from-[#1E2230] to-[#282E40] text-left hover:bg-[#FFE600] text-white hover:text-black transition-all group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">📰</span>
+                        <div>
+                          <div className="font-['Press_Start_2P'] text-[7px] font-bold">PRESS WIRE</div>
+                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">12 Outlets News</div>
+                        </div>
+                      </div>
+                      <span className="px-1.5 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
+                        12 SITES
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             )}

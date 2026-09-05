@@ -28,6 +28,7 @@ import { DosTerminalModal } from './components/DosTerminalModal';
 import { CardBinderModal } from './components/CardBinderModal';
 import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
 import { CoinBankModal } from './components/CoinBankModal';
+import { GamingNewsModal } from './components/GamingNewsModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
 import { NewsStrip } from './components/NewsStrip';
@@ -61,6 +62,8 @@ export function App() {
   const [isCardBinderOpen, setIsCardBinderOpen] = useState(false);
   const [isInsufficientCoinsOpen, setIsInsufficientCoinsOpen] = useState(false);
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
+  const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
+  const [newsOutletFilter, setNewsOutletFilter] = useState<string>('all');
   const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
   const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
   const [accumulatedPoints, setAccumulatedPoints] = useState<number>(() => currencyManager.getAccumulatedPoints());
@@ -137,7 +140,8 @@ export function App() {
     isTerminalOpen ||
     isCardBinderOpen ||
     isInsufficientCoinsOpen ||
-    isBankModalOpen;
+    isBankModalOpen ||
+    isNewsModalOpen;
 
   // Hotkey listeners for CRT ('c'), Mute ('m'), and Terminal ('~')
   useEffect(() => {
@@ -209,6 +213,10 @@ export function App() {
           onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenCardBinder={() => setIsCardBinderOpen(true)}
           onOpenBankModal={() => setIsBankModalOpen(true)}
+          onOpenNewsModal={() => {
+            setNewsOutletFilter('all');
+            setIsNewsModalOpen(true);
+          }}
         />
 
 
@@ -273,7 +281,12 @@ export function App() {
             />
 
             {/* Quick Access Gaming News Press Wire Strip */}
-            <NewsStrip onOpenNewsView={() => setCurrentView('news')} />
+            <NewsStrip
+              onOpenNewsModal={(outletId) => {
+                setNewsOutletFilter(outletId || 'all');
+                setIsNewsModalOpen(true);
+              }}
+            />
 
           </div>
         )}
@@ -414,6 +427,13 @@ export function App() {
         accumulatedPoints={accumulatedPoints}
         onOpenMiniGames={() => setIsBonusStageOpen(true)}
         onOpenBossBattle={() => setIsBossBattleOpen(true)}
+      />
+
+      {/* 13. Gaming & Entertainment News Popup Modal (12 Outlets) */}
+      <GamingNewsModal
+        isOpen={isNewsModalOpen}
+        onClose={() => setIsNewsModalOpen(false)}
+        initialOutletId={newsOutletFilter}
       />
     </div>
 
