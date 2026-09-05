@@ -15,10 +15,17 @@ class SoundEngine {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       this.ctx = new AudioCtx();
+      if (typeof window !== 'undefined') {
+        (window as unknown as { __soundEngine?: SoundEngine }).__soundEngine = this;
+      }
     }
     if (this.ctx.state === 'suspended') {
-      this.ctx.resume();
+      this.ctx.resume().catch(() => {});
     }
+  }
+
+  public getContextState(): AudioContextState | 'uninitialized' {
+    return this.ctx ? this.ctx.state : 'uninitialized';
   }
 
   public subscribe(cb: () => void) {
@@ -719,9 +726,11 @@ class SoundEngine {
       this.analyser.fftSize = 64;
       this.analyser.smoothingTimeConstant = 0.8;
       this.bgmGain = this.ctx.createGain();
-      this.bgmGain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+      this.bgmGain.gain.setValueAtTime(0.10, this.ctx.currentTime);
       this.bgmGain.connect(this.analyser);
       this.analyser.connect(this.ctx.destination);
+    } else if (this.bgmGain) {
+      this.bgmGain.gain.setValueAtTime(0.10, this.ctx.currentTime);
     }
 
     // Melodies for 5 unique tracks
