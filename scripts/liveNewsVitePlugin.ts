@@ -96,9 +96,11 @@ function parseFeed(xml: string, outlet: OutletConfig) {
                  raw.match(/<updated[^>]*>([\s\S]*?)<\/updated>/i);
     const pubDateStr = pubM ? decodeHtml(pubM[1]) : '';
     let timeAgo = 'Baru saja';
+    let publishedTimestamp = Date.now();
     if (pubDateStr) {
       const d = new Date(pubDateStr);
       if (!isNaN(d.getTime())) {
+        publishedTimestamp = d.getTime();
         const diffMs = Date.now() - d.getTime();
         const diffMins = Math.floor(diffMs / 60000);
         const diffHours = Math.floor(diffMins / 60);
@@ -236,6 +238,7 @@ function parseFeed(xml: string, outlet: OutletConfig) {
       category: outlet.category,
       tag: outlet.tag,
       publishedAt: timeAgo,
+      publishedTimestamp,
       readTime: `${Math.max(2, Math.min(8, Math.round((summary.length + 200) / 150)))} min read`,
       isHot: idx === 1,
       author,
@@ -295,7 +298,8 @@ export function liveNewsPlugin(): Plugin {
           });
 
           const results = await Promise.all(fetchPromises);
-          const flat = results.flat();
+          const flat = results.flat() as Array<{ publishedTimestamp?: number }>;
+          flat.sort((a, b) => (b.publishedTimestamp || 0) - (a.publishedTimestamp || 0));
 
           if (flat.length > 0) {
             memoryCache = flat;

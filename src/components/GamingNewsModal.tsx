@@ -10,7 +10,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
-import { liveNewsService } from '../utils/liveNewsService';
+import { liveNewsService, sortArticlesNewestFirst } from '../utils/liveNewsService';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
@@ -93,9 +93,9 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
     }
   };
 
-  // Filtered and translated articles
+  // Filtered and translated articles (always sorted by newest first)
   const filteredArticles = useMemo(() => {
-    return articles
+    const list = articles
       .map((article) => getTranslatedArticleSync(article, language))
       .filter((article) => {
         // Outlet filter
@@ -113,6 +113,8 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
 
         return matchesOutlet && matchesCategory && matchesSearch;
       });
+
+    return sortArticlesNewestFirst(list);
   }, [articles, selectedOutlet, selectedCategory, searchQuery, language]);
 
   // Selected outlet metadata if any

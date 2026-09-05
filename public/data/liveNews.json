@@ -1,5 +1,53 @@
 [
   {
+    "id": "thegamer-1",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
+    "title": "Resident Evil: Revelations 3 Leak Reveals First Look At Yuri",
+    "summary": "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc.",
+    "url": "https://www.thegamer.com/resident-evil-revelations-3-leak/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/claire-and-moira-in-resident-evil-revelations-2-standing-by-a-table-holding-a-knife-and-torch-respectively.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "3 menit yang lalu",
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "James Lucas",
+    "keyHighlights": [
+      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
+    ],
+    "fullContent": [
+      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
+    ]
+  },
+  {
+    "id": "game-informer-1",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "BioWare doesn't need advice for Mass Effect 4, says veteran designer, as long as \"people get out of the way\"",
+    "summary": "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio.",
+    "url": "https://www.eurogamer.net/bioware-mass-effect-4-doesnt-need-advice-veteran-designer",
+    "imageUrl": "https://assetsio.gnwcdn.com/mass-effect-shepard-sad.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "10 menit yang lalu",
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Vikki Blake",
+    "keyHighlights": [
+      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
+    ],
+    "fullContent": [
+      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
+    ]
+  },
+  {
     "id": "pc-gamer-1",
     "outletId": "pc-gamer",
     "outletName": "PC Gamer",
@@ -30,63 +78,225 @@
     ]
   },
   {
-    "id": "pc-gamer-2",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "September's schedule of new games, events, and updates refuses to let 2026 go down in history as a slow year for new releases",
-    "summary": "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon.",
-    "url": "https://www.pcgamer.com/games/pc-game-release-dates-september-2026/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/ipznXnhNVGvuja545n8DeE-1280-80.jpg",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "10 jam yang lalu",
+    "id": "game-rant-1",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "Dragon Ball Unveils New Super Saiyan Blue Versions For Goku & Vegeta",
+    "summary": "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS .",
+    "url": "https://gamerant.com/dragon-ball-new-super-saiyan-blue-designs/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/new-super-saiyan-blue.png",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "24 menit yang lalu",
     "readTime": "3 min read",
-    "isHot": false,
-    "author": "Andrea Shearon",
+    "isHot": true,
+    "author": "Renan Fontes",
     "keyHighlights": [
-      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore.",
-      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC).",
-      "I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
+      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback.",
+      "Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS ."
     ],
     "fullContent": [
-      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon. It's the same schedule every year, but somehow I'm always caught off guard.",
-      "The Blood of Dawnwalker kicked off the month with a delightfully dismal vampire RPG from the Witcher veterans at Rebel Wolves. Then you've got all month to suck blood as Coen (or be a good two-shoes and abstain, I guess) before Silent Hill: Townfall and Control Resonant launch on the same damn day. It seems everything I've been waiting all year to play has crammed into this 4-week window, and that's not even counting all the big updates.",
-      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC). It'll be my first time playing, so between that and Valheim 1.0, I'll be plenty busy until 2027.",
-      "Steam | I've been loving The Blood of Dawnwalker, but you don't have to take my broody, vampire-obsessed word for it. Shaun called it \"one of best action RPGs [he's] played in years,\" in his Blood of Dawnwalker review .",
-      "Steam | I have to say it every time: I still can't believe we're in a Silent Hill renaissance. I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
+      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS . Dragon Ball Super is officially debuting brand-new versions of Super Saiyan Blue for Goku and Vegeta, offering them fresh redesigns ahead of the series returning next month."
     ]
   },
   {
-    "id": "pc-gamer-3",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "As Wardogs blows past 200k Steam concurrents, its developers are prepared for the day 'hype dies down'",
-    "summary": "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture.",
-    "url": "https://www.pcgamer.com/games/fps/as-wardogs-blows-past-200k-steam-concurrents-its-developers-are-prepared-for-the-day-hype-dies-down/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/t9Y89d7jTDuX9WgqPbwKiR-1280-80.jpg",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "11 jam yang lalu",
+    "id": "thegamer-2",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
+    "title": "Where To Find St. Mihai's Crypt In The Blood of Dawnwalker",
+    "summary": "Shortly after returning from St. Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
+    "url": "https://www.thegamer.com/the-blood-of-dawnwalker-monk-and-saint-quest-st-mihai-sword-guide/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/09/st-mihai-in-the-blood-of-dawnwalker.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "54 menit yang lalu",
     "readTime": "3 min read",
     "isHot": false,
-    "author": "Morgan Park",
+    "author": "Kaitlyn Peterson",
     "keyHighlights": [
-      "The way our hobby talks about player counts is all sorts of messed up.",
-      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote .",
-      "In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
+      "Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
+      "The only problem is that the answer, a sword, is nowhere to be found."
     ],
     "fullContent": [
-      "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture. They're a single data point, yet have become the flimsy scaffolding on which the internet builds elaborate headcanon about a game's quality, viability, or deadness. Sometimes dogpiling is so successful, and the resulting perception so difficult to fight, that simply saying a game is dead is enough to help kill it.",
-      "It's a trend that annoys me to no end, so it's refreshing to see a developer speaking openly about concurrents—both about how many it considers \"healthy,\" and why it's normal for the number to rise and fall. It's been a recurring topic for Wardogs developer Bulkhead, whose closed beta surpassed 200,000 concurrents today on Steam. Responding to a TimTheTatman clip on X, CEO Joe Brammer spoke on the milsim's unexpected popularity, and its inevitable (but healthy) decline.",
-      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote . \"Doesn't make it a bad game or even a problem, we planned for 5k players concurrent! It'll maintain a healthy playerbase and we'll continue to build the 1.0 version of the game then... it'll boom again :) And so the cycle continues :)\"",
-      "It's a cycle many of us are familiar with, but rarely acknowledge. I tend to build a rotation of multiplayer favorites that I regularly return to, either to check out an update or scratch an itch. It is, I think, a pretty healthy way to enjoy videogames, but the rise of live service \"forever\" games, as well as high-profile failures, have proliferated the idea that videogames are those species of shark that will die if they ever stop swimming.",
-      "Much like the majority of videogames before 2016, Bulkhead does not need Wardogs to be a consistent, top-charting megahit to continue making it. In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
+      "Shortly after returning from St. Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all. The only problem is that the answer, a sword, is nowhere to be found."
+    ]
+  },
+  {
+    "id": "polygon-1",
+    "outletId": "polygon",
+    "outletName": "Polygon",
+    "outletIcon": "🔷",
+    "outletThemeColor": "#DF1995",
+    "outletDomain": "polygon.com",
+    "title": "40 Years Ago, Konami Changed the Video Game Industry Forever",
+    "summary": "New video games released in recent years might sell well, but they rarely transform the industry as a whole. We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new.",
+    "url": "https://www.polygon.com/40-years-konami-changed-industry/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/15973926/DpfYKv3WkAEF7wI.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Culture",
+    "publishedAt": "54 menit yang lalu",
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Jason Venter",
+    "keyHighlights": [
+      "New video games released in recent years might sell well, but they rarely transform the industry as a whole.",
+      "We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new."
+    ],
+    "fullContent": [
+      "New video games released in recent years might sell well, but they rarely transform the industry as a whole. We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new. Thanks to the diverse lineup of games already available, we don’t see as many paradigm shifts as we did 40 years ago, when Konami changed the video game industry forever with Castlevania ."
+    ]
+  },
+  {
+    "id": "game-rant-2",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "All Hozuki Pouch Effects & Locations in Onimusha: Way of the Sword",
+    "summary": "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword . The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects.",
+    "url": "https://gamerant.com/onimusha-way-of-the-sword-all-hozuki-pouches-how-get-locations/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/onimusha-way-of-the-sword-all-hozuki-pouches.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "54 menit yang lalu",
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Marc Santos",
+    "keyHighlights": [
+      "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword .",
+      "The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects."
+    ],
+    "fullContent": [
+      "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword . The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects. You can get new Hozuki Pouches in Onimusha once you enter the Eastern Kyoto region after completing the prologue, but before you can reach all of them, you'll have to proceed through the main story first."
+    ]
+  },
+  {
+    "id": "game-rant-3",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "GameRant Daily Crossword (September 6, 2026)",
+    "summary": "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword.",
+    "url": "https://gamerant.com/game/gamerant-daily-crossword-2026-09-06/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/01/game-rant-games-game-rant-daily-crossword-puzzle-site-banner-graphic.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "54 menit yang lalu",
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "GameRant",
+    "keyHighlights": [
+      "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword."
+    ],
+    "fullContent": [
+      "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword."
+    ]
+  },
+  {
+    "id": "game-informer-2",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "Gen-AI controversy aside, Crazy Taxi: World Tour feels like classic arcade Sega - and it's an absolute blast",
+    "summary": "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana.",
+    "url": "https://www.eurogamer.net/crazy-taxi-world-tour-gamescom-preview",
+    "imageUrl": "https://assetsio.gnwcdn.com/crazy-taxi-world-tour-germany-header.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "1 jam yang lalu",
+    "readTime": "4 min read",
+    "isHot": false,
+    "author": "Matt Wales",
+    "keyHighlights": [
+      "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana."
+    ],
+    "fullContent": [
+      "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana."
+    ]
+  },
+  {
+    "id": "thegamer-3",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
+    "title": "Venom Game \"Still In Development,\" Credible Insider Says",
+    "summary": "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development.",
+    "url": "https://www.thegamer.com/insomniac-venom-still-in-development/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/06/venom-and-spider-man-fighting-in-marvel-s-spider-man-2.png",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "1 jam yang lalu",
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "James Lucas",
+    "keyHighlights": [
+      "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development."
+    ],
+    "fullContent": [
+      "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development."
+    ]
+  },
+  {
+    "id": "polygon-2",
+    "outletId": "polygon",
+    "outletName": "Polygon",
+    "outletIcon": "🔷",
+    "outletThemeColor": "#DF1995",
+    "outletDomain": "polygon.com",
+    "title": "Samara Weaving's Gritty Action Sleeper Hit Officially Finds a New Home on Streaming",
+    "summary": "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot. Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen.",
+    "url": "https://www.polygon.com/samara-weaving-ready-or-not-netflix-streaming/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/ready-or-not-041524-245cfe47026946b5bf935079f18507d4-1.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Culture",
+    "publishedAt": "1 jam yang lalu",
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Debopriyaa Dutta",
+    "keyHighlights": [
+      "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot.",
+      "Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen."
+    ],
+    "fullContent": [
+      "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot. Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen."
+    ]
+  },
+  {
+    "id": "polygon-3",
+    "outletId": "polygon",
+    "outletName": "Polygon",
+    "outletIcon": "🔷",
+    "outletThemeColor": "#DF1995",
+    "outletDomain": "polygon.com",
+    "title": "5 Star Trek Ships That Changed the Legendary Sci-Fi Franchise Forever",
+    "summary": "Great science-fiction ships are never just transportation. Over time, they become characters in their own right.",
+    "url": "https://www.polygon.com/star-trek-ships-best-spaceships/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/enterprise.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Culture",
+    "publishedAt": "1 jam yang lalu",
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Terry Terrones",
+    "keyHighlights": [
+      "Great science-fiction ships are never just transportation.",
+      "Over time, they become characters in their own right."
+    ],
+    "fullContent": [
+      "Great science-fiction ships are never just transportation. Over time, they become characters in their own right."
     ]
   },
   {
@@ -142,6 +352,86 @@
     ],
     "fullContent": [
       "We take on Enhanced Byakue on Carnage Difficulty, a harder version of the secret demo boss while taking no damage in Onimusha: Way Of The Sword. Carnage difficulty is only available after completing the game on normal difficulty."
+    ]
+  },
+  {
+    "id": "game-informer-3",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "What we've been playing - \"Well this is embarrassing, we're wearing the same outfit!\"",
+    "summary": "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around.",
+    "url": "https://www.eurogamer.net/what-weve-been-playing-well-this-is-embarrassing-were-wearing-the-same-outfit",
+    "imageUrl": "https://assetsio.gnwcdn.com/star-wars-zero-company-5_fR7jaGA.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "3 jam yang lalu",
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Matt Wales",
+    "keyHighlights": [
+      "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around."
+    ],
+    "fullContent": [
+      "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around."
+    ]
+  },
+  {
+    "id": "kotaku-1",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "What are we all playing this weekend?",
+    "summary": "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
+    "url": "https://www.rockpapershotgun.com/what-are-we-all-playing-this-weekend-398",
+    "imageUrl": "https://assetsio.gnwcdn.com/playing-this-weekend_KdYr8O4.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "3 jam yang lalu",
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Julian Benson",
+    "keyHighlights": [
+      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough.",
+      "Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body."
+    ],
+    "fullContent": [
+      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
+      "Still, at last, I am well. In body, if not in spirit. So, better start playing some games then, right?"
+    ]
+  },
+  {
+    "id": "pc-gamer-2",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
+    "title": "September's schedule of new games, events, and updates refuses to let 2026 go down in history as a slow year for new releases",
+    "summary": "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon.",
+    "url": "https://www.pcgamer.com/games/pc-game-release-dates-september-2026/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/ipznXnhNVGvuja545n8DeE-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "10 jam yang lalu",
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Andrea Shearon",
+    "keyHighlights": [
+      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore.",
+      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC).",
+      "I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
+    ],
+    "fullContent": [
+      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon. It's the same schedule every year, but somehow I'm always caught off guard.",
+      "The Blood of Dawnwalker kicked off the month with a delightfully dismal vampire RPG from the Witcher veterans at Rebel Wolves. Then you've got all month to suck blood as Coen (or be a good two-shoes and abstain, I guess) before Silent Hill: Townfall and Control Resonant launch on the same damn day. It seems everything I've been waiting all year to play has crammed into this 4-week window, and that's not even counting all the big updates.",
+      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC). It'll be my first time playing, so between that and Valheim 1.0, I'll be plenty busy until 2027.",
+      "Steam | I've been loving The Blood of Dawnwalker, but you don't have to take my broody, vampire-obsessed word for it. Shaun called it \"one of best action RPGs [he's] played in years,\" in his Blood of Dawnwalker review .",
+      "Steam | I have to say it every time: I still can't believe we're in a Silent Hill renaissance. I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
     ]
   },
   {
@@ -265,449 +555,33 @@
     ]
   },
   {
-    "id": "vgc-1",
-    "outletId": "vgc",
-    "outletName": "Video Games Chronicle (VGC)",
-    "outletIcon": "⚡",
-    "outletThemeColor": "#0055FF",
-    "outletDomain": "videogameschronicle.com",
-    "title": "Podcast: GTA 6 boosts console sales... but will it last?",
-    "summary": "Plus: The debate over digital ownership rages on…",
-    "url": "https://www.videogameschronicle.com/blog/podcast/podcast-gta-6-boosts-console-sales-but-will-it-last/",
-    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/Podcast-187-YT.jpg",
-    "category": "Industry & Business",
-    "tag": "Industry",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": true,
-    "author": "Jordan Middler",
-    "keyHighlights": [
-      "Plus: The debate over digital ownership rages on…"
-    ],
-    "fullContent": [
-      "Plus: The debate over digital ownership rages on…"
-    ]
-  },
-  {
-    "id": "vgc-2",
-    "outletId": "vgc",
-    "outletName": "Video Games Chronicle (VGC)",
-    "outletIcon": "⚡",
-    "outletThemeColor": "#0055FF",
-    "outletDomain": "videogameschronicle.com",
-    "title": "Blood of Dawnwalker: Xanthe’s Mansion lantern puzzle solution",
-    "summary": "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…",
-    "url": "https://www.videogameschronicle.com/guide/blood-of-dawnwalker-xanthes-mansion-lantern-puzzle-solution/",
-    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/xanthe_1.jpg",
-    "category": "Industry & Business",
-    "tag": "Industry",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "Dave Aubrey",
-    "keyHighlights": [
-      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
-    ],
-    "fullContent": [
-      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
-    ]
-  },
-  {
-    "id": "vgc-3",
-    "outletId": "vgc",
-    "outletName": "Video Games Chronicle (VGC)",
-    "outletIcon": "⚡",
-    "outletThemeColor": "#0055FF",
-    "outletDomain": "videogameschronicle.com",
-    "title": "Halloween the Game single-player review: Is there enough here for solo players?",
-    "summary": "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?",
-    "url": "https://www.videogameschronicle.com/review/halloween-the-game-single-player-review-is-there-enough-here-for-solo-players/",
-    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/halloween-the-game.jpg",
-    "category": "Industry & Business",
-    "tag": "Industry",
-    "publishedAt": "19 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "Chris Scullion",
-    "keyHighlights": [
-      "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?"
-    ],
-    "fullContent": [
-      "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?"
-    ]
-  },
-  {
-    "id": "game-informer-1",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "BioWare doesn't need advice for Mass Effect 4, says veteran designer, as long as \"people get out of the way\"",
-    "summary": "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio.",
-    "url": "https://www.eurogamer.net/bioware-mass-effect-4-doesnt-need-advice-veteran-designer",
-    "imageUrl": "https://assetsio.gnwcdn.com/mass-effect-shepard-sad.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "10 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Vikki Blake",
-    "keyHighlights": [
-      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
-    ],
-    "fullContent": [
-      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
-    ]
-  },
-  {
-    "id": "game-informer-2",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "Gen-AI controversy aside, Crazy Taxi: World Tour feels like classic arcade Sega - and it's an absolute blast",
-    "summary": "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana.",
-    "url": "https://www.eurogamer.net/crazy-taxi-world-tour-gamescom-preview",
-    "imageUrl": "https://assetsio.gnwcdn.com/crazy-taxi-world-tour-germany-header.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "4 min read",
-    "isHot": false,
-    "author": "Matt Wales",
-    "keyHighlights": [
-      "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana."
-    ],
-    "fullContent": [
-      "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana."
-    ]
-  },
-  {
-    "id": "game-informer-3",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "What we've been playing - \"Well this is embarrassing, we're wearing the same outfit!\"",
-    "summary": "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around.",
-    "url": "https://www.eurogamer.net/what-weve-been-playing-well-this-is-embarrassing-were-wearing-the-same-outfit",
-    "imageUrl": "https://assetsio.gnwcdn.com/star-wars-zero-company-5_fR7jaGA.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "3 jam yang lalu",
+    "id": "pc-gamer-3",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
+    "title": "As Wardogs blows past 200k Steam concurrents, its developers are prepared for the day 'hype dies down'",
+    "summary": "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture.",
+    "url": "https://www.pcgamer.com/games/fps/as-wardogs-blows-past-200k-steam-concurrents-its-developers-are-prepared-for-the-day-hype-dies-down/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/t9Y89d7jTDuX9WgqPbwKiR-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "11 jam yang lalu",
     "readTime": "3 min read",
     "isHot": false,
-    "author": "Matt Wales",
+    "author": "Morgan Park",
     "keyHighlights": [
-      "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around."
+      "The way our hobby talks about player counts is all sorts of messed up.",
+      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote .",
+      "In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
     ],
     "fullContent": [
-      "Unluckily for you all, Bertie's having a well-earned long weekend (possibly skiing, possibly jumping on the spot, possibly just having a nice lie down after the chaos of it all), meaning you're stuck with me on intro duties for What We've Been Playing this time around."
-    ]
-  },
-  {
-    "id": "thegamer-1",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Resident Evil: Revelations 3 Leak Reveals First Look At Yuri",
-    "summary": "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc.",
-    "url": "https://www.thegamer.com/resident-evil-revelations-3-leak/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/claire-and-moira-in-resident-evil-revelations-2-standing-by-a-table-holding-a-knife-and-torch-respectively.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "3 menit yang lalu",
-    "readTime": "2 min read",
-    "isHot": true,
-    "author": "James Lucas",
-    "keyHighlights": [
-      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
-    ],
-    "fullContent": [
-      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
-    ]
-  },
-  {
-    "id": "thegamer-2",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Where To Find St. Mihai's Crypt In The Blood of Dawnwalker",
-    "summary": "Shortly after returning from St. Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
-    "url": "https://www.thegamer.com/the-blood-of-dawnwalker-monk-and-saint-quest-st-mihai-sword-guide/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/09/st-mihai-in-the-blood-of-dawnwalker.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "54 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Kaitlyn Peterson",
-    "keyHighlights": [
-      "Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
-      "The only problem is that the answer, a sword, is nowhere to be found."
-    ],
-    "fullContent": [
-      "Shortly after returning from St. Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all. The only problem is that the answer, a sword, is nowhere to be found."
-    ]
-  },
-  {
-    "id": "thegamer-3",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Venom Game \"Still In Development,\" Credible Insider Says",
-    "summary": "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development.",
-    "url": "https://www.thegamer.com/insomniac-venom-still-in-development/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/06/venom-and-spider-man-fighting-in-marvel-s-spider-man-2.png",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "James Lucas",
-    "keyHighlights": [
-      "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development."
-    ],
-    "fullContent": [
-      "Reputable leaker NateTheHate claims that Insomniac's Venom game hasn't been canceled and is still actively in development."
-    ]
-  },
-  {
-    "id": "polygon-1",
-    "outletId": "polygon",
-    "outletName": "Polygon",
-    "outletIcon": "🔷",
-    "outletThemeColor": "#DF1995",
-    "outletDomain": "polygon.com",
-    "title": "40 Years Ago, Konami Changed the Video Game Industry Forever",
-    "summary": "New video games released in recent years might sell well, but they rarely transform the industry as a whole. We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new.",
-    "url": "https://www.polygon.com/40-years-konami-changed-industry/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/15973926/DpfYKv3WkAEF7wI.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Culture",
-    "publishedAt": "54 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Jason Venter",
-    "keyHighlights": [
-      "New video games released in recent years might sell well, but they rarely transform the industry as a whole.",
-      "We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new."
-    ],
-    "fullContent": [
-      "New video games released in recent years might sell well, but they rarely transform the industry as a whole. We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new. Thanks to the diverse lineup of games already available, we don’t see as many paradigm shifts as we did 40 years ago, when Konami changed the video game industry forever with Castlevania ."
-    ]
-  },
-  {
-    "id": "polygon-2",
-    "outletId": "polygon",
-    "outletName": "Polygon",
-    "outletIcon": "🔷",
-    "outletThemeColor": "#DF1995",
-    "outletDomain": "polygon.com",
-    "title": "Samara Weaving's Gritty Action Sleeper Hit Officially Finds a New Home on Streaming",
-    "summary": "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot. Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen.",
-    "url": "https://www.polygon.com/samara-weaving-ready-or-not-netflix-streaming/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/ready-or-not-041524-245cfe47026946b5bf935079f18507d4-1.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Culture",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Debopriyaa Dutta",
-    "keyHighlights": [
-      "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot.",
-      "Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen."
-    ],
-    "fullContent": [
-      "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot. Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen."
-    ]
-  },
-  {
-    "id": "polygon-3",
-    "outletId": "polygon",
-    "outletName": "Polygon",
-    "outletIcon": "🔷",
-    "outletThemeColor": "#DF1995",
-    "outletDomain": "polygon.com",
-    "title": "5 Star Trek Ships That Changed the Legendary Sci-Fi Franchise Forever",
-    "summary": "Great science-fiction ships are never just transportation. Over time, they become characters in their own right.",
-    "url": "https://www.polygon.com/star-trek-ships-best-spaceships/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/enterprise.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Culture",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "Terry Terrones",
-    "keyHighlights": [
-      "Great science-fiction ships are never just transportation.",
-      "Over time, they become characters in their own right."
-    ],
-    "fullContent": [
-      "Great science-fiction ships are never just transportation. Over time, they become characters in their own right."
-    ]
-  },
-  {
-    "id": "game-rant-1",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "Dragon Ball Unveils New Super Saiyan Blue Versions For Goku & Vegeta",
-    "summary": "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS .",
-    "url": "https://gamerant.com/dragon-ball-new-super-saiyan-blue-designs/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/new-super-saiyan-blue.png",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "24 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Renan Fontes",
-    "keyHighlights": [
-      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback.",
-      "Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS ."
-    ],
-    "fullContent": [
-      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS . Dragon Ball Super is officially debuting brand-new versions of Super Saiyan Blue for Goku and Vegeta, offering them fresh redesigns ahead of the series returning next month."
-    ]
-  },
-  {
-    "id": "game-rant-2",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "All Hozuki Pouch Effects & Locations in Onimusha: Way of the Sword",
-    "summary": "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword . The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects.",
-    "url": "https://gamerant.com/onimusha-way-of-the-sword-all-hozuki-pouches-how-get-locations/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/onimusha-way-of-the-sword-all-hozuki-pouches.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "54 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Marc Santos",
-    "keyHighlights": [
-      "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword .",
-      "The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects."
-    ],
-    "fullContent": [
-      "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword . The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects. You can get new Hozuki Pouches in Onimusha once you enter the Eastern Kyoto region after completing the prologue, but before you can reach all of them, you'll have to proceed through the main story first."
-    ]
-  },
-  {
-    "id": "game-rant-3",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "GameRant Daily Crossword (September 6, 2026)",
-    "summary": "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword.",
-    "url": "https://gamerant.com/game/gamerant-daily-crossword-2026-09-06/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/01/game-rant-games-game-rant-daily-crossword-puzzle-site-banner-graphic.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "54 menit yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "GameRant",
-    "keyHighlights": [
-      "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword."
-    ],
-    "fullContent": [
-      "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword."
-    ]
-  },
-  {
-    "id": "kotaku-1",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "What are we all playing this weekend?",
-    "summary": "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
-    "url": "https://www.rockpapershotgun.com/what-are-we-all-playing-this-weekend-398",
-    "imageUrl": "https://assetsio.gnwcdn.com/playing-this-weekend_KdYr8O4.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "3 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Julian Benson",
-    "keyHighlights": [
-      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough.",
-      "Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body."
-    ],
-    "fullContent": [
-      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
-      "Still, at last, I am well. In body, if not in spirit. So, better start playing some games then, right?"
-    ]
-  },
-  {
-    "id": "kotaku-2",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "\"Top-down Zelda meets Bloodborne\": action RPG Withering Realms is out now in early access, should you fancy riding the shoulders of a horrible doll",
-    "summary": "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
-    "url": "https://www.rockpapershotgun.com/top-down-zelda-meets-bloodborne-action-rpg-withering-realms-is-out-now-in-early-access-should-you-fancy-riding-the-shoulders-of-a-horrible-doll",
-    "imageUrl": "https://assetsio.gnwcdn.com/Withering-Realms-1.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Edwin Evans-Thirlwell",
-    "keyHighlights": [
-      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror.",
-      "You play a ghost child, clinging to the shoulders of a living marionette.",
-      "You wouldn't accept if that thing offered you a piggyback."
-    ],
-    "fullContent": [
-      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
-      "The new game takes place in the 1920s, following the 'premature' end of World War 1 thanks to an occult catastrophe. You play a ghost child, clinging to the shoulders of a living marionette. The marionette is a real fright, its body a coatful of springs and hinges, its face a one-eyed rictus: it reminds me of certain scenes from Phil Tippett's stop motion masterpiece Mad God and also, of Curly from Mouthwashing . You wouldn't accept if that thing offered you a piggyback. But it is pretty handy in a fight."
-    ]
-  },
-  {
-    "id": "kotaku-3",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "Moonlighter 2: The Endless Vault review – a pleasant bout of number go up that’s most remarkable for how much of an improvement it is",
-    "summary": "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag.",
-    "url": "https://www.rockpapershotgun.com/moonlighter-2-the-endless-vault-review-a-pleasant-bout-of-number-go-up-thats-most-remarkable-for-how-much-of-an-improvement-it-is",
-    "imageUrl": "https://assetsio.gnwcdn.com/moonlighter-2_0006_thwack.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "4 min read",
-    "isHot": false,
-    "author": "Jay Castello",
-    "keyHighlights": [
-      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day.",
-      "In the shop, you figure out how to get the best price for these items.",
-      "All this time, you will be thinking about multipliers."
-    ],
-    "fullContent": [
-      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag. In the shop, you figure out how to get the best price for these items. And then you spend that money on upgrades that help you to dungeon delve better and start all over again.",
-      "All this time, you will be thinking about multipliers."
+      "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture. They're a single data point, yet have become the flimsy scaffolding on which the internet builds elaborate headcanon about a game's quality, viability, or deadness. Sometimes dogpiling is so successful, and the resulting perception so difficult to fight, that simply saying a game is dead is enough to help kill it.",
+      "It's a trend that annoys me to no end, so it's refreshing to see a developer speaking openly about concurrents—both about how many it considers \"healthy,\" and why it's normal for the number to rise and fall. It's been a recurring topic for Wardogs developer Bulkhead, whose closed beta surpassed 200,000 concurrents today on Steam. Responding to a TimTheTatman clip on X, CEO Joe Brammer spoke on the milsim's unexpected popularity, and its inevitable (but healthy) decline.",
+      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote . \"Doesn't make it a bad game or even a problem, we planned for 5k players concurrent! It'll maintain a healthy playerbase and we'll continue to build the 1.0 version of the game then... it'll boom again :) And so the cycle continues :)\"",
+      "It's a cycle many of us are familiar with, but rarely acknowledge. I tend to build a rotation of multiplayer favorites that I regularly return to, either to check out an update or scratch an itch. It is, I think, a pretty healthy way to enjoy videogames, but the rise of live service \"forever\" games, as well as high-profile failures, have proliferated the idea that videogames are those species of shark that will die if they ever stop swimming.",
+      "Much like the majority of videogames before 2016, Bulkhead does not need Wardogs to be a consistent, top-charting megahit to continue making it. In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
     ]
   },
   {
@@ -904,6 +778,108 @@
     ]
   },
   {
+    "id": "vgc-1",
+    "outletId": "vgc",
+    "outletName": "Video Games Chronicle (VGC)",
+    "outletIcon": "⚡",
+    "outletThemeColor": "#0055FF",
+    "outletDomain": "videogameschronicle.com",
+    "title": "Podcast: GTA 6 boosts console sales... but will it last?",
+    "summary": "Plus: The debate over digital ownership rages on…",
+    "url": "https://www.videogameschronicle.com/blog/podcast/podcast-gta-6-boosts-console-sales-but-will-it-last/",
+    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/Podcast-187-YT.jpg",
+    "category": "Industry & Business",
+    "tag": "Industry",
+    "publishedAt": "18 jam yang lalu",
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Jordan Middler",
+    "keyHighlights": [
+      "Plus: The debate over digital ownership rages on…"
+    ],
+    "fullContent": [
+      "Plus: The debate over digital ownership rages on…"
+    ]
+  },
+  {
+    "id": "vgc-2",
+    "outletId": "vgc",
+    "outletName": "Video Games Chronicle (VGC)",
+    "outletIcon": "⚡",
+    "outletThemeColor": "#0055FF",
+    "outletDomain": "videogameschronicle.com",
+    "title": "Blood of Dawnwalker: Xanthe’s Mansion lantern puzzle solution",
+    "summary": "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…",
+    "url": "https://www.videogameschronicle.com/guide/blood-of-dawnwalker-xanthes-mansion-lantern-puzzle-solution/",
+    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/xanthe_1.jpg",
+    "category": "Industry & Business",
+    "tag": "Industry",
+    "publishedAt": "18 jam yang lalu",
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Dave Aubrey",
+    "keyHighlights": [
+      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
+    ],
+    "fullContent": [
+      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
+    ]
+  },
+  {
+    "id": "kotaku-2",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "\"Top-down Zelda meets Bloodborne\": action RPG Withering Realms is out now in early access, should you fancy riding the shoulders of a horrible doll",
+    "summary": "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
+    "url": "https://www.rockpapershotgun.com/top-down-zelda-meets-bloodborne-action-rpg-withering-realms-is-out-now-in-early-access-should-you-fancy-riding-the-shoulders-of-a-horrible-doll",
+    "imageUrl": "https://assetsio.gnwcdn.com/Withering-Realms-1.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "18 jam yang lalu",
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Edwin Evans-Thirlwell",
+    "keyHighlights": [
+      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror.",
+      "You play a ghost child, clinging to the shoulders of a living marionette.",
+      "You wouldn't accept if that thing offered you a piggyback."
+    ],
+    "fullContent": [
+      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
+      "The new game takes place in the 1920s, following the 'premature' end of World War 1 thanks to an occult catastrophe. You play a ghost child, clinging to the shoulders of a living marionette. The marionette is a real fright, its body a coatful of springs and hinges, its face a one-eyed rictus: it reminds me of certain scenes from Phil Tippett's stop motion masterpiece Mad God and also, of Curly from Mouthwashing . You wouldn't accept if that thing offered you a piggyback. But it is pretty handy in a fight."
+    ]
+  },
+  {
+    "id": "kotaku-3",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "Moonlighter 2: The Endless Vault review – a pleasant bout of number go up that’s most remarkable for how much of an improvement it is",
+    "summary": "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag.",
+    "url": "https://www.rockpapershotgun.com/moonlighter-2-the-endless-vault-review-a-pleasant-bout-of-number-go-up-thats-most-remarkable-for-how-much-of-an-improvement-it-is",
+    "imageUrl": "https://assetsio.gnwcdn.com/moonlighter-2_0006_thwack.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "18 jam yang lalu",
+    "readTime": "4 min read",
+    "isHot": false,
+    "author": "Jay Castello",
+    "keyHighlights": [
+      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day.",
+      "In the shop, you figure out how to get the best price for these items.",
+      "All this time, you will be thinking about multipliers."
+    ],
+    "fullContent": [
+      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag. In the shop, you figure out how to get the best price for these items. And then you spend that money on upgrades that help you to dungeon delve better and start all over again.",
+      "All this time, you will be thinking about multipliers."
+    ]
+  },
+  {
     "id": "bloomberg-gaming-2",
     "outletId": "bloomberg-gaming",
     "outletName": "GamesIndustry.biz",
@@ -926,6 +902,30 @@
     ],
     "fullContent": [
       "Many column inches have been spent questioning the wisdom of focusing on live-service. Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed ."
+    ]
+  },
+  {
+    "id": "vgc-3",
+    "outletId": "vgc",
+    "outletName": "Video Games Chronicle (VGC)",
+    "outletIcon": "⚡",
+    "outletThemeColor": "#0055FF",
+    "outletDomain": "videogameschronicle.com",
+    "title": "Halloween the Game single-player review: Is there enough here for solo players?",
+    "summary": "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?",
+    "url": "https://www.videogameschronicle.com/review/halloween-the-game-single-player-review-is-there-enough-here-for-solo-players/",
+    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/halloween-the-game.jpg",
+    "category": "Industry & Business",
+    "tag": "Industry",
+    "publishedAt": "19 jam yang lalu",
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Chris Scullion",
+    "keyHighlights": [
+      "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?"
+    ],
+    "fullContent": [
+      "Illfonic's latest multiplayer horror game has a single-player mode, but is it as well-executed as Michael Myers' victims?"
     ]
   },
   {

@@ -12,6 +12,7 @@ export interface NewsArticle {
   category: 'Multiplatform' | 'PC & Tech' | 'Industry & Business' | 'Culture & Reviews';
   tag: string;
   publishedAt: string;
+  publishedTimestamp?: number;
   readTime: string;
   isHot?: boolean;
   author?: string;

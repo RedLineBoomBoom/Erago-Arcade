@@ -7,8 +7,52 @@ const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes fresh cache
 
 export type NewsUpdateListener = (articles: NewsArticle[], lastUpdated: number) => void;
 
+export function getArticleAgeInMinutes(article: NewsArticle): number {
+  if (article.publishedTimestamp && typeof article.publishedTimestamp === 'number') {
+    return Math.max(0, (Date.now() - article.publishedTimestamp) / (60 * 1000));
+  }
+  const str = (article.publishedAt || '').toLowerCase().trim();
+  if (str === 'baru saja' || str === 'just now') return 0;
+
+  // Minutes
+  const minM = str.match(/(\d+)\s*(?:menit|min|minute)/i);
+  if (minM) return parseInt(minM[1], 10);
+
+  // Hours
+  const hrM = str.match(/(\d+)\s*(?:jam|hour|hr)/i);
+  if (hrM) return parseInt(hrM[1], 10) * 60;
+
+  // Days
+  const dayM = str.match(/(\d+)\s*(?:hari|day)/i);
+  if (dayM) return parseInt(dayM[1], 10) * 60 * 24;
+
+  // Weeks
+  const weekM = str.match(/(\d+)\s*(?:minggu|week)/i);
+  if (weekM) return parseInt(weekM[1], 10) * 60 * 24 * 7;
+
+  // Months
+  const monthM = str.match(/(\d+)\s*(?:bulan|month)/i);
+  if (monthM) return parseInt(monthM[1], 10) * 60 * 24 * 30;
+
+  const parsed = Date.parse(str);
+  if (!isNaN(parsed)) {
+    return Math.max(0, (Date.now() - parsed) / (60 * 1000));
+  }
+
+  return 999999;
+}
+
+export function sortArticlesNewestFirst(articles: NewsArticle[]): NewsArticle[] {
+  return [...articles].sort((a, b) => {
+    if (a.publishedTimestamp && b.publishedTimestamp) {
+      return b.publishedTimestamp - a.publishedTimestamp;
+    }
+    return getArticleAgeInMinutes(a) - getArticleAgeInMinutes(b);
+  });
+}
+
 class LiveNewsService {
-  private articles: NewsArticle[] = GAMING_NEWS_ARTICLES;
+  private articles: NewsArticle[] = sortArticlesNewestFirst(GAMING_NEWS_ARTICLES);
   private lastUpdated: number = Date.now();
   private listeners: Set<NewsUpdateListener> = new Set();
   private isFetching: boolean = false;
@@ -48,14 +92,14 @@ class LiveNewsService {
           );
 
           if (!isContaminated) {
-            this.articles = parsed;
+            this.articles = sortArticlesNewestFirst(parsed);
           } else {
             localStorage.removeItem(CACHE_KEY);
-            this.articles = GAMING_NEWS_ARTICLES;
+            this.articles = sortArticlesNewestFirst(GAMING_NEWS_ARTICLES);
           }
         }
       } else {
-        this.articles = GAMING_NEWS_ARTICLES;
+        this.articles = sortArticlesNewestFirst(GAMING_NEWS_ARTICLES);
       }
 
       if (time) {
@@ -155,11 +199,12 @@ class LiveNewsService {
   }
 
   private setArticles(newArticles: NewsArticle[]) {
-    this.articles = newArticles;
+    const sorted = sortArticlesNewestFirst(newArticles);
+    this.articles = sorted;
     this.lastUpdated = Date.now();
     try {
       if (typeof window !== 'undefined') {
-        localStorage.setItem(CACHE_KEY, JSON.stringify(newArticles));
+        localStorage.setItem(CACHE_KEY, JSON.stringify(sorted));
         localStorage.setItem(TIMESTAMP_KEY, String(this.lastUpdated));
       }
     } catch {

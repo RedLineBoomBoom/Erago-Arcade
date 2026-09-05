@@ -13,7 +13,7 @@ import {
   RefreshCw 
 } from 'lucide-react';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
-import { liveNewsService } from '../utils/liveNewsService';
+import { liveNewsService, sortArticlesNewestFirst } from '../utils/liveNewsService';
 import { sound } from '../audio/soundEngine';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
@@ -78,9 +78,9 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  // Filtered and translated articles
+  // Filtered and translated articles (always sorted by newest first)
   const filteredArticles = useMemo(() => {
-    return articles
+    const list = articles
       .map((article) => getTranslatedArticleSync(article, language))
       .filter((article) => {
         const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
@@ -95,6 +95,8 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
 
         return matchesOutlet && matchesCategory && matchesSearch;
       });
+
+    return sortArticlesNewestFirst(list);
   }, [articles, selectedOutlet, selectedCategory, searchQuery, language]);
 
   const currentOutletMeta = useMemo(() => {
