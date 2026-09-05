@@ -12,6 +12,8 @@ import { sound } from '../audio/soundEngine';
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
+import type { NewsArticle } from '../types/newsFeed';
+import { ArticleDetailModal } from './ArticleDetailModal';
 import { useLanguage } from '../utils/i18n';
 
 interface GamingNewsModalProps {
@@ -31,6 +33,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [readingArticle, setReadingArticle] = useState<NewsArticle | null>(null);
   const newsFeed = GAMING_NEWS_ARTICLES;
 
   // Sync initialOutletId if changed from prop
@@ -317,7 +320,10 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
               {filteredArticles.map((article) => (
                 <article
                   key={article.id}
-                  onClick={() => handleOpenLink(article.url)}
+                  onClick={() => {
+                    sound.playClick();
+                    setReadingArticle(article);
+                  }}
                   className="group relative flex flex-col justify-between rounded-xl border-3 border-black bg-[#1A1C26] overflow-hidden shadow-[4px_4px_0px_#000] hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000] transition-all duration-200 cursor-pointer text-left"
                 >
                   {/* Article Thumbnail Image */}
@@ -386,10 +392,23 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                       <span className="text-zinc-500 text-[10px]">
                         {article.outletDomain}
                       </span>
-                      <span className="flex items-center gap-1 text-[#00F5D4] group-hover:text-white font-bold transition-colors">
-                        <span>{t('news_read_btn')}</span>
-                        <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenLink(article.url);
+                          }}
+                          title={`Buka situs resmi ${article.outletDomain}`}
+                          className="p-1 rounded text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                        </button>
+                        <span className="flex items-center gap-1 text-[#00F5D4] group-hover:text-white font-bold transition-colors">
+                          <span>{t('news_read_btn')}</span>
+                          <span className="text-[10px]">▸</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -442,6 +461,13 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
         </div>
 
       </div>
+
+      {/* In-App Article Reader Modal */}
+      <ArticleDetailModal
+        isOpen={!!readingArticle}
+        article={readingArticle}
+        onClose={() => setReadingArticle(null)}
+      />
     </div>
   );
 };

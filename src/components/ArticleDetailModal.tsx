@@ -1,0 +1,315 @@
+import React, { useEffect, useState } from 'react';
+import { 
+  X, 
+  ExternalLink, 
+  Search, 
+  Copy, 
+  Check, 
+  ArrowLeft, 
+  Clock, 
+  Flame, 
+  Sparkles, 
+  User 
+} from 'lucide-react';
+import type { NewsArticle } from '../types/newsFeed';
+import { sound } from '../audio/soundEngine';
+import { useLanguage } from '../utils/i18n';
+
+interface ArticleDetailModalProps {
+  isOpen: boolean;
+  article: NewsArticle | null;
+  onClose: () => void;
+}
+
+export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
+  isOpen,
+  article,
+  onClose,
+}) => {
+  const { language, t } = useLanguage();
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        sound.playClick();
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !article) return null;
+
+  const handleOpenSource = () => {
+    sound.playClick();
+    window.open(article.url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleGoogleSearch = () => {
+    sound.playClick();
+    const query = encodeURIComponent(`${article.title} ${article.outletName}`);
+    window.open(`https://www.google.com/search?q=${query}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopyLink = async () => {
+    sound.playPowerUp();
+    try {
+      await navigator.clipboard.writeText(article.url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = article.url;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
+  return (
+    <div 
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          sound.playClick();
+          onClose();
+        }
+      }}
+      className="fixed inset-0 z-[120] flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in select-none overflow-y-auto"
+    >
+      <div className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl border-4 border-black bg-[#14161F] shadow-[8px_8px_0px_#00F5D4] text-white overflow-hidden animate-scale-up my-auto">
+        
+        {/* HEADER */}
+        <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3.5 bg-[#0B0C10] border-b-2 border-white/10">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                sound.playClick();
+                onClose();
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>{t('news_reader_back')}</span>
+            </button>
+
+            <div className="hidden sm:flex items-center gap-2">
+              <span 
+                className="flex items-center gap-1 px-2.5 py-1 rounded border border-black font-['Press_Start_2P'] text-[7px] font-bold text-white shadow"
+                style={{ backgroundColor: article.outletThemeColor || '#FF2A85' }}
+              >
+                <span>{article.outletIcon}</span>
+                <span>{article.outletName}</span>
+              </span>
+              <span className="font-mono text-xs text-zinc-400">
+                {article.outletDomain}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                sound.playClick();
+                onClose();
+              }}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white font-bold hover:bg-white hover:text-black transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* SCROLLABLE ARTICLE BODY */}
+        <div className="flex-1 overflow-y-auto custom-scrollbar p-4 sm:p-7 space-y-6 text-left">
+          
+          {/* Metadata Row */}
+          <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-zinc-400 border-b border-white/10 pb-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="px-2 py-0.5 rounded bg-black/70 border border-white/20 text-[#00F5D4] font-bold">
+                #{article.tag}
+              </span>
+              <span className="text-zinc-500">•</span>
+              <span>{article.category}</span>
+              {article.isHot && (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#FFE600] text-black border border-black font-['Press_Start_2P'] text-[6px] font-bold shadow animate-pulse">
+                  <Flame className="w-2.5 h-2.5 fill-black" /> HOT
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-center gap-4 text-zinc-400">
+              <span className="flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5 text-[#FFE600]" />
+                {article.publishedAt}
+              </span>
+              <span className="text-zinc-500">•</span>
+              <span>{article.readTime}</span>
+            </div>
+          </div>
+
+          {/* Headline */}
+          <div className="space-y-3">
+            <h1 className="font-['Syne'] font-black text-xl sm:text-2xl md:text-3xl text-white leading-tight">
+              {article.title}
+            </h1>
+
+            {/* Author Byline */}
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-300">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FFE600] text-black text-xs font-bold border border-black">
+                <User className="w-3.5 h-3.5" />
+              </span>
+              <span>
+                {t('news_reader_author_by')}{' '}
+                <strong className="text-white">
+                  {article.author || (language === 'id' ? `Tim Redaksi ${article.outletName}` : `Editorial Staff ${article.outletName}`)}
+                </strong>
+              </span>
+              <span className="text-zinc-500">|</span>
+              <span className="text-zinc-400">{article.outletName}</span>
+            </div>
+          </div>
+
+          {/* Featured Image */}
+          <div className="relative w-full rounded-xl overflow-hidden border-3 border-black bg-black/60 shadow-[4px_4px_0px_#000]">
+            <img
+              src={article.imageUrl}
+              alt={article.title}
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.src = '/images/news/quake2-rtx.jpg';
+              }}
+              className="w-full max-h-[380px] object-cover"
+            />
+            <div className="absolute bottom-2 right-2 px-2.5 py-1 rounded bg-black/80 border border-white/20 font-mono text-[9px] text-zinc-300 backdrop-blur-xs">
+              {language === 'id' ? 'Sumber Visual' : 'Photo Credit'}: {article.outletName}
+            </div>
+          </div>
+
+          {/* Key Highlights Section */}
+          {article.keyHighlights && article.keyHighlights.length > 0 && (
+            <div className="rounded-xl border-3 border-black bg-gradient-to-br from-[#0F2027] via-[#203A43] to-[#2C5364] p-4 sm:p-5 shadow-[4px_4px_0px_#00F5D4] space-y-3">
+              <div className="flex items-center gap-2 text-[#00F5D4] font-['Press_Start_2P'] text-[9px] sm:text-[10px] font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-[#FFE600]" />
+                <span>{t('news_reader_key_highlights')}</span>
+              </div>
+              <ul className="space-y-2 font-mono text-xs sm:text-[13px] text-zinc-100">
+                {article.keyHighlights.map((highlight, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                    <span className="text-[#FFE600] font-bold text-sm shrink-0">▸</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Full Article Content */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 border-b border-white/10 pb-2">
+              <span className="font-['Press_Start_2P'] text-[9px] text-[#FFE600]">
+                {t('news_reader_full_story')}
+              </span>
+            </div>
+
+            <div className="space-y-4 font-sans text-sm sm:text-base text-zinc-200 leading-relaxed">
+              {article.fullContent && article.fullContent.length > 0 ? (
+                article.fullContent.map((paragraph, idx) => (
+                  <p key={idx} className="text-justify sm:text-left text-zinc-200">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="text-zinc-300 font-mono text-sm leading-relaxed">
+                  {article.summary}
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Source Attribution & Direct Actions */}
+          <div className="rounded-xl border-2 border-white/20 bg-[#1A1C26] p-4 sm:p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <h4 className="font-['Syne'] font-bold text-sm text-white flex items-center gap-2">
+                  <span>{article.outletIcon}</span>
+                  <span>{article.outletName}</span>
+                </h4>
+                <p className="font-mono text-xs text-zinc-400 max-w-xl">
+                  {t('news_reader_original_source_note', { outlet: article.outletName })}
+                </p>
+              </div>
+
+              {/* Direct Canonical Link Button */}
+              <button
+                onClick={handleOpenSource}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 border-black bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[8px] font-bold shadow-[3px_3px_0px_#000] hover:bg-white transition-all cursor-pointer shrink-0"
+              >
+                <span>{t('news_reader_open_original', { outlet: article.outletDomain })}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Action Bar */}
+            <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-white/10">
+              <button
+                onClick={handleGoogleSearch}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black bg-[#252A3A] hover:bg-[#FFE600] hover:text-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
+              >
+                <Search className="w-3.5 h-3.5" />
+                <span>{t('news_reader_search_google')}</span>
+              </button>
+
+              <button
+                onClick={handleCopyLink}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer ${
+                  copied
+                    ? 'bg-[#00F5D4] text-black'
+                    : 'bg-[#252A3A] hover:bg-[#FFE600] hover:text-black text-white'
+                }`}
+              >
+                {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? t('news_reader_link_copied') : t('news_reader_copy_link')}</span>
+              </button>
+
+              <span className="text-[11px] font-mono text-zinc-500 truncate ml-auto max-w-[260px] sm:max-w-md hidden md:inline">
+                {article.url}
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* STICKY FOOTER */}
+        <div className="shrink-0 px-4 sm:px-6 py-3 bg-[#0B0C10] border-t-2 border-black flex items-center justify-between font-mono text-xs text-zinc-400">
+          <button
+            onClick={() => {
+              sound.playClick();
+              onClose();
+            }}
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-white hover:text-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>{t('news_reader_back')}</span>
+          </button>
+
+          <button
+            onClick={handleOpenSource}
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg border-2 border-black bg-[#FFE600] text-black font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] hover:bg-white transition-colors cursor-pointer"
+          >
+            <span>{t('news_read_original')}</span>
+            <ExternalLink className="w-3 h-3" />
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default ArticleDetailModal;

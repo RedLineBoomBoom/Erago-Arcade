@@ -14,4 +14,7 @@ export interface NewsArticle {
   publishedAt: string;
   readTime: string;
   isHot?: boolean;
+  author?: string;
+  fullContent?: string[];
+  keyHighlights?: string[];
 }

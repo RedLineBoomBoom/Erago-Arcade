@@ -488,6 +488,42 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'KEMBALI KE ARCADE [ESC]',
     en: 'BACK TO ARCADE [ESC]',
   },
+  'news_reader_back': {
+    id: 'KEMBALI KE FEED',
+    en: 'BACK TO FEED',
+  },
+  'news_reader_key_highlights': {
+    id: 'POIN PENTING BERITA',
+    en: 'KEY HIGHLIGHTS',
+  },
+  'news_reader_full_story': {
+    id: 'LIPUTAN LENGKAP',
+    en: 'FULL COVERAGE',
+  },
+  'news_reader_author_by': {
+    id: 'Ditulis oleh',
+    en: 'Written by',
+  },
+  'news_reader_open_original': {
+    id: 'Buka Artikel di {outlet}',
+    en: 'Open Article at {outlet}',
+  },
+  'news_reader_search_google': {
+    id: 'Cari di Google',
+    en: 'Search on Google',
+  },
+  'news_reader_copy_link': {
+    id: 'Salin Tautan',
+    en: 'Copy Link',
+  },
+  'news_reader_link_copied': {
+    id: 'Tautan Berhasil Disalin!',
+    en: 'Link Copied!',
+  },
+  'news_reader_original_source_note': {
+    id: 'Artikel ini diterbitkan secara resmi oleh {outlet}. Hak cipta dan materi orisinal milik penerbit terkait.',
+    en: 'This article was officially published by {outlet}. All copyrights and original materials belong to their respective publisher.',
+  },
 
   // Cryptographic Vault Security Ledger & Anti-Tamper
   'vault_security_title': {
