@@ -202,7 +202,7 @@ export function App() {
   const allTitles = useMemo(() => TRIVIA_DATABASE.map((t) => t.gameTitle), []);
 
   return (
-    <div className={`relative min-h-screen text-[#FFFDF0] flex flex-col justify-between selection:bg-[#FF2A85] selection:text-black ${crtEnabled ? 'crt-screen' : ''}`}>
+    <div className={`relative min-h-screen text-[#FFFDF0] flex flex-col justify-between selection:bg-[#FF2A85] selection:text-black w-full max-w-full overflow-x-hidden ${crtEnabled ? 'crt-screen' : ''}`}>
       {/* Custom Retro Magnetic Cursor */}
       <CustomCursor />
 
@@ -213,9 +213,9 @@ export function App() {
       <ArcadeWallpaper />
 
       {/* Foreground Interactive Page Layout */}
-      <div className="relative z-10 flex flex-col min-h-screen justify-between">
+      <div className="relative z-10 flex flex-col min-h-screen justify-between w-full max-w-full overflow-x-hidden">
         {/* Main Header Navbar */}
-        <div>
+        <div className="w-full max-w-full overflow-x-hidden">
           <Navbar
 
           currentView={currentView}
@@ -248,9 +248,9 @@ export function App() {
       </div>
 
       {/* Dynamic Content Views */}
-      <main className="flex-1 py-4 sm:py-6">
+      <main className="flex-1 py-4 sm:py-6 w-full max-w-full overflow-x-hidden">
         {currentView === 'arcade' && (
-          <div className="space-y-4">
+          <div className="space-y-4 w-full max-w-full">
             {/* Slot Reel Bar */}
             <div className="flex flex-col items-center justify-center gap-2 text-center px-4">
               <div className="flex items-center gap-2">
@@ -270,12 +270,12 @@ export function App() {
 
             {/* Main Stage: Left Wing (Character) + Center (3D Card) + Right Wing (Game Box Art) */}
             <div className="relative mx-auto w-full max-w-[1720px] px-2 sm:px-4 lg:px-6">
-              <div className="flex items-start justify-center gap-4 2xl:gap-8">
+              <div className="flex items-start justify-center gap-4 2xl:gap-8 w-full max-w-full min-w-0">
                 {/* Left Side: Character / Hero Spotlight */}
                 <CharacterSpotlightWing key={`char-${activeTrivia.id}`} item={activeTrivia} />
 
                 {/* Center 3D Holographic Interactive Trivia Card with Cartridge Slam Animation */}
-                <div key={`card-${activeTrivia.id}`} className="w-full max-w-4xl shrink-0 animate-cartridge-slam">
+                <div key={`card-${activeTrivia.id}`} className="w-full max-w-4xl min-w-0 animate-cartridge-slam">
                   <TriviaCard
 
                     item={activeTrivia}
@@ -360,7 +360,7 @@ export function App() {
             <span className="hidden sm:inline">— {t('footer_tagline')}</span>
           </div>
 
-          <div className="flex items-center gap-4 font-mono text-[11px] text-zinc-400">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-4 font-mono text-[10px] sm:text-[11px] text-zinc-400">
             <span>{t('footer_space')}</span>
             <span>{t('footer_crt')}</span>
             <span>{t('footer_mute')}</span>

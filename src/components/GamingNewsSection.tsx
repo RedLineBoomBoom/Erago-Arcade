@@ -47,17 +47,17 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 space-y-8 animate-fade-in">
       {/* Header Banner: Cyber-Press Desk */}
-      <div className="relative overflow-hidden rounded-2xl border-4 border-black bg-gradient-to-r from-[#14161F] via-[#1A1C26] to-[#14161F] p-6 sm:p-8 shadow-[8px_8px_0px_#00F5D4] text-white">
+      <div className="relative overflow-hidden rounded-2xl border-4 border-black bg-gradient-to-r from-[#14161F] via-[#1A1C26] to-[#14161F] p-4 sm:p-8 shadow-[6px_6px_0px_#00F5D4] sm:shadow-[8px_8px_0px_#00F5D4] text-white">
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#00F5D4] via-[#FFE600] to-[#FF2A85]" />
 
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-3xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+          <div className="space-y-2.5 sm:space-y-3 max-w-3xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[8px] font-bold border border-black shadow-[2px_2px_0px_#000]">
+              <span className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold border border-black shadow-[2px_2px_0px_#000]">
                 <Radio className="w-3 h-3 animate-pulse" /> LIVE WIRE
               </span>
-              <span className="px-2.5 py-1 rounded bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold border border-black shadow-[2px_2px_0px_#000]">
+              <span className="px-2 sm:px-2.5 py-1 rounded bg-[#FFE600] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold border border-black shadow-[2px_2px_0px_#000]">
                 12 VERIFIED OUTLETS
               </span>
               <span className="font-mono text-xs text-[#00F5D4] hidden sm:inline">
@@ -65,7 +65,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
               </span>
             </div>
 
-            <h1 className="font-['Syne'] font-black text-2xl sm:text-4xl text-white tracking-tight leading-tight">
+            <h1 className="font-['Syne'] font-black text-xl sm:text-3xl md:text-4xl text-white tracking-tight leading-tight break-words">
               ERAGO GAMING & ENTERTAINMENT NEWS
             </h1>
 

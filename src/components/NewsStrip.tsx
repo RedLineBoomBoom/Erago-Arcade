@@ -262,10 +262,10 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
             )}
 
             {/* Filter Toolbar: Search Bar & Category Tabs */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 bg-[#0B0C10] p-3 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000]">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2.5 bg-[#0B0C10] p-3 rounded-xl border-2 border-black shadow-[2px_2px_0px_#000] min-w-0 max-w-full overflow-hidden">
               
               {/* Search Box */}
-              <div className="relative flex-1 max-w-md">
+              <div className="relative flex-1 max-w-md w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
                 <input
                   type="text"
@@ -285,7 +285,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
               </div>
 
               {/* Category Pills */}
-              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 min-w-0 max-w-full">
                 {NEWS_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}

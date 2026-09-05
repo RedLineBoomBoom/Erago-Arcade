@@ -38,7 +38,7 @@ export const SlotMachineReel: React.FC<SlotMachineReelProps> = ({
 
 
   return (
-    <div className="relative inline-flex items-center justify-center overflow-hidden rounded-sm border-2 border-black bg-black/80 px-4 py-2 brutal-shadow-sm">
+    <div className="relative inline-flex items-center justify-center overflow-hidden rounded-sm border-2 border-black bg-black/80 px-4 py-2 brutal-shadow-sm max-w-[92vw] sm:max-w-lg">
       {/* Decorative slot markers */}
       <div className="absolute left-1 top-0 bottom-0 flex flex-col justify-between py-1 text-[8px] text-[#FFE600] opacity-40">
         <span>▲</span>
@@ -50,7 +50,7 @@ export const SlotMachineReel: React.FC<SlotMachineReelProps> = ({
       </div>
 
       <div
-        className={`font-['Press_Start_2P'] text-xs sm:text-sm md:text-base font-bold tracking-wider text-[#00F5D4] transition-all duration-75 ${
+        className={`font-['Press_Start_2P'] text-[10px] sm:text-xs md:text-base font-bold tracking-wider text-[#00F5D4] text-center break-words max-w-[78vw] sm:max-w-md transition-all duration-75 ${
           isSpinning ? 'animate-reel text-[#FFE600] scale-105' : ''
         }`}
       >
