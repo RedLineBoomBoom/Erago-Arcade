@@ -9,11 +9,13 @@ import {
   Cpu, 
   Calendar, 
   Gamepad2, 
-  HelpCircle 
+  HelpCircle,
+  Globe
 } from 'lucide-react';
 import type { TriviaItem } from '../types/trivia';
 import { sound } from '../audio/soundEngine';
-import { useLanguage, getTranslatedTrivia, translateTag, translateRarity } from '../utils/i18n';
+import { useLanguage, translateTag, translateRarity } from '../utils/i18n';
+import { useDeepLTranslation } from '../hooks/useDeepLTranslation';
 
 interface TriviaCardProps {
   item: TriviaItem;
@@ -22,7 +24,7 @@ interface TriviaCardProps {
 
 export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal }) => {
   const { language, t } = useLanguage();
-  const translatedItem = getTranslatedTrivia(item, language);
+  const { translatedItem, isTranslating, isDeepLVerified } = useDeepLTranslation(item, language);
 
   const cardRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
@@ -187,6 +189,20 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
           </div>
 
           <div className="flex items-center gap-2">
+            {/* DeepL Attribution Badge */}
+            {isDeepLVerified && (
+              <a
+                href="https://www.deepl.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Diterjemahkan dengan DeepL AI (deepl.com)"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-xs border border-[#00F5D4]/40 bg-[#0F2B48] text-[#00F5D4] hover:bg-[#00F5D4] hover:text-black font-['Press_Start_2P'] text-[6px] transition-colors shadow-[1px_1px_0px_#000]"
+              >
+                <Globe className="w-2.5 h-2.5" />
+                <span>{isTranslating ? 'DEEPL TRANSLATING...' : 'DEEPL TRANSLATE'}</span>
+              </a>
+            )}
+
             {/* Rarity Tier Stamp */}
             <span
               className={`rounded-xs border px-2 py-0.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] tracking-wider uppercase ${
@@ -342,8 +358,21 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
         </div>
 
         {/* Bottom Cartridge Footer Bar */}
-        <div className="relative z-10 flex items-center justify-between border-t-2 border-black bg-[#0B0C10] px-4 py-2 font-['Press_Start_2P'] text-[7px] text-zinc-500">
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 border-t-2 border-black bg-[#0B0C10] px-4 py-2 font-['Press_Start_2P'] text-[7px] text-zinc-500">
           <span>{t('card_developer')} {translatedItem.developer.toUpperCase()}</span>
+          {isDeepLVerified && (
+            <span className="text-[#00F5D4]/80 hidden sm:inline">
+              NEURAL AI TRANSLATION //{' '}
+              <a
+                href="https://www.deepl.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#00F5D4] hover:underline"
+              >
+                DEEPL.COM
+              </a>
+            </span>
+          )}
           <span>{t('card_genre')} {translatedItem.genre.toUpperCase()}</span>
         </div>
       </div>

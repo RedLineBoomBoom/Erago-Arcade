@@ -27,6 +27,7 @@ interface NavbarProps {
   onOpenCardBinder: () => void;
   onOpenBankModal: () => void;
   onOpenNewsModal?: () => void;
+  onOpenDeepLModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -48,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCardBinder,
   onOpenBankModal,
   onOpenNewsModal,
+  onOpenDeepLModal,
 }) => {
   const { language, toggleLanguage, t } = useLanguage();
 
@@ -412,6 +414,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </span>
                     </button>
                   )}
+
+                  {/* DeepL Translator Settings */}
+                  {onOpenDeepLModal && (
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setIsExtrasOpen(false);
+                        onOpenDeepLModal();
+                      }}
+                      className="col-span-2 flex items-center justify-between p-2 rounded-lg border-2 border-black bg-gradient-to-r from-[#0F2B48] to-[#1E2230] text-left hover:bg-[#00F5D4] text-white hover:text-black transition-all group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🌐</span>
+                        <div>
+                          <div className="font-['Press_Start_2P'] text-[7px] font-bold text-[#00F5D4] group-hover:text-black">
+                            DEEPL TRANSLATOR
+                          </div>
+                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">
+                            Neural AI API & Quota Settings
+                          </div>
+                        </div>
+                      </div>
+                      <span className="px-1.5 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold group-hover:bg-black group-hover:text-white">
+                        DEEPL.COM
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -442,6 +471,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               {language.toUpperCase()}
             </span>
           </button>
+
+          {/* DeepL Quick Settings Button */}
+          {onOpenDeepLModal && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenDeepLModal();
+              }}
+              data-cursor="DEEPL"
+              title="Pengaturan DeepL Neural Translation (deepl.com)"
+              className="hidden sm:flex h-9 items-center gap-1.5 rounded-sm border-2 border-black bg-[#0F2B48] hover:bg-[#00F5D4] text-[#00F5D4] hover:text-black px-2 sm:px-2.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold transition-all brutal-shadow-sm group"
+            >
+              <span className="text-xs group-hover:scale-110 transition-transform">🌐</span>
+              <span className="font-black">DEEPL</span>
+            </button>
+          )}
 
 
           {/* Procedural Chiptune BGM / Jukebox Modal Toggle */}
