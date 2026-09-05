@@ -1,8 +1,8 @@
 import type { SteamSaleItem } from '../types/steamSales';
 import { STEAM_SALES_FEED } from '../data/steamSalesFeed';
 
-const CACHE_KEY = 'erago_steam_sales_cache_v1';
-const TIMESTAMP_KEY = 'erago_steam_sales_timestamp_v1';
+const CACHE_KEY = 'erago_steam_sales_cache_v2';
+const TIMESTAMP_KEY = 'erago_steam_sales_timestamp_v2';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes fresh cache
 
 export type SalesUpdateListener = (sales: SteamSaleItem[], lastUpdated: number) => void;
@@ -14,6 +14,12 @@ class SteamSalesService {
   private isFetching: boolean = false;
 
   constructor() {
+    try {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('erago_steam_sales_cache_v1');
+        localStorage.removeItem('erago_steam_sales_timestamp_v1');
+      }
+    } catch {}
     this.loadFromCache();
   }
 

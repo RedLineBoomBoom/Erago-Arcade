@@ -697,16 +697,16 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     en: '75%+ OFF',
   },
   'sales_tier_50plus': {
-    id: 'Diskon 50%+',
-    en: '50%+ OFF',
+    id: 'Diskon 50% - 74%',
+    en: '50% - 74% OFF',
   },
   'sales_tier_under5': {
     id: '< $5 (Rp 80rb)',
     en: 'Under $5',
   },
   'sales_tier_under10': {
-    id: '< $10 (Rp 160rb)',
-    en: 'Under $10',
+    id: '$5 - $10 (Rp 80rb - 160rb)',
+    en: '$5 - $10',
   },
   'sales_tier_top_rated': {
     id: 'Rating 90%+',

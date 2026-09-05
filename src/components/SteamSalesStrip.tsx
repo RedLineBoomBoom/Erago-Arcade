@@ -76,19 +76,49 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  // Filter top deals for the showcase strip (display top 6 deals)
+  // Counts of available deals per tier
+  const tierCounts = useMemo(() => {
+    return {
+      all: sales.length,
+      '75plus': sales.filter((s) => s.discountPercent >= 75).length,
+      '50plus': sales.filter((s) => s.discountPercent >= 50 && s.discountPercent < 75).length,
+      under5: sales.filter((s) => s.salePrice <= 5).length,
+      topRated: sales.filter((s) => (s.steamRatingPercent || 0) >= 90).length,
+    };
+  }, [sales]);
+
+  // Filter top deals for the showcase strip (display top 6 deals with distinct sorting per tier)
   const displayedDeals = useMemo(() => {
     let list = sales.filter((item) => {
       if (discountTier === '75plus') return item.discountPercent >= 75;
-      if (discountTier === '50plus') return item.discountPercent >= 50;
+      if (discountTier === '50plus') return item.discountPercent >= 50 && item.discountPercent < 75;
       if (discountTier === 'under5') return item.salePrice <= 5;
-      if (discountTier === 'under10') return item.salePrice <= 10;
       if (discountTier === 'topRated') return (item.steamRatingPercent || 0) >= 90;
       return true;
     });
 
-    // Always prioritize deepest discounts & highest ratings
-    list = [...list].sort((a, b) => b.discountPercent - a.discountPercent || (b.steamRatingPercent || 0) - (a.steamRatingPercent || 0));
+    if (discountTier === 'topRated') {
+      // Prioritize highest rating and substantial review volume
+      list = [...list].sort((a, b) => {
+        const aCount = a.steamRatingCount || 0;
+        const bCount = b.steamRatingCount || 0;
+        const aWeight = (a.steamRatingPercent || 0) + (aCount > 50 ? 5 : 0);
+        const bWeight = (b.steamRatingPercent || 0) + (bCount > 50 ? 5 : 0);
+        return bWeight - aWeight || bCount - aCount;
+      });
+    } else if (discountTier === 'under5') {
+      // Lowest price first
+      list = [...list].sort((a, b) => a.salePrice - b.salePrice || b.discountPercent - a.discountPercent);
+    } else if (discountTier === '50plus') {
+      // 50-74% tier: sort by deal quality / popular AAA titles
+      list = [...list].sort((a, b) => (b.dealRating || 0) - (a.dealRating || 0) || b.discountPercent - a.discountPercent);
+    } else if (discountTier === '75plus') {
+      // Deepest discounts first (95%, 90%, 85%, 80%, 75%)
+      list = [...list].sort((a, b) => b.discountPercent - a.discountPercent || (b.steamRatingPercent || 0) - (a.steamRatingPercent || 0));
+    } else {
+      // 'all': balanced showcase of top deals
+      list = [...list].sort((a, b) => (b.dealRating || 0) - (a.dealRating || 0) || b.discountPercent - a.discountPercent);
+    }
 
     return list.slice(0, 6);
   }, [sales, discountTier]);
@@ -207,57 +237,62 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('all'); }}
-                  className={`px-2 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     discountTier === 'all'
-                      ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000]'
+                      ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
                   }`}
                 >
-                  {t('sales_tier_all')}
+                  <span>{t('sales_tier_all')}</span>
+                  <span className="text-[6px] opacity-75 font-mono">({tierCounts.all})</span>
                 </button>
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('75plus'); }}
-                  className={`px-2 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     discountTier === '75plus'
-                      ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000]'
+                      ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
                   }`}
                 >
-                  {t('sales_tier_75plus')}
+                  <span>{t('sales_tier_75plus')}</span>
+                  <span className="text-[6px] opacity-75 font-mono">({tierCounts['75plus']})</span>
                 </button>
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('50plus'); }}
-                  className={`px-2 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     discountTier === '50plus'
-                      ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000]'
+                      ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
                   }`}
                 >
-                  {t('sales_tier_50plus')}
+                  <span>{t('sales_tier_50plus')}</span>
+                  <span className="text-[6px] opacity-75 font-mono">({tierCounts['50plus']})</span>
                 </button>
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('under5'); }}
-                  className={`px-2 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     discountTier === 'under5'
-                      ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000]'
+                      ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
                   }`}
                 >
-                  {t('sales_tier_under5')}
+                  <span>{t('sales_tier_under5')}</span>
+                  <span className="text-[6px] opacity-75 font-mono">({tierCounts.under5})</span>
                 </button>
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('topRated'); }}
-                  className={`px-2 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     discountTier === 'topRated'
-                      ? 'bg-[#FF2A85] text-white shadow-[2px_2px_0px_#000]'
+                      ? 'bg-[#FF2A85] text-white shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
                   }`}
                 >
-                  {t('sales_tier_top_rated')}
+                  <span>{t('sales_tier_top_rated')}</span>
+                  <span className="text-[6px] opacity-75 font-mono">({tierCounts.topRated})</span>
                 </button>
               </div>
 
@@ -271,8 +306,8 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               </button>
             </div>
 
-            {/* Showcase Deals Grid (6 cards) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {/* Showcase Deals Grid (6 cards) with Key on Tier for Instant Visual Animation */}
+            <div key={discountTier} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 animate-fade-in">
               {displayedDeals.map((item) => {
                 const isSuperDeal = item.discountPercent >= 85;
                 const hasHighRating = (item.steamRatingPercent || 0) >= 90;

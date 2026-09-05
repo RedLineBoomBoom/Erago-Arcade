@@ -102,6 +102,18 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
     return `$${usdAmount.toFixed(2)}`;
   };
 
+  // Pre-calculate tier counts
+  const tierCounts = useMemo(() => {
+    return {
+      all: sales.length,
+      '75plus': sales.filter((s) => s.discountPercent >= 75).length,
+      '50plus': sales.filter((s) => s.discountPercent >= 50 && s.discountPercent < 75).length,
+      under5: sales.filter((s) => s.salePrice <= 5).length,
+      under10: sales.filter((s) => s.salePrice > 5 && s.salePrice <= 10).length,
+      topRated: sales.filter((s) => (s.steamRatingPercent || 0) >= 90).length,
+    };
+  }, [sales]);
+
   // Filter and sort items
   const filteredSales = useMemo(() => {
     let list = sales.filter((item) => {
@@ -112,9 +124,9 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
 
       // Tier filter
       if (discountTier === '75plus') return item.discountPercent >= 75;
-      if (discountTier === '50plus') return item.discountPercent >= 50;
+      if (discountTier === '50plus') return item.discountPercent >= 50 && item.discountPercent < 75;
       if (discountTier === 'under5') return item.salePrice <= 5;
-      if (discountTier === 'under10') return item.salePrice <= 10;
+      if (discountTier === 'under10') return item.salePrice > 5 && item.salePrice <= 10;
       if (discountTier === 'topRated') return (item.steamRatingPercent || 0) >= 90;
 
       return true;
@@ -299,12 +311,12 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
           {/* Discount Tier Filter Chips */}
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pt-0.5">
             {[
-              { key: 'all', label: t('sales_tier_all'), icon: '🏷️' },
-              { key: '75plus', label: t('sales_tier_75plus'), icon: '💥' },
-              { key: '50plus', label: t('sales_tier_50plus'), icon: '🔥' },
-              { key: 'under5', label: t('sales_tier_under5'), icon: '🪙' },
-              { key: 'under10', label: t('sales_tier_under10'), icon: '💎' },
-              { key: 'topRated', label: t('sales_tier_top_rated'), icon: '⭐' },
+              { key: 'all', label: t('sales_tier_all'), count: tierCounts.all, icon: '🏷️' },
+              { key: '75plus', label: t('sales_tier_75plus'), count: tierCounts['75plus'], icon: '💥' },
+              { key: '50plus', label: t('sales_tier_50plus'), count: tierCounts['50plus'], icon: '🔥' },
+              { key: 'under5', label: t('sales_tier_under5'), count: tierCounts.under5, icon: '🪙' },
+              { key: 'under10', label: t('sales_tier_under10'), count: tierCounts.under10, icon: '💎' },
+              { key: 'topRated', label: t('sales_tier_top_rated'), count: tierCounts.topRated, icon: '⭐' },
             ].map((tab) => {
               const isActive = discountTier === tab.key;
               return (
@@ -314,7 +326,7 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                     sound.playClick();
                     setDiscountTier(tab.key as DiscountTierFilter);
                   }}
-                  className={`flex items-center gap-1 rounded-sm border border-black px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] whitespace-nowrap transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1.5 rounded-sm border border-black px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] whitespace-nowrap transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     isActive
                       ? 'bg-[#FFE600] text-black font-bold -translate-y-0.5'
                       : 'bg-[#1A1D2B] text-zinc-400 hover:text-white hover:bg-[#252A3D]'
@@ -322,6 +334,9 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                 >
                   <span>{tab.icon}</span>
                   <span>{tab.label}</span>
+                  <span className={`px-1 py-0.2 rounded text-[5.5px] ${isActive ? 'bg-black text-white' : 'bg-white/10 text-zinc-300'}`}>
+                    {tab.count}
+                  </span>
                 </button>
               );
             })}
