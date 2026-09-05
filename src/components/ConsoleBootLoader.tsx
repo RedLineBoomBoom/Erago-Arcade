@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Volume2, VolumeX, FastForward, X, Power } from 'lucide-react';
+import { Volume2, VolumeX, FastForward, X } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { useLanguage } from '../utils/i18n';
 
@@ -8,7 +8,7 @@ interface ConsoleBootLoaderProps {
   onSkip?: () => void;
 }
 
-type BootPhase = 'standby' | 'crt_warmup' | 'bios' | 'logo' | 'ready' | 'exit';
+type BootPhase = 'crt_warmup' | 'bios' | 'logo' | 'ready' | 'exit';
 
 interface BiosLogLine {
   text: string;
@@ -37,15 +37,10 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
   const onSkipRef = useRef(onSkip);
   onSkipRef.current = onSkip;
 
-  // If audio is already running (e.g. user interacted or rebooted), start in crt_warmup. Otherwise, standby for 1st click.
-  const [phase, setPhase] = useState<BootPhase>(() => {
-    return sound.isAudioRunning() ? 'crt_warmup' : 'standby';
-  });
-
+  // Boot phase state - runs immediately on mount!
+  const [phase, setPhase] = useState<BootPhase>('crt_warmup');
   const [visibleBiosLines, setVisibleBiosLines] = useState<BiosLogLine[]>([]);
-  const [progressPercent, setProgressPercent] = useState<number>(() => {
-    return sound.isAudioRunning() ? 12 : 0;
-  });
+  const [progressPercent, setProgressPercent] = useState<number>(12);
   const [isFastForward, setIsFastForward] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(sound.isMuted);
 
@@ -92,25 +87,23 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
     }, 400);
   }, [clearAllTimeouts]);
 
-  // Main synchronous boot sequence: SFX and BGM play TOGETHER from 0ms!
+  // Main synchronous boot sequence: runs directly without needing user button press
   const startBootSequence = useCallback(() => {
     clearAllTimeouts();
     setPhase('crt_warmup');
-    setProgressPercent(12);
+    setProgressPercent(14);
 
-    // 1. Resume audio context on gesture
+    // 1. Resume audio & start BGM immediately together at 0ms!
     sound.resumeAudio();
-
-    // 2. Start Background Music IMMEDIATELY together with boot SFX!
     if (!sound.isMuted) {
       sound.startBgm();
     }
 
-    // 3. Play mechanical relay switch & CRT degauss buzz together at 0ms!
+    // 2. Play mechanical relay switch & CRT degauss buzz together at 0ms!
     sound.playRelayClick();
     sound.playCrtBuzz();
 
-    // 4. Phase 2: BIOS Diagnostics (650ms - 2500ms)
+    // 3. Phase 2: BIOS Diagnostics (650ms - 2500ms)
     addTimeout(() => {
       setPhase('bios');
       setVisibleBiosLines([]);
@@ -133,62 +126,65 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
       });
     }, 650);
 
-    // 5. Phase 3: Logo Reveal & Console Boot Chime (2700ms - 4300ms)
+    // 4. Phase 3: Logo Reveal & Console Boot Chime (2700ms - 4300ms)
     addTimeout(() => {
       setPhase('logo');
       setProgressPercent(88);
       sound.playConsoleBootChime();
     }, 2700);
 
-    // 6. Phase 4: Ready Phase (4400ms - 5600ms)
+    // 5. Phase 4: Ready Phase (4400ms - 5600ms)
     addTimeout(() => {
       setPhase('ready');
       setProgressPercent(100);
       sound.playCoin();
     }, 4400);
 
-    // 7. Phase 5: Automatic exit to main app (5700ms)
+    // 6. Phase 5: Automatic exit to main app (5700ms)
     addTimeout(() => {
       handleExit();
     }, 5700);
   }, [addTimeout, clearAllTimeouts, handleExit]);
 
-  // If audio is already running on mount, start immediately!
+  // Start boot sequence immediately on mount
   useEffect(() => {
-    if (sound.isAudioRunning()) {
-      startBootSequence();
-    }
+    startBootSequence();
 
     const unsub = sound.subscribe(() => {
       setIsMuted(sound.isMuted);
     });
 
+    // Capture first user gesture to unlock AudioContext if browser initially paused it
+    const handleFirstGesture = () => {
+      sound.resumeAudio();
+    };
+    window.addEventListener('pointerdown', handleFirstGesture, { once: true });
+    window.addEventListener('keydown', handleFirstGesture, { once: true });
+
     return () => {
       unsub();
       clearAllTimeouts();
+      window.removeEventListener('pointerdown', handleFirstGesture);
+      window.removeEventListener('keydown', handleFirstGesture);
     };
   }, [clearAllTimeouts, startBootSequence]);
 
   // Global click/touch on the screen
   const handleScreenClick = () => {
-    if (phase === 'standby') {
-      startBootSequence();
-    } else if (phase === 'ready') {
+    sound.resumeAudio();
+    if (phase === 'ready') {
       handleExit();
-    } else {
-      sound.resumeAudio();
     }
   };
 
   // Global keydown listeners for boot navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      sound.resumeAudio();
+
       if (e.key === 'Escape') {
         e.preventDefault();
         handleExit();
-      } else if (phase === 'standby') {
-        e.preventDefault();
-        startBootSequence();
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
         if (phase === 'ready') {
@@ -205,7 +201,7 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleExit, phase, startBootSequence]);
+  }, [handleExit, phase]);
 
   return (
     <div
@@ -243,25 +239,23 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
             <span className="hidden sm:inline">{isMuted ? 'MUTED' : 'SFX ON'}</span>
           </button>
 
-          {/* Fast-Forward Button (Available once boot is running) */}
-          {phase !== 'standby' && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsFastForward((prev) => !prev);
-                sound.playClick();
-              }}
-              title="Fast Forward Boot Animation"
-              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xs border-2 text-[10px] font-mono transition-all ${
-                isFastForward
-                  ? 'border-[#FFE600] bg-[#FFE600] text-black font-bold shadow-[0_0_12px_rgba(255,230,0,0.5)]'
-                  : 'border-zinc-700 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 hover:text-white'
-              }`}
-            >
-              <FastForward className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{isFastForward ? '2X SPEED' : 'FF 2X'}</span>
-            </button>
-          )}
+          {/* Fast-Forward Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsFastForward((prev) => !prev);
+              sound.playClick();
+            }}
+            title="Fast Forward Boot Animation"
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xs border-2 text-[10px] font-mono transition-all ${
+              isFastForward
+                ? 'border-[#FFE600] bg-[#FFE600] text-black font-bold shadow-[0_0_12px_rgba(255,230,0,0.5)]'
+                : 'border-zinc-700 bg-zinc-900/90 hover:bg-zinc-800 text-zinc-300 hover:text-white'
+            }`}
+          >
+            <FastForward className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">{isFastForward ? '2X SPEED' : 'FF 2X'}</span>
+          </button>
 
           {/* Skip Boot Button */}
           <button
@@ -281,46 +275,6 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
 
       {/* Center Screen Display Area */}
       <div className="relative z-20 w-full max-w-3xl px-4 sm:px-8 py-6 flex flex-col items-center justify-center min-h-[380px]">
-        {/* STANDBY: Power On Screen (Guarantees SFX & BGM start simultaneously!) */}
-        {phase === 'standby' && (
-          <div className="flex flex-col items-center justify-center text-center space-y-6 animate-fade-in pointer-events-auto">
-            <div className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#FF2A85] via-[#FFE600] to-[#00F5D4] rounded-full blur-md opacity-75 animate-pulse" />
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  startBootSequence();
-                }}
-                data-cursor="POWER"
-                className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-black bg-[#14161F] hover:bg-[#00F5D4] text-[#00F5D4] hover:text-black flex items-center justify-center shadow-[6px_6px_0px_#000] hover:scale-105 active:scale-95 transition-all group"
-              >
-                <Power className="w-12 h-12 sm:w-14 sm:h-14 transition-transform group-hover:scale-110" />
-              </button>
-            </div>
-
-            <div className="space-y-2 max-w-md">
-              <h2 className="font-['Press_Start_2P'] text-sm sm:text-base text-white tracking-wide drop-shadow-[0_2px_8px_rgba(0,245,212,0.6)]">
-                ERAGO ARCADE SYSTEM
-              </h2>
-              <p className="font-mono text-xs sm:text-sm text-[#FFE600] font-bold animate-pulse">
-                {t('boot_click_to_start')}
-              </p>
-            </div>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                startBootSequence();
-              }}
-              data-cursor="POWER"
-              className="flex items-center gap-3 px-6 py-3 rounded-sm border-3 border-black bg-[#00F5D4] hover:bg-[#FFE600] text-black font-['Press_Start_2P'] text-[10px] sm:text-xs font-bold transition-all shadow-[6px_6px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] animate-bounce"
-            >
-              <span>▶</span>
-              <span>{t('boot_power_on')}</span>
-            </button>
-          </div>
-        )}
-
         {/* PHASE 1: CRT WARMUP LINE */}
         {phase === 'crt_warmup' && (
           <div className="w-full flex flex-col items-center justify-center space-y-4 animate-fade-in">
@@ -418,9 +372,7 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
       <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 max-w-3xl mx-auto w-[calc(100%-2rem)] z-30 space-y-2 pointer-events-auto">
         <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-zinc-400">
           <span className="text-[#00F5D4] font-bold">
-            {phase === 'standby'
-              ? 'SYSTEM STANDBY // READY TO POWER ON'
-              : phase === 'ready'
+            {phase === 'ready'
               ? t('boot_system_ready')
               : 'LOADING MEMORY CARTRIDGE...'}
           </span>
