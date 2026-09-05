@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Coins, Swords, Gamepad2, Clock, AlertTriangle } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager } from '../utils/currencyManager';
@@ -18,6 +18,8 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
   onOpenBossBattle,
   currentCoins,
 }) => {
+  const [playtime, setPlaytime] = useState(() => currencyManager.getPlaytimeRemaining());
+
   // Close on Escape key
   useEffect(() => {
     if (!isOpen) return;
@@ -31,9 +33,29 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Live countdown timer while modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Subscribe to currencyManager which emits every second
+    const unsub = currencyManager.subscribe(() => {
+      setPlaytime(currencyManager.getPlaytimeRemaining());
+    });
+
+    // Secondary interval ticker for guaranteed 1000ms live ticks
+    const intervalId = window.setInterval(() => {
+      setPlaytime(currencyManager.getPlaytimeRemaining());
+    }, 1000);
+
+    return () => {
+      unsub();
+      clearInterval(intervalId);
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
-  const { formatted, progressPercent } = currencyManager.getPlaytimeRemaining();
+  const { formatted, progressPercent } = playtime;
 
   return (
     <div 
