@@ -161,38 +161,38 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in"
     >
       <div 
-        className="relative flex flex-col w-full max-w-6xl max-h-[92vh] rounded-xl border-3 border-black bg-[#0C0E17] shadow-[10px_10px_0px_#000] overflow-hidden text-[#FFFDF0]"
+        className="relative flex flex-col w-full max-w-3xl max-h-[82vh] rounded-2xl border-3 border-black bg-[#0C0E17] shadow-[8px_8px_0px_#00F5D4] overflow-hidden text-[#FFFDF0] my-auto"
         role="dialog"
         aria-modal="true"
         aria-label="Steam Sales & SteamDB Tracker Modal"
       >
         {/* Retro Header Topbar */}
-        <header className="relative flex flex-col gap-2.5 border-b-3 border-black bg-[#131622] p-3 sm:p-4 shrink-0">
-          <div className="flex items-center justify-between gap-3">
+        <header className="relative flex flex-col gap-2 border-b-2 border-black bg-[#131622] p-2.5 sm:p-3 shrink-0">
+          <div className="flex items-center justify-between gap-2.5">
             {/* Title & Live Badge */}
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg border-2 border-black bg-[#00F5D4] text-black shrink-0 shadow-[2px_2px_0px_#000]">
-                <Tag className="h-5 w-5 fill-current" />
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg border-2 border-black bg-[#00F5D4] text-black shrink-0 shadow-[1.5px_1.5px_0px_#000]">
+                <Tag className="h-4 w-4 fill-current" />
               </div>
 
               <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <h2 className="font-['Press_Start_2P'] text-[10px] sm:text-xs text-[#FFE600] truncate">
+                <div className="flex items-center gap-1.5">
+                  <h2 className="font-['Press_Start_2P'] text-[9px] sm:text-[10px] text-[#FFE600] truncate">
                     {t('sales_modal_title')}
                   </h2>
-                  <span className="hidden sm:inline-flex items-center gap-1 rounded bg-[#FF2A85] px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] font-bold text-white uppercase border border-black animate-pulse">
-                    <span className="h-1.5 w-1.5 rounded-full bg-white"></span>
+                  <span className="hidden sm:inline-flex items-center gap-1 rounded bg-[#FF2A85] px-1 py-0.5 font-['Press_Start_2P'] text-[5.5px] font-bold text-white uppercase border border-black animate-pulse">
+                    <span className="h-1 w-1 rounded-full bg-white"></span>
                     {t('sales_live_badge')}
                   </span>
                 </div>
-                <p className="font-mono text-[9px] sm:text-[10px] text-zinc-400 truncate mt-0.5">
+                <p className="font-mono text-[8px] sm:text-[9px] text-zinc-400 truncate">
                   {t('sales_modal_subtitle')}
                 </p>
               </div>
             </div>
 
             {/* Quick Actions: Currency Toggle, SteamDB Link, Refresh, Close */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
               {/* Currency Mode Switcher */}
               <button
                 onClick={() => {
@@ -200,9 +200,9 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                   setCurrencyMode(currencyMode === 'USD' ? 'IDR' : 'USD');
                 }}
                 title={currencyMode === 'USD' ? 'Ganti ke Rupiah [IDR]' : 'Ganti ke Dollar [USD]'}
-                className="flex items-center gap-1 rounded border-2 border-black bg-[#1C2030] hover:bg-[#FFE600] hover:text-black px-2 py-1 font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold transition-all shadow-[2px_2px_0px_#000]"
+                className="flex items-center gap-1 rounded border-2 border-black bg-[#1C2030] hover:bg-[#FFE600] hover:text-black px-1.5 py-0.5 font-['Press_Start_2P'] text-[6.5px] sm:text-[7px] font-bold transition-all shadow-[1.5px_1.5px_0px_#000] cursor-pointer"
               >
-                <DollarSign className="w-3 h-3" />
+                <DollarSign className="w-2.5 h-2.5" />
                 <span>{currencyMode}</span>
               </button>
 
@@ -210,10 +210,10 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
               <button
                 onClick={() => handleOpenLink('https://steamdb.info/sales/')}
                 title="Buka Website Resmi SteamDB Sales"
-                className="hidden md:flex items-center gap-1.5 rounded border-2 border-black bg-[#1C2030] hover:bg-[#00F5D4] hover:text-black px-2.5 py-1 font-['Press_Start_2P'] text-[7px] font-bold transition-all shadow-[2px_2px_0px_#000]"
+                className="hidden md:flex items-center gap-1 rounded border-2 border-black bg-[#1C2030] hover:bg-[#00F5D4] hover:text-black px-2 py-0.5 font-['Press_Start_2P'] text-[6.5px] font-bold transition-all shadow-[1.5px_1.5px_0px_#000] cursor-pointer"
               >
-                <span>steamdb.info</span>
-                <ExternalLink className="w-3 h-3" />
+                <span>steamdb</span>
+                <ExternalLink className="w-2.5 h-2.5" />
               </button>
 
               {/* Refresh Button */}
@@ -221,11 +221,11 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                 onClick={handleRefresh}
                 disabled={isRefreshing}
                 title="Segarkan diskon game secara real-time"
-                className={`flex items-center gap-1.5 rounded border-2 border-black bg-[#1C2030] hover:bg-[#FF2A85] text-white px-2 sm:px-2.5 py-1 font-['Press_Start_2P'] text-[7px] sm:text-[8px] transition-all shadow-[2px_2px_0px_#000] ${
+                className={`flex items-center gap-1 rounded border-2 border-black bg-[#1C2030] hover:bg-[#FF2A85] text-white px-1.5 sm:px-2 py-0.5 font-['Press_Start_2P'] text-[6.5px] sm:text-[7px] transition-all shadow-[1.5px_1.5px_0px_#000] cursor-pointer ${
                   isRefreshing ? 'opacity-70 cursor-wait' : ''
                 }`}
               >
-                <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`w-2.5 h-2.5 ${isRefreshing ? 'animate-spin' : ''}`} />
                 <span className="hidden sm:inline">{t('sales_refresh_btn')}</span>
               </button>
 
@@ -235,10 +235,10 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                   sound.playClick();
                   onClose();
                 }}
-                className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded border-2 border-black bg-[#FF2A85] text-black font-bold hover:bg-white transition-colors shadow-[2px_2px_0px_#000]"
+                className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded border-2 border-black bg-[#FF2A85] text-white font-bold hover:bg-white hover:text-black transition-colors shadow-[1.5px_1.5px_0px_#000] cursor-pointer"
                 aria-label="Close Sales Modal"
               >
-                <X className="h-4 w-4" />
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
@@ -252,21 +252,21 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
           )}
 
           {/* Filter & Search Toolbar */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2 pt-1 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 pt-1 border-t border-white/10">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400" />
+              <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('sales_search_placeholder')}
-                className="w-full rounded border-2 border-black bg-[#1A1D2B] py-1.5 pl-8 pr-3 font-mono text-xs text-white placeholder-zinc-500 focus:border-[#00F5D4] focus:outline-none shadow-[2px_2px_0px_#000]"
+                className="w-full rounded border-2 border-black bg-[#1A1D2B] py-1 pl-7 pr-3 font-mono text-[11px] text-white placeholder-zinc-500 focus:border-[#00F5D4] focus:outline-none shadow-[1.5px_1.5px_0px_#000]"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-xs"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-xs cursor-pointer"
                 >
                   ✕
                 </button>
@@ -274,8 +274,8 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-2 shrink-0">
-              <div className="flex items-center gap-1 font-['Press_Start_2P'] text-[7px] text-zinc-400">
+            <div className="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+              <div className="flex items-center gap-1 font-['Press_Start_2P'] text-[6.5px] text-zinc-400">
                 <SlidersHorizontal className="w-2.5 h-2.5" />
                 <span className="hidden sm:inline">SORT:</span>
               </div>
@@ -285,7 +285,7 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                   sound.playClick();
                   setSortOption(e.target.value as SalesSortOption);
                 }}
-                className="rounded border-2 border-black bg-[#1A1D2B] px-2 py-1 font-['Press_Start_2P'] text-[7px] text-[#00F5D4] focus:border-[#00F5D4] focus:outline-none shadow-[2px_2px_0px_#000] cursor-pointer"
+                className="rounded border-2 border-black bg-[#1A1D2B] px-1.5 py-1 font-['Press_Start_2P'] text-[6.5px] text-[#00F5D4] focus:border-[#00F5D4] focus:outline-none shadow-[1.5px_1.5px_0px_#000] cursor-pointer"
               >
                 <option value="discount">{t('sales_sort_discount')}</option>
                 <option value="rating">{t('sales_sort_rating')}</option>
@@ -297,7 +297,7 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
           </div>
 
           {/* Discount Tier Filter Chips */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-0.5">
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pt-0.5">
             {[
               { key: 'all', label: t('sales_tier_all'), icon: '🏷️' },
               { key: '75plus', label: t('sales_tier_75plus'), icon: '💥' },
@@ -314,7 +314,7 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                     sound.playClick();
                     setDiscountTier(tab.key as DiscountTierFilter);
                   }}
-                  className={`flex items-center gap-1 rounded-sm border border-black px-2 py-1 font-['Press_Start_2P'] text-[6px] sm:text-[7px] whitespace-nowrap transition-all shadow-[1px_1px_0px_#000] ${
+                  className={`flex items-center gap-1 rounded-sm border border-black px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] whitespace-nowrap transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
                     isActive
                       ? 'bg-[#FFE600] text-black font-bold -translate-y-0.5'
                       : 'bg-[#1A1D2B] text-zinc-400 hover:text-white hover:bg-[#252A3D]'
@@ -329,17 +329,17 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
         </header>
 
         {/* Content Body: Game Sales Cards Grid */}
-        <div className="flex-1 overflow-y-auto p-3 sm:p-5 custom-scrollbar bg-[#090B12]">
+        <div className="flex-1 overflow-y-auto p-2.5 sm:p-3.5 custom-scrollbar bg-[#090B12]">
           {filteredSales.length === 0 ? (
             /* Empty State */
-            <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border-3 border-black bg-[#1A1D2B] text-3xl mb-4 shadow-[4px_4px_0px_#000]">
+            <div className="flex flex-col items-center justify-center py-10 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 border-black bg-[#1A1D2B] text-2xl mb-3 shadow-[2px_2px_0px_#000]">
                 👾
               </div>
-              <h3 className="font-['Press_Start_2P'] text-xs text-[#FFE600] mb-2">
+              <h3 className="font-['Press_Start_2P'] text-[10px] text-[#FFE600] mb-1.5">
                 {t('sales_empty_title')}
               </h3>
-              <p className="font-mono text-xs text-zinc-400 max-w-md mb-4">
+              <p className="font-mono text-xs text-zinc-400 max-w-sm mb-3">
                 {t('sales_empty_desc')}
               </p>
               <button
@@ -348,13 +348,13 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                   setSearchQuery('');
                   setDiscountTier('all');
                 }}
-                className="rounded border-2 border-black bg-[#00F5D4] text-black px-4 py-2 font-['Press_Start_2P'] text-[8px] font-bold hover:bg-white transition-all shadow-[3px_3px_0px_#000]"
+                className="rounded border-2 border-black bg-[#00F5D4] text-black px-3 py-1.5 font-['Press_Start_2P'] text-[7px] font-bold hover:bg-white transition-all shadow-[2px_2px_0px_#000] cursor-pointer"
               >
                 {t('sales_empty_reset')}
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
               {filteredSales.map((item) => {
                 const isSuperDeal = item.discountPercent >= 85 || (item.dealRating && item.dealRating >= 9.0);
                 const hasHighRating = (item.steamRatingPercent || 0) >= 85;
@@ -362,7 +362,7 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                 return (
                   <article
                     key={item.id || item.appId}
-                    className="group relative flex flex-col justify-between rounded-lg border-2 border-black bg-[#141622] hover:bg-[#181B2A] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[5px_5px_0px_#00F5D4] hover:-translate-y-1"
+                    className="group relative flex flex-col justify-between rounded-lg border-2 border-black bg-[#141622] hover:bg-[#181B2A] transition-all duration-200 overflow-hidden shadow-[2px_2px_0px_#000] hover:shadow-[3px_3px_0px_#00F5D4] hover:-translate-y-0.5"
                   >
                     {/* Game Artwork Banner */}
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/80 border-b-2 border-black">
@@ -371,7 +371,6 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                         alt={item.title}
                         loading="lazy"
                         onError={(e) => {
-                          // Fallback to Steam capsule if header fails
                           const target = e.currentTarget;
                           if (!target.src.includes('capsule_231x87')) {
                             target.src = `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${item.appId}/capsule_231x87.jpg`;
@@ -381,90 +380,90 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
                       />
 
                       {/* Discount Neon Badge (Top-Left) */}
-                      <div className="absolute top-2 left-2 flex items-center gap-1 rounded border-2 border-black bg-[#FFE600] px-2 py-0.5 font-['Press_Start_2P'] text-[9px] font-black text-black shadow-[2px_2px_0px_#000]">
+                      <div className="absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded border border-black bg-[#FFE600] px-1.5 py-0.5 font-['Press_Start_2P'] text-[8px] font-black text-black shadow-[1px_1px_0px_#000]">
                         <span>-{item.discountPercent}%</span>
                       </div>
 
                       {/* Super Deal / Top Rated Highlight (Top-Right) */}
                       {isSuperDeal ? (
-                        <div className="absolute top-2 right-2 flex items-center gap-1 rounded border border-black bg-[#FF2A85] px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] font-bold text-white shadow-[1px_1px_0px_#000] animate-pulse">
-                          <Flame className="w-2.5 h-2.5 fill-current" />
+                        <div className="absolute top-1.5 right-1.5 flex items-center gap-1 rounded border border-black bg-[#FF2A85] px-1 py-0.5 font-['Press_Start_2P'] text-[5.5px] font-bold text-white shadow-[1px_1px_0px_#000] animate-pulse">
+                          <Flame className="w-2 h-2 fill-current" />
                           <span>DEAL</span>
                         </div>
                       ) : hasHighRating ? (
-                        <div className="absolute top-2 right-2 flex items-center gap-1 rounded border border-black bg-[#00F5D4] px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] font-bold text-black shadow-[1px_1px_0px_#000]">
-                          <Sparkles className="w-2.5 h-2.5 fill-current" />
+                        <div className="absolute top-1.5 right-1.5 flex items-center gap-1 rounded border border-black bg-[#00F5D4] px-1 py-0.5 font-['Press_Start_2P'] text-[5.5px] font-bold text-black shadow-[1px_1px_0px_#000]">
+                          <Sparkles className="w-2 h-2 fill-current" />
                           <span>90%+</span>
                         </div>
                       ) : null}
                     </div>
 
                     {/* Card Content Information */}
-                    <div className="flex flex-col flex-1 p-3 gap-2">
+                    <div className="flex flex-col flex-1 p-2.5 gap-1.5">
                       {/* Title */}
                       <h3 
-                        className="font-['Space_Grotesk'] font-bold text-sm text-white line-clamp-1 group-hover:text-[#00F5D4] transition-colors"
+                        className="font-['Space_Grotesk'] font-bold text-xs text-white line-clamp-1 group-hover:text-[#00F5D4] transition-colors"
                         title={item.title}
                       >
                         {item.title}
                       </h3>
 
                       {/* Rating & Review Counter Row */}
-                      <div className="flex items-center justify-between gap-1 font-mono text-[10px] text-zinc-400">
+                      <div className="flex items-center justify-between gap-1 font-mono text-[9px] text-zinc-400">
                         {item.steamRatingPercent !== undefined ? (
                           <div className="flex items-center gap-1 text-[#00F5D4]">
-                            <Star className="w-3 h-3 fill-current text-[#FFE600]" />
+                            <Star className="w-2.5 h-2.5 fill-current text-[#FFE600]" />
                             <span className="font-bold">{item.steamRatingPercent}%</span>
-                            <span className="text-zinc-500 text-[9px] truncate max-w-[90px]">
+                            <span className="text-zinc-500 text-[8.5px] truncate max-w-[80px]">
                               {item.steamRatingText || 'Positive'}
                             </span>
                           </div>
                         ) : (
-                          <span className="text-zinc-500 text-[9px]">Steam Official</span>
+                          <span className="text-zinc-500 text-[8.5px]">Steam Official</span>
                         )}
 
-                        <span className="text-[8px] font-['Press_Start_2P'] text-zinc-500">
+                        <span className="text-[7.5px] font-['Press_Start_2P'] text-zinc-500">
                           #{item.appId}
                         </span>
                       </div>
 
                       {/* Price Strip */}
-                      <div className="mt-auto pt-2 border-t border-white/10 flex items-baseline justify-between gap-2">
+                      <div className="mt-auto pt-1.5 border-t border-white/10 flex items-baseline justify-between gap-1">
                         {/* Strikethrough Normal Price */}
                         <div className="flex flex-col">
-                          <span className="font-mono text-[10px] text-zinc-500 line-through">
+                          <span className="font-mono text-[9px] text-zinc-500 line-through">
                             {formatPrice(item.normalPrice)}
                           </span>
-                          <span className="font-mono text-[9px] text-[#00F5D4]/80">
+                          <span className="font-mono text-[8px] text-[#00F5D4]/80">
                             {t('sales_tier_all') === 'Semua Diskon' ? 'Hemat' : 'Save'} {formatPrice(item.normalPrice - item.salePrice)}
                           </span>
                         </div>
 
                         {/* Glow Sale Price */}
-                        <div className="font-['Space_Grotesk'] font-black text-base text-[#00F5D4] tracking-tight">
+                        <div className="font-['Space_Grotesk'] font-black text-sm text-[#00F5D4] tracking-tight">
                           {formatPrice(item.salePrice)}
                         </div>
                       </div>
                     </div>
 
                     {/* Action Links Buttons Footer */}
-                    <div className="grid grid-cols-2 gap-1.5 p-2 bg-[#0E101A] border-t-2 border-black">
+                    <div className="grid grid-cols-2 gap-1 p-1.5 bg-[#0E101A] border-t border-black">
                       <button
                         onClick={() => handleOpenLink(item.steamUrl)}
-                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#00F5D4] hover:text-black py-1 px-1.5 font-['Press_Start_2P'] text-[6px] text-zinc-300 font-bold transition-all shadow-[1px_1px_0px_#000]"
+                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#00F5D4] hover:text-black py-1 px-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer"
                         title={`Buka ${item.title} di Toko Steam`}
                       >
                         <span>{t('sales_store_btn')}</span>
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ExternalLink className="w-2 h-2" />
                       </button>
 
                       <button
                         onClick={() => handleOpenLink(item.steamDbUrl)}
-                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#FFE600] hover:text-black py-1 px-1.5 font-['Press_Start_2P'] text-[6px] text-zinc-300 font-bold transition-all shadow-[1px_1px_0px_#000]"
+                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#FFE600] hover:text-black py-1 px-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer"
                         title={`Buka ${item.title} di SteamDB`}
                       >
                         <span>{t('sales_steamdb_btn')}</span>
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ExternalLink className="w-2 h-2" />
                       </button>
                     </div>
                   </article>
@@ -475,9 +474,9 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
         </div>
 
         {/* Modal Footer Strip */}
-        <footer className="flex flex-col sm:flex-row items-center justify-between gap-2.5 border-t-3 border-black bg-[#131622] px-3 sm:px-4 py-2.5 text-xs text-zinc-400 font-mono shrink-0">
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
+        <footer className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t-2 border-black bg-[#131622] px-3 py-2 text-[9px] text-zinc-400 font-mono shrink-0">
+          <div className="flex items-center gap-1.5 text-center sm:text-left">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-[#00F5D4] animate-pulse"></span>
             <span>
               {t('sales_deals_found', { count: filteredSales.length })}
             </span>
@@ -485,17 +484,17 @@ export const SteamSalesModal: React.FC<SteamSalesModalProps> = ({
               • {currencyMode === 'IDR' ? t('sales_approx_idr') : 'Prices in USD'}
             </span>
             <span className="hidden lg:inline text-zinc-500">
-              • Sync: {new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              • {new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleOpenLink('https://steamdb.info/sales/')}
-              className="flex items-center gap-1.5 text-[7px] sm:text-[8px] font-['Press_Start_2P'] text-[#FFE600] hover:text-white underline underline-offset-2 transition-colors"
+              className="flex items-center gap-1 text-[7px] font-['Press_Start_2P'] text-[#FFE600] hover:text-white underline underline-offset-2 transition-colors cursor-pointer"
             >
               <span>{t('sales_browse_steamdb_hub')}</span>
-              <ExternalLink className="w-3 h-3" />
+              <ExternalLink className="w-2.5 h-2.5" />
             </button>
           </div>
         </footer>

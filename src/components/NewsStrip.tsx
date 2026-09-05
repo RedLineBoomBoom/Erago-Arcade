@@ -23,10 +23,9 @@ import { getTranslatedArticleSync } from '../utils/newsTranslator';
 
 interface NewsStripProps {
   onOpenNewsModal?: (outletId?: string) => void;
-  onOpenSalesModal?: () => void;
 }
 
-export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal, onOpenSalesModal }) => {
+export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
   const { language, t } = useLanguage();
   // Start expanded by default so the popup news is directly visible right here
   const [isExpanded, setIsExpanded] = useState(true);
@@ -140,23 +139,6 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal, onOpenSal
 
           {/* Header Action Controls */}
           <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
-            {/* Steam Sales Quick Modal Launcher */}
-            {onOpenSalesModal && (
-              <button
-                onClick={() => {
-                  sound.playClick();
-                  onOpenSalesModal();
-                }}
-                data-cursor="SALES"
-                title="Buka Radar Diskon Game Steam & SteamDB"
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#FF2A85] hover:bg-[#FFE600] text-white hover:text-black font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] transition-all cursor-pointer animate-pulse"
-              >
-                <span>🏷️</span>
-                <span className="hidden sm:inline">STEAM SALES</span>
-                <span className="sm:hidden">SALES</span>
-              </button>
-            )}
-
             {/* Refresh Button */}
             <button
               onClick={handleRefresh}

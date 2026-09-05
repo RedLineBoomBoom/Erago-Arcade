@@ -33,6 +33,7 @@ import { SteamSalesModal } from './components/SteamSalesModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { VaultTamperBanner } from './components/VaultTamperBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
+import { SteamSalesStrip } from './components/SteamSalesStrip';
 import { NewsStrip } from './components/NewsStrip';
 import { ConsoleBootLoader } from './components/ConsoleBootLoader';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
@@ -316,13 +317,17 @@ export function App() {
               coins={coins}
             />
 
+            {/* Standalone Real-Time Steam Game Sales Section (Above News Strip) */}
+            <SteamSalesStrip
+              onOpenSalesModal={() => setIsSalesModalOpen(true)}
+            />
+
             {/* Quick Access Gaming News Press Wire Strip */}
             <NewsStrip
               onOpenNewsModal={(outletId) => {
                 setNewsOutletFilter(outletId || 'all');
                 setIsNewsModalOpen(true);
               }}
-              onOpenSalesModal={() => setIsSalesModalOpen(true)}
             />
 
           </div>
