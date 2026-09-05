@@ -214,6 +214,10 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'PERCEPAT 2X',
     en: 'FAST FORWARD 2X',
   },
+  'boot_click_sound': {
+    id: 'KLIK DI MANA SAJA UNTUK MENGAKTIFKAN SUARA',
+    en: 'CLICK ANYWHERE TO UNMUTE AUDIO',
+  },
   'boot_insert_coin': {
     id: 'MASUKKAN KOIN / TEKAN TOMBOL APA SAJA UNTUK MASUK',
     en: 'INSERT COIN / PRESS ANY KEY TO ENTER',

@@ -32,11 +32,11 @@ class SoundEngine {
     this.onStateChangeCallbacks.forEach((cb) => cb());
   }
 
-  public async resumeAudio(): Promise<boolean> {
+  public resumeAudio(): boolean {
     try {
       this.initContext();
       if (this.ctx && this.ctx.state === 'suspended') {
-        await this.ctx.resume();
+        this.ctx.resume().catch(() => {});
       }
       return this.ctx?.state === 'running';
     } catch {
