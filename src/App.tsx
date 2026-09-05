@@ -35,8 +35,10 @@ import { NewsStrip } from './components/NewsStrip';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
+import { useLanguage } from './utils/i18n';
 
 export function App() {
+  const { toggleLanguage, t } = useLanguage();
 
   // Random trivia selected instantly upon opening the website
   const [activeTrivia, setActiveTrivia] = useState<TriviaItem>(() => {
@@ -83,6 +85,19 @@ export function App() {
       unsubReward();
     };
   }, []);
+
+  // Global hotkey to toggle language [Hotkey: L]
+  useEffect(() => {
+    const handleGlobalKey = (e: KeyboardEvent) => {
+      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+      if (e.code === 'KeyL') {
+        e.preventDefault();
+        toggleLanguage();
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKey);
+    return () => window.removeEventListener('keydown', handleGlobalKey);
+  }, [toggleLanguage]);
 
 
   // Track discovered trivia cartridges
@@ -233,7 +248,7 @@ export function App() {
             <div className="flex flex-col items-center justify-center gap-2 text-center px-4">
               <div className="flex items-center gap-2">
                 <span className="font-['Press_Start_2P'] text-[8px] sm:text-[9px] text-zinc-400">
-                  CURRENT MEMORY CARTRIDGE:
+                  {t('memory_cartridge_label')}
                 </span>
               </div>
               <SlotMachineReel
@@ -321,7 +336,7 @@ export function App() {
       {/* Bottom Retro Marquee & Footer */}
       <footer className="relative z-10 border-t-3 border-black bg-[#0B0C10]/95 backdrop-blur-sm mt-8">
         <MarqueeTicker
-          text="✦ ERAGO ARCADE ✦ 100% UNHINGED GAMING HISTORY ✦ PRESS [SPACEBAR] TO ROLL ✦ RETRO GLITCHES & HARDWARE SECRETS ✦"
+          text={t('marquee_bottom')}
           bgClass="bg-[#00F5D4] text-black border-b-2 border-black"
         />
 
@@ -335,13 +350,14 @@ export function App() {
             <span className="font-['Press_Start_2P'] text-[8px] text-[#FFE600]">
               ARCADE
             </span>
-            <span className="hidden sm:inline">— Interactive 90s-style video game trivia vault.</span>
+            <span className="hidden sm:inline">— {t('footer_tagline')}</span>
           </div>
 
           <div className="flex items-center gap-4 font-mono text-[11px] text-zinc-400">
-            <span>[SPACE] ROLL</span>
-            <span>[C] CRT FILTER</span>
-            <span>[M] MUTE</span>
+            <span>{t('footer_space')}</span>
+            <span>{t('footer_crt')}</span>
+            <span>{t('footer_mute')}</span>
+            <span>{t('footer_lang')}</span>
           </div>
         </div>
       </footer>

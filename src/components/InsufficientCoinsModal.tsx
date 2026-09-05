@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { X, Coins, Swords, Gamepad2, Clock, AlertTriangle } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
+import { useLanguage } from '../utils/i18n';
 
 interface InsufficientCoinsModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
   onOpenBossBattle,
   currentCoins,
 }) => {
+  const { language, t } = useLanguage();
   const [playtime, setPlaytime] = useState(() => currencyManager.getPlaytimeRemaining());
 
   // Close on Escape key
@@ -78,14 +80,14 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-['Syne'] font-black text-base sm:text-lg text-white">
-                  INSUFFICIENT COINS!
+                  {t('insufficient_title')}
                 </h2>
                 <span className="px-1.5 py-0.5 rounded-xs bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold">
                   CREDITS: 0
                 </span>
               </div>
               <p className="font-mono text-[9px] text-zinc-400">
-                KOIN TIDAK CUKUP UNTUK MEMUTAR TRIVIA
+                {t('insufficient_subtitle')}
               </p>
             </div>
           </div>
@@ -95,7 +97,7 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
               sound.playClick();
               onClose();
             }}
-            title="Tutup (Esc)"
+            title={language === 'id' ? 'Tutup (Esc)' : 'Close (Esc)'}
             className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white hover:bg-white hover:text-black font-bold transition-all shadow-[2px_2px_0px_#000]"
           >
             <X className="w-4 h-4" />
@@ -109,18 +111,19 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
             <div className="flex items-center justify-center gap-2">
               <Coins className="w-5 h-5 text-[#FFE600] animate-pulse" />
               <span className="font-['Press_Start_2P'] text-lg sm:text-xl text-[#FFE600]">
-                {currentCoins} <span className="text-[10px] text-zinc-400">COINS</span>
+                {currentCoins} <span className="text-[10px] text-zinc-400">{t('coins_label')}</span>
               </span>
             </div>
             <p className="font-mono text-xs text-zinc-300">
-              Setiap putaran roulette trivia membutuhkan <strong className="text-[#FF2A85]">10 Koin</strong>.
+              {language === 'id' ? 'Setiap putaran roulette trivia membutuhkan ' : 'Each trivia roulette roll requires '}
+              <strong className="text-[#FF2A85]">{language === 'id' ? '10 Koin' : '10 Coins'}</strong>.
             </p>
           </div>
 
           {/* How to Earn Coins Section */}
           <div className="space-y-2.5">
             <div className="font-['Press_Start_2P'] text-[7px] text-[#00F5D4] uppercase tracking-wider">
-              CARA CEPAT MENDAPATKAN KOIN:
+              {t('insufficient_how_to')}
             </div>
 
             <div className="grid grid-cols-1 gap-2.5">
@@ -139,15 +142,15 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
                   </div>
                   <div>
                     <div className="font-['Syne'] font-black text-xs sm:text-sm group-hover:text-black">
-                      MAIN MINI GAME (5 GAMES)
+                      {language === 'id' ? 'MAIN MINI GAME (5 GAME)' : 'PLAY MINI GAMES (5 GAMES)'}
                     </div>
                     <div className="font-mono text-[10px] text-zinc-400 group-hover:text-black/80">
-                      Setiap 100 Poin yang diraih = 10 Koin!
+                      {language === 'id' ? 'Setiap 100 Poin yang diraih = 10 Koin!' : 'Every 100 Points earned = 10 Coins!'}
                     </div>
                   </div>
                 </div>
                 <span className="font-['Press_Start_2P'] text-[8px] px-2 py-1 rounded bg-[#00F5D4] text-black font-bold group-hover:bg-black group-hover:text-white">
-                  PLAY ➔
+                  {language === 'id' ? 'MAIN ➔' : 'PLAY ➔'}
                 </span>
               </button>
 
@@ -169,12 +172,12 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
                       TRIVIA BOSS RUSH
                     </div>
                     <div className="font-mono text-[10px] text-zinc-400 group-hover:text-white/90">
-                      Kalahkan boss & dapat +{BOSS_CLEAR_REWARD_COINS} Koin!
+                      {language === 'id' ? `Kalahkan boss & dapat +${BOSS_CLEAR_REWARD_COINS} Koin!` : `Defeat boss & get +${BOSS_CLEAR_REWARD_COINS} Coins!`}
                     </div>
                   </div>
                 </div>
                 <span className="font-['Press_Start_2P'] text-[8px] px-2 py-1 rounded bg-[#FF2A85] text-white font-bold group-hover:bg-black">
-                  FIGHT ➔
+                  {language === 'id' ? 'LAWAN ➔' : 'FIGHT ➔'}
                 </span>
               </button>
 
@@ -184,7 +187,7 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
                   <div className="flex items-center gap-2">
                     <Clock className="w-3.5 h-3.5 text-[#FFE600]" />
                     <span className="text-zinc-300">
-                      Hadiah Waktu Pasif: <strong className="text-[#FFE600]">+100 Koin</strong> / 10 menit
+                      {language === 'id' ? 'Hadiah Waktu Pasif:' : 'Passive Time Reward:'} <strong className="text-[#FFE600]">+100 Koin</strong> {language === 'id' ? '/ 10 menit' : '/ 10 mins'}
                     </span>
                   </div>
                   <span className="font-['Press_Start_2P'] text-[8px] text-[#FFE600]">
@@ -211,7 +214,7 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
             }}
             className="px-5 py-2.5 rounded-lg border-2 border-black bg-zinc-700 hover:bg-white text-white hover:text-black font-['Press_Start_2P'] text-[8px] font-bold shadow-[2px_2px_0px_#000] transition-colors"
           >
-            TUTUP
+            {language === 'id' ? 'TUTUP' : 'CLOSE'}
           </button>
         </div>
       </div>

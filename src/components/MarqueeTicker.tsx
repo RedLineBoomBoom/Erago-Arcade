@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../utils/i18n';
 
 interface MarqueeTickerProps {
   text?: string;
@@ -10,10 +11,19 @@ export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({
   text,
   bgClass = 'bg-[#FFE600] text-black border-y-2 border-black',
 }) => {
-  const defaultItems = [
+  const { language } = useLanguage();
+
+  const defaultItems = language === 'id' ? [
+    '✦ ERAGO ARCADE VAULT MEMORI',
+    '★ 100% RAHASIA SEJARAH GAME',
+    '✦ MASUKKAN KOIN UNTUK MEMUTAR',
+    '★ ARSIP KODE RETRO & GLITCH',
+    '✦ RETASAN HARDWARE & LORE',
+    '★ NOSTALGIA OVERLOAD 80s-00s',
+    '✦ TEKAN [SPASI] UNTUK PUTAR TRIVIA',
+  ] : [
     '✦ ERAGO ARCADE MEMORY VAULT',
     '★ 100% UNHINGED GAMING SECRETS',
-
     '✦ INSERT COIN TO SHUFFLE',
     '★ RETRO CODE ARCHIVE',
     '✦ HARDWARE HACKS & GLITCH LORE',
@@ -35,3 +45,4 @@ export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({
     </div>
   );
 };
+

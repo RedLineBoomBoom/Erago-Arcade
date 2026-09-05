@@ -11,12 +11,14 @@ import {
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
 import { sound } from '../audio/soundEngine';
+import { useLanguage } from '../utils/i18n';
 
 interface GamingNewsSectionProps {
   onBackToArcade: () => void;
 }
 
 export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToArcade }) => {
+  const { language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
 
@@ -68,7 +70,9 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
             </h1>
 
             <p className="font-mono text-xs sm:text-sm text-zinc-300 leading-relaxed">
-              Pusat sindikasi berita video game dan industri hiburan dunia. Akses langsung portal berita resmi untuk ulasan terpercaya, bocoran rilis, investigasi hardware, dan liputan budaya pop.
+              {language === 'id'
+                ? 'Pusat sindikasi berita video game dan industri hiburan dunia. Akses langsung portal berita resmi untuk ulasan terpercaya, bocoran rilis, investigasi hardware, dan liputan budaya pop.'
+                : 'Global video game and entertainment news syndication hub. Direct access to official news portals for trusted reviews, release leaks, hardware investigations, and pop culture coverage.'}
             </p>
           </div>
 
@@ -76,11 +80,15 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
           <div className="flex sm:flex-col justify-around sm:justify-center gap-3 p-4 rounded-xl border-3 border-black bg-[#0B0C10] shadow-[4px_4px_0px_#000] shrink-0 text-center">
             <div>
               <div className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#FFE600]">12</div>
-              <div className="font-mono text-[9px] text-zinc-400 uppercase mt-1">Global Outlets</div>
+              <div className="font-mono text-[9px] text-zinc-400 uppercase mt-1">
+                {language === 'id' ? 'Media Global' : 'Global Outlets'}
+              </div>
             </div>
             <div className="border-l sm:border-l-0 sm:border-t border-white/10 sm:pt-2 pl-3 sm:pl-0">
               <div className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#00F5D4]">100%</div>
-              <div className="font-mono text-[9px] text-zinc-400 uppercase mt-1">Official Links</div>
+              <div className="font-mono text-[9px] text-zinc-400 uppercase mt-1">
+                {language === 'id' ? 'Tautan Resmi' : 'Official Links'}
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +117,11 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari media, topik, atau kata kunci (contoh: PC Gamer, Hardware, IGN, Steam, Bloomberg)..."
+              placeholder={
+                language === 'id'
+                  ? 'Cari media, topik, atau kata kunci (contoh: PC Gamer, Hardware, IGN, Steam, Bloomberg)...'
+                  : 'Search outlets, topics, or keywords (e.g. PC Gamer, Hardware, IGN, Steam, Bloomberg)...'
+              }
               className="w-full pl-10 pr-4 py-3 rounded-lg border-2 border-black bg-[#14161F] text-white font-mono text-xs placeholder:text-zinc-500 focus:outline-none focus:border-[#00F5D4] focus:bg-[#1A1C26] transition-all shadow-[3px_3px_0px_#000]"
             />
             {searchQuery && (
@@ -125,7 +137,11 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
           {/* Result Counter */}
           <div className="flex items-center justify-between md:justify-end gap-2 text-xs font-mono text-zinc-400">
             <SlidersHorizontal className="w-4 h-4 text-[#FFE600]" />
-            <span>Menampilkan: <strong className="text-white">{filteredOutlets.length}</strong> dari {NEWS_OUTLETS_DATABASE.length} Media</span>
+            <span>
+              {language === 'id'
+                ? `Menampilkan: ${filteredOutlets.length} dari ${NEWS_OUTLETS_DATABASE.length} Media`
+                : `Showing: ${filteredOutlets.length} of ${NEWS_OUTLETS_DATABASE.length} Outlets`}
+            </span>
           </div>
         </div>
 
@@ -214,7 +230,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
                   <div className="space-y-1.5">
                     <div className="font-mono text-[9px] text-zinc-400 uppercase tracking-wider flex items-center gap-1">
                       <BookmarkCheck className="w-3 h-3 text-[#FFE600]" />
-                      <span>Fokus Liputan:</span>
+                      <span>{language === 'id' ? 'Fokus Liputan:' : 'Coverage Focus:'}</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {outlet.focusTags.map((tag, idx) => (
@@ -230,7 +246,9 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
 
                   {/* Headline Beats List */}
                   <div className="space-y-1 pt-1">
-                    <div className="font-mono text-[9px] text-zinc-500 uppercase">Segmen Unggulan:</div>
+                    <div className="font-mono text-[9px] text-zinc-500 uppercase">
+                      {language === 'id' ? 'Segmen Unggulan:' : 'Featured Beats:'}
+                    </div>
                     <ul className="space-y-1">
                       {outlet.headlineBeats.map((beat, idx) => (
                         <li key={idx} className="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400">
@@ -254,7 +272,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
                     className="flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-black font-['Press_Start_2P'] text-[8px] font-bold text-black shadow-[3px_3px_0px_#000] hover:bg-white hover:text-black hover:translate-x-0.5 transition-all"
                     style={{ backgroundColor: outlet.themeColor === '#000000' ? '#FFE600' : outlet.themeColor }}
                   >
-                    <span>KUNJUNGI ↗</span>
+                    <span>{language === 'id' ? 'KUNJUNGI ↗' : 'VISIT ↗'}</span>
                     <ExternalLink className="w-3 h-3" />
                   </button>
                 </div>
@@ -267,10 +285,12 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
         <div className="rounded-2xl border-4 border-black bg-[#14161F] p-12 text-center space-y-4 shadow-[8px_8px_0px_#000]">
           <div className="text-5xl animate-bounce">🔍</div>
           <h3 className="font-['Syne'] font-black text-2xl text-white">
-            TIDAK DITEMUKAN OUTLET BERITA
+            {language === 'id' ? 'TIDAK DITEMUKAN OUTLET BERITA' : 'NO NEWS OUTLETS FOUND'}
           </h3>
           <p className="font-mono text-xs text-zinc-400 max-w-md mx-auto">
-            Tidak ada media yang cocok dengan kata kunci "{searchQuery}". Coba kata kunci lain atau reset filter.
+            {language === 'id'
+              ? `Tidak ada media yang cocok dengan kata kunci "${searchQuery}". Coba kata kunci lain atau reset filter.`
+              : `No media matched keyword "${searchQuery}". Try another keyword or reset filters.`}
           </p>
           <button
             onClick={() => {
@@ -280,7 +300,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
             }}
             className="px-5 py-2.5 rounded-lg border-2 border-black bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold shadow-[2px_2px_0px_#000]"
           >
-            RESET SEMUA FILTER
+            {language === 'id' ? 'RESET SEMUA FILTER' : 'RESET ALL FILTERS'}
           </button>
         </div>
       )}
@@ -293,10 +313,14 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
           </div>
           <div>
             <div className="font-['Syne'] font-black text-base text-white">
-              BACA BERITA TERBARU TANPA MENUTUP ERAGO ARCADE
+              {language === 'id'
+                ? 'BACA BERITA TERBARU TANPA MENUTUP ERAGO ARCADE'
+                : 'READ LATEST NEWS WITHOUT CLOSING ERAGO ARCADE'}
             </div>
             <p className="font-mono text-xs text-zinc-400">
-              Setiap tautan outlet akan dibuka di tab baru, sehingga sesi koin dan progress trivia Anda tetap terjaga 100%.
+              {language === 'id'
+                ? 'Setiap tautan outlet akan dibuka di tab baru, sehingga sesi koin dan progress trivia Anda tetap terjaga 100%.'
+                : 'Each outlet link will open in a new tab, keeping your coin balance and trivia progress 100% preserved.'}
             </p>
           </div>
         </div>
@@ -308,7 +332,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
           }}
           className="px-5 py-3 rounded-lg border-2 border-black bg-[#FF2A85] text-black font-['Press_Start_2P'] text-[9px] font-bold shadow-[3px_3px_0px_#000] hover:bg-white transition-colors shrink-0"
         >
-          KEMBALI KE ROULETTE ➔
+          {language === 'id' ? 'KEMBALI KE ROULETTE ➔' : 'BACK TO ROULETTE ➔'}
         </button>
       </div>
     </div>

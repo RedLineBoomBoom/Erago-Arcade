@@ -4,6 +4,7 @@ import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 
 import type { ViewMode } from '../types/trivia';
+import { useLanguage } from '../utils/i18n';
 
 
 
@@ -48,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBankModal,
   onOpenNewsModal,
 }) => {
-
+  const { language, toggleLanguage, t } = useLanguage();
 
   const [isMuted, setIsMuted] = useState(sound.isMuted);
   const [isBgmActive, setIsBgmActive] = useState(sound.isBgmActive);
@@ -125,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <p className="font-['Press_Start_2P'] text-[7px] text-[#00F5D4] tracking-wider hidden sm:block mt-1">
-            VIDEO GAME TRIVIA VAULT // EST. 1980–2024
+            {t('brand_subtitle')}
           </p>
         </div>
 
@@ -145,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Shuffle className="h-3 w-3" />
-            <span className="hidden md:inline">ROULETTE</span>
+            <span className="hidden md:inline">{t('tab_roulette')}</span>
           </button>
 
           <button
@@ -161,7 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <BookOpen className="h-3 w-3" />
-            <span className="hidden md:inline">LOOKBOOK</span>
+            <span className="hidden md:inline">{t('tab_lookbook')}</span>
           </button>
 
           <button
@@ -177,7 +178,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Sparkles className="h-3 w-3" />
-            <span className="hidden md:inline">CHALLENGE</span>
+            <span className="hidden md:inline">{t('tab_quiz')}</span>
           </button>
 
           <button
@@ -193,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Terminal className="h-3 w-3" />
-            <span className="hidden md:inline">CHEATS</span>
+            <span className="hidden md:inline">{t('tab_cheats')}</span>
           </button>
 
           <button
@@ -209,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Newspaper className="h-3 w-3" />
-            <span className="hidden md:inline">NEWS</span>
+            <span className="hidden md:inline">{t('tab_news')}</span>
           </button>
         </nav>
 
@@ -228,7 +229,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <span className="text-xs sm:text-sm group-hover:scale-110 transition-transform">🪙</span>
             <span>{currencyState.coins.toLocaleString()}</span>
-            <span className="hidden xl:inline text-[6px] text-zinc-400 group-hover:text-black">COINS</span>
+            <span className="hidden xl:inline text-[6px] text-zinc-400 group-hover:text-black">{t('coins_label')}</span>
           </button>
 
           {/* Unified Arcade Extras Hub Dropdown */}
@@ -243,7 +244,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="flex h-8 sm:h-9 items-center gap-1.5 rounded-sm border-2 border-black bg-[#FFE600] px-2.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] text-black font-bold hover:bg-white transition-all shadow-[2px_2px_0px_#000]"
             >
               <span>🕹️</span>
-              <span>ARCADE HUB</span>
+              <span>{t('hub_button')}</span>
               <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isExtrasOpen ? 'rotate-180' : ''}`} />
             </button>
 
@@ -253,9 +254,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="flex items-center justify-between border-b border-white/10 pb-2 px-1">
                   <div className="flex items-center gap-1.5">
                     <span className="text-sm">🎮</span>
-                    <span className="font-['Press_Start_2P'] text-[8px] text-[#00F5D4]">ARCADE VAULT EXTRAS</span>
+                    <span className="font-['Press_Start_2P'] text-[8px] text-[#00F5D4]">{t('hub_title')}</span>
                   </div>
-                  <span className="font-mono text-[9px] text-zinc-400">8 MODES</span>
+                  <span className="font-mono text-[9px] text-zinc-400">{t('hub_modes_count')}</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -270,8 +271,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">⚔️</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] text-white font-bold">BOSS RUSH</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">RPG Combat</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] text-white font-bold">{t('hub_boss_rush')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_boss_rush_desc')}</div>
                     </div>
                   </button>
 
@@ -286,8 +287,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🕹️</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">5 GAMES</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Bonus Library</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_bonus_stage')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_bonus_stage_desc')}</div>
                     </div>
                   </button>
 
@@ -302,8 +303,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🃏</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">BINDER</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Holo Cards</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_card_binder')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_card_binder_desc')}</div>
                     </div>
                   </button>
 
@@ -318,8 +319,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🏆</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">TROPHIES</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Achievements</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_trophy')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_trophy_desc')}</div>
                     </div>
                   </button>
 
@@ -334,8 +335,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">📟</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">MS-DOS</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Prompt ~</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_terminal')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_terminal_desc')}</div>
                     </div>
                   </button>
 
@@ -350,8 +351,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🎨</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">THEMES</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">4 Palettes</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_theme')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_theme_desc')}</div>
                     </div>
                   </button>
 
@@ -368,8 +369,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🎨</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">STICKERS</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{isStickerModeActive ? 'Active' : 'Stamp Mode'}</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_stickers')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{isStickerModeActive ? (language === 'id' ? 'Aktif' : 'Active') : t('hub_stickers_desc')}</div>
                     </div>
                   </button>
 
@@ -384,8 +385,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span className="text-lg">🎛️</span>
                     <div>
-                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">SFX SYNTH</div>
-                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">Soundboard</div>
+                      <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_soundboard')}</div>
+                      <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_soundboard_desc')}</div>
                     </div>
                   </button>
 
@@ -402,8 +403,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <div className="flex items-center gap-2">
                         <span className="text-lg">📰</span>
                         <div>
-                          <div className="font-['Press_Start_2P'] text-[7px] font-bold">PRESS WIRE</div>
-                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">12 Outlets News</div>
+                          <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_press_wire')}</div>
+                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_press_wire_desc')}</div>
                         </div>
                       </div>
                       <span className="px-1.5 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
@@ -422,9 +423,25 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden lg:flex items-center gap-2 rounded-sm border-2 border-black bg-black/60 px-2.5 py-1 text-xs">
             <span className="inline-block h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
             <span className="font-['Press_Start_2P'] text-[8px] text-zinc-300">
-              DISCOVERED: <strong className="text-[#FFE600]">{unlockedCount}</strong>/{totalCount}
+              {t('discovered')}: <strong className="text-[#FFE600]">{unlockedCount}</strong>/{totalCount}
             </span>
           </div>
+
+
+          {/* Language Switcher (ID / EN) */}
+          <button
+            onClick={toggleLanguage}
+            data-cursor="LANG"
+            title={language === 'id' ? 'Ganti Bahasa ke English [EN]' : 'Ganti Bahasa ke Indonesia [ID]'}
+            className="flex h-9 items-center gap-1.5 rounded-sm border-2 border-black bg-[#1A1C26] hover:bg-[#FFE600] text-white hover:text-black px-2 sm:px-2.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold transition-all brutal-shadow-sm group"
+          >
+            <span className="text-xs group-hover:scale-110 transition-transform">
+              {language === 'id' ? '🇮🇩' : '🇬🇧'}
+            </span>
+            <span className={language === 'id' ? 'text-[#00F5D4] group-hover:text-black font-black' : 'text-[#FF2A85] group-hover:text-black font-black'}>
+              {language.toUpperCase()}
+            </span>
+          </button>
 
 
           {/* Procedural Chiptune BGM / Jukebox Modal Toggle */}
@@ -450,7 +467,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="w-0.5 bg-[#FF2A85] animate-[bounce_0.5s_infinite_ease-in-out_0.3s] h-3.5"></span>
               </div>
             ) : (
-              <span className="font-['Press_Start_2P'] text-[7px] hidden sm:inline">FM RADIO</span>
+              <span className="font-['Press_Start_2P'] text-[7px] hidden sm:inline">{t('fm_radio')}</span>
             )}
           </button>
 

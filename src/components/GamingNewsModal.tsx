@@ -12,6 +12,7 @@ import { sound } from '../audio/soundEngine';
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
+import { useLanguage } from '../utils/i18n';
 
 interface GamingNewsModalProps {
   isOpen: boolean;
@@ -24,6 +25,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
   onClose,
   initialOutletId = 'all',
 }) => {
+  const { t } = useLanguage();
   const [selectedOutlet, setSelectedOutlet] = useState<string>(initialOutletId);
   const [prevInitialId, setPrevInitialId] = useState(initialOutletId);
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
@@ -117,17 +119,17 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-['Syne'] font-black text-sm sm:text-lg text-white tracking-wide">
-                  GAMING & ENTERTAINMENT PRESS WIRE
+                  {t('news_header_title')}
                 </h2>
                 <span className="px-1.5 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
-                  12 OUTLETS
+                  {t('news_12_outlets')}
                 </span>
                 <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold animate-pulse">
-                  <Radio className="w-2.5 h-2.5" /> LIVE FEED
+                  <Radio className="w-2.5 h-2.5" /> {t('news_live_feed')}
                 </span>
               </div>
               <p className="font-mono text-[9px] sm:text-[10px] text-zinc-400">
-                PORTAL RESMI BERITA GAME DUNIA // SINDIKASI REAL-TIME
+                {t('news_modal_subtitle')}
               </p>
             </div>
           </div>
@@ -136,12 +138,12 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
             {/* Live Sync Button */}
             <button
               onClick={handleRefresh}
-              title="Perbarui Berita"
+              title={t('news_refresh')}
               disabled={isRefreshing}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-xs transition-colors shadow-[2px_2px_0px_#000]"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-[#FFE600]' : ''}`} />
-              <span className="hidden sm:inline font-bold">REFRESH</span>
+              <span className="hidden sm:inline font-bold">{t('news_refresh')}</span>
             </button>
 
             {/* Close Button */}
@@ -150,7 +152,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                 sound.playClick();
                 onClose();
               }}
-              title="Tutup Modal (Esc)"
+              title="Close (Esc)"
               className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white hover:bg-white hover:text-black font-bold transition-all shadow-[2px_2px_0px_#000]"
             >
               <X className="w-4 h-4" />
@@ -172,7 +174,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari berita, topik, judul game..."
+                placeholder={t('news_search_placeholder')}
                 className="w-full pl-9 pr-8 py-1.5 bg-[#14161F] border-2 border-black rounded-lg text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#00F5D4] shadow-[2px_2px_0px_#000]"
               />
               {searchQuery && (
@@ -201,7 +203,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                   }`}
                 >
                   <span className="mr-1">{cat.icon}</span>
-                  <span>{cat.id === 'All' ? 'Semua Kategori' : cat.id}</span>
+                  <span>{cat.id === 'All' ? t('news_all_categories') : cat.id}</span>
                 </button>
               ))}
             </div>
@@ -221,7 +223,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
               }`}
             >
               <span>🌐</span>
-              <span>SEMUA OUTLET (12)</span>
+              <span>{t('news_all_outlets_btn')}</span>
             </button>
 
             {NEWS_OUTLETS_DATABASE.map((outlet) => {
@@ -285,7 +287,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                 onClick={() => handleOpenLink(currentOutletMeta.url)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] hover:bg-white transition-colors shrink-0"
               >
-                <span>BUKA SITUS RESMI</span>
+                <span>{t('news_open_site')}</span>
                 <ExternalLink className="w-3 h-3" />
               </button>
             </div>
@@ -295,17 +297,17 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
           <div className="flex items-center justify-between text-xs font-mono text-zinc-400 border-b border-white/5 pb-2">
             <div className="flex items-center gap-2">
               <span>
-                Menampilkan <strong className="text-[#FFE600]">{filteredArticles.length}</strong> berita
+                {t('news_showing_count', { count: filteredArticles.length })}
               </span>
               {selectedOutlet !== 'all' && (
                 <span className="text-zinc-500">
-                  dari <span className="text-white">{currentOutletMeta?.name}</span>
+                  {t('news_from')} <span className="text-white">{currentOutletMeta?.name}</span>
                 </span>
               )}
             </div>
 
             <div className="text-[10px] text-zinc-500">
-              Klik artikel untuk membaca liputan lengkap di situs resmi
+              {t('news_hint_click')}
             </div>
           </div>
 
@@ -384,7 +386,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                         {article.outletDomain}
                       </span>
                       <span className="flex items-center gap-1 text-[#00F5D4] group-hover:text-white font-bold transition-colors">
-                        <span>BACA</span>
+                        <span>{t('news_read_btn')}</span>
                         <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </span>
                     </div>
@@ -397,10 +399,10 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
             <div className="rounded-xl border-2 border-dashed border-white/20 bg-[#1A1C26]/50 p-8 text-center space-y-3">
               <div className="text-4xl">🔍</div>
               <h3 className="font-['Syne'] font-black text-lg text-white">
-                TIDAK ADA BERITA DITEMUKAN
+                {t('news_not_found')}
               </h3>
               <p className="font-mono text-xs text-zinc-400 max-w-md mx-auto">
-                Tidak ada artikel yang cocok dengan filter atau kata kunci &quot;{searchQuery}&quot;. Coba ganti kata kunci atau pilih &quot;SEMUA OUTLET&quot;.
+                {t('news_not_found_desc', { query: searchQuery })}
               </p>
               <button
                 onClick={() => {
@@ -410,7 +412,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                 }}
                 className="px-4 py-2 rounded-lg border-2 border-black bg-[#FFE600] text-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] hover:bg-white transition-colors"
               >
-                Reset Semua Filter
+                {t('news_reset_filters')}
               </button>
             </div>
           )}
@@ -423,7 +425,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
           <div className="flex items-center gap-2">
             <span className="text-base">✦</span>
             <span>
-              Semua berita bersumber langsung dari <strong className="text-white">12 portal resmi internasional</strong>.
+              {t('news_footer_notice')}
             </span>
           </div>
 
@@ -434,7 +436,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
             }}
             className="w-full sm:w-auto px-5 py-1.5 rounded-lg border-2 border-black bg-[#FFE600] text-black font-['Press_Start_2P'] text-[8px] font-bold shadow-[2px_2px_0px_#000] hover:bg-white transition-colors"
           >
-            KEMBALI KE ARCADE [ESC]
+            {t('news_back_arcade')}
           </button>
         </div>
 

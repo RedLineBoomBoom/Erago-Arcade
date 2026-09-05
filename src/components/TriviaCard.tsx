@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import type { TriviaItem } from '../types/trivia';
 import { sound } from '../audio/soundEngine';
+import { useLanguage, getTranslatedTrivia, translateTag, translateRarity } from '../utils/i18n';
 
 interface TriviaCardProps {
   item: TriviaItem;
@@ -20,20 +21,22 @@ interface TriviaCardProps {
 }
 
 export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal }) => {
+  const { language, t } = useLanguage();
+  const translatedItem = getTranslatedTrivia(item, language);
+
   const cardRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
   const [reacted, setReacted] = useState(false);
-  const [decryptedHeadline, setDecryptedHeadline] = useState(item.headline);
+  const [decryptedHeadline, setDecryptedHeadline] = useState(translatedItem.headline);
   const [isScanning, setIsScanning] = useState(true);
 
   // Digital Decrypt Text Scramble Effect upon card mount/change
   useEffect(() => {
     const scanTimer = setTimeout(() => setIsScanning(false), 950);
 
-
     const glyphs = '01✦▲■●01#$%=+/*_ABCDEF0123456789';
     let iteration = 0;
-    const final = item.headline;
+    const final = translatedItem.headline;
 
     const scrambleInterval = setInterval(() => {
       setDecryptedHeadline(
@@ -59,7 +62,7 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
       clearTimeout(scanTimer);
       clearInterval(scrambleInterval);
     };
-  }, [item.id, item.headline]);
+  }, [translatedItem.id, translatedItem.headline]);
 
 
   // 3D Tilt calculation on mouse move using CSS variables (0 React re-renders)
@@ -95,7 +98,7 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
 
   const handleCopy = async () => {
     sound.playClick();
-    const textToCopy = `🎮 ${item.gameTitle} (${item.releaseYear}) Trivia:\n"${item.headline}"\n\n${item.story}\n\nVia Erago Arcade: ${item.verifiedFact}`;
+    const textToCopy = `🎮 ${translatedItem.gameTitle} (${translatedItem.releaseYear}) Trivia:\n"${translatedItem.headline}"\n\n${translatedItem.story}\n\nVia Erago Arcade: ${translatedItem.verifiedFact}`;
 
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -175,10 +178,10 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
             <span className="font-['Press_Start_2P'] text-[9px] sm:text-[10px] text-zinc-300 tracking-wider">
               {isScanning ? (
                 <span className="text-[#00F5D4] animate-pulse font-bold">
-                  ⚡ DECRYPTING ROM...
+                  {t('card_decrypting')}
                 </span>
               ) : (
-                <span>CARTRIDGE ROM // {item.id.toUpperCase()}</span>
+                <span>{t('card_rom')} {translatedItem.id.toUpperCase()}</span>
               )}
             </span>
           </div>
@@ -187,10 +190,10 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
             {/* Rarity Tier Stamp */}
             <span
               className={`rounded-xs border px-2 py-0.5 font-['Press_Start_2P'] text-[7px] sm:text-[8px] tracking-wider uppercase ${
-                rarityColorMap[item.rarityTier] || 'border-white text-white'
+                rarityColorMap[translatedItem.rarityTier] || 'border-white text-white'
               }`}
             >
-              ★ {item.rarityTier}
+              ★ {translateRarity(translatedItem.rarityTier, language)}
             </span>
 
             {/* Retro Barcode Accent */}
@@ -211,24 +214,24 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
             {/* Game Badge */}
             <div className="flex items-center gap-1.5 rounded-sm border-2 border-black bg-[#FF2A85] px-2.5 py-1 font-['Press_Start_2P'] text-[9px] font-bold text-black brutal-shadow-sm">
               <Gamepad2 className="h-3 w-3" />
-              <span>{item.gameTitle}</span>
+              <span>{translatedItem.gameTitle}</span>
             </div>
 
             {/* Platform / Hardware */}
             <div className="flex items-center gap-1 rounded-sm border-2 border-black bg-[#FFE600] px-2 py-1 font-['Press_Start_2P'] text-[8px] text-black brutal-shadow-sm">
               <Cpu className="h-2.5 w-2.5" />
-              <span>{item.platform}</span>
+              <span>{translatedItem.platform}</span>
             </div>
 
             {/* Release Year */}
             <div className="flex items-center gap-1 rounded-sm border-2 border-black bg-[#00F5D4] px-2 py-1 font-['Press_Start_2P'] text-[8px] text-black brutal-shadow-sm">
               <Calendar className="h-2.5 w-2.5" />
-              <span>{item.releaseYear}</span>
+              <span>{translatedItem.releaseYear}</span>
             </div>
 
             {/* Category Tag */}
             <span className="rounded-sm border-2 border-white/20 bg-white/5 px-2 py-1 font-['Press_Start_2P'] text-[8px] text-zinc-300">
-              🏷️ {item.tag}
+              🏷️ {translateTag(translatedItem.tag, language)}
             </span>
           </div>
 
@@ -240,16 +243,16 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
           {/* Deep Dive Story */}
           <div className="relative rounded-sm border-l-4 border-[#FF2A85] bg-black/40 p-4 sm:p-5 text-base sm:text-lg leading-relaxed text-zinc-200">
             <p className="font-['Space_Grotesk'] text-zinc-100 selection:bg-[#FFE600] selection:text-black">
-              {item.story}
+              {translatedItem.story}
             </p>
           </div>
 
           {/* Quote or Developer Note Callout (if available) */}
-          {item.quoteOrLore && (
+          {translatedItem.quoteOrLore && (
             <div className="flex items-start gap-3 rounded-sm border-2 border-black bg-[#FFE600]/10 p-3 sm:p-4 text-xs sm:text-sm text-[#FFE600]">
               <Quote className="h-5 w-5 shrink-0 text-[#FFE600] mt-0.5" />
               <div className="italic font-['Space_Grotesk'] font-medium">
-                {item.quoteOrLore}
+                {translatedItem.quoteOrLore}
               </div>
             </div>
           )}
@@ -260,28 +263,28 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
             <div className="md:col-span-2 rounded-sm border-2 border-black bg-black/50 p-3.5 brutal-shadow-sm">
               <div className="flex items-center gap-1.5 font-['Press_Start_2P'] text-[8px] text-[#00F5D4] uppercase mb-1.5">
                 <Zap className="h-3 w-3" />
-                <span>ARCHIVE TAKEAWAY:</span>
+                <span>{t('card_takeaway')}</span>
               </div>
               <p className="font-['Space_Grotesk'] text-xs sm:text-sm text-zinc-300">
-                {item.verifiedFact}
+                {translatedItem.verifiedFact}
               </p>
             </div>
 
             {/* Mindblown Rating Gauge */}
             <div className="rounded-sm border-2 border-black bg-black/50 p-3.5 flex flex-col justify-between brutal-shadow-sm">
               <div className="flex items-center justify-between font-['Press_Start_2P'] text-[8px] text-zinc-400">
-                <span>MINDBLOWN:</span>
-                <span className="text-[#FF2A85]">{item.mindblownScore}%</span>
+                <span>{t('card_mindblown')}</span>
+                <span className="text-[#FF2A85]">{translatedItem.mindblownScore}%</span>
               </div>
               {/* Progress Bar */}
               <div className="relative h-3 w-full rounded-xs border border-black bg-zinc-800 overflow-hidden my-2">
                 <div
                   className="h-full bg-gradient-to-r from-[#FFE600] via-[#FF2A85] to-[#00F5D4]"
-                  style={{ width: `${item.mindblownScore}%` }}
+                  style={{ width: `${translatedItem.mindblownScore}%` }}
                 />
               </div>
               <span className="text-[10px] text-zinc-400 font-mono text-right">
-                VERIFIED ARCHIVE METRIC
+                {t('card_verified_metric')}
               </span>
             </div>
           </div>
@@ -299,7 +302,7 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
               }`}
             >
               <Flame className="h-4 w-4 text-black" />
-              <span>{reacted ? 'BOOM! 💥' : 'MINDBLOWN! 🔥'}</span>
+              <span>{reacted ? t('card_boom') : t('card_mindblown_btn')}</span>
             </button>
 
             {/* Quiz Mode Prompt (Challenge your memory) */}
@@ -313,7 +316,7 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
                 className="flex items-center gap-1.5 rounded-sm border-2 border-black bg-[#00F5D4] px-3.5 py-2 font-['Press_Start_2P'] text-[8px] text-black font-bold brutal-shadow-sm hover:bg-[#20f7dc] transition-transform hover:-translate-y-0.5"
               >
                 <HelpCircle className="h-3.5 w-3.5 text-black" />
-                <span>TEST KNOWLEDGE</span>
+                <span>{t('card_test_knowledge')}</span>
               </button>
             )}
 
@@ -326,12 +329,12 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
               {copied ? (
                 <>
                   <Check className="h-3.5 w-3.5 text-[#00F5D4]" />
-                  <span className="text-[#00F5D4]">COPIED!</span>
+                  <span className="text-[#00F5D4]">{t('card_copied')}</span>
                 </>
               ) : (
                 <>
                   <Share2 className="h-3.5 w-3.5" />
-                  <span>SHARE TRIVIA</span>
+                  <span>{t('card_share')}</span>
                 </>
               )}
             </button>
@@ -340,8 +343,8 @@ export const TriviaCard: React.FC<TriviaCardProps> = ({ item, onOpenQuizModal })
 
         {/* Bottom Cartridge Footer Bar */}
         <div className="relative z-10 flex items-center justify-between border-t-2 border-black bg-[#0B0C10] px-4 py-2 font-['Press_Start_2P'] text-[7px] text-zinc-500">
-          <span>DEVELOPER: {item.developer.toUpperCase()}</span>
-          <span>GENRE: {item.genre.toUpperCase()}</span>
+          <span>{t('card_developer')} {translatedItem.developer.toUpperCase()}</span>
+          <span>{t('card_genre')} {translatedItem.genre.toUpperCase()}</span>
         </div>
       </div>
     </div>

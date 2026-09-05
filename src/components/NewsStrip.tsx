@@ -16,12 +16,14 @@ import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData'
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 import { sound } from '../audio/soundEngine';
 import type { NewsCategory } from '../types/news';
+import { useLanguage } from '../utils/i18n';
 
 interface NewsStripProps {
   onOpenNewsModal?: (outletId?: string) => void;
 }
 
 export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
+  const { language, t } = useLanguage();
   // Start expanded by default so the popup news is directly visible right here
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedOutlet, setSelectedOutlet] = useState<string>('all');
@@ -92,17 +94,17 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="font-['Syne'] font-black text-sm sm:text-base text-white uppercase tracking-wide">
-                  GAMING & ENTERTAINMENT PRESS WIRE
+                  {t('news_header_title')}
                 </h2>
                 <span className="px-1.5 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold border border-black">
-                  12 OUTLETS
+                  {t('news_12_outlets')}
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold animate-pulse">
-                  <Radio className="w-2.5 h-2.5" /> LIVE
+                  <Radio className="w-2.5 h-2.5" /> {t('news_live_feed')}
                 </span>
               </div>
               <p className="font-mono text-[9px] sm:text-[10px] text-zinc-400">
-                Pusat sindikasi berita game resmi // Pilih portal atau jelajahi berita langsung di bawah
+                {t('news_tagline_text')}
               </p>
             </div>
           </div>
@@ -112,7 +114,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
             {/* Refresh Button */}
             <button
               onClick={handleRefresh}
-              title="Perbarui Berita"
+              title={language === 'id' ? 'Perbarui Berita' : 'Refresh News'}
               disabled={isRefreshing}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-[10px] font-bold shadow-[2px_2px_0px_#000] transition-colors cursor-pointer"
             >
@@ -128,14 +130,14 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                 setIsExpanded(true);
               }}
               data-cursor="NEWS"
-              title="Tampilkan Berita dari Semua 12 Outlet"
+              title={language === 'id' ? 'Tampilkan Berita dari Semua 12 Outlet' : 'Show News from All 12 Outlets'}
               className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border-2 border-black font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] transition-all cursor-pointer ${
                 selectedOutlet === 'all' && isExpanded
                   ? 'bg-[#00F5D4] text-black'
                   : 'bg-[#FFE600] text-black hover:bg-white'
               }`}
             >
-              <span>SEMUA (12)</span>
+              <span>{t('news_all_outlets_btn')}</span>
               <ArrowRight className="w-2.5 h-2.5" />
             </button>
 
@@ -145,18 +147,18 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                 sound.playClick();
                 setIsExpanded((prev) => !prev);
               }}
-              title={isExpanded ? 'Tutup Tampilan Berita' : 'Buka Tampilan Berita'}
+              title={isExpanded ? (language === 'id' ? 'Tutup Tampilan Berita' : 'Collapse News') : (language === 'id' ? 'Buka Tampilan Berita' : 'Open News')}
               className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#282E40] hover:bg-white text-white hover:text-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] transition-all cursor-pointer"
             >
               {isExpanded ? (
                 <>
                   <ChevronUp className="w-3.5 h-3.5 text-[#FFE600]" />
-                  <span className="hidden sm:inline">TUTUP</span>
+                  <span className="hidden sm:inline">{language === 'id' ? 'TUTUP' : 'COLLAPSE'}</span>
                 </>
               ) : (
                 <>
                   <ChevronDown className="w-3.5 h-3.5 text-[#00F5D4]" />
-                  <span className="hidden sm:inline">BUKA BERITA</span>
+                  <span className="hidden sm:inline">{language === 'id' ? 'BUKA BERITA' : 'OPEN NEWS'}</span>
                 </>
               )}
             </button>
@@ -269,7 +271,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Cari berita langsung di sini..."
+                  placeholder={t('news_search_placeholder')}
                   className="w-full pl-8 pr-7 py-1.5 bg-[#14161F] border-2 border-black rounded-lg text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#00F5D4]"
                 />
                 {searchQuery && (
@@ -298,7 +300,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                     }`}
                   >
                     <span className="mr-1">{cat.icon}</span>
-                    <span>{cat.id === 'All' ? 'Semua' : cat.id}</span>
+                    <span>{cat.id === 'All' ? (language === 'id' ? 'Semua' : 'All') : cat.id}</span>
                   </button>
                 ))}
               </div>
@@ -307,13 +309,13 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
             {/* Results Counter */}
             <div className="flex items-center justify-between text-xs font-mono text-zinc-400 px-1">
               <div>
-                Menampilkan <strong className="text-[#FFE600]">{filteredArticles.length}</strong> berita
+                {t('news_showing')} <strong className="text-[#FFE600]">{filteredArticles.length}</strong> {t('news_articles')}
                 {selectedOutlet !== 'all' && (
-                  <span> dari <strong className="text-white">{currentOutletMeta?.name}</strong></span>
+                  <span> {language === 'id' ? 'dari' : 'from'} <strong className="text-white">{currentOutletMeta?.name}</strong></span>
                 )}
               </div>
               <div className="text-[10px] text-zinc-500 hidden sm:inline">
-                Klik kartu berita untuk membaca selengkapnya di portal asli
+                {language === 'id' ? 'Klik kartu berita untuk membaca selengkapnya di portal asli' : 'Click news card to read full article on original site'}
               </div>
             </div>
 
@@ -390,7 +392,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                           {article.outletDomain}
                         </span>
                         <span className="flex items-center gap-1 text-[#00F5D4] group-hover:text-white font-bold transition-colors shrink-0">
-                          <span>BACA</span>
+                          <span>{language === 'id' ? 'BACA' : 'READ'}</span>
                           <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </span>
                       </div>
@@ -403,10 +405,10 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
               <div className="rounded-xl border-2 border-dashed border-white/20 bg-[#1A1C26]/50 p-6 text-center space-y-2">
                 <div className="text-3xl">🔍</div>
                 <div className="font-['Syne'] font-black text-sm text-white">
-                  TIDAK ADA BERITA COCOK
+                  {language === 'id' ? 'TIDAK ADA BERITA COCOK' : 'NO MATCHING ARTICLES'}
                 </div>
                 <p className="font-mono text-xs text-zinc-400">
-                  Tidak ada berita untuk kata kunci &quot;{searchQuery}&quot;.
+                  {language === 'id' ? `Tidak ada berita untuk kata kunci "${searchQuery}".` : `No articles found for query "${searchQuery}".`}
                 </p>
                 <button
                   onClick={() => {
@@ -416,7 +418,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                   }}
                   className="px-3 py-1 rounded bg-[#FFE600] text-black font-mono text-xs font-bold cursor-pointer"
                 >
-                  Reset Filter
+                  {t('news_reset_filters')}
                 </button>
               </div>
             )}
@@ -425,7 +427,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 border-t border-white/10 text-[11px] font-mono text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <Newspaper className="w-3.5 h-3.5 text-[#00F5D4]" />
-                <span>Berita diambil langsung dari 12 portal resmi video game dunia.</span>
+                <span>{language === 'id' ? 'Berita diambil langsung dari 12 portal resmi video game dunia.' : 'News curated directly from 12 official world video game outlets.'}</span>
               </div>
 
               <button
@@ -435,7 +437,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                 }}
                 className="text-xs text-zinc-400 hover:text-[#FFE600] underline font-mono cursor-pointer"
               >
-                ▲ Sembunyikan Berita
+                {language === 'id' ? '▲ Sembunyikan Berita' : '▲ Hide News Feed'}
               </button>
             </div>
 

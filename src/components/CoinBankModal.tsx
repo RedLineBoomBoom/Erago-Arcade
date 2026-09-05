@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { X, Coins, Clock, Sparkles, Gamepad2, Swords, RefreshCw } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
+import { useLanguage } from '../utils/i18n';
 
 interface CoinBankModalProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
   onOpenMiniGames,
   onOpenBossBattle,
 }) => {
+  const { language, t } = useLanguage();
   const [playtime, setPlaytime] = useState(() => currencyManager.getPlaytimeRemaining());
 
   // Close on Escape key
@@ -80,14 +82,14 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-['Syne'] font-black text-base sm:text-lg text-white">
-                  ARCADE COIN VAULT
+                  {t('bank_title')}
                 </h2>
                 <span className="px-1.5 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
                   BANK
                 </span>
               </div>
               <p className="font-mono text-[9px] text-zinc-400">
-                STATUS SALDO & ATURAN MATA UANG
+                {t('bank_subtitle')}
               </p>
             </div>
           </div>
@@ -97,7 +99,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
               sound.playClick();
               onClose();
             }}
-            title="Tutup (Esc)"
+            title={language === 'id' ? 'Tutup (Esc)' : 'Close (Esc)'}
             className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-black bg-[#FF2A85] text-white hover:bg-white hover:text-black font-bold transition-all shadow-[2px_2px_0px_#000]"
           >
             <X className="w-4 h-4" />
@@ -109,7 +111,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
           {/* Current Balance Display */}
           <div className="rounded-xl border-3 border-black bg-gradient-to-br from-[#1E2230] via-[#14161F] to-[#0B0C10] p-4 text-center space-y-1.5 shadow-[3px_3px_0px_#000]">
             <div className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest">
-              SALDO SAAT INI
+              {t('bank_current_balance')}
             </div>
             <div className="flex items-center justify-center gap-2.5">
               <span className="text-2xl animate-bounce">🪙</span>
@@ -125,7 +127,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             {/* Points Progress */}
             <div className="rounded-xl border-2 border-black bg-[#1A1C26] p-3 space-y-1.5 shadow-[2px_2px_0px_#000]">
               <div className="flex items-center justify-between text-[11px] font-mono">
-                <span className="text-zinc-400">Poin Buffer:</span>
+                <span className="text-zinc-400">{t('bank_points_buffer')}:</span>
                 <span className="text-[#00F5D4] font-bold">{accumulatedPoints} / 100 PTS</span>
               </div>
               <div className="w-full bg-black/60 rounded-full h-2 overflow-hidden border border-white/10">
@@ -135,7 +137,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
                 />
               </div>
               <p className="font-mono text-[9px] text-zinc-400">
-                +{100 - accumulatedPoints} Pts lagi untuk auto-convert +10 Koin!
+                {t('bank_buffer_subtext', { needed: 100 - accumulatedPoints })}
               </p>
             </div>
 
@@ -143,7 +145,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             <div className="rounded-xl border-2 border-black bg-[#1A1C26] p-3 space-y-1.5 shadow-[2px_2px_0px_#000]">
               <div className="flex items-center justify-between text-[11px] font-mono">
                 <span className="text-zinc-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3 text-[#FFE600]" /> Bonus 10 Menit:
+                  <Clock className="w-3 h-3 text-[#FFE600]" /> {t('bank_next_time_reward')}:
                 </span>
                 <span className="text-[#FFE600] font-['Press_Start_2P'] text-[8px]">{formatted}</span>
               </div>
@@ -154,7 +156,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
                 />
               </div>
               <p className="font-mono text-[9px] text-zinc-400">
-                Dapat <strong className="text-white">+100 Koin</strong> otomatis saat waktu habis!
+                {t('bank_time_reward_sub')}
               </p>
             </div>
           </div>
@@ -162,43 +164,43 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
           {/* Currency Rules Table */}
           <div className="rounded-xl border-2 border-black bg-[#0B0C10] p-3 space-y-2 shadow-[2px_2px_0px_#000]">
             <div className="font-['Press_Start_2P'] text-[7px] text-[#FFE600] uppercase">
-              ATURAN RESMI KOIN ARCADE:
+              {t('bank_rules_heading')}:
             </div>
 
             <div className="space-y-1 font-mono text-[11px] text-zinc-300 divide-y divide-white/5">
               <div className="flex items-center justify-between pt-1">
                 <span className="flex items-center gap-2">
-                  <RefreshCw className="w-3 h-3 text-[#FF2A85]" /> Roll Roulette Trivia:
+                  <RefreshCw className="w-3 h-3 text-[#FF2A85]" /> {language === 'id' ? 'Roll Roulette Trivia:' : 'Trivia Roulette Roll:'}
                 </span>
-                <span className="font-bold text-[#FF2A85]">-10 Koin / spin</span>
+                <span className="font-bold text-[#FF2A85]">{language === 'id' ? '-10 Koin / spin' : '-10 Coins / spin'}</span>
               </div>
 
               <div className="flex items-center justify-between pt-1">
                 <span className="flex items-center gap-2">
-                  <Gamepad2 className="w-3 h-3 text-[#00F5D4]" /> Mini Games (5 Game):
+                  <Gamepad2 className="w-3 h-3 text-[#00F5D4]" /> {language === 'id' ? 'Mini Games (5 Game):' : 'Mini Games (5 Games):'}
                 </span>
-                <span className="font-bold text-[#00F5D4]">100 Poin = +10 Koin</span>
+                <span className="font-bold text-[#00F5D4]">{language === 'id' ? '100 Poin = +10 Koin' : '100 Pts = +10 Coins'}</span>
               </div>
 
               <div className="flex items-center justify-between pt-1">
                 <span className="flex items-center gap-2">
                   <Swords className="w-3 h-3 text-[#FFE600]" /> Trivia Boss Rush:
                 </span>
-                <span className="font-bold text-[#FFE600]">Selesai Boss = +{BOSS_CLEAR_REWARD_COINS} Koin</span>
+                <span className="font-bold text-[#FFE600]">{language === 'id' ? `Selesai Boss = +${BOSS_CLEAR_REWARD_COINS} Koin` : `Boss Clear = +${BOSS_CLEAR_REWARD_COINS} Coins`}</span>
               </div>
 
               <div className="flex items-center justify-between pt-1">
                 <span className="flex items-center gap-2">
-                  <Clock className="w-3 h-3 text-[#9D4EDD]" /> Hadiah Aktif Website:
+                  <Clock className="w-3 h-3 text-[#9D4EDD]" /> {language === 'id' ? 'Hadiah Aktif Website:' : 'Playtime Active Reward:'}
                 </span>
-                <span className="font-bold text-[#9D4EDD]">+100 Koin / 10 menit</span>
+                <span className="font-bold text-[#9D4EDD]">{language === 'id' ? '+100 Koin / 10 menit' : '+100 Coins / 10 mins'}</span>
               </div>
 
               <div className="flex items-center justify-between pt-1">
                 <span className="flex items-center gap-2">
-                  <Sparkles className="w-3 h-3 text-[#00F5D4]" /> Modal Awal Pengguna:
+                  <Sparkles className="w-3 h-3 text-[#00F5D4]" /> {language === 'id' ? 'Modal Awal Pengguna:' : 'Starting User Balance:'}
                 </span>
-                <span className="font-bold text-white">2.000 Koin Gratis</span>
+                <span className="font-bold text-white">{language === 'id' ? '2.000 Koin Gratis' : '2,000 Free Coins'}</span>
               </div>
             </div>
           </div>
@@ -215,7 +217,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             className="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-lg border-2 border-black bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[8px] font-bold shadow-[2px_2px_0px_#000] hover:bg-white transition-colors"
           >
             <Gamepad2 className="w-4 h-4" />
-            <span>MAIN MINI GAME</span>
+            <span>{t('bank_btn_minigame')}</span>
           </button>
 
           <button
@@ -227,7 +229,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             className="flex-1 flex items-center justify-center gap-2 p-2.5 rounded-lg border-2 border-black bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[8px] font-bold shadow-[2px_2px_0px_#000] hover:bg-white hover:text-black transition-colors"
           >
             <Swords className="w-4 h-4" />
-            <span>LAWAN BOSS</span>
+            <span>{t('bank_btn_boss')}</span>
           </button>
         </div>
       </div>
