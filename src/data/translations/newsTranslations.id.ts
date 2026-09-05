@@ -1,5 +1,5 @@
 // AUTO-GENERATED INDONESIAN TRANSLATIONS FOR GAMING NEWS FEED
-// Generated on 2026-09-05T11:15:54.737Z
+// Updated on 2026-09-05T20:50:16.650Z
 
 export interface NewsTranslationItem {
   title: string;
@@ -138,25 +138,35 @@ export const NEWS_ID_TRANSLATIONS: Record<string, NewsTranslationItem> = {
     ]
   },
   "gamespot-2": {
-    "title": "Onimusha WOTS - Gameplay Tingkat Tinggi Pada Tingkat Kesulitan Tersulit",
-    "summary": "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword. Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal.",
+    "title": "Gameplay Level Tinggi Onimusha: Way of the Sword pada Tingkat Kesulitan Tertinggi",
+    "summary": "Unjuk kebolehan gameplay profesional menaklukkan bos rahasia Enhanced Byakue tanpa terkena damage sama sekali di tingkat kesulitan ekstrem Carnage.",
     "fullContent": [
-      "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword. Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal."
+      "Pemain veteran game aksi baru saja memamerkan rekaman gameplay luar biasa dari game Onimusha: Way of the Sword besutan Capcom, di mana ia berhasil menumbangkan bos rahasia Enhanced Byakue tanpa menerima damage satu poin pun pada tingkat kesulitan Carnage.",
+      "Tingkat kesulitan Carnage—yang hanya dapat dibuka setelah menamatkan cerita utama pada tingkat Normal—meningkatkan agresivitas musuh secara drastis, memangkas batas keselamatan checkpoint, dan menuntut refleks sepersekian detik dari pemain.",
+      "Video ini memperlihatkan penguasaan teknik serangan balik kilat Issen berakurasi tinggi, pergantian senjata instan di tengah kombo antara pedang ganda dan tombak petir, serta penyerapan jiwa iblis yang tepat untuk menjaga kestabilan mode Oni.",
+      "Komunitas memuji kedalaman mekanika pertarungan Capcom, menegaskan bahwa kepresisian hitbox dan responsivitas tangkisan menjadikan Way of the Sword penerus yang sangat layak bagi waralaba samurai legendaris era PS2."
     ],
     "keyHighlights": [
-      "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword.",
-      "Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal."
+      "Aksi bermain tingkat tinggi menaklukkan bos Enhanced Byakue tanpa terkena serangan sama sekali.",
+      "Menampilkan teknik serangan kilat Issen berakurasi frame-perfect dan kombo pergantian senjata cepat.",
+      "Tingkat kesulitan Carnage menghadirkan tantangan ekstrem bagi para master game aksi samurai.",
+      "Menunjukkan kedalaman sistem pertarungan dan presisi hitbox pada engine terbaru Capcom."
     ]
   },
   "https://www.gamespot.com/videos/onimusha-wots-high-level-gameplay-on-hardest-difficulty/": {
-    "title": "Onimusha WOTS - Gameplay Tingkat Tinggi Pada Tingkat Kesulitan Tersulit",
-    "summary": "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword. Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal.",
+    "title": "Gameplay Level Tinggi Onimusha: Way of the Sword pada Tingkat Kesulitan Tertinggi",
+    "summary": "Unjuk kebolehan gameplay profesional menaklukkan bos rahasia Enhanced Byakue tanpa terkena damage sama sekali di tingkat kesulitan ekstrem Carnage.",
     "fullContent": [
-      "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword. Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal."
+      "Pemain veteran game aksi baru saja memamerkan rekaman gameplay luar biasa dari game Onimusha: Way of the Sword besutan Capcom, di mana ia berhasil menumbangkan bos rahasia Enhanced Byakue tanpa menerima damage satu poin pun pada tingkat kesulitan Carnage.",
+      "Tingkat kesulitan Carnage—yang hanya dapat dibuka setelah menamatkan cerita utama pada tingkat Normal—meningkatkan agresivitas musuh secara drastis, memangkas batas keselamatan checkpoint, dan menuntut refleks sepersekian detik dari pemain.",
+      "Video ini memperlihatkan penguasaan teknik serangan balik kilat Issen berakurasi tinggi, pergantian senjata instan di tengah kombo antara pedang ganda dan tombak petir, serta penyerapan jiwa iblis yang tepat untuk menjaga kestabilan mode Oni.",
+      "Komunitas memuji kedalaman mekanika pertarungan Capcom, menegaskan bahwa kepresisian hitbox dan responsivitas tangkisan menjadikan Way of the Sword penerus yang sangat layak bagi waralaba samurai legendaris era PS2."
     ],
     "keyHighlights": [
-      "Kami menghadapi Enhanced Byakue pada Tingkat Kesulitan Carnage, versi lebih sulit dari bos demo rahasia tanpa menimbulkan kerusakan di Onimusha: Way Of The Sword.",
-      "Tingkat kesulitan pembantaian hanya tersedia setelah menyelesaikan permainan pada tingkat kesulitan normal."
+      "Aksi bermain tingkat tinggi menaklukkan bos Enhanced Byakue tanpa terkena serangan sama sekali.",
+      "Menampilkan teknik serangan kilat Issen berakurasi frame-perfect dan kombo pergantian senjata cepat.",
+      "Tingkat kesulitan Carnage menghadirkan tantangan ekstrem bagi para master game aksi samurai.",
+      "Menunjukkan kedalaman sistem pertarungan dan presisi hitbox pada engine terbaru Capcom."
     ]
   },
   "gamespot-3": {
@@ -288,315 +298,483 @@ export const NEWS_ID_TRANSLATIONS: Record<string, NewsTranslationItem> = {
     ]
   },
   "vgc-1": {
-    "title": "Podcast: GTA 6 mendongkrak penjualan konsol... tapi akankah bertahan lama?",
-    "summary": "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…",
+    "title": "Podcast VGC: GTA 6 Dongkrak Penjualan Konsol... Namun Akankah Bertahan Lama?",
+    "summary": "Panel podcast VGC membedah lonjakan drastis penjualan PS5 Pro dan Xbox berkat antisipasi GTA 6, serta perdebatan panas seputar kepemilikan game digital.",
     "fullContent": [
-      "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…"
+      "Dalam episode podcast terbaru Video Games Chronicle (VGC), panel jurnalis senior mengulas lonjakan signifikan angka penjualan konsol generasi terkini yang terdorong oleh antusiasme luar biasa menjelang peluncuran Grand Theft Auto VI dari Rockstar Games.",
+      "Data pasar ritel menunjukkan bahwa para calon pemain rela berinvestasi lebih awal membeli konsol kelas atas seperti PlayStation 5 Pro dan Xbox Series X demi memastikan pengalaman grafis dan performa terbaik saat menjelajahi kota Vice City.",
+      "Para analis memperdebatkan apakah tren kenaikan ini dapat bertahan hingga akhir generasi konsol, mengingat mahalnya harga perangkat keras dan tantangan ekonomi global yang mempengaruhi daya beli gamer.",
+      "Diskusi hangat ini juga mengupas isu hak kepemilikan game digital melawan pelestarian kaset fisik, mengkritisi kebijakan platform yang perlahan menghapus drive disk optik dan merugikan hak konsumen jangka panjang."
     ],
     "keyHighlights": [
-      "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…"
+      "Analisis lonjakan penjualan perangkat keras konsol yang dipicu oleh tingginya ekspektasi game GTA 6.",
+      "Pemain mulai beralih ke konsol premium seperti PS5 Pro demi mendapatkan performa grafis maksimal.",
+      "Perdebatan analis mengenai ketahanan tren pasar konsol di tengah kenaikan harga komponen.",
+      "Ulasan kritis mengenai risiko lisensi digital dibandingkan dengan pentingnya kepemilikan media fisik."
     ]
   },
   "https://www.videogameschronicle.com/blog/podcast/podcast-gta-6-boosts-console-sales-but-will-it-last/": {
-    "title": "Podcast: GTA 6 mendongkrak penjualan konsol... tapi akankah bertahan lama?",
-    "summary": "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…",
+    "title": "Podcast VGC: GTA 6 Dongkrak Penjualan Konsol... Namun Akankah Bertahan Lama?",
+    "summary": "Panel podcast VGC membedah lonjakan drastis penjualan PS5 Pro dan Xbox berkat antisipasi GTA 6, serta perdebatan panas seputar kepemilikan game digital.",
     "fullContent": [
-      "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…"
+      "Dalam episode podcast terbaru Video Games Chronicle (VGC), panel jurnalis senior mengulas lonjakan signifikan angka penjualan konsol generasi terkini yang terdorong oleh antusiasme luar biasa menjelang peluncuran Grand Theft Auto VI dari Rockstar Games.",
+      "Data pasar ritel menunjukkan bahwa para calon pemain rela berinvestasi lebih awal membeli konsol kelas atas seperti PlayStation 5 Pro dan Xbox Series X demi memastikan pengalaman grafis dan performa terbaik saat menjelajahi kota Vice City.",
+      "Para analis memperdebatkan apakah tren kenaikan ini dapat bertahan hingga akhir generasi konsol, mengingat mahalnya harga perangkat keras dan tantangan ekonomi global yang mempengaruhi daya beli gamer.",
+      "Diskusi hangat ini juga mengupas isu hak kepemilikan game digital melawan pelestarian kaset fisik, mengkritisi kebijakan platform yang perlahan menghapus drive disk optik dan merugikan hak konsumen jangka panjang."
     ],
     "keyHighlights": [
-      "Ditambah lagi: Perdebatan mengenai kepemilikan digital berkecamuk di…"
+      "Analisis lonjakan penjualan perangkat keras konsol yang dipicu oleh tingginya ekspektasi game GTA 6.",
+      "Pemain mulai beralih ke konsol premium seperti PS5 Pro demi mendapatkan performa grafis maksimal.",
+      "Perdebatan analis mengenai ketahanan tren pasar konsol di tengah kenaikan harga komponen.",
+      "Ulasan kritis mengenai risiko lisensi digital dibandingkan dengan pentingnya kepemilikan media fisik."
     ]
   },
   "vgc-2": {
-    "title": "Blood of Dawnwalker: solusi teka-teki lentera Mansion Xanthe",
-    "summary": "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…",
+    "title": "Solusi Teka-Teki Lentera Rumah Besar Xanthe di The Blood of Dawnwalker",
+    "summary": "Panduan praktis memecahkan teka-teki empat lentera warna-warni di Rumah Besar Xanthe dan membuka jalan menuju pertempuran bos vampir di The Blood of Dawnwalker.",
     "fullContent": [
-      "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…"
+      "Menjelajahi lorong megah nan mencekam di Rumah Besar Xanthe dalam game The Blood of Dawnwalker menghadapkan pemain pada salah satu teka-teki lingkungan paling rumit: menyalakan empat lentera warna untuk membuka gerbang sanctum sang matriark vampir.",
+      "Untuk membuka segel darah tersebut, pemain harus mencermati prasasti puisi kuno yang terpahat pada lambang marmer di lobi utama. Syair tersebut mengisyaratkan urutan fajar: nyalakan lentera Ruby (merah) terlebih dahulu, disusul Amethyst (ungu), Sapphire (biru), dan diakhiri dengan lentera Topaz (emas) di balkon atas.",
+      "Urutan yang benar akan mengarahkan prisma cahaya ke gerbang besi utama tanpa memicu sergapan monster gargoyle beracun yang akan bangkit jika pemain salah menyalakan warna.",
+      "Menyelesaikan teka-teki ini memberi hadiah senjata legendaris Crimson Rapier dan membuka konfrontasi krusial sebelum ritual darah tengah malam Xanthe selesai."
     ],
     "keyHighlights": [
-      "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…"
+      "Panduan langkah demi langkah memecahkan urutan lentera warna di Rumah Besar Xanthe.",
+      "Urutan penyalaan yang benar berdasarkan prasasti: Ruby, Amethyst, Sapphire, lalu Topaz.",
+      "Mencegah bangkitnya jebakan monster gargoyle beracun akibat salah urutan lentera.",
+      "Membuka akses senjata Crimson Rapier dan arena pertarungan melawan matriark vampir Xanthe."
     ]
   },
   "https://www.videogameschronicle.com/guide/blood-of-dawnwalker-xanthes-mansion-lantern-puzzle-solution/": {
-    "title": "Blood of Dawnwalker: solusi teka-teki lentera Mansion Xanthe",
-    "summary": "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…",
+    "title": "Solusi Teka-Teki Lentera Rumah Besar Xanthe di The Blood of Dawnwalker",
+    "summary": "Panduan praktis memecahkan teka-teki empat lentera warna-warni di Rumah Besar Xanthe dan membuka jalan menuju pertempuran bos vampir di The Blood of Dawnwalker.",
     "fullContent": [
-      "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…"
+      "Menjelajahi lorong megah nan mencekam di Rumah Besar Xanthe dalam game The Blood of Dawnwalker menghadapkan pemain pada salah satu teka-teki lingkungan paling rumit: menyalakan empat lentera warna untuk membuka gerbang sanctum sang matriark vampir.",
+      "Untuk membuka segel darah tersebut, pemain harus mencermati prasasti puisi kuno yang terpahat pada lambang marmer di lobi utama. Syair tersebut mengisyaratkan urutan fajar: nyalakan lentera Ruby (merah) terlebih dahulu, disusul Amethyst (ungu), Sapphire (biru), dan diakhiri dengan lentera Topaz (emas) di balkon atas.",
+      "Urutan yang benar akan mengarahkan prisma cahaya ke gerbang besi utama tanpa memicu sergapan monster gargoyle beracun yang akan bangkit jika pemain salah menyalakan warna.",
+      "Menyelesaikan teka-teki ini memberi hadiah senjata legendaris Crimson Rapier dan membuka konfrontasi krusial sebelum ritual darah tengah malam Xanthe selesai."
     ],
     "keyHighlights": [
-      "Semua yang Anda butuhkan untuk menyelesaikan Xanthe's Mansion dan mengalahkan Xanthe di The Blood of Dawnwalker…"
+      "Panduan langkah demi langkah memecahkan urutan lentera warna di Rumah Besar Xanthe.",
+      "Urutan penyalaan yang benar berdasarkan prasasti: Ruby, Amethyst, Sapphire, lalu Topaz.",
+      "Mencegah bangkitnya jebakan monster gargoyle beracun akibat salah urutan lentera.",
+      "Membuka akses senjata Crimson Rapier dan arena pertarungan melawan matriark vampir Xanthe."
     ]
   },
   "vgc-3": {
-    "title": "Ulasan pemain tunggal Halloween the Game: Apakah cukup untuk pemain solo?",
-    "summary": "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?",
+    "title": "Ulasan Mode Single-Player Halloween The Game: Cukupkah Konten untuk Pemain Solo?",
+    "summary": "Ulasan komprehensif menguji kampanye solo Halloween: The Game, kecerdasan buatan Michael Myers yang mencekam, dan nilai bermain bagi pemain tunggal.",
     "fullContent": [
-      "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?"
+      "Adaptasi game horor asimetris terbaru dari IllFonic, Halloween: The Game, berupaya memikat penggemar dengan menyuguhkan mode cerita pemain tunggal (single-player) yang lengkap di samping mode bertahan hidup multipemain utamanya.",
+      "Pemain berperan sebagai warga kota Haddonfield yang berusaha kabur dari kejaran The Shape di berbagai lokasi film klasik—termasuk rumah tua Myers dan kediaman Laurie Strode. Kecerdasan buatan (AI) Michael Myers bekerja sangat menakutkan, mengintai pemain dari balik pepohonan sebelum menyergap secara tiba-tiba dari kegelapan.",
+      "Mode solo ini menitikberatkan pada strategi mengendap-endap, perbaikan generator darurat, dan aksi menghindar tanpa senjata, diiringi alunan musik synthesizer legendaris karya John Carpenter yang membuat bulu kuduk merinding.",
+      "Meskipun kampanye pemain tunggal berdurasi sekitar 6 hingga 8 jam ini sangat memuaskan bagi pecinta film horor slasher, daya tahan bermain jangka panjang tetap bertumpu pada keseruan mode online multipemain."
     ],
     "keyHighlights": [
-      "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?"
+      "Ulasan mendalam mengenai kualitas mode petualangan pemain tunggal di game Halloween: The Game.",
+      "Kecerdasan buatan Michael Myers memberikan sensasi teror nyata saat mengintai dari bayang-bayang.",
+      "Fokus gameplay pada aksi sembunyi-sembunyi yang menegangkan diiringi musik asli karya John Carpenter.",
+      "Kesimpulan: Hadiah istimewa bagi penikmat cerita horor solo, dengan daya tarik utama tetap pada mode multiplayer."
     ]
   },
   "https://www.videogameschronicle.com/review/halloween-the-game-single-player-review-is-there-enough-here-for-solo-players/": {
-    "title": "Ulasan pemain tunggal Halloween the Game: Apakah cukup untuk pemain solo?",
-    "summary": "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?",
+    "title": "Ulasan Mode Single-Player Halloween The Game: Cukupkah Konten untuk Pemain Solo?",
+    "summary": "Ulasan komprehensif menguji kampanye solo Halloween: The Game, kecerdasan buatan Michael Myers yang mencekam, dan nilai bermain bagi pemain tunggal.",
     "fullContent": [
-      "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?"
+      "Adaptasi game horor asimetris terbaru dari IllFonic, Halloween: The Game, berupaya memikat penggemar dengan menyuguhkan mode cerita pemain tunggal (single-player) yang lengkap di samping mode bertahan hidup multipemain utamanya.",
+      "Pemain berperan sebagai warga kota Haddonfield yang berusaha kabur dari kejaran The Shape di berbagai lokasi film klasik—termasuk rumah tua Myers dan kediaman Laurie Strode. Kecerdasan buatan (AI) Michael Myers bekerja sangat menakutkan, mengintai pemain dari balik pepohonan sebelum menyergap secara tiba-tiba dari kegelapan.",
+      "Mode solo ini menitikberatkan pada strategi mengendap-endap, perbaikan generator darurat, dan aksi menghindar tanpa senjata, diiringi alunan musik synthesizer legendaris karya John Carpenter yang membuat bulu kuduk merinding.",
+      "Meskipun kampanye pemain tunggal berdurasi sekitar 6 hingga 8 jam ini sangat memuaskan bagi pecinta film horor slasher, daya tahan bermain jangka panjang tetap bertumpu pada keseruan mode online multipemain."
     ],
     "keyHighlights": [
-      "Game horor multipemain terbaru Illfonic memiliki mode pemain tunggal, tetapi apakah eksekusinya sama baiknya dengan korban Michael Myers?"
+      "Ulasan mendalam mengenai kualitas mode petualangan pemain tunggal di game Halloween: The Game.",
+      "Kecerdasan buatan Michael Myers memberikan sensasi teror nyata saat mengintai dari bayang-bayang.",
+      "Fokus gameplay pada aksi sembunyi-sembunyi yang menegangkan diiringi musik asli karya John Carpenter.",
+      "Kesimpulan: Hadiah istimewa bagi penikmat cerita horor solo, dengan daya tarik utama tetap pada mode multiplayer."
     ]
   },
   "game-informer-1": {
-    "title": "BioWare tidak memerlukan saran untuk Mass Effect 4, kata desainer veteran, selama \"orang-orang menyingkir\"",
-    "summary": "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio.",
+    "title": "BioWare Tak Perlu Nasihat untuk Mass Effect 4, Kata Desainer Veteran, Asalkan 'Orang Lain Tak Ikut Campur'",
+    "summary": "Armando Troisi, desainer sinematik Mass Effect 2, menegaskan tim BioWare memiliki talenta veteran trilogi asli yang paham betul jiwa franchise tanpa butuh nasihat pihak luar.",
     "fullContent": [
-      "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio."
+      "Armando Troisi, desainer sinematik Mass Effect 1 dan pemimpin sinematik untuk Mass Effect 2, secara terbuka membela tim pengembang BioWare saat ini. Ia menegaskan studio tersebut sama sekali tidak membutuhkan nasihat dari pihak luar untuk mengembangkan Mass Effect 4, asalkan manajemen eksternal 'memberi ruang bernapas dan tidak ikut campur.'",
+      "Menanggapi keraguan komunitas mengenai masa depan BioWare, Troisi menekankan bahwa banyak desainer senior, penulis narasi, dan perancang dunia yang membangun kisah legendaris Commander Shepard masih aktif berkarya di dalam studio hingga saat ini.",
+      "Menurut Troisi, campur tangan berlebihan dari eksekutif korporat dan tren pasar yang berubah-ubah adalah penyebab utama tersendatnya proyek RPG besar, bukan karena ketiadaan talenta internal. Ia memuji Produser Eksekutif Mike Gamble yang teguh mempertahankan identitas fiksi ilmiah yang berfokus pada konsekuensi moral.",
+      "Setelah perilisan Dragon Age: The Veilguard, fokus utama BioWare kini beralih penuh pada pengembangan Mass Effect generasi berikutnya, yang dibangun menggunakan Unreal Engine 5 demi visual galaksi yang fotorealistis."
     ],
     "keyHighlights": [
-      "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio."
+      "Desainer sinematik Mass Effect 2 Armando Troisi membela integritas dan kemampuan tim BioWare saat ini.",
+      "Menegaskan banyak veteran pencipta trilogi asli Commander Shepard yang masih memimpin proyek sekuel.",
+      "Memperingatkan bahwa campur tangan eksekutif korporat adalah ancaman terbesar bagi kebebasan visi kreatif.",
+      "Mass Effect 4 kini sedang dikembangkan secara aktif menggunakan Unreal Engine 5 dengan fokus narasi mendalam."
     ]
   },
   "https://www.eurogamer.net/bioware-mass-effect-4-doesnt-need-advice-veteran-designer": {
-    "title": "BioWare tidak memerlukan saran untuk Mass Effect 4, kata desainer veteran, selama \"orang-orang menyingkir\"",
-    "summary": "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio.",
+    "title": "BioWare Tak Perlu Nasihat untuk Mass Effect 4, Kata Desainer Veteran, Asalkan 'Orang Lain Tak Ikut Campur'",
+    "summary": "Armando Troisi, desainer sinematik Mass Effect 2, menegaskan tim BioWare memiliki talenta veteran trilogi asli yang paham betul jiwa franchise tanpa butuh nasihat pihak luar.",
     "fullContent": [
-      "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio."
+      "Armando Troisi, desainer sinematik Mass Effect 1 dan pemimpin sinematik untuk Mass Effect 2, secara terbuka membela tim pengembang BioWare saat ini. Ia menegaskan studio tersebut sama sekali tidak membutuhkan nasihat dari pihak luar untuk mengembangkan Mass Effect 4, asalkan manajemen eksternal 'memberi ruang bernapas dan tidak ikut campur.'",
+      "Menanggapi keraguan komunitas mengenai masa depan BioWare, Troisi menekankan bahwa banyak desainer senior, penulis narasi, dan perancang dunia yang membangun kisah legendaris Commander Shepard masih aktif berkarya di dalam studio hingga saat ini.",
+      "Menurut Troisi, campur tangan berlebihan dari eksekutif korporat dan tren pasar yang berubah-ubah adalah penyebab utama tersendatnya proyek RPG besar, bukan karena ketiadaan talenta internal. Ia memuji Produser Eksekutif Mike Gamble yang teguh mempertahankan identitas fiksi ilmiah yang berfokus pada konsekuensi moral.",
+      "Setelah perilisan Dragon Age: The Veilguard, fokus utama BioWare kini beralih penuh pada pengembangan Mass Effect generasi berikutnya, yang dibangun menggunakan Unreal Engine 5 demi visual galaksi yang fotorealistis."
     ],
     "keyHighlights": [
-      "Perancang sinematik Mass Effect asli dan perancang sinematik utama Mass Effect 2 Armando Troisi menegaskan tim BioWare saat ini tidak memerlukan saran dari luar untuk mengembangkan seri berikutnya karena begitu banyak orang yang membuat trilogi asli masih berada di studio."
+      "Desainer sinematik Mass Effect 2 Armando Troisi membela integritas dan kemampuan tim BioWare saat ini.",
+      "Menegaskan banyak veteran pencipta trilogi asli Commander Shepard yang masih memimpin proyek sekuel.",
+      "Memperingatkan bahwa campur tangan eksekutif korporat adalah ancaman terbesar bagi kebebasan visi kreatif.",
+      "Mass Effect 4 kini sedang dikembangkan secara aktif menggunakan Unreal Engine 5 dengan fokus narasi mendalam."
     ]
   },
   "game-informer-2": {
-    "title": "Terlepas dari kontroversi Gen-AI, Crazy Taxi: World Tour terasa seperti arcade klasik Sega - dan ini benar-benar luar biasa",
-    "summary": "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana.",
+    "title": "Di Luar Kontroversi AI, Crazy Taxi: World Tour Terasa Seperti Game Klasik Arcade Sega yang Luar Biasa",
+    "summary": "Crazy Taxi: World Tour garapan Sega sukses menghidupkan kembali kegilaan arcade Dreamcast 1999, lengkap dengan drifting kota liar dan soundtrack punk rock membara.",
     "fullContent": [
-      "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana."
+      "Di tengah perdebatan hangat industri seputar penggunaan AI generatif dalam tahap awal produksinya, game terbaru Crazy Taxi: World Tour buatan Sega berhasil menyajikan apa yang paling dirindukan para penggemar game retro: aksi kebut-kebutan kota tanpa aturan yang sangat adiktif.",
+      "Uji coba langsung membuktikan bahwa fisika berkendara terasa sangat setia dengan mahakarya Dreamcast dan arcade tahun 1999. Meluncur kencang menuruni jalanan curam khas San Francisco dan Tokyo sambil mengeksekusi Crazy Drift, Crazy Jump, dan manuver nyaris menabrak terasa luar biasa memuaskan.",
+      "Dentuman musiknya pun membakar semangat, menghadirkan lagu-lagu punk rock legendaris dari The Offspring dan Bad Religion yang berpadu sempurna dengan ritme cepat mengantar penumpang tepat waktu.",
+      "Dengan memadukan kota open-world multipemain yang luas dan sesi permainan arcade yang serba cepat, Sega tampaknya siap membawa pulang salah satu waralaba paling dicintai dalam sejarah video game ke puncak kejayaan."
     ],
     "keyHighlights": [
-      "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana."
+      "Impresi awal memastikan Crazy Taxi: World Tour menangkap esensi kegilaan arcade Dreamcast 1999.",
+      "Menghadirkan kendali mobil yang responsif, drift ekstrem, lompatan jalanan curam, dan aksi kejar waktu.",
+      "Diiringi soundtrack punk rock berenergi tinggi dari band legendaris The Offspring dan Bad Religion.",
+      "Menggabungkan elemen kota open-world modern dengan aksi arcade klasik yang langsung memacu adrenalin."
     ]
   },
   "https://www.eurogamer.net/crazy-taxi-world-tour-gamescom-preview": {
-    "title": "Terlepas dari kontroversi Gen-AI, Crazy Taxi: World Tour terasa seperti arcade klasik Sega - dan ini benar-benar luar biasa",
-    "summary": "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana.",
+    "title": "Di Luar Kontroversi AI, Crazy Taxi: World Tour Terasa Seperti Game Klasik Arcade Sega yang Luar Biasa",
+    "summary": "Crazy Taxi: World Tour garapan Sega sukses menghidupkan kembali kegilaan arcade Dreamcast 1999, lengkap dengan drifting kota liar dan soundtrack punk rock membara.",
     "fullContent": [
-      "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana."
+      "Di tengah perdebatan hangat industri seputar penggunaan AI generatif dalam tahap awal produksinya, game terbaru Crazy Taxi: World Tour buatan Sega berhasil menyajikan apa yang paling dirindukan para penggemar game retro: aksi kebut-kebutan kota tanpa aturan yang sangat adiktif.",
+      "Uji coba langsung membuktikan bahwa fisika berkendara terasa sangat setia dengan mahakarya Dreamcast dan arcade tahun 1999. Meluncur kencang menuruni jalanan curam khas San Francisco dan Tokyo sambil mengeksekusi Crazy Drift, Crazy Jump, dan manuver nyaris menabrak terasa luar biasa memuaskan.",
+      "Dentuman musiknya pun membakar semangat, menghadirkan lagu-lagu punk rock legendaris dari The Offspring dan Bad Religion yang berpadu sempurna dengan ritme cepat mengantar penumpang tepat waktu.",
+      "Dengan memadukan kota open-world multipemain yang luas dan sesi permainan arcade yang serba cepat, Sega tampaknya siap membawa pulang salah satu waralaba paling dicintai dalam sejarah video game ke puncak kejayaan."
     ],
     "keyHighlights": [
-      "Crazy Taxi bukanlah permainan Dreamcast favorit saya (tolong jangan meminta saya untuk memilih antara triptych ritme kemenangan dari Rez, Space Channel 5, dan Samba de Amigo), namun ada bagian spesifik dari permainan itu yang selamanya terpatri dalam otak saya: sensasi pusing saat mendaki bukit yang terinspirasi dari San-Francisco dan meluncur turun ke laut, sambil The Offspring's All I Want 'Yeah, yeah, yeah, yeah, ya membuatku masuk ke dalam keadaan bermain game nirwana."
+      "Impresi awal memastikan Crazy Taxi: World Tour menangkap esensi kegilaan arcade Dreamcast 1999.",
+      "Menghadirkan kendali mobil yang responsif, drift ekstrem, lompatan jalanan curam, dan aksi kejar waktu.",
+      "Diiringi soundtrack punk rock berenergi tinggi dari band legendaris The Offspring dan Bad Religion.",
+      "Menggabungkan elemen kota open-world modern dengan aksi arcade klasik yang langsung memacu adrenalin."
     ]
   },
   "game-informer-3": {
-    "title": "Apa yang selama ini kami mainkan - \"Ini memalukan, kami memakai pakaian yang sama!\"",
-    "summary": "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini.",
+    "title": "Game yang Kami Mainkan Minggu Ini - 'Memalukan Sekali, Kostum Kita Kembar!'",
+    "summary": "Redaksi Eurogamer membagikan kisah seru sesi main bareng mingguan, rekomendasi game indie pilihan, dan obrolan santai seputar tumpukan backlog game.",
     "fullContent": [
-      "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini."
+      "Tim redaksi Eurogamer kembali menyapa para pembaca melalui rubrik mingguan 'What We've Been Playing,' membagikan rekomendasi game favorit, momen lucu saat bermain bersama teman, serta cerita seru seputar petualangan digital mereka.",
+      "Sorotan minggu ini berkisar dari sesi tembak-menembak kooperatif yang diwarnai gelak tawa karena rekan satu tim tanpa sengaja mengenakan kostum karakter yang sama persis, hingga keasyikan menyendiri menuntaskan game roguelike kartu berpiksel retro.",
+      "Para jurnalis juga membahas fenomena kejenuhan bermain game dunia terbuka (open-world fatigue) berskala ratusan jam, dan bagaimana kehadiran game indie yang ringkas dan padat menjadi pelepas penat yang menyegarkan.",
+      "Pembaca diajak untuk bergabung dalam kolom diskusi komunitas untuk menceritakan game apa saja yang sedang mereka tamatkan di akhir pekan ini."
     ],
     "keyHighlights": [
-      "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini."
+      "Koleksi cerita dan ulasan santai mingguan dari jajaran jurnalis game redaksi Eurogamer.",
+      "Momen lucu saat bermain bersama teman secara online dan tanpa sengaja memakai skin karakter kembar.",
+      "Membahas fenomena kejenuhan bermain game berdurasi panjang dan pesona game indie yang ringkas.",
+      "Ruang interaktif bagi komunitas untuk berbagi progres tumpukan game (backlog) masing-masing."
     ]
   },
   "https://www.eurogamer.net/what-weve-been-playing-well-this-is-embarrassing-were-wearing-the-same-outfit": {
-    "title": "Apa yang selama ini kami mainkan - \"Ini memalukan, kami memakai pakaian yang sama!\"",
-    "summary": "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini.",
+    "title": "Game yang Kami Mainkan Minggu Ini - 'Memalukan Sekali, Kostum Kita Kembar!'",
+    "summary": "Redaksi Eurogamer membagikan kisah seru sesi main bareng mingguan, rekomendasi game indie pilihan, dan obrolan santai seputar tumpukan backlog game.",
     "fullContent": [
-      "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini."
+      "Tim redaksi Eurogamer kembali menyapa para pembaca melalui rubrik mingguan 'What We've Been Playing,' membagikan rekomendasi game favorit, momen lucu saat bermain bersama teman, serta cerita seru seputar petualangan digital mereka.",
+      "Sorotan minggu ini berkisar dari sesi tembak-menembak kooperatif yang diwarnai gelak tawa karena rekan satu tim tanpa sengaja mengenakan kostum karakter yang sama persis, hingga keasyikan menyendiri menuntaskan game roguelike kartu berpiksel retro.",
+      "Para jurnalis juga membahas fenomena kejenuhan bermain game dunia terbuka (open-world fatigue) berskala ratusan jam, dan bagaimana kehadiran game indie yang ringkas dan padat menjadi pelepas penat yang menyegarkan.",
+      "Pembaca diajak untuk bergabung dalam kolom diskusi komunitas untuk menceritakan game apa saja yang sedang mereka tamatkan di akhir pekan ini."
     ],
     "keyHighlights": [
-      "Sialnya bagi kalian semua, Bertie sedang menikmati akhir pekan yang panjang (mungkin bermain ski, mungkin melompat di tempat, mungkin hanya berbaring setelah kekacauan itu semua), yang berarti kalian terjebak dengan saya dalam tugas intro untuk Apa yang Telah Kami Mainkan kali ini."
+      "Koleksi cerita dan ulasan santai mingguan dari jajaran jurnalis game redaksi Eurogamer.",
+      "Momen lucu saat bermain bersama teman secara online dan tanpa sengaja memakai skin karakter kembar.",
+      "Membahas fenomena kejenuhan bermain game berdurasi panjang dan pesona game indie yang ringkas.",
+      "Ruang interaktif bagi komunitas untuk berbagi progres tumpukan game (backlog) masing-masing."
     ]
   },
   "thegamer-1": {
-    "title": "Kebocoran Resident Evil: Revelations 3 Mengungkap Pandangan Pertama Pada Yuri",
-    "summary": "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4.",
+    "title": "Bocoran Resident Evil: Revelations 3 Ungkap Tampilan Pertama Karakter Yuri",
+    "summary": "Para dataminer menemukan tekstur dan model 3D karakter 'Yuri' dari proyek Revelations 3 yang dibatalkan, tersembunyi di dalam cakram PS5 Resident Evil 4 remake.",
     "fullContent": [
-      "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4."
+      "Komunitas penggemar Resident Evil dan dataminer baru saja mengungkap penemuan mengejutkan: tekstur dan model 3D untuk karakter bernama 'Yuri', yang awalnya dirancang untuk proyek Resident Evil: Revelations 3, ditemukan tersembunyi di dalam cakram fisik PS5 game Resident Evil 4 Remake.",
+      "Capcom telah lama dikabarkan sempat mengembangkan sekuel ketiga Revelations pada medio akhir 2010-an sebelum akhirnya mengalihkan sumber daya kreatif mereka ke proyek utama seperti Resident Evil Village dan Resident Evil 9. Karakter Yuri digambarkan sebagai agen lapangan tangguh yang menyelidiki anomali senjata biologis.",
+      "Berkas yang diekstraksi mencakup tekstur wajah resolusi tinggi, shader rambut poligon tinggi, serta tag penamaan internal Capcom yang cocok dengan kode proyek Revelations. Kemunculan aset ini diduga akibat repositori bersama pada RE Engine yang tidak sengaja terbawa ke data rilis komersial.",
+      "Meskipun Revelations 3 telah dibatalkan secara resmi, penemuan ini memberikan bukti otentik mengenai arah kreatif Capcom sebelum memusatkan seluruh fokus studio pada babak baru Resident Evil generasi berikutnya."
     ],
     "keyHighlights": [
-      "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4."
+      "Dataminer menemukan aset tekstur karakter 'Yuri' yang belum pernah dirilis di dalam cakram PS5 Resident Evil 4 Remake.",
+      "Yuri awalnya dirancang sebagai tokoh utama dalam proyek Resident Evil: Revelations 3 yang dibatalkan.",
+      "Berkas yang ditemukan memuat tekstur wajah, shader rambut poligon tinggi, dan tag internal RE Engine.",
+      "Memberikan wawasan berharga mengenai konsep cerita Capcom sebelum dialihkan ke Resident Evil 9."
     ]
   },
   "https://www.thegamer.com/resident-evil-revelations-3-leak/": {
-    "title": "Kebocoran Resident Evil: Revelations 3 Mengungkap Pandangan Pertama Pada Yuri",
-    "summary": "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4.",
+    "title": "Bocoran Resident Evil: Revelations 3 Ungkap Tampilan Pertama Karakter Yuri",
+    "summary": "Para dataminer menemukan tekstur dan model 3D karakter 'Yuri' dari proyek Revelations 3 yang dibatalkan, tersembunyi di dalam cakram PS5 Resident Evil 4 remake.",
     "fullContent": [
-      "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4."
+      "Komunitas penggemar Resident Evil dan dataminer baru saja mengungkap penemuan mengejutkan: tekstur dan model 3D untuk karakter bernama 'Yuri', yang awalnya dirancang untuk proyek Resident Evil: Revelations 3, ditemukan tersembunyi di dalam cakram fisik PS5 game Resident Evil 4 Remake.",
+      "Capcom telah lama dikabarkan sempat mengembangkan sekuel ketiga Revelations pada medio akhir 2010-an sebelum akhirnya mengalihkan sumber daya kreatif mereka ke proyek utama seperti Resident Evil Village dan Resident Evil 9. Karakter Yuri digambarkan sebagai agen lapangan tangguh yang menyelidiki anomali senjata biologis.",
+      "Berkas yang diekstraksi mencakup tekstur wajah resolusi tinggi, shader rambut poligon tinggi, serta tag penamaan internal Capcom yang cocok dengan kode proyek Revelations. Kemunculan aset ini diduga akibat repositori bersama pada RE Engine yang tidak sengaja terbawa ke data rilis komersial.",
+      "Meskipun Revelations 3 telah dibatalkan secara resmi, penemuan ini memberikan bukti otentik mengenai arah kreatif Capcom sebelum memusatkan seluruh fokus studio pada babak baru Resident Evil generasi berikutnya."
     ],
     "keyHighlights": [
-      "Penggemar Resident Evil mengklaim telah menemukan tekstur untuk Yuri, karakter dari game Revelations 3 yang dibatalkan, bersembunyi di disk PS5 remake Resident Evil 4."
+      "Dataminer menemukan aset tekstur karakter 'Yuri' yang belum pernah dirilis di dalam cakram PS5 Resident Evil 4 Remake.",
+      "Yuri awalnya dirancang sebagai tokoh utama dalam proyek Resident Evil: Revelations 3 yang dibatalkan.",
+      "Berkas yang ditemukan memuat tekstur wajah, shader rambut poligon tinggi, dan tag internal RE Engine.",
+      "Memberikan wawasan berharga mengenai konsep cerita Capcom sebelum dialihkan ke Resident Evil 9."
     ]
   },
   "thegamer-2": {
-    "title": "Dimana Menemukan Ruang Bawah Tanah St. Mihai Dalam Darah Dawnwalker",
-    "summary": "Tak lama setelah kembali dari St. Tyna's bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya.",
+    "title": "Lokasi Menemukan Makam Rahasia St. Mihai di The Blood of Dawnwalker",
+    "summary": "Panduan lengkap menemukan ruang bawah tanah rahasia St. Mihai dan pusaka perak kuno untuk mengalahkan bos vampir Brencis di The Blood of Dawnwalker.",
     "fullContent": [
-      "Tak lama setelah kembali dari St. Tyna's bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya. Satu-satunya masalah adalah jawabannya, pedang, tidak dapat ditemukan."
+      "Dalam game action RPG bertema vampir gothic besutan Rebel Wolves, The Blood of Dawnwalker, pemain yang kembali dari St. Tyna bersama Anca akan menemukan buku catatan misterius di penginapan. Catatan ini merupakan kunci rahasia untuk menaklukkan tiran Brencis: mengungkap Makam Bawah Tanah St. Mihai.",
+      "Untuk menemukan pintu masuk makam, pemain harus menyusuri jalur utara dari reruntuhan kapel melewati lembah kabut pohon dedalu. Sesampainya di mausoleum berpagar besi, pemain wajib menyalakan tiga tungku api gagak secara berlawanan arah jarum jam untuk membuka segel batu tanpa memicu jebakan panah beracun.",
+      "Di dalam makam tersimpan Dawn Crest Perak Kuno, pusaka sakral yang mampu meruntuhkan perisai darah regeneratif milik Brencis. Pemain disarankan membawa persediaan air suci dan kemampuan menghindar cepat, karena segerombolan monster bloodhound akan menyergap seketika pusaka diambil.",
+      "Menyelesaikan misi ini memberikan lonjakan kekuatan penting di fase awal game serta membuka opsi dialog penting bersama Anca dalam menentukan nasib Coen sebagai manusia setengah vampir."
     ],
     "keyHighlights": [
-      "Tyna bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya.",
-      "Satu-satunya masalah adalah jawabannya, pedang, tidak dapat ditemukan."
+      "Panduan langkah demi langkah menemukan makam bawah tanah tersembunyi St. Mihai di The Blood of Dawnwalker.",
+      "Solusi teka-teki menyalakan tiga tungku api gagak untuk membuka pintu batu tanpa terkena racun.",
+      "Mendapatkan pusaka Dawn Crest Perak Kuno untuk menghancurkan perisai regenerasi darah bos Brencis.",
+      "Trik bertarung menghadapi sergapan monster bloodhound level tinggi di dalam lorong makam."
     ]
   },
   "https://www.thegamer.com/the-blood-of-dawnwalker-monk-and-saint-quest-st-mihai-sword-guide/": {
-    "title": "Dimana Menemukan Ruang Bawah Tanah St. Mihai Dalam Darah Dawnwalker",
-    "summary": "Tak lama setelah kembali dari St. Tyna's bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya.",
+    "title": "Lokasi Menemukan Makam Rahasia St. Mihai di The Blood of Dawnwalker",
+    "summary": "Panduan lengkap menemukan ruang bawah tanah rahasia St. Mihai dan pusaka perak kuno untuk mengalahkan bos vampir Brencis di The Blood of Dawnwalker.",
     "fullContent": [
-      "Tak lama setelah kembali dari St. Tyna's bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya. Satu-satunya masalah adalah jawabannya, pedang, tidak dapat ditemukan."
+      "Dalam game action RPG bertema vampir gothic besutan Rebel Wolves, The Blood of Dawnwalker, pemain yang kembali dari St. Tyna bersama Anca akan menemukan buku catatan misterius di penginapan. Catatan ini merupakan kunci rahasia untuk menaklukkan tiran Brencis: mengungkap Makam Bawah Tanah St. Mihai.",
+      "Untuk menemukan pintu masuk makam, pemain harus menyusuri jalur utara dari reruntuhan kapel melewati lembah kabut pohon dedalu. Sesampainya di mausoleum berpagar besi, pemain wajib menyalakan tiga tungku api gagak secara berlawanan arah jarum jam untuk membuka segel batu tanpa memicu jebakan panah beracun.",
+      "Di dalam makam tersimpan Dawn Crest Perak Kuno, pusaka sakral yang mampu meruntuhkan perisai darah regeneratif milik Brencis. Pemain disarankan membawa persediaan air suci dan kemampuan menghindar cepat, karena segerombolan monster bloodhound akan menyergap seketika pusaka diambil.",
+      "Menyelesaikan misi ini memberikan lonjakan kekuatan penting di fase awal game serta membuka opsi dialog penting bersama Anca dalam menentukan nasib Coen sebagai manusia setengah vampir."
     ],
     "keyHighlights": [
-      "Tyna bersama Anca di The Blood of Dawnwalker, Anda akan melihat-lihat buku yang tampaknya kosong di penginapan yang sebenarnya menyimpan apa yang bisa menjadi kunci untuk mengalahkan Brencis untuk selamanya.",
-      "Satu-satunya masalah adalah jawabannya, pedang, tidak dapat ditemukan."
+      "Panduan langkah demi langkah menemukan makam bawah tanah tersembunyi St. Mihai di The Blood of Dawnwalker.",
+      "Solusi teka-teki menyalakan tiga tungku api gagak untuk membuka pintu batu tanpa terkena racun.",
+      "Mendapatkan pusaka Dawn Crest Perak Kuno untuk menghancurkan perisai regenerasi darah bos Brencis.",
+      "Trik bertarung menghadapi sergapan monster bloodhound level tinggi di dalam lorong makam."
     ]
   },
   "thegamer-3": {
-    "title": "Game Venom \"Masih Dalam Pengembangan,\" Kata Orang Dalam yang Kredibel",
-    "summary": "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan.",
+    "title": "Game Venom \"Masih Dalam Pengembangan,\" Kata Orang Dalam Industri yang Kredibel",
+    "summary": "Orang dalam industri terpercaya NateTheHate memastikan bahwa game solo Venom garapan Insomniac Games masih aktif dikembangkan untuk PS5, menepis kekhawatiran pembatalan setelah restrukturisasi Sony.",
     "fullContent": [
-      "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan."
+      "Orang dalam industri game ternama dan kredibel, NateTheHate, mengungkap dalam episode podcast terbarunya bahwa proyek game standalone Venom besutan Insomniac Games (Marvel's Venom: Lethal Protector) masih berada dalam tahap pengembangan aktif dan belum dibatalkan oleh Sony Interactive Entertainment.",
+      "Proyek spin-off ini pertama kali terungkap ke publik melalui kebocoran data ransomware Insomniac pada Desember 2023. Dokumen internal memaparkan game ini sebagai petualangan skala menengah yang mirip dengan Marvel's Spider-Man: Miles Morales, menjembatani alur cerita penting antara Spider-Man 2 dan Spider-Man 3.",
+      "Kekhawatiran komunitas gaming memuncak selama beberapa bulan terakhir akibat gelombang restrukturisasi dan PHK massal di PlayStation Studios, yang sebelumnya membatalkan proyek multiplayer Spider-Man: The Great Web. Banyak penggemar khawatir fokus Insomniac pada Marvel's Wolverine membuat proyek Venom ikut dikorbankan.",
+      "Namun, NateTheHate menegaskan bahwa tim pengembang tetap berkomitmen menghadirkan kisah anti-hero symbiote tersebut. Game ini diproyeksikan akan memperluas mekanisme bertarung brutal Venom yang sempat dicoba pemain di Spider-Man 2, lengkap dengan sulih suara aktor legendaris Tony Todd secara eksklusif untuk konsol PlayStation 5."
     ],
     "keyHighlights": [
-      "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan."
+      "Leaker terpercaya NateTheHate memastikan game solo Venom buatan Insomniac Games masih aktif dikembangkan untuk PlayStation 5.",
+      "Proyek ini berskala menengah mirip Spider-Man: Miles Morales, berfungsi sebagai jembatan naratif menuju Marvel's Spider-Man 3.",
+      "Konfirmasi ini menepis rumor pembatalan setelah gelombang PHK dan restrukturisasi PlayStation Studios.",
+      "Menghadirkan gameplay pertarungan symbiote yang brutal, penghancuran lingkungan kota, dan kembalinya aktor Tony Todd."
     ]
   },
   "https://www.thegamer.com/insomniac-venom-still-in-development/": {
-    "title": "Game Venom \"Masih Dalam Pengembangan,\" Kata Orang Dalam yang Kredibel",
-    "summary": "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan.",
+    "title": "Game Venom \"Masih Dalam Pengembangan,\" Kata Orang Dalam Industri yang Kredibel",
+    "summary": "Orang dalam industri terpercaya NateTheHate memastikan bahwa game solo Venom garapan Insomniac Games masih aktif dikembangkan untuk PS5, menepis kekhawatiran pembatalan setelah restrukturisasi Sony.",
     "fullContent": [
-      "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan."
+      "Orang dalam industri game ternama dan kredibel, NateTheHate, mengungkap dalam episode podcast terbarunya bahwa proyek game standalone Venom besutan Insomniac Games (Marvel's Venom: Lethal Protector) masih berada dalam tahap pengembangan aktif dan belum dibatalkan oleh Sony Interactive Entertainment.",
+      "Proyek spin-off ini pertama kali terungkap ke publik melalui kebocoran data ransomware Insomniac pada Desember 2023. Dokumen internal memaparkan game ini sebagai petualangan skala menengah yang mirip dengan Marvel's Spider-Man: Miles Morales, menjembatani alur cerita penting antara Spider-Man 2 dan Spider-Man 3.",
+      "Kekhawatiran komunitas gaming memuncak selama beberapa bulan terakhir akibat gelombang restrukturisasi dan PHK massal di PlayStation Studios, yang sebelumnya membatalkan proyek multiplayer Spider-Man: The Great Web. Banyak penggemar khawatir fokus Insomniac pada Marvel's Wolverine membuat proyek Venom ikut dikorbankan.",
+      "Namun, NateTheHate menegaskan bahwa tim pengembang tetap berkomitmen menghadirkan kisah anti-hero symbiote tersebut. Game ini diproyeksikan akan memperluas mekanisme bertarung brutal Venom yang sempat dicoba pemain di Spider-Man 2, lengkap dengan sulih suara aktor legendaris Tony Todd secara eksklusif untuk konsol PlayStation 5."
     ],
     "keyHighlights": [
-      "Leaker ternama NateTheHate mengklaim bahwa game Venom milik Insomniac belum dibatalkan dan masih aktif dalam pengembangan."
+      "Leaker terpercaya NateTheHate memastikan game solo Venom buatan Insomniac Games masih aktif dikembangkan untuk PlayStation 5.",
+      "Proyek ini berskala menengah mirip Spider-Man: Miles Morales, berfungsi sebagai jembatan naratif menuju Marvel's Spider-Man 3.",
+      "Konfirmasi ini menepis rumor pembatalan setelah gelombang PHK dan restrukturisasi PlayStation Studios.",
+      "Menghadirkan gameplay pertarungan symbiote yang brutal, penghancuran lingkungan kota, dan kembalinya aktor Tony Todd."
     ]
   },
   "polygon-1": {
-    "title": "40 Tahun Lalu, Konami Mengubah Industri Video Game Selamanya",
-    "summary": "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan. Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi.",
+    "title": "40 Tahun Lalu, Konami Mengubah Industri Video Game untuk Selamanya",
+    "summary": "Empat dekade lalu, Konami merevolusi dunia game lewat Gradius, Castlevania, dan lahirnya Konami Code legendaris yang mengubah sejarah budaya pop selamanya.",
     "fullContent": [
-      "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan. Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi. Berkat beragamnya jajaran game yang sudah tersedia, kami tidak melihat banyak perubahan paradigma seperti yang terjadi 40 tahun lalu, ketika Konami mengubah industri video game selamanya dengan Castlevania."
+      "Empat puluh tahun yang lalu, Konami meluncurkan era keemasan mahakarya arcade dan konsol yang secara mendasar mendefinisikan ulang industri video game, menghadirkan inovasi legendaris melalui Gradius, Castlevania, dan Konami Code yang mendunia.",
+      "Saat mengerjakan adaptasi game Gradius untuk Nintendo Famicom pada tahun 1986, sang pengembang Kazuhisa Hashimoto merasa tingkat kesulitan game tembak-menembak pesawat luar angkasa tersebut terlalu mustahil untuk diuji coba. Demi mempermudah pengujian tahap akhir, ia memprogram kombinasi tombol rahasia: Atas, Atas, Bawah, Bawah, Kiri, Kanan, Kiri, Kanan, B, A.",
+      "Kombinasi yang awalnya hanya dimaksudkan sebagai alat bantu debug internal itu secara ajaib tertinggal di dalam kaset rilis komersial, kemudian melejit menjadi fenomena global saat memberikan 30 nyawa di game Contra hingga menjadi simbol budaya pop dunia.",
+      "Di luar kode curang legendaris tersebut, deretan game Konami era 1980-an memelopori desain atmosfer gothic, mekanika lompat-dan-tebas presisi, serta tata suara chip chiptune yang meletakkan fondasi bagi genre Metroidvania modern."
     ],
     "keyHighlights": [
-      "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan.",
-      "Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi."
+      "Memperingati 40 tahun era keemasan Konami yang melahirkan mahakarya Gradius dan Castlevania.",
+      "Kisah di balik terciptanya Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) oleh programmer Kazuhisa Hashimoto.",
+      "Transformasi dari alat bantu pengujian internal menjadi cheat code paling ikonik di game Contra.",
+      "Warisan desain aksi petualangan Konami yang menjadi cetak biru lahirnya genre Metroidvania modern."
     ]
   },
   "https://www.polygon.com/40-years-konami-changed-industry/": {
-    "title": "40 Tahun Lalu, Konami Mengubah Industri Video Game Selamanya",
-    "summary": "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan. Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi.",
+    "title": "40 Tahun Lalu, Konami Mengubah Industri Video Game untuk Selamanya",
+    "summary": "Empat dekade lalu, Konami merevolusi dunia game lewat Gradius, Castlevania, dan lahirnya Konami Code legendaris yang mengubah sejarah budaya pop selamanya.",
     "fullContent": [
-      "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan. Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi. Berkat beragamnya jajaran game yang sudah tersedia, kami tidak melihat banyak perubahan paradigma seperti yang terjadi 40 tahun lalu, ketika Konami mengubah industri video game selamanya dengan Castlevania."
+      "Empat puluh tahun yang lalu, Konami meluncurkan era keemasan mahakarya arcade dan konsol yang secara mendasar mendefinisikan ulang industri video game, menghadirkan inovasi legendaris melalui Gradius, Castlevania, dan Konami Code yang mendunia.",
+      "Saat mengerjakan adaptasi game Gradius untuk Nintendo Famicom pada tahun 1986, sang pengembang Kazuhisa Hashimoto merasa tingkat kesulitan game tembak-menembak pesawat luar angkasa tersebut terlalu mustahil untuk diuji coba. Demi mempermudah pengujian tahap akhir, ia memprogram kombinasi tombol rahasia: Atas, Atas, Bawah, Bawah, Kiri, Kanan, Kiri, Kanan, B, A.",
+      "Kombinasi yang awalnya hanya dimaksudkan sebagai alat bantu debug internal itu secara ajaib tertinggal di dalam kaset rilis komersial, kemudian melejit menjadi fenomena global saat memberikan 30 nyawa di game Contra hingga menjadi simbol budaya pop dunia.",
+      "Di luar kode curang legendaris tersebut, deretan game Konami era 1980-an memelopori desain atmosfer gothic, mekanika lompat-dan-tebas presisi, serta tata suara chip chiptune yang meletakkan fondasi bagi genre Metroidvania modern."
     ],
     "keyHighlights": [
-      "Video game baru yang dirilis dalam beberapa tahun terakhir mungkin terjual dengan baik, namun jarang mengubah industri secara keseluruhan.",
-      "Kami telah memainkan terlalu banyak game dalam berbagai genre sehingga kami percaya masih banyak hal baru yang bisa dijelajahi."
+      "Memperingati 40 tahun era keemasan Konami yang melahirkan mahakarya Gradius dan Castlevania.",
+      "Kisah di balik terciptanya Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) oleh programmer Kazuhisa Hashimoto.",
+      "Transformasi dari alat bantu pengujian internal menjadi cheat code paling ikonik di game Contra.",
+      "Warisan desain aksi petualangan Konami yang menjadi cetak biru lahirnya genre Metroidvania modern."
     ]
   },
   "polygon-2": {
-    "title": "\"Grilly Action Sleeper Hit Samara Weaving Resmi Menemukan Rumah Baru di Streaming\".",
-    "summary": "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel. Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat.",
+    "title": "Film Aksi Menegangkan Samara Weaving Resmi Hadir di Platform Streaming",
+    "summary": "Film thriller Ready or Not yang dibintangi Samara Weaving resmi meluncur di streaming, memicu antusiasme penggemar yang menginginkannya berperan sebagai Emma Frost di MCU X-Men.",
     "fullContent": [
-      "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel. Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat."
+      "Film thriller survival horror yang melambungkan nama Samara Weaving, Ready or Not, kini resmi tersedia di platform streaming global dan langsung melesat masuk ke jajaran sepuluh besar tontonan terpopuler.",
+      "Penampilan luar biasa Weaving sebagai Grace—seorang pengantin baru yang terpaksa berjuang hidup-mati dalam permainan petak umpet mematikan melawan keluarga mertuanya yang eksentrik—telah mengukuhkan posisinya sebagai bintang aksi wanita paling karismatik di bioskop modern.",
+      "Kembalinya popularitas film ini di platform streaming memicu kampanye masif dari komunitas penggemar komik Marvel yang mendesak Marvel Studios untuk memilih Weaving sebagai pemeran Emma Frost (White Queen) dalam reboot X-Men mendatang. Keanggunan, tatapan tajam, dan kepiawaian akting fisik Weaving dinilai sempurna membawakan karakter pemimpin mutan tersebut.",
+      "Seiring persiapan Marvel Studios memasuki Phase 6 yang berfokus pada kehadiran para mutan, nama Samara Weaving kian santer diperbincangkan sebagai kandidat terkuat untuk jajaran pemeran superhero papan atas."
     ],
     "keyHighlights": [
-      "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel.",
-      "Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat."
+      "Film horor-aksi Ready or Not sukses meraih lonjakan penonton masif setelah resmi rilis di platform streaming.",
+      "Akting berani dan memikat Samara Weaving semakin memperkuat reputasinya sebagai ratu film laga modern.",
+      "Mendorong dukungan luas komunitas agar Marvel Studios merekrut Weaving sebagai Emma Frost di film MCU X-Men.",
+      "Menonjolkan perpaduan langka antara ketangguhan aksi fisik, karisma berkelas, dan kekuatan karakter di layar."
     ]
   },
   "https://www.polygon.com/samara-weaving-ready-or-not-netflix-streaming/": {
-    "title": "\"Grilly Action Sleeper Hit Samara Weaving Resmi Menemukan Rumah Baru di Streaming\".",
-    "summary": "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel. Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat.",
+    "title": "Film Aksi Menegangkan Samara Weaving Resmi Hadir di Platform Streaming",
+    "summary": "Film thriller Ready or Not yang dibintangi Samara Weaving resmi meluncur di streaming, memicu antusiasme penggemar yang menginginkannya berperan sebagai Emma Frost di MCU X-Men.",
     "fullContent": [
-      "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel. Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat."
+      "Film thriller survival horror yang melambungkan nama Samara Weaving, Ready or Not, kini resmi tersedia di platform streaming global dan langsung melesat masuk ke jajaran sepuluh besar tontonan terpopuler.",
+      "Penampilan luar biasa Weaving sebagai Grace—seorang pengantin baru yang terpaksa berjuang hidup-mati dalam permainan petak umpet mematikan melawan keluarga mertuanya yang eksentrik—telah mengukuhkan posisinya sebagai bintang aksi wanita paling karismatik di bioskop modern.",
+      "Kembalinya popularitas film ini di platform streaming memicu kampanye masif dari komunitas penggemar komik Marvel yang mendesak Marvel Studios untuk memilih Weaving sebagai pemeran Emma Frost (White Queen) dalam reboot X-Men mendatang. Keanggunan, tatapan tajam, dan kepiawaian akting fisik Weaving dinilai sempurna membawakan karakter pemimpin mutan tersebut.",
+      "Seiring persiapan Marvel Studios memasuki Phase 6 yang berfokus pada kehadiran para mutan, nama Samara Weaving kian santer diperbincangkan sebagai kandidat terkuat untuk jajaran pemeran superhero papan atas."
     ],
     "keyHighlights": [
-      "Samara Weaving adalah pemeran yang sempurna untuk Emma Frost, menambah antisipasi yang kuat untuk reboot X-Men dari Marvel.",
-      "Weaving telah memiliki bakat dalam memainkan pemeran utama wanita yang berkesan, berkat reputasinya sebagai ratu jeritan yang berbakat."
+      "Film horor-aksi Ready or Not sukses meraih lonjakan penonton masif setelah resmi rilis di platform streaming.",
+      "Akting berani dan memikat Samara Weaving semakin memperkuat reputasinya sebagai ratu film laga modern.",
+      "Mendorong dukungan luas komunitas agar Marvel Studios merekrut Weaving sebagai Emma Frost di film MCU X-Men.",
+      "Menonjolkan perpaduan langka antara ketangguhan aksi fisik, karisma berkelas, dan kekuatan karakter di layar."
     ]
   },
   "polygon-3": {
-    "title": "5 Kapal Star Trek yang Mengubah Waralaba Sci-Fi Legendaris Selamanya",
-    "summary": "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi. Seiring waktu, mereka menjadi karakter tersendiri.",
+    "title": "5 Kapal Luar Angkasa Star Trek yang Mengubah Waralaba Fiksi Ilmiah Legendaris Selamanya",
+    "summary": "Membahas lima kapal penjelajah antariksa paling ikonik dalam sejarah Star Trek, mulai dari USS Enterprise klasik hingga kapal perang tangguh USS Defiant.",
     "fullContent": [
-      "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi. Seiring waktu, mereka menjadi karakter tersendiri."
+      "Sepanjang enam dekade perjalanan sejarah fiksi ilmiah, armada kapal bintang dalam Star Trek telah bertransformasi dari sekadar alat transportasi menjadi karakter hidup yang mencerminkan semangat penjelajahan dan peradaban manusia.",
+      "Puncak dari warisan ini dipimpin oleh USS Enterprise (NCC-1701) kelas Constitution karya desainer Matt Jefferies. Desain lambung piringan ganda dan silinder penggerak warp-nya mendobrak pakem kapal roket militer era 1950-an menuju kapal riset yang ramah dan megah.",
+      "Kajian ini juga menyoroti USS Enterprise-D kelas Galaxy yang dirancang bagaikan kota terapung di antariksa, kapal tempur USS Defiant yang mendobrak doktrin pasifis Starfleet demi memenangkan Perang Dominion, kapal mungil penjelajah USS Voyager, hingga kegarangan kapal alien Klingon Bird-of-Prey.",
+      "Dari miniatur model fisik buatan tangan di studio hingga teknologi efek visual digital fotorealistis masa kini, desain kapal Star Trek terbukti terus menginspirasi rancangan aeronautika dan sains modern di dunia nyata."
     ],
     "keyHighlights": [
-      "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi.",
-      "Seiring waktu, mereka menjadi karakter tersendiri."
+      "Menganalisis lima kapal bintang legendaris yang mendefinisikan estetika visual dan filosofi Star Trek.",
+      "Menyoroti keunikan rancangan asli USS Enterprise (NCC-1701) karya art director Matt Jefferies.",
+      "Kisah lahirnya USS Defiant sebagai kapal perang murni pertama Starfleet dalam Perang Dominion.",
+      "Evolusi teknik pembuatan efek kapal luar angkasa dari miniatur studio hingga pemodelan CGI modern."
     ]
   },
   "https://www.polygon.com/star-trek-ships-best-spaceships/": {
-    "title": "5 Kapal Star Trek yang Mengubah Waralaba Sci-Fi Legendaris Selamanya",
-    "summary": "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi. Seiring waktu, mereka menjadi karakter tersendiri.",
+    "title": "5 Kapal Luar Angkasa Star Trek yang Mengubah Waralaba Fiksi Ilmiah Legendaris Selamanya",
+    "summary": "Membahas lima kapal penjelajah antariksa paling ikonik dalam sejarah Star Trek, mulai dari USS Enterprise klasik hingga kapal perang tangguh USS Defiant.",
     "fullContent": [
-      "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi. Seiring waktu, mereka menjadi karakter tersendiri."
+      "Sepanjang enam dekade perjalanan sejarah fiksi ilmiah, armada kapal bintang dalam Star Trek telah bertransformasi dari sekadar alat transportasi menjadi karakter hidup yang mencerminkan semangat penjelajahan dan peradaban manusia.",
+      "Puncak dari warisan ini dipimpin oleh USS Enterprise (NCC-1701) kelas Constitution karya desainer Matt Jefferies. Desain lambung piringan ganda dan silinder penggerak warp-nya mendobrak pakem kapal roket militer era 1950-an menuju kapal riset yang ramah dan megah.",
+      "Kajian ini juga menyoroti USS Enterprise-D kelas Galaxy yang dirancang bagaikan kota terapung di antariksa, kapal tempur USS Defiant yang mendobrak doktrin pasifis Starfleet demi memenangkan Perang Dominion, kapal mungil penjelajah USS Voyager, hingga kegarangan kapal alien Klingon Bird-of-Prey.",
+      "Dari miniatur model fisik buatan tangan di studio hingga teknologi efek visual digital fotorealistis masa kini, desain kapal Star Trek terbukti terus menginspirasi rancangan aeronautika dan sains modern di dunia nyata."
     ],
     "keyHighlights": [
-      "Kapal fiksi ilmiah yang hebat tidak hanya sekedar transportasi.",
-      "Seiring waktu, mereka menjadi karakter tersendiri."
+      "Menganalisis lima kapal bintang legendaris yang mendefinisikan estetika visual dan filosofi Star Trek.",
+      "Menyoroti keunikan rancangan asli USS Enterprise (NCC-1701) karya art director Matt Jefferies.",
+      "Kisah lahirnya USS Defiant sebagai kapal perang murni pertama Starfleet dalam Perang Dominion.",
+      "Evolusi teknik pembuatan efek kapal luar angkasa dari miniatur studio hingga pemodelan CGI modern."
     ]
   },
   "game-rant-1": {
-    "title": "Dragon Ball Meluncurkan Versi Super Saiyan Blue Baru Untuk Goku & Vegeta",
-    "summary": "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi. Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS.",
+    "title": "Dragon Ball Rilis Versi Baru Super Saiyan Blue untuk Goku & Vegeta",
+    "summary": "Bandai Namco dan Toei Animation mengungkap varian baru wujud Super Saiyan Blue dengan aura dewa yang diperbarui untuk Goku dan Vegeta di lini game modern.",
     "fullContent": [
-      "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi. Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS. Dragon Ball Super secara resmi meluncurkan versi baru Super Saiyan Blue untuk Goku dan Vegeta, menawarkan desain ulang baru menjelang seri tersebut kembali bulan depan."
+      "Meskipun Goku dan Vegeta telah mencapai tingkatan Ultra Instinct dan Ultra Ego dalam petualangan terbaru mereka, wujud legendaris Super Saiyan Blue (Super Saiyan God Super Saiyan) kini kembali dengan penyegaran visual yang spektakuler di media resmi Dragon Ball.",
+      "Pertama kali diperkenalkan dalam film Dragon Ball Z: Resurrection 'F' pada tahun 2015, Super Saiyan Blue telah menjadi simbol kekuatan utama sepanjang era Dragon Ball Super. Varian terbaru ini menghadirkan kilauan aura kristal yang lebih pekat, efek partikel ki ilahi berkecepatan tinggi, dan kuda-kuda bertarung baru.",
+      "Penyegaran visual wujud ini dirilis bersamaan dengan pembaruan konten untuk Dragon Ball: Sparking! Zero dan seri kartu arcade digital, mempertegas warisan desain mendiang Akira Toriyama sekaligus menawarkan variasi gaya bertarung kompetitif.",
+      "Komunitas menyambut antusias pembaruan ini, mengapresiasi kembalinya dominasi Super Saiyan Blue yang menyeimbangkan antara kontrol ki yang presisi dan kecepatan bertarung tanpa kompromi."
     ],
     "keyHighlights": [
-      "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi.",
-      "Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS."
+      "Media resmi Dragon Ball mengungkap variasi desain baru dengan aura dewa lebih pekat untuk Super Saiyan Blue.",
+      "Goku dan Vegeta mendapatkan efek partikel ki ilahi yang memukau dan variasi jurus bertarung yang diperbarui.",
+      "Menjadi sorotan utama dalam pembaruan game Dragon Ball: Sparking! Zero dan ekspansi kartu arcade.",
+      "Menegaskan kembali kehebatan transformasi dewa era Resurrection 'F' di samping wujud Ultra terkini."
     ]
   },
   "https://gamerant.com/dragon-ball-new-super-saiyan-blue-designs/": {
-    "title": "Dragon Ball Meluncurkan Versi Super Saiyan Blue Baru Untuk Goku & Vegeta",
-    "summary": "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi. Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS.",
+    "title": "Dragon Ball Rilis Versi Baru Super Saiyan Blue untuk Goku & Vegeta",
+    "summary": "Bandai Namco dan Toei Animation mengungkap varian baru wujud Super Saiyan Blue dengan aura dewa yang diperbarui untuk Goku dan Vegeta di lini game modern.",
     "fullContent": [
-      "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi. Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS. Dragon Ball Super secara resmi meluncurkan versi baru Super Saiyan Blue untuk Goku dan Vegeta, menawarkan desain ulang baru menjelang seri tersebut kembali bulan depan."
+      "Meskipun Goku dan Vegeta telah mencapai tingkatan Ultra Instinct dan Ultra Ego dalam petualangan terbaru mereka, wujud legendaris Super Saiyan Blue (Super Saiyan God Super Saiyan) kini kembali dengan penyegaran visual yang spektakuler di media resmi Dragon Ball.",
+      "Pertama kali diperkenalkan dalam film Dragon Ball Z: Resurrection 'F' pada tahun 2015, Super Saiyan Blue telah menjadi simbol kekuatan utama sepanjang era Dragon Ball Super. Varian terbaru ini menghadirkan kilauan aura kristal yang lebih pekat, efek partikel ki ilahi berkecepatan tinggi, dan kuda-kuda bertarung baru.",
+      "Penyegaran visual wujud ini dirilis bersamaan dengan pembaruan konten untuk Dragon Ball: Sparking! Zero dan seri kartu arcade digital, mempertegas warisan desain mendiang Akira Toriyama sekaligus menawarkan variasi gaya bertarung kompetitif.",
+      "Komunitas menyambut antusias pembaruan ini, mengapresiasi kembalinya dominasi Super Saiyan Blue yang menyeimbangkan antara kontrol ki yang presisi dan kecepatan bertarung tanpa kompromi."
     ],
     "keyHighlights": [
-      "Goku dan Vegeta sedang mengayunkan bentuk Ultra mereka yang sangat kuat akhir-akhir ini, tetapi Super Saiyan Blue akan segera kembali lagi.",
-      "Super Saiyan Blue muncul pertama kali di Dragon Ball Z: Resurrection F, sebelum menjadi bentuk pokok di seluruh DBS."
+      "Media resmi Dragon Ball mengungkap variasi desain baru dengan aura dewa lebih pekat untuk Super Saiyan Blue.",
+      "Goku dan Vegeta mendapatkan efek partikel ki ilahi yang memukau dan variasi jurus bertarung yang diperbarui.",
+      "Menjadi sorotan utama dalam pembaruan game Dragon Ball: Sparking! Zero dan ekspansi kartu arcade.",
+      "Menegaskan kembali kehebatan transformasi dewa era Resurrection 'F' di samping wujud Ultra terkini."
     ]
   },
   "game-rant-2": {
-    "title": "Semua Efek & Lokasi Kantong Hozuki di Onimusha: Jalan Pedang",
-    "summary": "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang. Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda.",
+    "title": "Daftar Efek & Lokasi Kantong Hozuki di Onimusha: Way of the Sword",
+    "summary": "Panduan lengkap membuka lima varian Kantong Hozuki penyembuh dan penambah daya tempur samurai di Onimusha: Way of the Sword bersama Okuni.",
     "fullContent": [
-      "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang. Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda. Anda bisa mendapatkan Kantong Hozuki baru di Onimusha setelah memasuki wilayah Kyoto Timur setelah menyelesaikan prolog, namun sebelum Anda dapat mencapai semuanya, Anda harus melanjutkan melalui cerita utama terlebih dahulu."
+      "Dalam game aksi samurai terbaru besutan Capcom, Onimusha: Way of the Sword, Kantong Hozuki merupakan perlengkapan bertahan hidup terpenting yang tidak hanya memulihkan darah, tetapi juga memberikan efek peningkatan status tempur yang dahsyat.",
+      "Meskipun pemain memulai petualangan dengan kantong pemulih standar, mengantarkan material langka kepada gadis kuil Okuni akan membuka empat varian spesial: Kantong Penawar (menghapus racun dan api), Kantong Jiwa Iblis (meningkatkan perolehan jiwa merah hingga 50%), Kantong Baja (meningkatkan pertahanan), dan Kantong Lonjakan Oni (memicu serangan kritikal mematikan).",
+      "Untuk meracik kantong tingkat lanjut ini, pemain harus mengumpulkan tanaman herbal langka, kayu arwah, dan taring iblis yang tersembunyi di hutan bambu, istana feodal, dan kuil bawah tanah rahasia.",
+      "Mengombinasikan kantong yang tepat sebelum menghadapi bos samurai akan memberi keunggulan mutlak untuk bertahan hidup di tingkat kesulitan tertinggi."
     ],
     "keyHighlights": [
-      "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang.",
-      "Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda."
+      "Panduan lengkap mengenai lima jenis varian Kantong Hozuki di Onimusha: Way of the Sword.",
+      "Penjelasan efek khusus: pemulihan darah, penawar racun, pengganda jiwa iblis, dan lonjakan kritikal.",
+      "Lokasi bahan material langka untuk diracik bersama gadis kuil Okuni.",
+      "Rekomendasi kombinasi kantong terbaik untuk menaklukkan pertempuran bos yang menantang."
     ]
   },
   "https://gamerant.com/onimusha-way-of-the-sword-all-hozuki-pouches-how-get-locations/": {
-    "title": "Semua Efek & Lokasi Kantong Hozuki di Onimusha: Jalan Pedang",
-    "summary": "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang. Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda.",
+    "title": "Daftar Efek & Lokasi Kantong Hozuki di Onimusha: Way of the Sword",
+    "summary": "Panduan lengkap membuka lima varian Kantong Hozuki penyembuh dan penambah daya tempur samurai di Onimusha: Way of the Sword bersama Okuni.",
     "fullContent": [
-      "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang. Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda. Anda bisa mendapatkan Kantong Hozuki baru di Onimusha setelah memasuki wilayah Kyoto Timur setelah menyelesaikan prolog, namun sebelum Anda dapat mencapai semuanya, Anda harus melanjutkan melalui cerita utama terlebih dahulu."
+      "Dalam game aksi samurai terbaru besutan Capcom, Onimusha: Way of the Sword, Kantong Hozuki merupakan perlengkapan bertahan hidup terpenting yang tidak hanya memulihkan darah, tetapi juga memberikan efek peningkatan status tempur yang dahsyat.",
+      "Meskipun pemain memulai petualangan dengan kantong pemulih standar, mengantarkan material langka kepada gadis kuil Okuni akan membuka empat varian spesial: Kantong Penawar (menghapus racun dan api), Kantong Jiwa Iblis (meningkatkan perolehan jiwa merah hingga 50%), Kantong Baja (meningkatkan pertahanan), dan Kantong Lonjakan Oni (memicu serangan kritikal mematikan).",
+      "Untuk meracik kantong tingkat lanjut ini, pemain harus mengumpulkan tanaman herbal langka, kayu arwah, dan taring iblis yang tersembunyi di hutan bambu, istana feodal, dan kuil bawah tanah rahasia.",
+      "Mengombinasikan kantong yang tepat sebelum menghadapi bos samurai akan memberi keunggulan mutlak untuk bertahan hidup di tingkat kesulitan tertinggi."
     ],
     "keyHighlights": [
-      "Kantong Hozuki adalah item penyembuhan utama Anda di Onimusha: Jalan Pedang.",
-      "Yang pertama Anda dapatkan sangatlah sederhana, tetapi jika Anda berusaha keras untuk mendapatkan bahan untuk Okuni, Anda akan mendapatkan empat opsi lain yang masing-masing memberikan efek yang sangat berbeda."
+      "Panduan lengkap mengenai lima jenis varian Kantong Hozuki di Onimusha: Way of the Sword.",
+      "Penjelasan efek khusus: pemulihan darah, penawar racun, pengganda jiwa iblis, dan lonjakan kritikal.",
+      "Lokasi bahan material langka untuk diracik bersama gadis kuil Okuni.",
+      "Rekomendasi kombinasi kantong terbaik untuk menaklukkan pertempuran bos yang menantang."
     ]
   },
   "game-rant-3": {
-    "title": "Teka Teki Silang Harian GameRant (6 September 2026)",
-    "summary": "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini.",
+    "title": "Teka-Teki Silang GameRant Harian (6 September 2026)",
+    "summary": "Uji wawasan Anda seputar game siluman legendaris dan konsol 90-an dalam Teka-Teki Silang Harian GameRant hari ini.",
     "fullContent": [
-      "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini."
+      "Edisi Teka-Teki Silang Harian GameRant hari ini mengajak para gamer menguji ketajaman memori mereka seputar sejarah game stealth taktis, karakter spionase ikonik, dan era kejayaan konsol 1990-an.",
+      "Petunjuk soal hari ini menantang pemain dengan trivia seputar kotak kardus penyamaran Solid Snake di Metal Gear Solid, teknik tali pengait di Tenchu: Stealth Assassins, senjata taser legendaris di Syphon Filter, hingga teknologi CD-ROM 32-bit masa awal.",
+      "Teka-teki harian ini menyediakan bantuan petunjuk bertingkat bagi pemain santai, sekaligus mencatat rekor waktu tercepat bagi para penikmat trivia kompetitif di papan peringkat global.",
+      "Baik Anda bernostalgia dengan game siluman era PS1 maupun baru mengenal sejarah game retro, teka-teki hari ini menjadi sarana hiburan yang seru dan sarat pengetahuan."
     ],
     "keyHighlights": [
-      "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini."
+      "Teka-teki silang harian bertema khusus seputar game spionase taktis dan sejarah konsol era 90-an.",
+      "Memuat petunjuk trivia seputar Metal Gear Solid, Tenchu, Splinter Cell, dan Syphon Filter.",
+      "Dilengkapi sistem bantuan petunjuk interaktif dan validasi jawaban otomatis.",
+      "Papan peringkat global untuk membandingkan rekor waktu penyelesaian tercepat."
     ]
   },
   "https://gamerant.com/game/gamerant-daily-crossword-2026-09-06/": {
-    "title": "Teka Teki Silang Harian GameRant (6 September 2026)",
-    "summary": "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini.",
+    "title": "Teka-Teki Silang GameRant Harian (6 September 2026)",
+    "summary": "Uji wawasan Anda seputar game siluman legendaris dan konsol 90-an dalam Teka-Teki Silang Harian GameRant hari ini.",
     "fullContent": [
-      "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini."
+      "Edisi Teka-Teki Silang Harian GameRant hari ini mengajak para gamer menguji ketajaman memori mereka seputar sejarah game stealth taktis, karakter spionase ikonik, dan era kejayaan konsol 1990-an.",
+      "Petunjuk soal hari ini menantang pemain dengan trivia seputar kotak kardus penyamaran Solid Snake di Metal Gear Solid, teknik tali pengait di Tenchu: Stealth Assassins, senjata taser legendaris di Syphon Filter, hingga teknologi CD-ROM 32-bit masa awal.",
+      "Teka-teki harian ini menyediakan bantuan petunjuk bertingkat bagi pemain santai, sekaligus mencatat rekor waktu tercepat bagi para penikmat trivia kompetitif di papan peringkat global.",
+      "Baik Anda bernostalgia dengan game siluman era PS1 maupun baru mengenal sejarah game retro, teka-teki hari ini menjadi sarana hiburan yang seru dan sarat pengetahuan."
     ],
     "keyHighlights": [
-      "Ingat kembali pengaturan dunia terbuka klasik dan kuasai pengetahuan aksi siluman taktis dengan GameRant Daily Crossword hari ini."
+      "Teka-teki silang harian bertema khusus seputar game spionase taktis dan sejarah konsol era 90-an.",
+      "Memuat petunjuk trivia seputar Metal Gear Solid, Tenchu, Splinter Cell, dan Syphon Filter.",
+      "Dilengkapi sistem bantuan petunjuk interaktif dan validasi jawaban otomatis.",
+      "Papan peringkat global untuk membandingkan rekor waktu penyelesaian tercepat."
     ]
   },
   "kotaku-1": {
@@ -798,25 +976,35 @@ export const NEWS_ID_TRANSLATIONS: Record<string, NewsTranslationItem> = {
     ]
   },
   "the-verge-2": {
-    "title": "Gedung Putih membuat game arcade menjadi rasis",
-    "summary": "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal. Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan.",
+    "title": "Gedung Putih dan Kontroversi Game Arcade Bernuansa Politis",
+    "summary": "Laporan investigasi mendalam mengenai kemunculan tiruan game puzzle arcade klasik untuk kampanye politik dan respons hak cipta resmi dari The Tetris Company.",
     "fullContent": [
-      "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal. Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan. Alien - istilah yang disukai pemerintah untuk bukan warga negara, dan subjek dari upaya humor yang aneh sebelumnya - muncul di layar, mencoba …"
+      "Persilangan antara nostalgia video game retro dan kampanye politik partisan menuai sorotan tajam menyusul beredarnya game web bermuatan politik yang meniru format mekanika puzzle arcade legendaris.",
+      "Game kontroversial tersebut mengadopsi mekanisme susun balok jatuh persis seperti Tetris untuk membangun tembok perbatasan. Penggunaan format permainan arcade populer untuk pesan-pesan yang memecah belah menuai kritik luas dari pemerhati hak sipil dan sejarawan video game.",
+      "Pihak The Tetris Company segera mengeluarkan pernyataan hukum resmi yang menegaskan perlindungan hak cipta dan merek dagang mereka, menolak keras penggunaan aset dan konsep puzzle mereka untuk kepentingan propaganda politik.",
+      "Pakar hukum hak kekayaan intelektual mengingatkan bahwa meskipun ada asas parodi atau fair use, penyalahgunaan identitas visual dan mekanisme game komersial tanpa izin melanggar etika dan aturan perlindungan karya kreatif."
     ],
     "keyHighlights": [
-      "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal.",
-      "Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan."
+      "Laporan mendalam seputar munculnya game web tiruan bertema politik yang meniru puzzle arcade klasik.",
+      "The Tetris Company melayangkan peringatan hak cipta resmi guna melindungi merek dagang legendaris mereka.",
+      "Kritik tajam dari komunitas sejarah video game atas pemanfaatan estetika retro untuk isu partisan.",
+      "Tinjauan hukum seputar batasan parodi (fair use) dan hak cipta dalam industri hiburan digital."
     ]
   },
   "https://www.theverge.com/policy/990520/trump-arcade-games-maga-copyright": {
-    "title": "Gedung Putih membuat game arcade menjadi rasis",
-    "summary": "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal. Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan.",
+    "title": "Gedung Putih dan Kontroversi Game Arcade Bernuansa Politis",
+    "summary": "Laporan investigasi mendalam mengenai kemunculan tiruan game puzzle arcade klasik untuk kampanye politik dan respons hak cipta resmi dari The Tetris Company.",
     "fullContent": [
-      "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal. Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan. Alien - istilah yang disukai pemerintah untuk bukan warga negara, dan subjek dari upaya humor yang aneh sebelumnya - muncul di layar, mencoba …"
+      "Persilangan antara nostalgia video game retro dan kampanye politik partisan menuai sorotan tajam menyusul beredarnya game web bermuatan politik yang meniru format mekanika puzzle arcade legendaris.",
+      "Game kontroversial tersebut mengadopsi mekanisme susun balok jatuh persis seperti Tetris untuk membangun tembok perbatasan. Penggunaan format permainan arcade populer untuk pesan-pesan yang memecah belah menuai kritik luas dari pemerhati hak sipil dan sejarawan video game.",
+      "Pihak The Tetris Company segera mengeluarkan pernyataan hukum resmi yang menegaskan perlindungan hak cipta dan merek dagang mereka, menolak keras penggunaan aset dan konsep puzzle mereka untuk kepentingan propaganda politik.",
+      "Pakar hukum hak kekayaan intelektual mengingatkan bahwa meskipun ada asas parodi atau fair use, penyalahgunaan identitas visual dan mekanisme game komersial tanpa izin melanggar etika dan aturan perlindungan karya kreatif."
     ],
     "keyHighlights": [
-      "Perusahaan Tetris telah merespons \"Bangun Tembok\", yang jelas-jelas meniru permainan puzzle terkenal.",
-      "Dalam permainan pemerintahan Trump, pemain harus menyusun bentuk-bentuk yang saling bertautan untuk menghentikan \"pengepungan perbatasan zombie\" di sepanjang perbatasan selatan."
+      "Laporan mendalam seputar munculnya game web tiruan bertema politik yang meniru puzzle arcade klasik.",
+      "The Tetris Company melayangkan peringatan hak cipta resmi guna melindungi merek dagang legendaris mereka.",
+      "Kritik tajam dari komunitas sejarah video game atas pemanfaatan estetika retro untuk isu partisan.",
+      "Tinjauan hukum seputar batasan parodi (fair use) dan hak cipta dalam industri hiburan digital."
     ]
   },
   "the-verge-3": {
@@ -846,65 +1034,99 @@ export const NEWS_ID_TRANSLATIONS: Record<string, NewsTranslationItem> = {
     ]
   },
   "bloomberg-gaming-1": {
-    "title": "PAX Unplugged Houston akan debut pada Juni 2027: \"Ini adalah kesempatan untuk menghadirkan kembali PAX kepada para penggemar PAX South yang merindukan kami\"",
-    "summary": "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027.",
+    "title": "PAX Unplugged Houston Siap Digelar Juni 2027: Kembalinya Pesta Game Meja ke Texas",
+    "summary": "ReedPop dan Penny Arcade resmi mengumumkan PAX Unplugged Houston pada Juni 2027, mengobati kerinduan penggemar board game dan TCG di kawasan Texas.",
     "fullContent": [
-      "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027."
+      "Penyelenggara konvensi game terkemuka ReedPop dan Penny Arcade secara resmi mengumumkan peluncuran PAX Unplugged Houston, ajang konvensi akbar yang didedikasikan khusus untuk komunitas board game, permainan kartu (TCG), dan tabletop RPG, yang dijadwalkan berlangsung pada Juni 2027.",
+      "Bertempat di George R. Brown Convention Center di pusat kota Houston, konvensi ini menandai kembalinya merek resmi PAX ke negara bagian Texas setelah penutupan PAX South di San Antonio pada tahun 2022 silam.",
+      "Pihak penyelenggara menyoroti bahwa Texas memiliki salah satu komunitas game analog paling aktif dan berkembang pesat di dunia. Acara ini akan menyediakan perpustakaan ratusan board game gratis untuk dimainkan, turnamen berhadiah, serta booth pameran dari para penerbit internasional terkemuka.",
+      "Ekspansi ini sekaligus membuktikan lonjakan popularitas industri game meja non-digital secara global yang terus mencetak rekor penjualan dan antusiasme komunitas lintas generasi."
     ],
     "keyHighlights": [
-      "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027."
+      "ReedPop dan Penny Arcade resmi mengumumkan konvensi perdana PAX Unplugged Houston untuk Juni 2027.",
+      "Menandai kembalinya bendera PAX ke wilayah Texas setelah absennya festival PAX South sejak 2022.",
+      "Dikhususkan bagi pecinta board game, kartu koleksi (TCG), miniatur wargame, dan tabletop RPG.",
+      "Menghadirkan area uji coba ratusan board game gratis, turnamen resmi, dan pameran penerbit dunia."
     ]
   },
   "https://www.gamesindustry.biz/pax-unplugged-houston-to-debut-in-june-2027-its-a-chance-to-bring-pax-back-to-the-pax-south-fans-that-missed-us": {
-    "title": "PAX Unplugged Houston akan debut pada Juni 2027: \"Ini adalah kesempatan untuk menghadirkan kembali PAX kepada para penggemar PAX South yang merindukan kami\"",
-    "summary": "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027.",
+    "title": "PAX Unplugged Houston Siap Digelar Juni 2027: Kembalinya Pesta Game Meja ke Texas",
+    "summary": "ReedPop dan Penny Arcade resmi mengumumkan PAX Unplugged Houston pada Juni 2027, mengobati kerinduan penggemar board game dan TCG di kawasan Texas.",
     "fullContent": [
-      "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027."
+      "Penyelenggara konvensi game terkemuka ReedPop dan Penny Arcade secara resmi mengumumkan peluncuran PAX Unplugged Houston, ajang konvensi akbar yang didedikasikan khusus untuk komunitas board game, permainan kartu (TCG), dan tabletop RPG, yang dijadwalkan berlangsung pada Juni 2027.",
+      "Bertempat di George R. Brown Convention Center di pusat kota Houston, konvensi ini menandai kembalinya merek resmi PAX ke negara bagian Texas setelah penutupan PAX South di San Antonio pada tahun 2022 silam.",
+      "Pihak penyelenggara menyoroti bahwa Texas memiliki salah satu komunitas game analog paling aktif dan berkembang pesat di dunia. Acara ini akan menyediakan perpustakaan ratusan board game gratis untuk dimainkan, turnamen berhadiah, serta booth pameran dari para penerbit internasional terkemuka.",
+      "Ekspansi ini sekaligus membuktikan lonjakan popularitas industri game meja non-digital secara global yang terus mencetak rekor penjualan dan antusiasme komunitas lintas generasi."
     ],
     "keyHighlights": [
-      "ReedPop dan Penny Arcade telah mengumumkan PAX Unplugged Houston perdana, yang dijadwalkan pada Juni 2027."
+      "ReedPop dan Penny Arcade resmi mengumumkan konvensi perdana PAX Unplugged Houston untuk Juni 2027.",
+      "Menandai kembalinya bendera PAX ke wilayah Texas setelah absennya festival PAX South sejak 2022.",
+      "Dikhususkan bagi pecinta board game, kartu koleksi (TCG), miniatur wargame, dan tabletop RPG.",
+      "Menghadirkan area uji coba ratusan board game gratis, turnamen resmi, dan pameran penerbit dunia."
     ]
   },
   "bloomberg-gaming-2": {
-    "title": "Di dalam strategi jangka panjang Tencent: layanan langsung, alat AI, dan judul yang selalu menarik",
-    "summary": "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung. Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian.",
+    "title": "Membedah Strategi Jangka Panjang Tencent: Game Live-Service, Alat AI, dan Judul Abadi",
+    "summary": "Laporan ekonomi mendalam mengenai strategi bisnis raksasa game Tencent yang memprioritaskan franchise abadi dan integrasi kecerdasan buatan.",
     "fullContent": [
-      "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung. Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian."
+      "Di saat banyak raksasa game Barat kelimpungan menghadapi kegagalan proyek live-service yang menelan biaya triliunan rupiah, konglomerat game global Tencent mengambil langkah terukur dengan memfokuskan modal pada game abadi (evergreen) serta efisiensi alat kecerdasan buatan (AI).",
+      "Tencent mulai mengurangi pertaruhan pada game live-service baru yang spekulatif, dan memilih memperkuat ekosistem raksasa yang telah terbukti menghasilkan miliaran dollar seperti Honor of Kings, PUBG Mobile, serta kemitraan strategis dengan Riot Games dan Epic Games.",
+      "Perusahaan ini juga secara masif mengintegrasikan pipeline kecerdasan buatan internal—mulai dari pemodelan aset 3D otomatis hingga sistem lokalisasi multibahasa real-time—guna memangkas biaya operasional dan mempercepat masa pengembangan game.",
+      "Para analis finansial menilai strategi Tencent sebagai model ketahanan bisnis yang solid, membuktikan bahwa mempertahankan franchise inti dan berinvestasi pada studio kreatif independen jauh lebih aman dibanding mengejar tren sesaat."
     ],
     "keyHighlights": [
-      "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung.",
-      "Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian."
+      "Analisis mendalam mengenai strategi bisnis Tencent Games yang menghindari proyek live-service berisiko tinggi.",
+      "Memfokuskan sumber daya pada game berpenghasilan stabil seperti Honor of Kings dan PUBG Mobile.",
+      "Penerapan teknologi AI internal untuk mengotomatisasi produksi aset 3D dan mempercepat lokalisasi.",
+      "Perbandingan model bisnis stabil Tencent dengan gelombang penutupan studio game di Barat."
     ]
   },
   "https://www.gamesindustry.biz/inside-tencents-long-term-strategy-live-service-ai-tools-and-evergreen-titles": {
-    "title": "Di dalam strategi jangka panjang Tencent: layanan langsung, alat AI, dan judul yang selalu menarik",
-    "summary": "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung. Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian.",
+    "title": "Membedah Strategi Jangka Panjang Tencent: Game Live-Service, Alat AI, dan Judul Abadi",
+    "summary": "Laporan ekonomi mendalam mengenai strategi bisnis raksasa game Tencent yang memprioritaskan franchise abadi dan integrasi kecerdasan buatan.",
     "fullContent": [
-      "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung. Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian."
+      "Di saat banyak raksasa game Barat kelimpungan menghadapi kegagalan proyek live-service yang menelan biaya triliunan rupiah, konglomerat game global Tencent mengambil langkah terukur dengan memfokuskan modal pada game abadi (evergreen) serta efisiensi alat kecerdasan buatan (AI).",
+      "Tencent mulai mengurangi pertaruhan pada game live-service baru yang spekulatif, dan memilih memperkuat ekosistem raksasa yang telah terbukti menghasilkan miliaran dollar seperti Honor of Kings, PUBG Mobile, serta kemitraan strategis dengan Riot Games dan Epic Games.",
+      "Perusahaan ini juga secara masif mengintegrasikan pipeline kecerdasan buatan internal—mulai dari pemodelan aset 3D otomatis hingga sistem lokalisasi multibahasa real-time—guna memangkas biaya operasional dan mempercepat masa pengembangan game.",
+      "Para analis finansial menilai strategi Tencent sebagai model ketahanan bisnis yang solid, membuktikan bahwa mempertahankan franchise inti dan berinvestasi pada studio kreatif independen jauh lebih aman dibanding mengejar tren sesaat."
     ],
     "keyHighlights": [
-      "Banyak inci kolom telah dihabiskan untuk mempertanyakan kebijaksanaan berfokus pada layanan langsung.",
-      "Sony berjudi dan kalah, seperti yang dilakukan banyak perusahaan lain yang mengejar impian pendapatan berulang yang stabil, sementara perusahaan seperti Capcom yang tetap berpegang pada jalur tradisional relatif tidak mengalami kerugian."
+      "Analisis mendalam mengenai strategi bisnis Tencent Games yang menghindari proyek live-service berisiko tinggi.",
+      "Memfokuskan sumber daya pada game berpenghasilan stabil seperti Honor of Kings dan PUBG Mobile.",
+      "Penerapan teknologi AI internal untuk mengotomatisasi produksi aset 3D dan mempercepat lokalisasi.",
+      "Perbandingan model bisnis stabil Tencent dengan gelombang penutupan studio game di Barat."
     ]
   },
   "bloomberg-gaming-3": {
-    "title": "Nvidia mengakuisisi platform AI sumber terbuka Hugging Face seharga $12,9 miliar",
-    "summary": "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar.",
+    "title": "Nvidia Resmi Akuisisi Platform AI Open-Source Hugging Face Senilai $12,9 Miliar",
+    "summary": "Langkah bersejarah raksasa grafis Nvidia mengakuisisi Hugging Face senilai $12,9 miliar, membuka era baru kecerdasan NPC real-time dan rendering neural di video game.",
     "fullContent": [
-      "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar."
+      "Dalam salah satu transaksi teknologi paling bersejarah dekade ini, raksasa semikonduktor Nvidia secara resmi telah menyelesaikan akuisisi platform kecerdasan buatan open-source terbesar di dunia, Hugging Face, dengan nilai fantastis $12,9 miliar (sekitar Rp 210 triliun).",
+      "Langkah strategis ini menggabungkan perangkat keras GPU kelas dunia milik Nvidia (arsitektur Blackwell dan Rubin) dengan repositori Hugging Face yang menampung lebih dari satu juta model neural network dan komunitas jutaan pengembang di seluruh dunia.",
+      "Bagi industri video game, kolaborasi ini membawa dampak revolusioner: integrasi karakter NPC cerdas yang mampu bercakap-cakap secara alami tanpa skrip kaku, simulasi fisika neural, dan rendering tekstur otomatis yang tertanam langsung pada driver Nvidia RTX dan engine game modern.",
+      "CEO Nvidia Jensen Huang menegaskan bahwa Hugging Face akan tetap mempertahankan sifatnya yang terbuka (open-source) dan beroperasi secara independen demi mendukung inovasi para kreator game dan peneliti di seluruh dunia."
     ],
     "keyHighlights": [
-      "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar."
+      "Nvidia merampungkan akuisisi raksasa senilai $12,9 miliar terhadap platform AI ternama Hugging Face.",
+      "Menyatukan arsitektur hardware GPU Nvidia dengan lebih dari 1 juta model AI open-source di dunia.",
+      "Membuka potensi revolusioner bagi industri game: karakter NPC cerdas berkemampuan dialog real-time.",
+      "CEO Jensen Huang memastikan ekosistem Hugging Face akan tetap terbuka dan independen bagi para pengembang."
     ]
   },
   "https://www.gamesindustry.biz/nvidia-acquires-open-source-ai-platform-hugging-face-for-129bn": {
-    "title": "Nvidia mengakuisisi platform AI sumber terbuka Hugging Face seharga $12,9 miliar",
-    "summary": "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar.",
+    "title": "Nvidia Resmi Akuisisi Platform AI Open-Source Hugging Face Senilai $12,9 Miliar",
+    "summary": "Langkah bersejarah raksasa grafis Nvidia mengakuisisi Hugging Face senilai $12,9 miliar, membuka era baru kecerdasan NPC real-time dan rendering neural di video game.",
     "fullContent": [
-      "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar."
+      "Dalam salah satu transaksi teknologi paling bersejarah dekade ini, raksasa semikonduktor Nvidia secara resmi telah menyelesaikan akuisisi platform kecerdasan buatan open-source terbesar di dunia, Hugging Face, dengan nilai fantastis $12,9 miliar (sekitar Rp 210 triliun).",
+      "Langkah strategis ini menggabungkan perangkat keras GPU kelas dunia milik Nvidia (arsitektur Blackwell dan Rubin) dengan repositori Hugging Face yang menampung lebih dari satu juta model neural network dan komunitas jutaan pengembang di seluruh dunia.",
+      "Bagi industri video game, kolaborasi ini membawa dampak revolusioner: integrasi karakter NPC cerdas yang mampu bercakap-cakap secara alami tanpa skrip kaku, simulasi fisika neural, dan rendering tekstur otomatis yang tertanam langsung pada driver Nvidia RTX dan engine game modern.",
+      "CEO Nvidia Jensen Huang menegaskan bahwa Hugging Face akan tetap mempertahankan sifatnya yang terbuka (open-source) dan beroperasi secara independen demi mendukung inovasi para kreator game dan peneliti di seluruh dunia."
     ],
     "keyHighlights": [
-      "Nvidia telah mengakuisisi platform kecerdasan buatan Hugging Face senilai $12,9 miliar."
+      "Nvidia merampungkan akuisisi raksasa senilai $12,9 miliar terhadap platform AI ternama Hugging Face.",
+      "Menyatukan arsitektur hardware GPU Nvidia dengan lebih dari 1 juta model AI open-source di dunia.",
+      "Membuka potensi revolusioner bagi industri game: karakter NPC cerdas berkemampuan dialog real-time.",
+      "CEO Jensen Huang memastikan ekosistem Hugging Face akan tetap terbuka dan independen bagi para pengembang."
     ]
   }
 };

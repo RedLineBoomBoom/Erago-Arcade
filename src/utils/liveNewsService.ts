@@ -1,8 +1,8 @@
 import type { NewsArticle } from '../types/newsFeed';
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 
-const CACHE_KEY = 'erago_live_news_cache_v5';
-const TIMESTAMP_KEY = 'erago_live_news_timestamp_v5';
+const CACHE_KEY = 'erago_live_news_cache_v6';
+const TIMESTAMP_KEY = 'erago_live_news_timestamp_v6';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes fresh cache
 
 export type NewsUpdateListener = (articles: NewsArticle[], lastUpdated: number) => void;
@@ -71,7 +71,8 @@ class LiveNewsService {
         'erago_live_news_cache_v1',
         'erago_live_news_cache_v2',
         'erago_live_news_cache_v3',
-        'erago_live_news_cache_v4'
+        'erago_live_news_cache_v4',
+        'erago_live_news_cache_v5'
       ].forEach((key) => {
         try {
           localStorage.removeItem(key);

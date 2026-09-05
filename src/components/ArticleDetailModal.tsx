@@ -69,17 +69,49 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
         !p.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
         !p.toLowerCase().includes('klik tombol tautan di bawah')
     );
-    return filtered.length > 0 ? filtered : [cur.summary];
+
+    const base = filtered.length > 0 ? filtered : [cur.summary];
+
+    // If only 1 paragraph with lots of text, split into multiple paragraphs for comfortable reading
+    if (base.length === 1 && base[0].length > 280) {
+      const sentences = base[0].split(/(?<=[.!?])\s+(?=[A-Z0-9"“'‘])/);
+      if (sentences.length >= 3) {
+        const mid = Math.ceil(sentences.length / 2);
+        return [sentences.slice(0, mid).join(' '), sentences.slice(mid).join(' ')];
+      }
+    }
+
+    return base;
   }, [cur]);
 
   const cleanHighlights = useMemo(() => {
     if (!cur) return [];
-    return (cur.keyHighlights || []).filter(
+    let list = (cur.keyHighlights || []).filter(
       (h) =>
         Boolean(h) &&
         !h.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
         !cleanParagraphs.some((p) => p.trim().toLowerCase() === h.trim().toLowerCase())
     );
+
+    // Fallback: If highlights are empty or filtered out, generate 3 clear takeaways from paragraphs/summary
+    if (list.length === 0 && cleanParagraphs.length > 0) {
+      const allText = cleanParagraphs.join(' ');
+      const sentences = allText
+        .split(/(?<=[.!?])\s+(?=[A-Z0-9"“'‘])/)
+        .map((s) => s.trim())
+        .filter((s) => s.length > 25 && s.toLowerCase() !== (cur.title || '').toLowerCase());
+
+      const unique = Array.from(new Set(sentences));
+      if (unique.length >= 3) {
+        list = [unique[0], unique[Math.floor(unique.length / 2)], unique[unique.length - 1]];
+      } else if (unique.length > 0) {
+        list = unique.slice(0, 3);
+      } else if (cur.summary) {
+        list = [cur.summary];
+      }
+    }
+
+    return list;
   }, [cur, cleanParagraphs]);
 
   useEffect(() => {
