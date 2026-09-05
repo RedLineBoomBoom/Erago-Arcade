@@ -6,6 +6,7 @@ import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
 import { triggerArcadeConfetti } from '../utils/arcadeConfetti';
 import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
+import { useLanguage, getTranslatedTrivia } from '../utils/i18n';
 
 interface BossBattleModalProps {
   isOpen: boolean;
@@ -64,7 +65,9 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
   const [battleStatus, setBattleStatus] = useState<'playing' | 'victory' | 'defeated'>('playing');
 
   const currentBoss = BOSSES[bossIndex];
-  const currentTrivia = TRIVIA_DATABASE[questionIdx % TRIVIA_DATABASE.length];
+  const { language } = useLanguage();
+  const rawTrivia = TRIVIA_DATABASE[questionIdx % TRIVIA_DATABASE.length];
+  const currentTrivia = getTranslatedTrivia(rawTrivia, language);
 
   const resetBattle = (idx: number = bossIndex) => {
     sound.playPowerUp();

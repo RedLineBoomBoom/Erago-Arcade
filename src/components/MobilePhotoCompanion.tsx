@@ -4,6 +4,7 @@ import type { TriviaItem } from '../types/trivia';
 import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
+import { useLanguage, getTranslatedTrivia, translateRarity } from '../utils/i18n';
 
 interface MobilePhotoCompanionProps {
   item: TriviaItem;
@@ -12,10 +13,14 @@ interface MobilePhotoCompanionProps {
 export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inspectData, setInspectData] = useState<InspectionModalData | null>(null);
+  const { language } = useLanguage();
+  const translatedItem = getTranslatedTrivia(item, language);
 
   const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle];
 
   if (!visual) return null;
+
+  const activeQuote = translatedItem.quoteOrLore || visual.characterQuote;
 
   const toggleOpen = () => {
     sound.playClick();
@@ -31,16 +36,16 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
       badge: visual.characterBadge,
       japanese: visual.characterJapanese,
       imageUrl: visual.characterImageUrl,
-      quote: visual.characterQuote,
+      quote: activeQuote,
       themeColor: visual.colorHex || item.theme.primary,
-      loreSnippet: item.story || item.headline,
+      loreSnippet: translatedItem.story || translatedItem.headline,
       details: [
-        { label: 'ORIGIN GAME', value: item.gameTitle },
-        { label: 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
+        { label: language === 'id' ? 'GAME ASAL' : 'ORIGIN GAME', value: item.gameTitle },
+        { label: language === 'id' ? 'ERA / TAHUN' : 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
         { label: 'PLATFORM', value: item.platform },
-        { label: 'DEVELOPER', value: item.developer },
-        { label: 'RARITY TIER', value: item.rarityTier },
-        { label: 'MINDBLOWN FACTOR', value: `${item.mindblownScore}%` }
+        { label: language === 'id' ? 'PENGEMBANG' : 'DEVELOPER', value: item.developer },
+        { label: language === 'id' ? 'TINGKAT KELANGKAAN' : 'RARITY TIER', value: translateRarity(item.rarityTier, language) },
+        { label: language === 'id' ? 'SKOR KAGUM' : 'MINDBLOWN FACTOR', value: `${item.mindblownScore}%` }
       ]
     });
   };
@@ -55,15 +60,14 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
       japanese: `${item.gameTitle} [${item.platform}]`,
       imageUrl: visual.boxArtImageUrl,
       themeColor: visual.colorHex || item.theme.secondary,
-      loreSnippet: item.verifiedFact || item.story,
+      loreSnippet: translatedItem.verifiedFact || translatedItem.story,
       details: [
-
-        { label: 'RELEASE DATE', value: visual.releaseDate },
-        { label: 'MEDIA FORMAT', value: visual.mediaFormat },
-        { label: 'DEVELOPER', value: visual.developerStudio },
-        { label: 'SALES & LEGACY', value: visual.salesOrLegacy },
-        { label: 'CATALOG SERIAL', value: visual.serialNumber },
-        { label: 'VERIFIED ARCHIVE', value: item.id.toUpperCase() }
+        { label: language === 'id' ? 'TANGGAL RILIS' : 'RELEASE DATE', value: visual.releaseDate },
+        { label: language === 'id' ? 'FORMAT MEDIA' : 'MEDIA FORMAT', value: visual.mediaFormat },
+        { label: language === 'id' ? 'PENGEMBANG' : 'DEVELOPER', value: visual.developerStudio },
+        { label: language === 'id' ? 'PENCAPAIAN' : 'SALES & LEGACY', value: visual.salesOrLegacy },
+        { label: language === 'id' ? 'SERIAL KATALOG' : 'CATALOG SERIAL', value: visual.serialNumber },
+        { label: language === 'id' ? 'ARSIP TERVERIFIKASI' : 'VERIFIED ARCHIVE', value: item.id.toUpperCase() }
       ]
     });
   };
@@ -79,7 +83,11 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
         >
           <div className="flex items-center gap-2">
             <ImageIcon className="h-4 w-4 text-[#FFE600]" />
-            <span>VIEW ARCHIVE PHOTOS ({visual.characterName} & BOX ART)</span>
+            <span>
+              {language === 'id'
+                ? `FOTO ARSIP (${visual.characterName} & BOX ART)`
+                : `VIEW ARCHIVE PHOTOS (${visual.characterName} & BOX ART)`}
+            </span>
           </div>
           {isOpen ? (
             <ChevronUp className="h-4 w-4 text-white" />
@@ -95,7 +103,7 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
             <div 
               onClick={handleInspectCharacter}
               className="space-y-2 cursor-pointer group"
-              title="Click to inspect character"
+              title={language === 'id' ? 'Klik untuk menginspeksi karakter' : 'Click to inspect character'}
             >
               <div className="flex items-center justify-between font-['Press_Start_2P'] text-[8px] text-[#FF2A85]">
                 <div className="flex items-center gap-1.5">
@@ -103,7 +111,7 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
                   <span>HERO: {visual.characterName}</span>
                 </div>
                 <span className="text-[#00F5D4] flex items-center gap-0.5 group-hover:underline">
-                  <ZoomIn className="w-2.5 h-2.5" /> INSPECT
+                  <ZoomIn className="w-2.5 h-2.5" /> {language === 'id' ? 'INSPEKSI' : 'INSPECT'}
                 </span>
               </div>
               <div className="aspect-video sm:aspect-4/3 w-full overflow-hidden rounded border-2 border-black bg-black relative">
@@ -115,7 +123,7 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
                 />
               </div>
               <p className="font-['Space_Grotesk'] text-xs text-zinc-300 italic">
-                {visual.characterQuote}
+                {activeQuote}
               </p>
             </div>
 
@@ -123,7 +131,7 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
             <div 
               onClick={handleInspectGame}
               className="space-y-2 cursor-pointer group"
-              title="Click to inspect box art"
+              title={language === 'id' ? 'Klik untuk menginspeksi box art' : 'Click to inspect box art'}
             >
               <div className="flex items-center justify-between font-['Press_Start_2P'] text-[8px] text-[#FFE600]">
                 <div className="flex items-center gap-1.5">
@@ -131,7 +139,7 @@ export const MobilePhotoCompanion: React.FC<MobilePhotoCompanionProps> = ({ item
                   <span>BOX ART: {visual.boxArtTitle}</span>
                 </div>
                 <span className="text-[#FFE600] flex items-center gap-0.5 group-hover:underline">
-                  <ZoomIn className="w-2.5 h-2.5" /> INSPECT
+                  <ZoomIn className="w-2.5 h-2.5" /> {language === 'id' ? 'INSPEKSI' : 'INSPECT'}
                 </span>
               </div>
               <div className="aspect-video sm:aspect-4/3 w-full overflow-hidden rounded border-2 border-black bg-black relative">

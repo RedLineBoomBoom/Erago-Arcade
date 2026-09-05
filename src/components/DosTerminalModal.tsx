@@ -5,6 +5,7 @@ import { TRIVIA_DATABASE } from '../data/triviaData';
 import { CHEAT_CODES_DATABASE } from '../data/cheatsData';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
+import { getTranslatedTrivia, getLanguage } from '../utils/i18n';
 
 interface DosTerminalModalProps {
   isOpen: boolean;
@@ -98,7 +99,8 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
         break;
 
       case 'trivia': {
-        const item = TRIVIA_DATABASE[Math.floor(Math.random() * TRIVIA_DATABASE.length)];
+        const rawItem = TRIVIA_DATABASE[Math.floor(Math.random() * TRIVIA_DATABASE.length)];
+        const item = getTranslatedTrivia(rawItem, getLanguage());
         output = (
           <div className="text-yellow-300 space-y-1 p-2 bg-black/40 border border-emerald-900 rounded">
             <div className="font-bold text-white">[{item.gameTitle} // {item.releaseYear}]</div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { TriviaItem, GameEra, TriviaTag } from '../types/trivia';
 import { sound } from '../audio/soundEngine';
+import { ALL_TRIVIA_ID_OVERLAYS, type TriviaTranslationItem } from '../data/translations';
 
 export type Language = 'id' | 'en';
 
@@ -575,139 +576,7 @@ export const translateRarity = (rarity: string, lang: Language): string => {
 // CURATED INDONESIAN TRIVIA CONTENT OVERRIDES
 // ============================================================================
 
-export interface TriviaTranslationItem {
-  headline?: string;
-  story?: string;
-  verifiedFact?: string;
-  quoteOrLore?: string;
-  easterEggNote?: string;
-  quizQuestion?: string;
-  quizOptions?: string[];
-  quizExplanation?: string;
-}
-
-export const TRIVIA_ID_OVERLAYS: Record<string, TriviaTranslationItem> = {
-  't-01': {
-    headline: 'Awan dan Semak Menggunakan Sprite Piksel 8-Bit yang Sama Persis',
-    story: 'Menghadapi batas memori katrid 40 kilobyte Famicom yang sangat ketat, Shigeru Miyamoto dan Takashi Tezuka tidak memiliki ruang ROM tersisa untuk elemen latar terpisah. Trik cerdas mereka? Awan putih berbulu halus dan semak hijau di tanah berbagi sprite piksel yang sama persis—game ini hanya menukar palet warna antara hijau dan putih.',
-    verifiedFact: 'Dengan memakai ulang alamat memori sprite melalui pergantian palet warna satu byte, Nintendo menghemat ruang ROM penting untuk audio dan desain level.',
-    quoteOrLore: '“Kami memeras setiap byte dari ROM 256-kbit tersebut.” — Shigeru Miyamoto',
-    easterEggNote: 'Perhatikan baik-baik screenshot klasik stage 1-1: siluet semak 100% sama dengan awan!',
-    quizQuestion: 'Bagaimana Nintendo memasukkan awan dan semak ke dalam ROM 40KB Super Mario Bros.?',
-    quizOptions: [
-      'Mengompres gambar dengan algoritma ZIP awal',
-      'Awan dan semak memakai sprite yang sama persis dengan penggantian palet warna',
-      'Memuatnya secara prosedural lewat gelombang sinus matematika',
-      'Semak digambar secara real-time oleh chip audio NES'
-    ],
-    quizExplanation: 'Nintendo menggunakan ulang data sprite yang identik, hanya mengganti palet warna dari hijau menjadi putih/sian.'
-  },
-  't-02': {
-    headline: 'Seekor Lebah Berfisika Melemparkan Gerobak Pembuka Skyrim ke Luar Angkasa',
-    story: 'Selama pengembangan, perjalanan gerobak pembuka ke Helgen terus mengalami bug parah. Gerobak tiba-tiba menabrak gaya tak terlihat lalu meluncur ke stratosfer seperti roket. Senior designer Bethesda, Nate Purkeypile, menyelidikinya dan menemukan biang keladinya: seekor lebah madu! Lebah di Skyrim diberi tabrakan fisik agar pemain bisa menangkapnya, namun saat lebah menabrak gerobak yang bergerak, engine fisika Havok melipatgandakan tabrakan kinetik secara eksponensial hingga gerobak terlempar ke angkasa.',
-    verifiedFact: 'Bethesda harus menghapus respon tabrakan fisik dari serangga terbang agar tidak mengacaukan adegan pembuka naga.',
-    quoteOrLore: '“Lebah tersebut adalah objek tak bergerak yang bertemu gerobak tak terhentikan.” — Nate Purkeypile',
-    easterEggNote: 'Jika Anda bertanya-tanya mengapa terbangun dengan "Hey you, you\'re finally awake"—hampir saja menjadi "Hey you, you\'re in low earth orbit".',
-    quizQuestion: 'Serangga tak terduga apa yang melontarkan gerobak pembuka Skyrim ke langit saat pengujian QA?',
-    quizOptions: [
-      'Laba-laba raksasa yang jatuh dari pohon',
-      'Kupu-kupu yang hinggap di as roda kayu',
-      'Seekor lebah madu yang memiliki tabrakan fisik aktif',
-      'Capung yang tersangkut di dalam model kuda'
-    ],
-    quizExplanation: 'Lebah madu kecil memiliki collision aktif. Saat gerobak menyenggolnya, mesin Havok physics melontarkannya ke luar angkasa!'
-  },
-  't-03': {
-    headline: 'Kabut Menakutkan Merupakan Solusi Darurat Batas Jarak Pandang PS1',
-    story: 'Konsol PlayStation asli memiliki keterbatasan render 3D yang parah: mesin geometrinya hanya sanggup memproses sedikit poligon bertekstur per frame sebelum terjadi lag. Alih-alih membiarkan objek muncul mendadak (pop-in) atau memotong jalanan luar, sutradara Keiichiro Toyama memanfaatkan batasan tersebut: mereka menyelimuti seluruh kota terkutuk dengan kabut tebal yang mencekam. Solusi darurat hardware ini kini menjadi ciri khas paling ikonik dalam sejarah genre psychological horror.',
-    verifiedFact: 'PS1 tidak memiliki hardware Z-buffering; kabut memungkinkan engine memotong poligon secara agresif dalam jarak beberapa meter saja dari Harry Mason.',
-    quoteOrLore: '“Kami tidak bisa menampilkan cakrawala, jadi kami membuat ketiadaan cakrawala itu menakutkan.” — Team Silent',
-    easterEggNote: 'Saat game ini di-remaster dengan jarak pandang lebih jauh, penggemar justru mengeluh karena jalanan yang terlihat jelas menghilangkan rasa takut.',
-    quizQuestion: 'Mengapa Team Silent awalnya menyematkan kabut tebal di kota Silent Hill?',
-    quizOptions: [
-      'Meniru kebakaran tambang batu bara asli di Centralia, Pennsylvania',
-      'Menutupi batas jarak pandang poligon PlayStation dan mencegah pop-in',
-      'Karena sutradara menderita asma saat kecil',
-      'Karena glitch shader yang mengubah seluruh langit menjadi abu-abu'
-    ],
-    quizExplanation: 'Kabut adalah solusi teknis untuk batasan perangkat keras PS1 yang menyembunyikan jarak pandang sebelum akhirnya menjadi ciri khas horor.'
-  },
-  't-04': {
-    headline: 'Psycho Mantis Membaca Memory Card Asli & Memaksa Ganti Port Kontroler',
-    story: 'Hideo Kojima ingin mendobrak dinding keempat sepenuhnya. Saat berhadapan dengan Psycho Mantis, penjahat psikis ini memindai memory card PS1 asli pemain dan mengomentari jika ada save data game Castlevania: Symphony of the Night atau Suikoden! Lebih gilanya lagi: Mantis memprediksi gerakan Anda dengan membaca input Port Kontroler 1. Satu-satunya cara mengalahkannya adalah mencabut kontroler fisik Anda dan memindahkannya ke Port 2, membutakan pikiran telepati miliknya.',
-    verifiedFact: 'Kojima secara khusus menginstruksikan teknisi audio untuk menambahkan getaran haptic guna memverifikasi apakah motor getar kontroler berfungsi.',
-    quoteOrLore: '“Kulihat kau menyukai Castlevania... kau jarang menyimpan permainan ya?” — Psycho Mantis',
-    easterEggNote: 'Jika Anda tidak punya kontroler kedua atau tidak bisa memindahkan port, menembak patung kepala di ruangan memberi jalur alternatif.',
-    quizQuestion: 'Bagaimana pemain menetralkan prediksi telepati Psycho Mantis di Metal Gear Solid 1?',
-    quizOptions: [
-      'Memakai kacamata termal untuk menemukan bayangannya',
-      'Mencabut kontroler dan memindahkannya secara fisik ke Port 2',
-      'Menghapus save file memory card di BIOS konsol',
-      'Menunggu 15 menit sampai stamina psikisnya habis'
-    ],
-    quizExplanation: 'Dengan mencolokkan ke Port 2, game berhenti menyalurkan perintah pergerakan pemain ke loop prediksi AI Psycho Mantis!'
-  },
-  't-05': {
-    headline: 'Monster Ikonik Creeper Terlahir dari Typo Model Babi yang Terbalik',
-    story: 'Saat Markus "Notch" Persson bereksperimen dengan model mob di versi alpha awal Minecraft (2009), ia berniat membuat babi berkaki empat standar. Namun, ia tak sengaja menukar koordinat X dan Y dimensi tubuh di kode Java—menempatkan tinggi di posisi panjang. Hasilnya adalah makhluk aneh berdiri tegak dengan empat kaki pendek. Alih-alih membuangnya, Notch memberinya tekstur hijau, AI kamikaze agresif, dan menciptakan maskot paling dikenal di dunia game.',
-    verifiedFact: 'Suara desisan sumbu Creeper sebenarnya adalah rekaman audio kembang api terbakar yang diperlambat.',
-    quoteOrLore: '“Saya tidak sengaja membuatnya tinggi dan bukan panjang. Kelihatan aneh dan menyeramkan, jadi saya pertahankan.” — Notch',
-    easterEggNote: 'Hingga kini, Creeper menjatuhkan piringan musik jika dibunuh oleh panah skeleton—penghormatan untuk asal-usul glitch-nya.',
-    quizQuestion: 'Hewan apa yang sebenarnya ingin dibuat oleh Notch ketika tak sengaja menciptakan Creeper?',
-    quizOptions: [
-      'Domba',
-      'Babi',
-      'Sapi zombi',
-      'Tanaman rambat merayap'
-    ],
-    quizExplanation: 'Notch menukar dimensi panjang dan tinggi saat mengoding model babi, menciptakan mutan jangkung berkaki empat yang menjadi Creeper.'
-  },
-  't-06': {
-    headline: 'Kereta Metro Berjalan di Fallout 3 Sebenarnya adalah NPC Memakai Kereta sebagai Helm',
-    story: 'Engine Gamebryo yang menggerakkan Fallout 3 tidak memiliki dukungan bawaan untuk kendaraan kemudi atau kereta bergerak dinamis. Saat tim Bethesda membutuhkan kereta bawah tanah bergerak untuk DLC Broken Steel, membuat fisika kendaraan baru akan membutuhkan perombakan engine besar-besaran. Solusi mereka? Mereka mengambil NPC manusia standar, menempatkannya di bawah rel, memberinya kecepatan lari super, dan memasang gerbong kereta Metro di slot inventaris Helm/Armor miliknya! Saat kereta melaju, ada seorang pria di bawah tanah yang sedang berlari sekencang 60 mph membawa gerbong di kepalanya.',
-    verifiedFact: 'Item ini di Creation Kit Fallout 3 secara harfiah bernama "DLC03MetroCarArmor".',
-    quoteOrLore: '“NPC Helm Kereta adalah bukti bahwa pembuatan game adalah 90% lakban dan mukjizat.”',
-    easterEggNote: 'Jika Anda mengarahkan kamera tembus ke bawah tanah, Anda bisa melihat kaki kecilnya yang berlari kencang.',
-    quizQuestion: 'Bagaimana Bethesda mengimplementasikan kereta metro bergerak di Fallout 3: Broken Steel?',
-    quizOptions: [
-      'Mereka menulis skrip fisika kereta Havok khusus',
-      'Seorang NPC di bawah rel memakai gerbong kereta sebagai helm dan berlari kencang',
-      'Mereka memutar seluruh dunia wasteland di sekitar kamera stasioner',
-      'Itu adalah rekaman video Bink 30fps pra-render pada tekstur datar'
-    ],
-    quizExplanation: 'Mereka membuat helm yang bisa dipakai bernama "DLC03MetroCarArmor" dan dipasangkan pada NPC tersembunyi yang berlari di bawah rel!'
-  },
-  't-07': {
-    headline: 'Hadiah Awal "Pendant" Misterius Hanyalah Lelucon untuk Mengerjai Dataminer',
-    story: 'Saat Dark Souls rilis, para pemain menghabiskan ratusan jam bersama mencoba mengungkap misteri hadiah awal "The Pendant". Deskripsinya berbunyi: "Liontin sederhana tanpa efek... namun kenangan indah menghibur pengelana." Pemain menukarnya ke Snuggly, melemparnya ke patung batu, dan menjelajahi seluruh Lordran demi quest rahasia. Dalam wawancara 2012 dengan Famitsu, sutradara Hidetaka Miyazaki tersenyum mengakui: "Mengenai liontin itu, jangan dipilih. Sebenarnya saya sengaja membuatnya sebagai bahan lelucon."',
-    verifiedFact: 'Liontin tersebut memiliki 0 baris logika atau event flag dalam skrip game; satu-satunya fungsinya adalah memicu teori liar di forum.',
-    quoteOrLore: '“Saya ingin melihat seberapa dalam orang percaya pada sesuatu yang sebenarnya tidak bermakna apa-apa.” — Hidetaka Miyazaki',
-    easterEggNote: 'Miyazaki kemudian menyatakan bagian favoritnya dari Dark Souls adalah melihat spekulasi komunitas berputar tak terkendali.',
-    quizQuestion: 'Apa efek rahasia hadiah awal "Pendant" di Dark Souls 1?',
-    quizOptions: [
-      'Membuka percakapan alternatif dengan Gwynevere',
-      'Meningkatkan drop rate item sebesar 2.5%',
-      'Sama sekali tidak memiliki fungsi dan hanya keisengan Miyazaki',
-      'Mencegah efek kutukan basilisk menumpuk'
-    ],
-    quizExplanation: 'Miyazaki mengakui dalam wawancara bahwa liontin itu adalah lelucon tanpa ada fungsi apa pun di kode game.'
-  },
-  't-08': {
-    headline: 'Suara Gergaji Mesin Berasal dari Mesin Rumput & Kepala John Romero Dipancang',
-    story: 'Untuk menciptakan efek suara Doom yang brutal dan menggelegar, pengarah audio Bobby Prince tidak memakai synthesizer mahal. Ia membawa gergaji mesin McCulloch dan mesin pemotong rumput Echo miliknya ke halaman belakang, merekam derunya, dan mengatur pitch nadanya! Lebih gila lagi: di dalam boss terakhir Icon of Sin, John Romero menyembunyikan sprite kepalanya sendiri yang terpenggal di tiang pancang. Saat suara boss diputar mundur, ia menggumam: "To win the game, you must kill me, John Romero!"',
-    verifiedFact: 'Untuk membunuh Icon of Sin tanpa noclip, pemain harus meluncurkan roket ke celah kecil tepat saat lift berada di ketinggian yang tepat.',
-    quoteOrLore: '“Untuk memenangkan game ini, kamu harus membunuhku, John Romero!”',
-    easterEggNote: 'Kepala Romero di balik dinding memiliki 250 HP dan merupakan satu-satunya hitbox boss yang sebenarnya.',
-    quizQuestion: 'Bagaimana suara gergaji mesin legendaris di Doom (1993) direkam?',
-    quizOptions: [
-      'Dari rekaman film horor Texas Chainsaw Massacre',
-      'Bobby Prince merekam gergaji mesin dan mesin pemotong rumput di halaman belakangnya',
-      'Disintesis murni dari chip sound card Sound Blaster 16',
-      'Direkam dari pabrik penggergajian kayu di Dallas'
-    ],
-    quizExplanation: 'Bobby Prince merekam gergaji mesin McCulloch dan mesin potong rumput Echo miliknya lalu menurunkan nadanya.'
-  }
-};
+export const TRIVIA_ID_OVERLAYS: Record<string, TriviaTranslationItem> = ALL_TRIVIA_ID_OVERLAYS;
 
 /**
  * Returns a translated version of a TriviaItem based on the chosen language.

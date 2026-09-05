@@ -5,6 +5,7 @@ import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
 import { getCandidateImageUrls, getSteamDbPageUrl, getSteamAppId } from '../utils/steamDbResolver';
+import { useLanguage, getTranslatedTrivia } from '../utils/i18n';
 
 interface GameArtifactWingProps {
   item: TriviaItem;
@@ -12,6 +13,8 @@ interface GameArtifactWingProps {
 
 export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
   const [isInspectOpen, setIsInspectOpen] = useState(false);
+  const { language } = useLanguage();
+  const translatedItem = getTranslatedTrivia(item, language);
 
   const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle] || {
     boxArtTitle: item.gameTitle,
@@ -52,17 +55,17 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
     japanese: `${item.gameTitle} [${item.platform}]`,
     imageUrl: currentImgUrl || visual.boxArtImageUrl,
     themeColor: visual.colorHex || item.theme.secondary,
-    loreSnippet: item.verifiedFact || item.story,
+    loreSnippet: translatedItem.verifiedFact || translatedItem.story,
     steamDbUrl,
     steamAppId,
     candidateUrls: candidates,
     details: [
-      { label: 'RELEASE DATE', value: visual.releaseDate, icon: <Calendar className="w-3.5 h-3.5" /> },
-      { label: 'MEDIA FORMAT', value: visual.mediaFormat, icon: <Cpu className="w-3.5 h-3.5" /> },
-      { label: 'DEVELOPER', value: visual.developerStudio, icon: <Database className="w-3.5 h-3.5" /> },
-      { label: 'SALES & LEGACY', value: visual.salesOrLegacy, icon: <Trophy className="w-3.5 h-3.5" /> },
-      { label: 'CATALOG SERIAL', value: visual.serialNumber, icon: <Barcode className="w-3.5 h-3.5" /> },
-      { label: 'VERIFIED ARCHIVE', value: item.id.toUpperCase(), icon: <Disc className="w-3.5 h-3.5" /> }
+      { label: language === 'id' ? 'TANGGAL RILIS' : 'RELEASE DATE', value: visual.releaseDate, icon: <Calendar className="w-3.5 h-3.5" /> },
+      { label: language === 'id' ? 'FORMAT MEDIA' : 'MEDIA FORMAT', value: visual.mediaFormat, icon: <Cpu className="w-3.5 h-3.5" /> },
+      { label: language === 'id' ? 'PENGEMBANG' : 'DEVELOPER', value: visual.developerStudio, icon: <Database className="w-3.5 h-3.5" /> },
+      { label: language === 'id' ? 'PENCAPAIAN' : 'SALES & LEGACY', value: visual.salesOrLegacy, icon: <Trophy className="w-3.5 h-3.5" /> },
+      { label: language === 'id' ? 'SERIAL KATALOG' : 'CATALOG SERIAL', value: visual.serialNumber, icon: <Barcode className="w-3.5 h-3.5" /> },
+      { label: language === 'id' ? 'ARSIP TERVERIFIKASI' : 'VERIFIED ARCHIVE', value: item.id.toUpperCase(), icon: <Disc className="w-3.5 h-3.5" /> }
     ]
   };
 
@@ -76,7 +79,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
         {/* Neo-retro Tape Pin on Top */}
         <div className="relative mx-auto -mb-3 z-10">
           <div className="rounded-xs border border-black bg-[#00F5D4] px-3 py-1 font-['Press_Start_2P'] text-[7px] text-black font-bold uppercase shadow-sm rotate-[2deg]">
-            EXHIBIT B // BOX ART ARTIFACT
+            {language === 'id' ? 'PAMERAN B // ARTEFAK BOX ART' : 'EXHIBIT B // BOX ART ARTIFACT'}
           </div>
         </div>
 
@@ -85,13 +88,13 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
           data-cursor="INSPECT"
           onClick={handleInspect}
           className="group relative rounded-lg border-3 border-black bg-[#14161F] p-4 brutal-shadow hover:border-[#FFE600] transition-all duration-200 cursor-pointer overflow-hidden space-y-3.5"
-          title="Click to inspect official box art artifact"
+          title={language === 'id' ? 'Klik untuk menginspeksi artefak box art resmi' : 'Click to inspect official box art artifact'}
         >
           {/* Top Status & Serial Tag */}
           <div className="flex items-center justify-between border-b border-black/40 pb-2 text-[9px] font-['Press_Start_2P']">
             <span className="flex items-center gap-1 text-[#FFE600]">
               <Disc className="h-3 w-3 animate-spin-slow text-[#FFE600]" />
-              ORIGINAL RELEASE
+              {language === 'id' ? 'RILIS ASLI' : 'ORIGINAL RELEASE'}
             </span>
             <div className="flex items-center gap-1.5 shrink-0">
               {steamDbUrl && (
@@ -149,7 +152,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
 
             {/* Official Seal Badge */}
             <div className="absolute top-2 left-2 rounded-xs border border-black bg-[#FF2A85] px-1.5 py-0.5 font-['Press_Start_2P'] text-[6px] text-white font-bold uppercase shadow-sm">
-              OFFICIAL SEAL
+              {language === 'id' ? 'SEGEL RESMI' : 'OFFICIAL SEAL'}
             </div>
 
             {/* Inspect Icon Hover Cue */}
@@ -162,7 +165,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
           <div className="space-y-1.5 font-['Space_Grotesk'] text-xs">
             <div className="flex items-start justify-between border-b border-white/10 pb-1.5">
               <span className="flex items-center gap-1 text-zinc-400 font-semibold shrink-0">
-                <Calendar className="h-3 w-3 text-[#00F5D4]" /> Release Date:
+                <Calendar className="h-3 w-3 text-[#00F5D4]" /> {language === 'id' ? 'Tanggal Rilis:' : 'Release Date:'}
               </span>
               <span className="font-mono text-white text-[11px] font-bold text-right flex-1 ml-2 break-words leading-tight">
                 {visual.releaseDate}
@@ -171,7 +174,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
 
             <div className="flex items-start justify-between border-b border-white/10 pb-1.5">
               <span className="flex items-center gap-1 text-zinc-400 font-semibold shrink-0">
-                <Cpu className="h-3 w-3 text-[#FF2A85]" /> Media Format:
+                <Cpu className="h-3 w-3 text-[#FF2A85]" /> {language === 'id' ? 'Format Media:' : 'Media Format:'}
               </span>
               <span className="font-mono text-white text-[11px] text-right flex-1 ml-2 break-words leading-tight">
                 {visual.mediaFormat}
@@ -180,7 +183,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
 
             <div className="flex items-start justify-between border-b border-white/10 pb-1.5">
               <span className="flex items-center gap-1 text-zinc-400 font-semibold shrink-0">
-                <Database className="h-3 w-3 text-[#FFE600]" /> Developer:
+                <Database className="h-3 w-3 text-[#FFE600]" /> {language === 'id' ? 'Pengembang:' : 'Developer:'}
               </span>
               <span className="font-mono text-white text-[11px] text-right flex-1 ml-2 break-words leading-tight">
                 {visual.developerStudio}
@@ -189,7 +192,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
 
             <div className="flex items-start justify-between">
               <span className="flex items-center gap-1 text-zinc-400 font-semibold shrink-0">
-                <Trophy className="h-3 w-3 text-[#00F5D4]" /> Milestone:
+                <Trophy className="h-3 w-3 text-[#00F5D4]" /> {language === 'id' ? 'Pencapaian:' : 'Milestone:'}
               </span>
               <span className="font-mono text-[#FFE600] text-[11px] font-bold text-right flex-1 ml-2 break-words leading-tight">
                 {visual.salesOrLegacy}
@@ -213,7 +216,7 @@ export const GameArtifactWing: React.FC<GameArtifactWingProps> = ({ item }) => {
               className="text-[#FFE600] hover:underline flex items-center gap-1 cursor-pointer font-bold font-mono text-[9px]"
             >
               <ZoomIn className="w-2.5 h-2.5" />
-              CLICK TO INSPECT
+              {language === 'id' ? 'KLIK INSPEKSI' : 'CLICK TO INSPECT'}
             </button>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { ArtifactInspectionModal, type InspectionModalData } from './ArtifactInspectionModal';
 import { getCandidateImageUrls, getSteamDbPageUrl, getSteamAppId } from '../utils/steamDbResolver';
+import { useLanguage, getTranslatedTrivia, translateRarity } from '../utils/i18n';
 
 interface CharacterSpotlightWingProps {
   item: TriviaItem;
@@ -12,16 +13,20 @@ interface CharacterSpotlightWingProps {
 
 export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ item }) => {
   const [isInspectOpen, setIsInspectOpen] = useState(false);
+  const { language } = useLanguage();
+  const translatedItem = getTranslatedTrivia(item, language);
 
   const visual = TRIVIA_VISUALS_MAP[item.id] || TRIVIA_VISUALS_MAP[item.gameTitle] || {
     characterName: item.gameTitle,
     characterTitle: item.developer,
-    characterQuote: item.headline,
+    characterQuote: translatedItem.quoteOrLore || translatedItem.headline,
     characterImageUrl: '',
-    characterBadge: 'RETRO ARCHIVE',
+    characterBadge: language === 'id' ? 'ARSIP RETRO' : 'RETRO ARCHIVE',
     characterJapanese: item.genre,
     colorHex: item.theme.primary
   };
+
+  const activeQuote = translatedItem.quoteOrLore || visual.characterQuote;
 
   const candidates = getCandidateImageUrls(visual.characterImageUrl, item.id, 'character');
   const [candidateIndex, setCandidateIndex] = useState(0);
@@ -50,19 +55,19 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
     badge: visual.characterBadge,
     japanese: visual.characterJapanese,
     imageUrl: currentImgUrl || visual.characterImageUrl,
-    quote: visual.characterQuote,
+    quote: activeQuote,
     themeColor: visual.colorHex || item.theme.primary,
-    loreSnippet: item.story || item.headline,
+    loreSnippet: translatedItem.story || translatedItem.headline,
     steamDbUrl,
     steamAppId,
     candidateUrls: candidates,
     details: [
-      { label: 'ORIGIN GAME', value: item.gameTitle },
-      { label: 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
+      { label: language === 'id' ? 'GAME ASAL' : 'ORIGIN GAME', value: item.gameTitle },
+      { label: language === 'id' ? 'ERA / TAHUN' : 'ERA / YEAR', value: `${item.releaseYear} (${item.era})` },
       { label: 'PLATFORM', value: item.platform },
-      { label: 'DEVELOPER', value: item.developer },
-      { label: 'RARITY TIER', value: item.rarityTier },
-      { label: 'MINDBLOWN FACTOR', value: `${item.mindblownScore}%` }
+      { label: language === 'id' ? 'PENGEMBANG' : 'DEVELOPER', value: item.developer },
+      { label: language === 'id' ? 'TINGKAT KELANGKAAN' : 'RARITY TIER', value: translateRarity(item.rarityTier, language) },
+      { label: language === 'id' ? 'SKOR KAGUM' : 'MINDBLOWN FACTOR', value: `${item.mindblownScore}%` }
     ]
   };
 
@@ -77,7 +82,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
         {/* Neo-retro Tape Pin on Top */}
         <div className="relative mx-auto -mb-3 z-10">
           <div className="rounded-xs border border-black bg-[#FFE600] px-3 py-1 font-['Press_Start_2P'] text-[7px] text-black font-bold uppercase shadow-sm rotate-[-2deg]">
-            EXHIBIT A // HERO PROFILE
+            {language === 'id' ? 'PAMERAN A // PROFIL HERO' : 'EXHIBIT A // HERO PROFILE'}
           </div>
         </div>
 
@@ -86,12 +91,12 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
           data-cursor="INSPECT"
           onClick={handleInspect}
           className="group relative rounded-lg border-3 border-black bg-[#14161F] p-4 brutal-shadow hover:border-[#00F5D4] transition-all duration-200 cursor-pointer overflow-hidden space-y-3.5"
-          title="Click to inspect character dossier"
+          title={language === 'id' ? 'Klik untuk menginspeksi berkas karakter' : 'Click to inspect character dossier'}
         >
           {/* Top Japanese & Era Header */}
           <div className="flex items-center justify-between border-b border-black/40 pb-2 text-[9px] font-['Press_Start_2P']">
             <span className="text-[#00F5D4] flex-1 break-words leading-tight pr-2">
-              {visual.characterJapanese || 'HERO ARCHIVE'}
+              {visual.characterJapanese || (language === 'id' ? 'ARSIP HERO' : 'HERO ARCHIVE')}
             </span>
 
             <div className="flex items-center gap-1.5 shrink-0">
@@ -139,7 +144,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
                   {visual.characterName}
                 </span>
                 <span className="font-['Space_Grotesk'] text-[10px] text-zinc-400 mt-1 font-bold">
-                  ARCHIVE CLASSIFIED
+                  {language === 'id' ? 'ARSIP TERKLASIFIKASI' : 'ARCHIVE CLASSIFIED'}
                 </span>
               </div>
             )}
@@ -162,7 +167,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-['Press_Start_2P']">
               <Sparkles className="h-3 w-3 text-[#FFE600]" />
-              <span className="text-[8px] text-[#FFE600]">ARCHIVAL SUBJECT:</span>
+              <span className="text-[8px] text-[#FFE600]">{language === 'id' ? 'SUBJEK ARSIP:' : 'ARCHIVAL SUBJECT:'}</span>
             </div>
             <h3 className="font-['Syne'] text-lg font-black text-white leading-tight group-hover:text-[#00F5D4] transition-colors">
               {visual.characterName}
@@ -176,7 +181,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
           <div className="relative rounded-sm border-2 border-black bg-black/70 p-3 font-['Space_Grotesk'] text-xs text-zinc-300 italic brutal-shadow-sm">
             <div className="absolute -top-2 left-4 h-0 w-0 border-x-4 border-x-transparent border-b-4 border-b-black" />
             <p className="leading-relaxed">
-              {visual.characterQuote}
+              {activeQuote}
             </p>
           </div>
 
@@ -184,7 +189,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
           <div className="flex items-center justify-between border-t border-black/40 pt-2 text-[8px] font-['Press_Start_2P'] text-zinc-400">
             <span className="flex items-center gap-1">
               <ShieldAlert className="h-3 w-3 text-[#FF2A85]" />
-              CONFIDENTIAL
+              {language === 'id' ? 'RAHASIA' : 'CONFIDENTIAL'}
             </span>
             <button 
               type="button"
@@ -195,7 +200,7 @@ export const CharacterSpotlightWing: React.FC<CharacterSpotlightWingProps> = ({ 
               className="text-[#00F5D4] hover:underline flex items-center gap-1 cursor-pointer font-bold"
             >
               <ZoomIn className="w-2.5 h-2.5" />
-              CLICK TO INSPECT
+              {language === 'id' ? 'KLIK INSPEKSI' : 'CLICK TO INSPECT'}
             </button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { TRIVIA_DATABASE } from '../data/triviaData';
 import { TRIVIA_VISUALS_MAP } from '../data/triviaVisualsData';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
+import { useLanguage, getTranslatedTrivia, translateRarity, translateTag } from '../utils/i18n';
 
 interface CardBinderModalProps {
   isOpen: boolean;
@@ -16,6 +17,7 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
   onClose,
   discoveredIds,
 }) => {
+  const { language } = useLanguage();
   const [selectedRarity, setSelectedRarity] = useState<string>('All');
   const [flippedMap, setFlippedMap] = useState<Record<string, boolean>>({});
 
@@ -46,14 +48,16 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="font-['Syne'] font-black text-lg sm:text-xl text-white">
-                  90s HOLOGRAPHIC CARD BINDER
+                  {language === 'id' ? 'BINDER KARTU HOLOGRAFIK 90an' : '90s HOLOGRAPHIC CARD BINDER'}
                 </h2>
                 <span className="px-2 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] font-bold">
-                  {discoveredIds.size}/{TRIVIA_DATABASE.length} DISCOVERED
+                  {discoveredIds.size}/{TRIVIA_DATABASE.length} {language === 'id' ? 'DITEMUKAN' : 'DISCOVERED'}
                 </span>
               </div>
               <p className="font-mono text-[10px] text-zinc-400">
-                CLICK ANY CARD TO FLIP BETWEEN HOLOGRAPHIC ART & ARCHIVE LORE
+                {language === 'id'
+                  ? 'KLIK KARTU UNTUK MEMBALIK ANTARA KARYA SENI & KISAH ARSIP'
+                  : 'CLICK ANY CARD TO FLIP BETWEEN HOLOGRAPHIC ART & ARCHIVE LORE'}
               </p>
             </div>
           </div>
@@ -97,6 +101,7 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
               const isDiscovered = discoveredIds.has(card.id);
               const visual = TRIVIA_VISUALS_MAP[card.id] || TRIVIA_VISUALS_MAP[card.gameTitle];
               const cardImg = visual?.characterImageUrl || visual?.boxArtImageUrl || '';
+              const translatedCard = getTranslatedTrivia(card, language);
 
               return (
                 <div
@@ -131,7 +136,7 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
                               color: '#000',
                             }}
                           >
-                            {card.rarityTier.split(' ')[0]}
+                            {translateRarity(card.rarityTier, language).split(' ')[0]}
                           </span>
                         </div>
 
@@ -163,9 +168,9 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
                         </div>
 
                         <div className="flex items-center justify-between text-[8px] font-mono text-zinc-500 pt-1 border-t border-white/10">
-                          <span>{card.tag}</span>
+                          <span>{translateTag(card.tag, language)}</span>
                           <span className="flex items-center gap-1 text-[#00F5D4]">
-                            <RotateCw className="w-2.5 h-2.5" /> FLIP
+                            <RotateCw className="w-2.5 h-2.5" /> {language === 'id' ? 'BALIK' : 'FLIP'}
                           </span>
                         </div>
                       </div>
@@ -174,7 +179,7 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
                       <div className="flex flex-col justify-between h-full space-y-2 rotate-y-180">
                         <div className="flex items-center justify-between border-b border-white/10 pb-1.5">
                           <span className="font-['Press_Start_2P'] text-[7px] text-[#FFE600]">
-                            ARCHIVE LORE
+                            {language === 'id' ? 'LORE ARSIP' : 'ARCHIVE LORE'}
                           </span>
                           <span className="text-[10px] font-mono text-zinc-400">
                             {card.developer}
@@ -183,22 +188,24 @@ export const CardBinderModal: React.FC<CardBinderModalProps> = ({
 
                         <div className="space-y-1.5 overflow-y-auto custom-scrollbar flex-1 pr-1">
                           <div className="font-['Syne'] font-black text-xs text-[#00F5D4] leading-tight">
-                            "{card.headline}"
+                            "{translatedCard.headline}"
                           </div>
                           <p className="font-mono text-[10px] text-zinc-300 leading-relaxed">
-                            {card.story}
+                            {translatedCard.story}
                           </p>
-                          {card.verifiedFact && (
+                          {translatedCard.verifiedFact && (
                             <div className="text-[9px] font-mono text-zinc-500 italic pt-1">
-                              Fact: {card.verifiedFact}
+                              {language === 'id' ? 'Fakta:' : 'Fact:'} {translatedCard.verifiedFact}
                             </div>
                           )}
                         </div>
 
                         <div className="flex items-center justify-between pt-1 border-t border-white/10 font-mono text-[8px] text-zinc-400">
-                          <span className="text-[#FF2A85]">AUTHENTIC</span>
+                          <span className="text-[#FF2A85]">
+                            {language === 'id' ? 'OTENTIK' : 'AUTHENTIC'}
+                          </span>
                           <span className="flex items-center gap-1 text-[#00F5D4]">
-                            <RotateCw className="w-2.5 h-2.5" /> FLIP BACK
+                            <RotateCw className="w-2.5 h-2.5" /> {language === 'id' ? 'KEMBALI' : 'FLIP BACK'}
                           </span>
                         </div>
                       </div>

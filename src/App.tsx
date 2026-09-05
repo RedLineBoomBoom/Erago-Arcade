@@ -32,7 +32,6 @@ import { GamingNewsModal } from './components/GamingNewsModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
 import { NewsStrip } from './components/NewsStrip';
-import { DeepLSettingsModal } from './components/DeepLSettingsModal';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
@@ -66,7 +65,6 @@ export function App() {
   const [isInsufficientCoinsOpen, setIsInsufficientCoinsOpen] = useState(false);
   const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
-  const [isDeepLModalOpen, setIsDeepLModalOpen] = useState(false);
   const [newsOutletFilter, setNewsOutletFilter] = useState<string>('all');
   const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
   const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
@@ -234,7 +232,6 @@ export function App() {
             setNewsOutletFilter('all');
             setIsNewsModalOpen(true);
           }}
-          onOpenDeepLModal={() => setIsDeepLModalOpen(true)}
         />
 
 
@@ -453,12 +450,6 @@ export function App() {
         isOpen={isNewsModalOpen}
         onClose={() => setIsNewsModalOpen(false)}
         initialOutletId={newsOutletFilter}
-      />
-
-      {/* 14. DeepL Neural AI Translation Settings Modal */}
-      <DeepLSettingsModal
-        isOpen={isDeepLModalOpen}
-        onClose={() => setIsDeepLModalOpen(false)}
       />
     </div>
 
