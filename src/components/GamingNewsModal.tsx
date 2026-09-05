@@ -326,9 +326,10 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                       src={article.imageUrl}
                       alt={article.title}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                       onError={(e) => {
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=80';
+                        target.src = '/images/news/quake2-rtx.jpg';
                       }}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
