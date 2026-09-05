@@ -215,7 +215,7 @@ export function App() {
       {/* Foreground Interactive Page Layout */}
       <div className="relative z-10 flex flex-col min-h-screen justify-between w-full max-w-full overflow-x-hidden">
         {/* Main Header Navbar */}
-        <div className="w-full max-w-full overflow-x-hidden">
+        <div className="w-full relative z-40">
           <Navbar
 
           currentView={currentView}

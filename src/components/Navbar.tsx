@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
 
-    <header className="sticky top-0 z-40 border-b-2 border-black bg-[#0B0C10]/95 backdrop-blur-md px-2 sm:px-6 py-1.5 sm:py-3 w-full max-w-full">
+    <header className="sticky top-0 z-50 border-b-2 border-black bg-[#0B0C10]/95 backdrop-blur-md px-2 sm:px-6 py-1.5 sm:py-3 w-full max-w-full">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-1.5 sm:gap-4 w-full">
         {/* Brand / Logo */}
         <div 
@@ -270,7 +270,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Dropdown Popover */}
             {isExtrasOpen && (
-              <div className="absolute right-0 mt-2 w-72 sm:w-80 rounded-xl border-3 border-black bg-[#14161F] p-3 shadow-[8px_8px_0px_#000] z-50 animate-fade-in space-y-2.5">
+              <div className="absolute right-0 mt-2 w-72 sm:w-80 max-w-[calc(100vw-1rem)] max-h-[85vh] overflow-y-auto custom-scrollbar rounded-xl border-3 border-black bg-[#14161F] p-3 shadow-[8px_8px_0px_#000] z-[70] animate-fade-in space-y-2.5">
                 <div className="flex items-center justify-between border-b border-white/10 pb-2 px-1">
                   <div className="flex items-center gap-1.5">
                     <span className="text-sm">🎮</span>
