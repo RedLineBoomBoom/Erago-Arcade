@@ -5,7 +5,7 @@ import { TRIVIA_DATABASE } from '../data/triviaData';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
 import { triggerArcadeConfetti } from '../utils/arcadeConfetti';
-import { currencyManager } from '../utils/currencyManager';
+import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
 
 interface BossBattleModalProps {
   isOpen: boolean;
@@ -96,7 +96,6 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
       setBossHp(newBossHp);
       setDamagePopup(`-${totalDmg} CRIT!`);
       setIsShaking(true);
-      currencyManager.convertPoints(totalDmg, 'BOSS_BATTLE');
       setTimeout(() => {
         setIsShaking(false);
         setDamagePopup(null);
@@ -106,11 +105,11 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
         sound.playJackpot();
         triggerArcadeConfetti(window.innerWidth / 2, window.innerHeight / 2, 80);
         unlockAchievement('BOSS_CHAMPION');
-        currencyManager.convertPoints(500, 'BOSS_DEFEATED');
+        currencyManager.addCoins(BOSS_CLEAR_REWARD_COINS, true);
         setBattleStatus('victory');
-        setBattleLog(`💥 DEFEATED ${currentBoss.name}! ARCADE SAVED! (+50 🪙 BONUS)`);
+        setBattleLog(`💥 DEFEATED ${currentBoss.name}! ARCADE SAVED! (+${BOSS_CLEAR_REWARD_COINS} 🪙 REWARD)`);
       } else {
-        setBattleLog(`⚔️ DIRECT HIT! Dealt ${totalDmg} DMG (+${Math.floor(totalDmg / 10)} 🪙) to ${currentBoss.name}!`);
+        setBattleLog(`⚔️ DIRECT HIT! Dealt ${totalDmg} DMG to ${currentBoss.name}!`);
         setQuestionIdx((prev) => (prev + 1) % TRIVIA_DATABASE.length);
       }
     } else {
@@ -253,7 +252,7 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
               You annihilated {currentBoss.name} with superior gaming knowledge!
             </p>
             <div className="px-4 py-2 bg-[#FFE600] text-black font-['Press_Start_2P'] text-[9px] font-bold rounded-lg border-2 border-black shadow inline-block">
-              +{Math.floor((currentBoss.maxHp + 500) / 10)} COINS EARNED IN BATTLE! 🪙
+              +{BOSS_CLEAR_REWARD_COINS} COINS EARNED IN BATTLE! 🪙
             </div>
             <div className="flex items-center justify-center gap-3 pt-2">
               {bossIndex < BOSSES.length - 1 ? (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X, Coins, Swords, Gamepad2, Clock, AlertTriangle } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
-import { currencyManager } from '../utils/currencyManager';
+import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
 
 interface InsufficientCoinsModalProps {
   isOpen: boolean;
@@ -169,7 +169,7 @@ export const InsufficientCoinsModal: React.FC<InsufficientCoinsModalProps> = ({
                       TRIVIA BOSS RUSH
                     </div>
                     <div className="font-mono text-[10px] text-zinc-400 group-hover:text-white/90">
-                      Serang boss & menang untuk dapat koin!
+                      Kalahkan boss & dapat +{BOSS_CLEAR_REWARD_COINS} Koin!
                     </div>
                   </div>
                 </div>

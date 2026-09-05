@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X, Coins, Clock, Sparkles, Gamepad2, Swords, RefreshCw } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
-import { currencyManager } from '../utils/currencyManager';
+import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
 
 interface CoinBankModalProps {
   isOpen: boolean;
@@ -184,7 +184,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
                 <span className="flex items-center gap-2">
                   <Swords className="w-3 h-3 text-[#FFE600]" /> Trivia Boss Rush:
                 </span>
-                <span className="font-bold text-[#FFE600]">100 Poin = +10 Koin</span>
+                <span className="font-bold text-[#FFE600]">Selesai Boss = +{BOSS_CLEAR_REWARD_COINS} Koin</span>
               </div>
 
               <div className="flex items-center justify-between pt-1">

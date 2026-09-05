@@ -6,6 +6,7 @@ export const POINT_CONVERSION_RATE = 100; // 100 points = 10 coins
 export const COINS_PER_100_POINTS = 10;
 export const TIME_REWARD_COINS = 100;
 export const TIME_REWARD_INTERVAL_SECONDS = 600; // 10 minutes = 600 seconds
+export const BOSS_CLEAR_REWARD_COINS = 20; // 20 coins rewarded for clearing Trivia Boss Rush (previously 10)
 
 const STORAGE_KEY_COINS = 'erago_arcade_coins';
 const STORAGE_KEY_POINTS_ACC = 'erago_arcade_points_acc';
