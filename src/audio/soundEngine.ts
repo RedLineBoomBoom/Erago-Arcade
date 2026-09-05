@@ -44,6 +44,10 @@ class SoundEngine {
     }
   }
 
+  public isAudioRunning(): boolean {
+    return !!this.ctx && this.ctx.state === 'running';
+  }
+
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
     if (this.isMuted && this.isBgmActive) {
@@ -786,7 +790,12 @@ class SoundEngine {
 
     const cur = trackMelodies[this.currentTrackIndex] || trackMelodies[0];
 
-    this.bgmInterval = window.setInterval(() => {
+    if (this.bgmInterval !== null) {
+      clearInterval(this.bgmInterval);
+      this.bgmInterval = null;
+    }
+
+    const playNote = () => {
       if (!this.isBgmActive || this.isMuted || !this.ctx || !this.bgmGain) return;
       try {
         const freq = cur.notes[this.bgmStep % cur.notes.length];
@@ -809,7 +818,10 @@ class SoundEngine {
       } catch {
         // Ignored
       }
-    }, cur.stepDuration);
+    };
+
+    playNote();
+    this.bgmInterval = window.setInterval(playNote, cur.stepDuration);
   }
 
   public stopBgm() {
