@@ -429,7 +429,7 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
               </div>
             </div>
 
-            {/* Interactive Insert Coin / Press Start Prompt in Ready Phase */}
+            {/* Interactive Welcome / Press Start Prompt in Ready Phase */}
             {phase === 'ready' && (
               <button
                 onClick={(e) => {
@@ -439,8 +439,8 @@ export const ConsoleBootLoader: React.FC<ConsoleBootLoaderProps> = ({ onComplete
                 data-cursor="START"
                 className="mt-2 flex items-center gap-2 px-5 py-2.5 rounded-sm border-2 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[9px] sm:text-[10px] font-bold shadow-[4px_4px_0px_#000] animate-bounce transition-all pointer-events-auto"
               >
-                <span>🪙</span>
-                <span>{t('boot_insert_coin')}</span>
+                <span>▶</span>
+                <span>{t('boot_welcome')}</span>
               </button>
             )}
           </div>

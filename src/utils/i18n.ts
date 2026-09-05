@@ -219,8 +219,12 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     en: 'CLICK ANYWHERE TO UNMUTE AUDIO',
   },
   'boot_insert_coin': {
-    id: 'MASUKKAN KOIN / TEKAN TOMBOL APA SAJA UNTUK MASUK',
-    en: 'INSERT COIN / PRESS ANY KEY TO ENTER',
+    id: 'WELCOME / TEKAN TOMBOL APA SAJA UNTUK MASUK',
+    en: 'WELCOME / PRESS ANY KEY TO ENTER',
+  },
+  'boot_welcome': {
+    id: 'WELCOME / TEKAN TOMBOL APA SAJA UNTUK MASUK',
+    en: 'WELCOME / PRESS ANY KEY TO ENTER',
   },
   'boot_system_ready': {
     id: 'SISTEM SIAP // MEMULAI...',
