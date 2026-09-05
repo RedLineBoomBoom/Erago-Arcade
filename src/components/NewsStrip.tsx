@@ -13,7 +13,7 @@ import {
   RefreshCw 
 } from 'lucide-react';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
-import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
+import { liveNewsService } from '../utils/liveNewsService';
 import { sound } from '../audio/soundEngine';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
@@ -33,14 +33,31 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [readingArticle, setReadingArticle] = useState<NewsArticle | null>(null);
+  const [articles, setArticles] = useState<NewsArticle[]>(() => liveNewsService.getArticles());
+  const [lastUpdated, setLastUpdated] = useState<number>(() => liveNewsService.getLastUpdated());
 
-  const handleRefresh = () => {
+  // Subscribe to live news updates
+  React.useEffect(() => {
+    return liveNewsService.subscribe((freshArticles, updatedTime) => {
+      setArticles(freshArticles);
+      setLastUpdated(updatedTime);
+    });
+  }, []);
+
+  const handleRefresh = async () => {
     sound.playPowerUp();
     setIsRefreshing(true);
-    setTimeout(() => {
-      setIsRefreshing(false);
+    try {
+      const result = await liveNewsService.refreshNews(true);
+      setArticles(result.articles);
+      setLastUpdated(Date.now());
       sound.playJackpot();
-    }, 500);
+    } catch (err) {
+      console.error('Failed to refresh news feed:', err);
+      sound.playCrtBuzz();
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   const handleOutletClick = (outletId: string) => {
@@ -62,7 +79,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
 
   // Filtered articles
   const filteredArticles = useMemo(() => {
-    return GAMING_NEWS_ARTICLES.filter((article) => {
+    return articles.filter((article) => {
       const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
       const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
       const q = searchQuery.toLowerCase().trim();
@@ -75,7 +92,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
 
       return matchesOutlet && matchesCategory && matchesSearch;
     });
-  }, [selectedOutlet, selectedCategory, searchQuery]);
+  }, [articles, selectedOutlet, selectedCategory, searchQuery]);
 
   const currentOutletMeta = useMemo(() => {
     if (selectedOutlet === 'all') return null;
@@ -104,6 +121,9 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-xs bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold animate-pulse">
                   <Radio className="w-2.5 h-2.5" /> {t('news_live_feed')}
+                </span>
+                <span className="hidden md:inline-flex font-mono text-[9px] text-[#00F5D4] bg-black/50 px-1.5 py-0.5 rounded border border-[#00F5D4]/30">
+                  {new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
               <p className="font-mono text-[9px] sm:text-[10px] text-zinc-400">
@@ -188,7 +208,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
           {NEWS_OUTLETS_DATABASE.map((outlet) => {
             const isSelected = selectedOutlet === outlet.id && isExpanded;
-            const count = GAMING_NEWS_ARTICLES.filter((a) => a.outletId === outlet.id).length;
+            const count = articles.filter((a) => a.outletId === outlet.id).length;
 
             return (
               <button

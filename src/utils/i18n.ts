@@ -524,6 +524,22 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'Artikel ini diterbitkan secara resmi oleh {outlet}. Hak cipta dan materi orisinal milik penerbit terkait.',
     en: 'This article was officially published by {outlet}. All copyrights and original materials belong to their respective publisher.',
   },
+  'news_live_status': {
+    id: 'LIVE RSS AKTIF',
+    en: 'LIVE RSS ACTIVE',
+  },
+  'news_last_updated': {
+    id: 'Diperbarui: {time}',
+    en: 'Updated: {time}',
+  },
+  'news_refresh_success': {
+    id: 'Berhasil memperbarui artikel live dari 12 website gaming!',
+    en: 'Successfully refreshed live articles from 12 gaming websites!',
+  },
+  'news_refreshing': {
+    id: 'Mengambil artikel terbaru dari 12 website...',
+    en: 'Fetching latest articles from 12 websites...',
+  },
 
   // Cryptographic Vault Security Ledger & Anti-Tamper
   'vault_security_title': {

@@ -6,10 +6,11 @@ import {
   RefreshCw, 
   Clock, 
   Radio, 
-  Flame 
+  Flame,
+  CheckCircle2
 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
-import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
+import { liveNewsService } from '../utils/liveNewsService';
 import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
@@ -33,8 +34,10 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [refreshNotice, setRefreshNotice] = useState<string | null>(null);
   const [readingArticle, setReadingArticle] = useState<NewsArticle | null>(null);
-  const newsFeed = GAMING_NEWS_ARTICLES;
+  const [articles, setArticles] = useState<NewsArticle[]>(() => liveNewsService.getArticles());
+  const [lastUpdated, setLastUpdated] = useState<number>(() => liveNewsService.getLastUpdated());
 
   // Sync initialOutletId if changed from prop
   if (initialOutletId !== prevInitialId) {
@@ -55,19 +58,43 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Refresh news feed simulation with audio
-  const handleRefresh = () => {
+  // Subscribe to live news updates and auto-refresh when opening modal
+  useEffect(() => {
+    const unsub = liveNewsService.subscribe((freshArticles, updatedTime) => {
+      setArticles(freshArticles);
+      setLastUpdated(updatedTime);
+    });
+
+    if (isOpen) {
+      liveNewsService.refreshNews(false);
+    }
+
+    return unsub;
+  }, [isOpen]);
+
+  // Real live refresh from 12 official outlets
+  const handleRefresh = async () => {
     sound.playPowerUp();
     setIsRefreshing(true);
-    setTimeout(() => {
-      setIsRefreshing(false);
+    setRefreshNotice(null);
+    try {
+      const result = await liveNewsService.refreshNews(true);
+      setArticles(result.articles);
+      setLastUpdated(Date.now());
       sound.playJackpot();
-    }, 600);
+      setRefreshNotice(t('news_refresh_success'));
+      setTimeout(() => setRefreshNotice(null), 4500);
+    } catch (err) {
+      console.error('Failed to refresh news feed:', err);
+      sound.playCrtBuzz();
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   // Filtered articles
   const filteredArticles = useMemo(() => {
-    return newsFeed.filter((article) => {
+    return articles.filter((article) => {
       // Outlet filter
       const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
       // Category filter
@@ -83,7 +110,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
 
       return matchesOutlet && matchesCategory && matchesSearch;
     });
-  }, [newsFeed, selectedOutlet, selectedCategory, searchQuery]);
+  }, [articles, selectedOutlet, selectedCategory, searchQuery]);
 
   // Selected outlet metadata if any
   const currentOutletMeta = useMemo(() => {
@@ -140,10 +167,11 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
           <div className="flex items-center gap-2">
             {/* Live Sync Button */}
             <button
+              id="news-modal-refresh-btn"
               onClick={handleRefresh}
               title={t('news_refresh')}
               disabled={isRefreshing}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-xs transition-colors shadow-[2px_2px_0px_#000]"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-xs transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin text-[#FFE600]' : ''}`} />
               <span className="hidden sm:inline font-bold">{t('news_refresh')}</span>
@@ -231,7 +259,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
 
             {NEWS_OUTLETS_DATABASE.map((outlet) => {
               const isSelected = selectedOutlet === outlet.id;
-              const count = newsFeed.filter((a) => a.outletId === outlet.id).length;
+              const count = articles.filter((a) => a.outletId === outlet.id).length;
               return (
                 <button
                   key={outlet.id}
@@ -296,21 +324,37 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
             </div>
           )}
 
-          {/* Results Counter & Search Indicator */}
-          <div className="flex items-center justify-between text-xs font-mono text-zinc-400 border-b border-white/5 pb-2">
+          {/* Refresh Notification Banner */}
+          {refreshNotice && (
+            <div className="flex items-center gap-2 p-2.5 rounded-lg border-2 border-black bg-[#00F5D4] text-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] animate-bounce-subtle">
+              <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
+              <span>{refreshNotice}</span>
+            </div>
+          )}
+
+          {/* Results Counter & Live RSS Telemetry */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono text-zinc-400 border-b border-white/5 pb-2">
             <div className="flex items-center gap-2">
-              <span>
+              <span className="font-bold text-white">
                 {t('news_showing_count', { count: filteredArticles.length })}
               </span>
               {selectedOutlet !== 'all' && (
                 <span className="text-zinc-500">
-                  {t('news_from')} <span className="text-white">{currentOutletMeta?.name}</span>
+                  {t('news_from')} <span className="text-[#FFE600] font-bold">{currentOutletMeta?.name}</span>
                 </span>
               )}
             </div>
 
-            <div className="text-[10px] text-zinc-500">
-              {t('news_hint_click')}
+            <div className="flex items-center gap-2.5 text-[10px] text-zinc-400">
+              <span className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/60 border border-[#00F5D4]/40 text-[#00F5D4] font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4] animate-ping" />
+                <span>{t('news_live_status')}</span>
+              </span>
+              <span className="text-zinc-400">
+                {t('news_last_updated', {
+                  time: new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                })}
+              </span>
             </div>
           </div>
 
