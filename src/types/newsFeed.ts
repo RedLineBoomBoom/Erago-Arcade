@@ -17,4 +17,5 @@ export interface NewsArticle {
   author?: string;
   fullContent?: string[];
   keyHighlights?: string[];
+  _original?: NewsArticle;
 }

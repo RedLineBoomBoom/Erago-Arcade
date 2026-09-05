@@ -19,6 +19,7 @@ import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
 import { ArticleDetailModal } from './ArticleDetailModal';
 import { useLanguage } from '../utils/i18n';
+import { getTranslatedArticleSync } from '../utils/newsTranslator';
 
 interface NewsStripProps {
   onOpenNewsModal?: (outletId?: string) => void;
@@ -77,22 +78,24 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  // Filtered articles
+  // Filtered and translated articles
   const filteredArticles = useMemo(() => {
-    return articles.filter((article) => {
-      const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
-      const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !q ||
-        article.title.toLowerCase().includes(q) ||
-        article.summary.toLowerCase().includes(q) ||
-        article.outletName.toLowerCase().includes(q) ||
-        article.tag.toLowerCase().includes(q);
+    return articles
+      .map((article) => getTranslatedArticleSync(article, language))
+      .filter((article) => {
+        const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
+        const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch =
+          !q ||
+          article.title.toLowerCase().includes(q) ||
+          article.summary.toLowerCase().includes(q) ||
+          article.outletName.toLowerCase().includes(q) ||
+          article.tag.toLowerCase().includes(q);
 
-      return matchesOutlet && matchesCategory && matchesSearch;
-    });
-  }, [articles, selectedOutlet, selectedCategory, searchQuery]);
+        return matchesOutlet && matchesCategory && matchesSearch;
+      });
+  }, [articles, selectedOutlet, selectedCategory, searchQuery, language]);
 
   const currentOutletMeta = useMemo(() => {
     if (selectedOutlet === 'all') return null;

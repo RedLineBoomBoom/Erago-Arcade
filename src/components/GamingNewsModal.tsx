@@ -16,6 +16,7 @@ import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
 import { ArticleDetailModal } from './ArticleDetailModal';
 import { useLanguage } from '../utils/i18n';
+import { getTranslatedArticleSync } from '../utils/newsTranslator';
 
 interface GamingNewsModalProps {
   isOpen: boolean;
@@ -28,7 +29,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
   onClose,
   initialOutletId = 'all',
 }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedOutlet, setSelectedOutlet] = useState<string>(initialOutletId);
   const [prevInitialId, setPrevInitialId] = useState(initialOutletId);
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
@@ -92,25 +93,27 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
     }
   };
 
-  // Filtered articles
+  // Filtered and translated articles
   const filteredArticles = useMemo(() => {
-    return articles.filter((article) => {
-      // Outlet filter
-      const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
-      // Category filter
-      const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
-      // Search query
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch =
-        !q ||
-        article.title.toLowerCase().includes(q) ||
-        article.summary.toLowerCase().includes(q) ||
-        article.outletName.toLowerCase().includes(q) ||
-        article.tag.toLowerCase().includes(q);
+    return articles
+      .map((article) => getTranslatedArticleSync(article, language))
+      .filter((article) => {
+        // Outlet filter
+        const matchesOutlet = selectedOutlet === 'all' || article.outletId === selectedOutlet;
+        // Category filter
+        const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
+        // Search query
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch =
+          !q ||
+          article.title.toLowerCase().includes(q) ||
+          article.summary.toLowerCase().includes(q) ||
+          article.outletName.toLowerCase().includes(q) ||
+          article.tag.toLowerCase().includes(q);
 
-      return matchesOutlet && matchesCategory && matchesSearch;
-    });
-  }, [articles, selectedOutlet, selectedCategory, searchQuery]);
+        return matchesOutlet && matchesCategory && matchesSearch;
+      });
+  }, [articles, selectedOutlet, selectedCategory, searchQuery, language]);
 
   // Selected outlet metadata if any
   const currentOutletMeta = useMemo(() => {

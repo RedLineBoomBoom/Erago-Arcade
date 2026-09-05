@@ -13,8 +13,9 @@ import {
 } from 'lucide-react';
 import type { NewsArticle } from '../types/newsFeed';
 import { sound } from '../audio/soundEngine';
-import { useLanguage } from '../utils/i18n';
+import { useLanguage, type Language } from '../utils/i18n';
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
+import { useTranslatedArticle } from '../utils/newsTranslator';
 
 interface ArticleDetailModalProps {
   isOpen: boolean;
@@ -29,38 +30,38 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
 }) => {
   const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
+  const [viewLang, setViewLang] = useState<Language>(language);
 
-  // Automatically upgrade to richest published content if incoming article has stale cache
-  const activeArticle = useMemo(() => {
+  // Automatically synchronize view language when website language changes
+  useEffect(() => {
+    setViewLang(language);
+  }, [language]);
+
+  // Resolve canonical article (grounded in original English source for bidirectional translation)
+  const baseArticle = useMemo(() => {
     if (!article) return null;
+    const original = article._original || article;
     const bundled = GAMING_NEWS_ARTICLES.find(
-      (a) => a.id === article.id || a.url === article.url
+      (a) => a.id === original.id || a.url === original.url
     );
     if (bundled && bundled.fullContent && bundled.fullContent.length > 0) {
-      const hasBoilerplate = (article.fullContent || []).some((p) =>
-        p.includes('Artikel ini dipublikasikan oleh redaksi resmi')
-      );
-      if (hasBoilerplate || bundled.fullContent.length > (article.fullContent?.length || 0)) {
-        return {
-          ...article,
-          summary: bundled.summary || article.summary,
-          keyHighlights:
-            bundled.keyHighlights && bundled.keyHighlights.length > 0
-              ? bundled.keyHighlights
-              : article.keyHighlights,
-          fullContent: bundled.fullContent,
-        };
-      }
+      return {
+        ...bundled,
+        _original: bundled,
+      };
     }
-    return article;
+    return original;
   }, [article]);
 
+  const { translatedArticle, isTranslating } = useTranslatedArticle(baseArticle, viewLang);
+  const cur = translatedArticle || baseArticle || article;
+
   const cleanParagraphs = useMemo(() => {
-    if (!activeArticle) return [];
+    if (!cur) return [];
     const raw =
-      activeArticle.fullContent && activeArticle.fullContent.length > 0
-        ? activeArticle.fullContent
-        : [activeArticle.summary];
+      cur.fullContent && cur.fullContent.length > 0
+        ? cur.fullContent
+        : [cur.summary];
 
     const filtered = raw.filter(
       (p) =>
@@ -68,18 +69,18 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
         !p.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
         !p.toLowerCase().includes('klik tombol tautan di bawah')
     );
-    return filtered.length > 0 ? filtered : [activeArticle.summary];
-  }, [activeArticle]);
+    return filtered.length > 0 ? filtered : [cur.summary];
+  }, [cur]);
 
   const cleanHighlights = useMemo(() => {
-    if (!activeArticle) return [];
-    return (activeArticle.keyHighlights || []).filter(
+    if (!cur) return [];
+    return (cur.keyHighlights || []).filter(
       (h) =>
         Boolean(h) &&
         !h.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
         !cleanParagraphs.some((p) => p.trim().toLowerCase() === h.trim().toLowerCase())
     );
-  }, [activeArticle, cleanParagraphs]);
+  }, [cur, cleanParagraphs]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -92,8 +93,6 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
-
-  const cur = activeArticle || article;
 
   if (!isOpen || !cur) return null;
 
@@ -167,6 +166,26 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Quick Translation Toggle Button */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                setViewLang((prev) => (prev === 'id' ? 'en' : 'id'));
+              }}
+              title={
+                viewLang === 'id'
+                  ? 'Klik untuk melihat teks asli bahasa Inggris'
+                  : 'Klik untuk menerjemahkan ke Bahasa Indonesia'
+              }
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-[#FFE600] hover:text-black font-mono text-[10px] sm:text-xs font-bold transition-all shadow-[2px_2px_0px_#000] cursor-pointer"
+            >
+              <span>🌐</span>
+              <span>{viewLang === 'id' ? '🇮🇩 ID (Terjemahan)' : '🇬🇧 EN (Asli)'}</span>
+              {isTranslating && (
+                <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-ping" />
+              )}
+            </button>
+
             <button
               onClick={() => {
                 sound.playClick();
@@ -255,9 +274,17 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 <Sparkles className="w-4 h-4 text-[#FFE600]" />
                 <span>{t('news_reader_summary_title')}</span>
               </div>
-              <span className="px-2.5 py-1 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 font-mono text-[9px] text-[#00F5D4] uppercase tracking-wider font-bold">
-                {t('news_reader_briefing_badge')}
-              </span>
+              <div className="flex items-center gap-2">
+                {viewLang === 'id' && (
+                  <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#FFE600]/15 border border-[#FFE600]/40 font-mono text-[9px] text-[#FFE600] font-bold">
+                    <span>🌐</span>
+                    <span>{language === 'id' ? 'Terjemahan Bahasa Indonesia' : 'Translated to Indonesian'}</span>
+                  </span>
+                )}
+                <span className="px-2.5 py-1 rounded bg-[#00F5D4]/10 border border-[#00F5D4]/30 font-mono text-[9px] text-[#00F5D4] uppercase tracking-wider font-bold">
+                  {t('news_reader_briefing_badge')}
+                </span>
+              </div>
             </div>
 
             {/* Published Article Content Paragraphs */}

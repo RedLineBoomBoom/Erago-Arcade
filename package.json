@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "sync:steamdb": "node scripts/sync_steamdb_assets.cjs",
-    "sync:news": "node scripts/sync_gaming_news.cjs"
+    "sync:news": "node scripts/sync_gaming_news.cjs",
+    "sync:news:id": "node scripts/sync_news_translations.cjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
