@@ -15,9 +15,9 @@ export const TIME_REWARD_INTERVAL_SECONDS = 600; // 10 minutes
 export const BOSS_CLEAR_REWARD_COINS = 20;
 
 // Security Velocity & Ceiling Constraints
-const MAX_SINGLE_COIN_GRANT = 500;
-const MAX_COINS_PER_MINUTE = 500;
-const MAX_CONVERT_POINTS_SINGLE = 3000;
+const MAX_SINGLE_COIN_GRANT = 2000;
+const MAX_COINS_PER_MINUTE = 5000;
+const MAX_CONVERT_POINTS_SINGLE = 10000;
 
 export interface CurrencyState {
   coins: number;
@@ -174,7 +174,7 @@ class CurrencyManager {
         if (!(trap in window)) {
           Object.defineProperty(window, trap, {
             get: () => {
-              this.tripTamper(`Sonde inspeksi Console terdeteksi pada window.${trap}`);
+              // Harmless undefined on property inspection or DevTools autocomplete
               return undefined;
             },
             set: () => {
@@ -296,7 +296,11 @@ class CurrencyManager {
     }
 
     if (this.#velocityCoinsGranted + grantAmount > MAX_COINS_PER_MINUTE) {
-      this.tripTamper(`Kecepatan penambahan koin melebihi batas wajar (Maks ${MAX_COINS_PER_MINUTE} koin/menit)`);
+      if (grantAmount > MAX_SINGLE_COIN_GRANT * 2) {
+        this.tripTamper(`Lonjakan koin tidak wajar terdeteksi (${grantAmount.toLocaleString()} koin)`);
+      } else {
+        console.warn(`[ERAGO VAULT] Kuota kecepatan koin per menit tercapai (Maks ${MAX_COINS_PER_MINUTE.toLocaleString()} koin/menit). Penambahan ditunda.`);
+      }
       return false;
     }
 
@@ -486,51 +490,47 @@ class CurrencyManager {
       // Re-randomize masks in memory every second
       this.#writeCoins(currentCoins);
 
-      // 2. Playtime counter
-      if (!document.hidden) {
-        const now = Date.now();
-        const wallElapsedMs = now - this.#lastWallClockMs;
-        this.#lastWallClockMs = now;
+      // 2. Playtime counter (tracks elapsed seconds accurately including background tabs)
+      const now = Date.now();
+      const wallElapsedMs = now - this.#lastWallClockMs;
+      this.#lastWallClockMs = now;
 
-        // Anti clock warp
-        if (wallElapsedMs >= 0 && wallElapsedMs <= 15000) {
-          this.#playtimeSeconds += 1;
-        } else {
-          this.#playtimeSeconds += 1;
-        }
+      // Allow natural passage of time (up to 10 seconds per heartbeat to accommodate browser background throttling)
+      const secondsPassed = (wallElapsedMs >= 1000 && wallElapsedMs <= 10000)
+        ? Math.floor(wallElapsedMs / 1000)
+        : 1;
 
-        // Persist every 15 seconds
-        if (Math.abs(this.#playtimeSeconds - this.#lastSavedSeconds) >= 15) {
+      this.#playtimeSeconds += secondsPassed;
+
+      // Persist every 15 seconds
+      if (Math.abs(this.#playtimeSeconds - this.#lastSavedSeconds) >= 15) {
+        this.#persist();
+        this.#lastSavedSeconds = this.#playtimeSeconds;
+      }
+
+      // Time reward (10 minutes = 600 seconds)
+      if (this.#playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
+        this.#playtimeSeconds = this.#playtimeSeconds % TIME_REWARD_INTERVAL_SECONDS;
+        this.#lastSavedSeconds = this.#playtimeSeconds;
+
+        const coinsBefore = this.#readCoins();
+        const newCoins = coinsBefore + TIME_REWARD_COINS;
+        if (newCoins <= MAX_COIN_CEILING) {
+          this.#writeCoins(newCoins);
           this.#persist();
-          this.#lastSavedSeconds = this.#playtimeSeconds;
-        }
+          sound.playCoin();
 
-        // Time reward (10 minutes)
-        if (this.#playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
-          this.#playtimeSeconds = 0;
-          this.#lastSavedSeconds = 0;
-
-          const coinsBefore = this.#readCoins();
-          const newCoins = coinsBefore + TIME_REWARD_COINS;
-          if (newCoins <= MAX_COIN_CEILING) {
-            this.#writeCoins(newCoins);
-            this.#persist();
-            sound.playCoin();
-
-            for (const listener of this.#timeRewardListeners) {
-              try {
-                listener(TIME_REWARD_COINS);
-              } catch (err) {
-                console.error('Time reward listener error:', err);
-              }
+          for (const listener of this.#timeRewardListeners) {
+            try {
+              listener(TIME_REWARD_COINS);
+            } catch (err) {
+              console.error('Time reward listener error:', err);
             }
           }
         }
-
-        this.#notify();
-      } else {
-        this.#lastWallClockMs = Date.now();
       }
+
+      this.#notify();
     }, 1000);
   }
 

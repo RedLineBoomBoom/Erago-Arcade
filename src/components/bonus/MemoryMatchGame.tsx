@@ -110,7 +110,7 @@ export const MemoryMatchGame: React.FC<MemoryMatchGameProps> = ({ onBack }) => {
 
       if (firstCard && firstCard.pairId === secondCard.pairId) {
         sound.playCorrect();
-        const earned = 500 + timeLeft * 20;
+        const earned = 200 + Math.max(0, timeLeft) * 5;
         currencyManager.convertPoints(earned, 'MEMORY_MATCH');
         setScore((prev) => {
           const newTotal = prev + earned;

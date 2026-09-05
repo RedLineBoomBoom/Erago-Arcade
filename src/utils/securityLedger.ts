@@ -273,7 +273,7 @@ class SecurityLedgerManager {
     if (!Number.isInteger(payload.accumulatedPoints) || payload.accumulatedPoints < 0 || payload.accumulatedPoints >= 100) {
       return false;
     }
-    if (!Number.isInteger(payload.playtimeSeconds) || payload.playtimeSeconds < 0 || payload.playtimeSeconds >= 600) {
+    if (!Number.isInteger(payload.playtimeSeconds) || payload.playtimeSeconds < 0 || payload.playtimeSeconds > 600) {
       return false;
     }
     if (!Number.isInteger(payload.nonce) || payload.nonce < 0) {
@@ -441,19 +441,6 @@ class SecurityLedgerManager {
       this.lastKnownSignature = envelope.syncSignature;
       this.lastVerifiedTimestamp = envelope.timestamp;
       this.isSecured = true;
-
-      // Async HMAC check if signature exists
-      if (envelope.signature) {
-        this.computeHmacSha256(`${envelope.vaultId}:${envelope.timestamp}:${envelope.nonce}:${envelope.payloadCipher}:${envelope.syncSignature}`).then(
-          (expectedHmac) => {
-            if (envelope.signature && envelope.signature !== expectedHmac) {
-              this.notifyTamper('Verifikasi HMAC-SHA256 gagal (Modifikasi tanda tangan)', SAFE_BASELINE_COINS);
-              const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
-              this.saveSecureVault(restored);
-            }
-          }
-        );
-      }
 
       return {
         coins: payload.coins,

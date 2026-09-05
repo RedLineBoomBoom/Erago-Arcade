@@ -60,25 +60,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     playtimeSeconds: 0,
   }));
   const extrasMenuRef = useRef<HTMLDivElement | null>(null);
-  const coinDisplayRef = useRef<HTMLSpanElement | null>(null);
-
-  // Anti-tamper DOM watchdog: detects unauthorized direct DOM text editing in DevTools
-  useEffect(() => {
-    if (!coinDisplayRef.current) return;
-    const target = coinDisplayRef.current;
-    const expected = currencyState.coins.toLocaleString();
-
-    const observer = new MutationObserver(() => {
-      const current = target.textContent?.trim();
-      if (current && current !== expected) {
-        target.textContent = expected;
-        currencyManager.tripTamper('Manipulasi visual DOM terdeteksi pada indikator koin');
-      }
-    });
-
-    observer.observe(target, { characterData: true, childList: true, subtree: true });
-    return () => observer.disconnect();
-  }, [currencyState.coins]);
 
   useEffect(() => {
     const unsubSound = sound.subscribe(() => {
@@ -247,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex h-7 sm:h-9 items-center gap-1 sm:gap-1.5 rounded-sm border-2 border-black bg-[#1A1C26] hover:bg-[#FFE600] text-[#FFE600] hover:text-black px-1.5 sm:px-2.5 font-['Press_Start_2P'] text-[6px] sm:text-[8px] font-bold transition-all shadow-[1px_1px_0px_#000] sm:shadow-[2px_2px_0px_#000] group shrink-0"
           >
             <span className="text-[11px] sm:text-sm group-hover:scale-110 transition-transform">🪙</span>
-            <span ref={coinDisplayRef}>{currencyState.coins.toLocaleString()}</span>
+            <span>{currencyState.coins.toLocaleString()}</span>
             <span className="hidden xl:inline text-[6px] text-zinc-400 group-hover:text-black">{t('coins_label')}</span>
           </button>
 
