@@ -32,6 +32,18 @@ class SoundEngine {
     this.onStateChangeCallbacks.forEach((cb) => cb());
   }
 
+  public async resumeAudio(): Promise<boolean> {
+    try {
+      this.initContext();
+      if (this.ctx && this.ctx.state === 'suspended') {
+        await this.ctx.resume();
+      }
+      return this.ctx?.state === 'running';
+    } catch {
+      return false;
+    }
+  }
+
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
     if (this.isMuted && this.isBgmActive) {
@@ -442,6 +454,205 @@ class SoundEngine {
     }
   }
 
+  /** Mechanical power switch relay snap */
+  public playRelayClick() {
+    if (this.isMuted) return;
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(180, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.06);
+
+      gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.06);
+    } catch {
+      // Ignored
+    }
+  }
+
+  /** Retro BIOS / POST diagnostic memory check beep */
+  public playBiosBeep(freq: number = 960, dur: number = 0.04) {
+    if (this.isMuted) return;
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + dur);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + dur);
+    } catch {
+      // Ignored
+    }
+  }
+
+  /** Optical CD-ROM / Floppy drive laser stepper motor seek ticks */
+  public playDiscSeek() {
+    if (this.isMuted) return;
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+
+      [0, 0.03, 0.07].forEach((delay) => {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        const start = this.ctx.currentTime + delay;
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1400 + Math.random() * 400, start);
+        osc.frequency.exponentialRampToValueAtTime(200, start + 0.02);
+
+        gain.gain.setValueAtTime(0.08, start);
+        gain.gain.exponentialRampToValueAtTime(0.001, start + 0.02);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.start(start);
+        osc.stop(start + 0.025);
+      });
+    } catch {
+      // Ignored
+    }
+  }
+
+  /** Iconic 90s Retro Console Boot Fanfare & Shimmering Chord (PS1 / Neo Geo style) */
+  public playConsoleBootChime() {
+    if (this.isMuted) return;
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+
+      const now = this.ctx.currentTime;
+
+      // 1. Low deep sub-bass cinematic drone & sweep (A1 -> D2)
+      const subOsc = this.ctx.createOscillator();
+      const subGain = this.ctx.createGain();
+      const subFilter = this.ctx.createBiquadFilter();
+
+      subOsc.type = 'sawtooth';
+      subOsc.frequency.setValueAtTime(55, now);
+      subOsc.frequency.exponentialRampToValueAtTime(73.42, now + 1.2);
+
+      subFilter.type = 'lowpass';
+      subFilter.frequency.setValueAtTime(120, now);
+      subFilter.frequency.exponentialRampToValueAtTime(480, now + 1.8);
+      subFilter.frequency.exponentialRampToValueAtTime(100, now + 3.2);
+
+      subGain.gain.setValueAtTime(0.001, now);
+      subGain.gain.linearRampToValueAtTime(0.25, now + 0.6);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 3.2);
+
+      subOsc.connect(subFilter);
+      subFilter.connect(subGain);
+      subGain.connect(this.ctx.destination);
+
+      subOsc.start(now);
+      subOsc.stop(now + 3.3);
+
+      // 2. Ascending crystal bell arpeggio chime (D5, F#5, A5, C#6, E6, A6)
+      const chimeNotes = [587.33, 739.99, 880.00, 1108.73, 1318.51, 1760.00];
+      chimeNotes.forEach((f, idx) => {
+        if (!this.ctx) return;
+        const chimeOsc = this.ctx.createOscillator();
+        const chimeGain = this.ctx.createGain();
+        const noteStart = now + 0.35 + idx * 0.08;
+
+        chimeOsc.type = 'sine';
+        chimeOsc.frequency.setValueAtTime(f, noteStart);
+
+        chimeGain.gain.setValueAtTime(0.18, noteStart);
+        chimeGain.gain.exponentialRampToValueAtTime(0.001, noteStart + 1.2);
+
+        chimeOsc.connect(chimeGain);
+        chimeGain.connect(this.ctx.destination);
+
+        chimeOsc.start(noteStart);
+        chimeOsc.stop(noteStart + 1.25);
+      });
+
+      // 3. Triumphant warm synthesizer chord pad (D Major 9 chord: D3, A3, F#4, C#5, E5)
+      const chordFreaks = [146.83, 220.00, 369.99, 554.37, 659.25];
+      chordFreaks.forEach((f) => {
+        if (!this.ctx) return;
+        const padOsc = this.ctx.createOscillator();
+        const padGain = this.ctx.createGain();
+        const padFilter = this.ctx.createBiquadFilter();
+        const chordStart = now + 0.85;
+
+        padOsc.type = 'triangle';
+        padOsc.frequency.setValueAtTime(f, chordStart);
+
+        padFilter.type = 'lowpass';
+        padFilter.frequency.setValueAtTime(800, chordStart);
+        padFilter.frequency.exponentialRampToValueAtTime(2400, chordStart + 0.8);
+        padFilter.frequency.exponentialRampToValueAtTime(600, chordStart + 3.0);
+
+        padGain.gain.setValueAtTime(0.001, chordStart);
+        padGain.gain.linearRampToValueAtTime(0.12, chordStart + 0.4);
+        padGain.gain.exponentialRampToValueAtTime(0.001, chordStart + 3.0);
+
+        padOsc.connect(padFilter);
+        padFilter.connect(padGain);
+        padGain.connect(this.ctx.destination);
+
+        padOsc.start(chordStart);
+        padOsc.stop(chordStart + 3.1);
+      });
+    } catch {
+      // Ignored
+    }
+  }
+
+  /** Transition iris / whoosh sound */
+  public playBootWhoosh() {
+    if (this.isMuted) return;
+    try {
+      this.initContext();
+      if (!this.ctx) return;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(300, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1600, this.ctx.currentTime + 0.22);
+      osc.frequency.exponentialRampToValueAtTime(100, this.ctx.currentTime + 0.35);
+
+      gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.35);
+    } catch {
+      // Ignored
+    }
+  }
 
   public currentTrackIndex: number = 0;
   private analyser: AnalyserNode | null = null;
@@ -490,12 +701,13 @@ class SoundEngine {
     return dataArray;
   }
 
-  private startBgm() {
+  public startBgm() {
     if (this.isMuted) this.isMuted = false;
     this.isBgmActive = true;
     this.bgmStep = 0;
     this.initContext();
     if (!this.ctx) return;
+    this.notify();
 
     // Set up AnalyserNode for Visualizer
     if (!this.analyser) {
@@ -600,12 +812,13 @@ class SoundEngine {
     }, cur.stepDuration);
   }
 
-  private stopBgm() {
+  public stopBgm() {
     this.isBgmActive = false;
     if (this.bgmInterval !== null) {
       clearInterval(this.bgmInterval);
       this.bgmInterval = null;
     }
+    this.notify();
   }
 }
 

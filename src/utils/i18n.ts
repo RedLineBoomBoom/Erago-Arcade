@@ -190,6 +190,38 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'Berita 12 Outlet Game',
     en: '12 Outlets News',
   },
+  'hub_reboot': {
+    id: 'REBOOT KONSOL',
+    en: 'REBOOT CONSOLE',
+  },
+  'hub_reboot_desc': {
+    id: 'Mulai Ulang Boot Layar',
+    en: 'Replay Boot Sequence',
+  },
+  'boot_power_on': {
+    id: 'NYALAKAN KONSOL',
+    en: 'POWER ON CONSOLE',
+  },
+  'boot_click_to_start': {
+    id: 'KLIK / TEKAN UNTUK MENGAKTIFKAN AUDIO & BOOT',
+    en: 'CLICK / PRESS ANY KEY TO INITIALIZE AUDIO & BOOT',
+  },
+  'boot_skip': {
+    id: 'LEWATI [ESC]',
+    en: 'SKIP [ESC]',
+  },
+  'boot_fast_forward': {
+    id: 'PERCEPAT 2X',
+    en: 'FAST FORWARD 2X',
+  },
+  'boot_insert_coin': {
+    id: 'MASUKKAN KOIN / TEKAN TOMBOL APA SAJA UNTUK MASUK',
+    en: 'INSERT COIN / PRESS ANY KEY TO ENTER',
+  },
+  'boot_system_ready': {
+    id: 'SISTEM SIAP // MEMULAI...',
+    en: 'SYSTEM READY // LAUNCHING...',
+  },
   'discovered': {
     id: 'TERBUKA',
     en: 'DISCOVERED',

@@ -27,6 +27,7 @@ interface NavbarProps {
   onOpenCardBinder: () => void;
   onOpenBankModal: () => void;
   onOpenNewsModal?: () => void;
+  onRebootConsole?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -48,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCardBinder,
   onOpenBankModal,
   onOpenNewsModal,
+  onRebootConsole,
 }) => {
   const { language, toggleLanguage, t } = useLanguage();
 
@@ -410,6 +412,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                       <span className="px-1.5 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[6px] font-bold">
                         12 SITES
+                      </span>
+                    </button>
+                  )}
+
+                  {/* Reboot Console Loader */}
+                  {onRebootConsole && (
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setIsExtrasOpen(false);
+                        onRebootConsole();
+                      }}
+                      className="col-span-2 flex items-center justify-between p-2 rounded-lg border-2 border-black bg-gradient-to-r from-[#1E2230] to-[#282E40] text-left hover:bg-[#00F5D4] text-white hover:text-black transition-all group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🔄</span>
+                        <div>
+                          <div className="font-['Press_Start_2P'] text-[7px] font-bold">{t('hub_reboot')}</div>
+                          <div className="font-mono text-[8px] text-zinc-400 group-hover:text-black/80">{t('hub_reboot_desc')}</div>
+                        </div>
+                      </div>
+                      <span className="px-1.5 py-0.5 rounded bg-[#FF2A85] text-white font-['Press_Start_2P'] text-[6px] font-bold">
+                        BOOT
                       </span>
                     </button>
                   )}

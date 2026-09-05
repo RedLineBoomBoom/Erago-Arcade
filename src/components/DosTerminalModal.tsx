@@ -10,6 +10,7 @@ import { getTranslatedTrivia, getLanguage } from '../utils/i18n';
 interface DosTerminalModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onReboot?: () => void;
 }
 
 interface HistoryItem {
@@ -17,7 +18,7 @@ interface HistoryItem {
   output: string | React.ReactNode;
 }
 
-export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onClose }) => {
+export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onClose, onReboot }) => {
   const [inputVal, setInputVal] = useState('');
   const [history, setHistory] = useState<HistoryItem[]>([
     {
@@ -75,6 +76,7 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
             <div>• <strong className="text-yellow-400">ART [MARIO|DOOM|PACMAN|ZELDA]</strong> : Render ASCII art</div>
             <div>• <strong className="text-yellow-400">TYPE SECRET.TXT</strong> : Read confidential lore</div>
             <div>• <strong className="text-yellow-400">MATRIX</strong> : Trigger green digital rain stream</div>
+            <div>• <strong className="text-yellow-400">REBOOT</strong> : Restart and trigger console boot sequence</div>
             <div>• <strong className="text-yellow-400">CLS</strong> : Clear terminal screen</div>
             <div>• <strong className="text-yellow-400">EXIT</strong> : Close command prompt</div>
           </div>
@@ -194,6 +196,22 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
           );
         } else {
           output = <div className="text-red-400">File not found: {arg}</div>;
+        }
+        break;
+
+      case 'reboot':
+      case 'restart':
+      case 'boot':
+        output = (
+          <div className="text-yellow-400 font-bold animate-pulse">
+            REBOOTING ERAGO ARCADE SYSTEM OS...
+          </div>
+        );
+        if (onReboot) {
+          setTimeout(() => {
+            onClose();
+            onReboot();
+          }, 350);
         }
         break;
 

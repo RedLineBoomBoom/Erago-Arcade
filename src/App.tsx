@@ -33,6 +33,7 @@ import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { VaultTamperBanner } from './components/VaultTamperBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
 import { NewsStrip } from './components/NewsStrip';
+import { ConsoleBootLoader } from './components/ConsoleBootLoader';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import type { TamperIncident } from './utils/securityLedger';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
@@ -53,6 +54,7 @@ export function App() {
   const [selectedTag, setSelectedTag] = useState<TriviaTag>('All');
   const [currentView, setCurrentView] = useState<ViewMode>('arcade');
   const [crtEnabled, setCrtEnabled] = useState(false);
+  const [isBooting, setIsBooting] = useState(true);
 
   // Entertaining Arcade Toys & Expansions Modals
   const [isTrophyModalOpen, setIsTrophyModalOpen] = useState(false);
@@ -153,6 +155,7 @@ export function App() {
 
   // Check if any foreground modal or mini-game is open
   const isAnyModalOpen =
+    isBooting ||
     isBonusStageOpen ||
     isTrophyModalOpen ||
     isSoundboardOpen ||
@@ -239,6 +242,7 @@ export function App() {
             setNewsOutletFilter('all');
             setIsNewsModalOpen(true);
           }}
+          onRebootConsole={() => setIsBooting(true)}
         />
 
 
@@ -418,6 +422,7 @@ export function App() {
       <DosTerminalModal
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
+        onReboot={() => setIsBooting(true)}
       />
 
       {/* 9. 90s Holographic Trading Card Binder */}
@@ -464,6 +469,14 @@ export function App() {
         onClose={() => setIsNewsModalOpen(false)}
         initialOutletId={newsOutletFilter}
       />
+
+      {/* 14. Retro Console Boot Loader & Power-On Sequence */}
+      {isBooting && (
+        <ConsoleBootLoader
+          onComplete={() => setIsBooting(false)}
+          onSkip={() => setIsBooting(false)}
+        />
+      )}
     </div>
 
   );
