@@ -120,10 +120,15 @@ function parseFeed(xml: string, outlet: OutletConfig) {
                     raw.match(/<name[^>]*>([\s\S]*?)<\/name>/i);
     const author = authorM ? decodeHtml(authorM[1]) : outlet.name;
 
-    const sentences = desc.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 20);
-    const keyHighlights = sentences.slice(0, 3).map(s => `${s}.`);
+    // Highlights - clean and deduplicated
+    const rawSentences = desc
+      .split(/[.!?]+/)
+      .map(s => s.trim())
+      .filter(s => s.length > 25);
+    const uniqueSentences = Array.from(new Set(rawSentences));
+    const keyHighlights = uniqueSentences.slice(0, 3).map(s => (s.endsWith('.') ? s : `${s}.`));
     if (keyHighlights.length === 0) {
-      keyHighlights.push(`Liputan resmi dan investigasi dari redaksi ${outlet.name}.`);
+      keyHighlights.push(`Liputan resmi dan investigasi langsung dari redaksi ${outlet.name}.`);
     }
 
     items.push({

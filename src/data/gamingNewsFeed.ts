@@ -4,7 +4,7 @@ import type { NewsArticle } from '../types/newsFeed';
  * LIVE CURATED GAMING NEWS FEED
  * Generated automatically from the 12 official world gaming news outlets.
  * Contains verified canonical permalinks, genuine titles, and live thumbnails.
- * Last synced: 2026-09-05T09:25:07.881Z
+ * Last synced: 2026-09-05T09:40:10.140Z
  */
 export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
   {
@@ -154,7 +154,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "isHot": false,
     "author": "Jason Rodriguez",
     "keyHighlights": [
-      "Liputan resmi dan investigasi dari redaksi GameSpot."
+      "Liputan resmi dan investigasi langsung dari redaksi GameSpot."
     ],
     "fullContent": [
       "In This Article",
@@ -324,7 +324,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://assetsio.gnwcdn.com/crazy-taxi-world-tour-germany-header.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
     "tag": "Features",
-    "publishedAt": "24 menit yang lalu",
+    "publishedAt": "39 menit yang lalu",
     "readTime": "3 min read",
     "isHot": true,
     "author": "Matt Wales",
@@ -394,6 +394,32 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "outletIcon": "🕹️",
     "outletThemeColor": "#107C41",
     "outletDomain": "thegamer.com",
+    "title": "How To Rank Up The Lovers Confidant With Ann Takamaki In Persona 5 Royal",
+    "summary": "Ann is one of your first confidants in Persona 5 Royal, but don't underestimate her. She can be a powerful ally if the Lovers confidant is maxed out!",
+    "url": "https://www.thegamer.com/persona-5-royal-confidant-guide-lovers-ann-takamaki/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/06/ann-and-the-lovers-arcana-card-in-persona-5-royal-over-a-red-and-black-background.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "9 menit yang lalu",
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Gabrielle Castania",
+    "keyHighlights": [
+      "Ann is one of your first confidants in Persona 5 Royal, but don't underestimate her.",
+      "She can be a powerful ally if the Lovers confidant is maxed out."
+    ],
+    "fullContent": [
+      "Ann is one of your first confidants in Persona 5 Royal, but don't underestimate her. She can be a powerful ally if the Lovers confidant is maxed out!",
+      "Artikel ini dipublikasikan oleh redaksi resmi TheGamer. Klik tombol tautan di bawah untuk membaca artikel lengkap, investigasi, dan galeri visual resolusi tinggi langsung di situs resmi thegamer.com."
+    ]
+  },
+  {
+    "id": "thegamer-2",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
     "title": "Every New GTA 5 Feature Coming With NoPixel 5's Release",
     "summary": "Grand Theft Auto 5 is taking an entirely new direction with its Online updates, leaving many players left in the dust.",
     "url": "https://www.thegamer.com/gta-grand-theft-auto-5-nopixel-gameplay-overhaul/",
@@ -402,7 +428,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "tag": "Guides",
     "publishedAt": "10 jam yang lalu",
     "readTime": "2 min read",
-    "isHot": true,
+    "isHot": false,
     "author": "Steven Garrard",
     "keyHighlights": [
       "Grand Theft Auto 5 is taking an entirely new direction with its Online updates, leaving many players left in the dust."
@@ -413,7 +439,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     ]
   },
   {
-    "id": "thegamer-2",
+    "id": "thegamer-3",
     "outletId": "thegamer",
     "outletName": "TheGamer",
     "outletIcon": "🕹️",
@@ -425,7 +451,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2019/02/Scalebound-Switch.jpg",
     "category": "Culture & Reviews",
     "tag": "Guides",
-    "publishedAt": "12 jam yang lalu",
+    "publishedAt": "13 jam yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "Steven Garrard",
@@ -434,31 +460,6 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     ],
     "fullContent": [
       "Nearly a decade after its cancellation, the director behind Resident Evil 2, Devil May Cry, and more still wants to revisit this cancelled Xbox game.",
-      "Artikel ini dipublikasikan oleh redaksi resmi TheGamer. Klik tombol tautan di bawah untuk membaca artikel lengkap, investigasi, dan galeri visual resolusi tinggi langsung di situs resmi thegamer.com."
-    ]
-  },
-  {
-    "id": "thegamer-3",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Where To Find The Best Early Weapons In The Blood of Dawnwalker",
-    "summary": "Here is where to find some of the best early game weapons and defeat the Echo boss in The Blood of Dawnwalker.",
-    "url": "https://www.thegamer.com/the-blood-of-dawnwalker-best-early-game-weapons-durandal-long-cleaver-locations-echo-boss-guide/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/09/new-project-4.png",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "15 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "Collin MacGregor",
-    "keyHighlights": [
-      "Here is where to find some of the best early game weapons and defeat the Echo boss in The Blood of Dawnwalker."
-    ],
-    "fullContent": [
-      "Here is where to find some of the best early game weapons and defeat the Echo boss in The Blood of Dawnwalker.",
       "Artikel ini dipublikasikan oleh redaksi resmi TheGamer. Klik tombol tautan di bawah untuk membaca artikel lengkap, investigasi, dan galeri visual resolusi tinggi langsung di situs resmi thegamer.com."
     ]
   },
@@ -475,7 +476,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/ready-or-not-041524-245cfe47026946b5bf935079f18507d4-1.jpg",
     "category": "Culture & Reviews",
     "tag": "Culture",
-    "publishedAt": "24 menit yang lalu",
+    "publishedAt": "39 menit yang lalu",
     "readTime": "2 min read",
     "isHot": true,
     "author": "Debopriyaa Dutta",
@@ -500,7 +501,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/enterprise.jpg",
     "category": "Culture & Reviews",
     "tag": "Culture",
-    "publishedAt": "24 menit yang lalu",
+    "publishedAt": "39 menit yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "Terry Terrones",
@@ -525,7 +526,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/image_1024.png",
     "category": "Culture & Reviews",
     "tag": "Culture",
-    "publishedAt": "51 menit yang lalu",
+    "publishedAt": "1 jam yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "Rachel Tolleson",
@@ -632,7 +633,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "keyHighlights": [
       "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough.",
       "Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
-      "Still, at last, I am well."
+      "So, better start playing some games then, right."
     ],
     "fullContent": [
       "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a ...",
@@ -652,7 +653,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://assetsio.gnwcdn.com/Withering-Realms-1.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Multiplatform",
     "tag": "PC Indie",
-    "publishedAt": "16 jam yang lalu",
+    "publishedAt": "17 jam yang lalu",
     "readTime": "3 min read",
     "isHot": false,
     "author": "Edwin Evans-Thirlwell",
@@ -706,7 +707,7 @@ export const GAMING_NEWS_ARTICLES: NewsArticle[] = [
     "imageUrl": "https://cdn.mos.cms.futurecdn.net/xMAmF2C6C7KP4QCPM8mPbn-1280-80.jpg",
     "category": "Multiplatform",
     "tag": "PlayStation",
-    "publishedAt": "9 jam yang lalu",
+    "publishedAt": "10 jam yang lalu",
     "readTime": "2 min read",
     "isHot": true,
     "author": "Jordan Gerblick",

@@ -492,13 +492,53 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'KEMBALI KE FEED',
     en: 'BACK TO FEED',
   },
-  'news_reader_key_highlights': {
-    id: 'POIN PENTING BERITA',
-    en: 'KEY HIGHLIGHTS',
+  'news_reader_summary_title': {
+    id: 'RANGKUMAN BERITA',
+    en: 'NEWS SUMMARY',
   },
-  'news_reader_full_story': {
-    id: 'LIPUTAN LENGKAP',
-    en: 'FULL COVERAGE',
+  'news_reader_briefing_badge': {
+    id: 'RINGKASAN EKSEKUTIF',
+    en: 'EXECUTIVE BRIEFING',
+  },
+  'news_reader_lead_quote': {
+    id: 'KUTIPAN REDAKSI',
+    en: 'EDITORIAL LEAD',
+  },
+  'news_reader_overview_title': {
+    id: 'INTISARI LAPORAN',
+    en: 'STORY OVERVIEW',
+  },
+  'news_reader_takeaways_title': {
+    id: 'POIN UTAMA LIPUTAN',
+    en: 'KEY TAKEAWAYS',
+  },
+  'news_reader_topic_label': {
+    id: 'Topik Utama',
+    en: 'Core Topic',
+  },
+  'news_reader_publisher_label': {
+    id: 'Penerbit Resmi',
+    en: 'Official Publisher',
+  },
+  'news_reader_category_label': {
+    id: 'Kategori & Tag',
+    en: 'Category & Tags',
+  },
+  'news_reader_full_article_cta': {
+    id: 'BACA FULL ARTIKEL DI {outlet}',
+    en: 'READ FULL ARTICLE ON {outlet}',
+  },
+  'news_reader_full_article_desc': {
+    id: 'Ingin membaca ulasan lengkap, wawancara mendalam, dan galeri visual resolusi tinggi? Buka liputan penuh langsung di situs resmi {outlet}.',
+    en: 'Want to read the complete review, in-depth interviews, and high-res galleries? Open full coverage directly on the official {outlet} website.',
+  },
+  'news_reader_full_btn': {
+    id: 'BUKA ARTIKEL ASLI DI {outlet} ↗',
+    en: 'OPEN ORIGINAL ARTICLE ON {outlet} ↗',
+  },
+  'news_reader_external_hint': {
+    id: 'Membuka langsung website resmi {outlet} di tab baru',
+    en: 'Directly opens official {outlet} website in a new tab',
   },
   'news_reader_author_by': {
     id: 'Ditulis oleh',
