@@ -86,12 +86,95 @@ function parseFeed(xml, outlet) {
       }
     }
 
-    // Description / Summary
-    const descM = raw.match(/<summary[^>]*>([\s\S]*?)<\/summary>/i) ||
-                  raw.match(/<description[^>]*>([\s\S]*?)<\/description>/i) ||
-                  raw.match(/<content[^>]*>([\s\S]*?)<\/content>/i);
-    const desc = descM ? decodeHtml(descM[1]) : '';
-    const summary = desc.slice(0, 180) + (desc.length > 180 ? '...' : '');
+    // Real Article Content & Paragraphs Extraction
+    const contentEncM = raw.match(/<content:encoded[^>]*>([\s\S]*?)<\/content:encoded>/i);
+    const dcContentM = raw.match(/<dc:content[^>]*>([\s\S]*?)<\/dc:content>/i);
+    const contentM = raw.match(/<content[^>]*>([\s\S]*?)<\/content>/i);
+    const descM = raw.match(/<description[^>]*>([\s\S]*?)<\/description>/i);
+    const summaryM = raw.match(/<summary[^>]*>([\s\S]*?)<\/summary>/i);
+
+    const sources = [
+      contentEncM?.[1],
+      dcContentM?.[1],
+      contentM?.[1],
+      descM?.[1],
+      summaryM?.[1]
+    ].filter(Boolean);
+
+    let paragraphs = [];
+
+    for (const src of sources) {
+      const pMatches = [...src.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)]
+        .map(m => decodeHtml(m[1]))
+        .filter(p => {
+          if (p.length < 40) return false;
+          const low = p.toLowerCase();
+          if (low.startsWith('source')) return false;
+          if (low.includes('the post appeared first on')) return false;
+          if (low.includes('read more at')) return false;
+          if (low.includes('read full story')) return false;
+          if (low.includes('subscribe to')) return false;
+          if (low.includes('sign up for')) return false;
+          if (low.includes('copyright')) return false;
+          if (p.toLowerCase() === title.toLowerCase()) return false;
+          return true;
+        });
+
+      if (pMatches.length >= 2) {
+        paragraphs = pMatches.slice(0, 5);
+        break;
+      } else if (pMatches.length === 1 && paragraphs.length === 0) {
+        paragraphs = [pMatches[0]];
+      }
+    }
+
+    if (paragraphs.length === 0) {
+      for (const src of sources) {
+        const text = decodeHtml(src);
+        if (text.length > 50) {
+          const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+          const chunks = [];
+          let cur = '';
+          for (const s of sentences) {
+            if ((cur + ' ' + s).length > 250) {
+              chunks.push(cur.trim());
+              cur = s.trim();
+            } else {
+              cur += (cur ? ' ' : '') + s.trim();
+            }
+          }
+          if (cur) chunks.push(cur.trim());
+          paragraphs = chunks.filter(c => c.length > 35 && c.toLowerCase() !== title.toLowerCase()).slice(0, 4);
+          if (paragraphs.length > 0) break;
+        }
+      }
+    }
+
+    // Meaningful excerpt summary from published paragraphs
+    let summary = '';
+    if (paragraphs.length > 0) {
+      const p1 = paragraphs[0];
+      const sents = p1.match(/[^.!?]+[.!?]+/g) || [p1];
+      summary = sents.slice(0, 2).join(' ').trim();
+      if (summary.length < 80 && paragraphs.length > 1) {
+        summary += ' ' + paragraphs[1].slice(0, 140).trim();
+      }
+    }
+    if (!summary && descM) {
+      summary = decodeHtml(descM[1]).slice(0, 200);
+    }
+
+    // Real highlights from published text
+    const allText = paragraphs.join(' ');
+    const rawSentences = (allText.match(/[^.!?]+[.!?]+/g) || [])
+      .map(s => s.trim())
+      .filter(s => s.length > 35 && s.toLowerCase() !== title.toLowerCase());
+    const uniqueSentences = Array.from(new Set(rawSentences));
+    const keyHighlights = [];
+    if (uniqueSentences.length > 0) keyHighlights.push(uniqueSentences[0]);
+    if (uniqueSentences.length > 2) keyHighlights.push(uniqueSentences[Math.floor(uniqueSentences.length / 2)]);
+    if (uniqueSentences.length > 4) keyHighlights.push(uniqueSentences[uniqueSentences.length - 1]);
+    else if (uniqueSentences.length > 1 && keyHighlights.length < 2) keyHighlights.push(uniqueSentences[1]);
 
     // Image URL
     let imageUrl = '';
@@ -107,7 +190,6 @@ function parseFeed(xml, outlet) {
       if (imgM && imgM[1].startsWith('http')) imageUrl = imgM[1];
     }
     if (!imageUrl) {
-      // Default high quality game cover fallback
       imageUrl = '/images/news/quake2-rtx.jpg';
     }
 
@@ -116,17 +198,6 @@ function parseFeed(xml, outlet) {
                     raw.match(/<author[^>]*>([\s\S]*?)<\/author>/i) ||
                     raw.match(/<name[^>]*>([\s\S]*?)<\/name>/i);
     const author = authorM ? decodeHtml(authorM[1]) : outlet.name;
-
-    // Highlights - clean and deduplicated
-    const rawSentences = desc
-      .split(/[.!?]+/)
-      .map(s => s.trim())
-      .filter(s => s.length > 25);
-    const uniqueSentences = Array.from(new Set(rawSentences));
-    const keyHighlights = uniqueSentences.slice(0, 3).map(s => (s.endsWith('.') ? s : `${s}.`));
-    if (keyHighlights.length === 0) {
-      keyHighlights.push(`Liputan resmi dan investigasi langsung dari redaksi ${outlet.name}.`);
-    }
 
     items.push({
       id: `${outlet.id}-${idx}`,
@@ -146,10 +217,7 @@ function parseFeed(xml, outlet) {
       isHot: idx === 1,
       author,
       keyHighlights,
-      fullContent: [
-        summary,
-        `Artikel ini dipublikasikan oleh redaksi resmi ${outlet.name}. Klik tombol tautan di bawah untuk membaca artikel lengkap, investigasi, dan galeri visual resolusi tinggi langsung di situs resmi ${outlet.domain}.`
-      ]
+      fullContent: paragraphs.length > 0 ? paragraphs : [summary || title]
     });
   }
 

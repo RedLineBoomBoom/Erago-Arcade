@@ -192,9 +192,9 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           </div>
 
           {/* ======================================================== */}
-          {/* SECTION 1: RANGKUMAN BERITA / EXECUTIVE NEWS BRIEFING    */}
+          {/* SECTION 1: RANGKUMAN ISI ARTIKEL (PUBLISHED SUMMARY)     */}
           {/* ======================================================== */}
-          <div className="rounded-2xl border-3 border-black bg-gradient-to-br from-[#121420] via-[#1A1E2E] to-[#121420] p-5 sm:p-6 shadow-[5px_5px_0px_#00F5D4] space-y-4">
+          <div className="rounded-2xl border-3 border-black bg-gradient-to-br from-[#121420] via-[#1A1E2E] to-[#121420] p-5 sm:p-7 shadow-[5px_5px_0px_#00F5D4] space-y-5">
             {/* Header Badge */}
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
               <div className="flex items-center gap-2 text-[#00F5D4] font-['Press_Start_2P'] text-[9px] sm:text-[10px] font-bold">
@@ -206,76 +206,38 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
               </span>
             </div>
 
-            {/* Editorial Lead / Teaser Quote */}
-            {article.summary && (
-              <div className="relative rounded-xl border-l-4 border-[#FFE600] bg-black/40 p-3.5 sm:p-4 font-mono text-xs sm:text-sm text-zinc-100 italic leading-relaxed">
-                <span className="text-[#FFE600] font-bold text-base mr-1.5">“</span>
-                {article.summary}
-                <span className="text-[#FFE600] font-bold text-base ml-1.5">”</span>
+            {/* Published Article Content Paragraphs */}
+            <div className="space-y-4 font-sans text-sm sm:text-base text-zinc-200 leading-relaxed">
+              {article.fullContent && article.fullContent.length > 0 ? (
+                article.fullContent.map((paragraph, idx) => (
+                  <p key={idx} className="text-zinc-200 leading-relaxed text-justify sm:text-left">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="text-zinc-200 leading-relaxed text-justify sm:text-left">
+                  {article.summary}
+                </p>
+              )}
+            </div>
+
+            {/* Key Takeaways from the published report */}
+            {article.keyHighlights && article.keyHighlights.length > 0 && (
+              <div className="rounded-xl border border-white/10 bg-black/40 p-4 space-y-3 mt-4">
+                <div className="text-[10px] font-mono font-bold text-[#00F5D4] uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4]" />
+                  <span>{t('news_reader_takeaways_title')}</span>
+                </div>
+                <ul className="space-y-2 font-mono text-xs sm:text-[13px] text-zinc-100">
+                  {article.keyHighlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                      <span className="text-[#FFE600] font-bold text-sm shrink-0">▸</span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
-
-            {/* Contextual Narrative Summary */}
-            <div className="space-y-2">
-              <div className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4]" />
-                {t('news_reader_overview_title')}
-              </div>
-              <p className="font-sans text-sm text-zinc-200 leading-relaxed text-justify sm:text-left">
-                {language === 'id' ? (
-                  <>
-                    Laporan ini menyajikan sorotan terkini mengenai <strong className="text-white">"{article.title}"</strong> yang dirilis secara resmi oleh redaksi <strong className="text-[#00F5D4]">{article.outletName}</strong>. Topik ini mengulas dinamika industri dalam kategori <span className="text-[#FFE600]">{article.category}</span> ({article.tag}) untuk pembaca gamer global.
-                  </>
-                ) : (
-                  <>
-                    This briefing presents verified coverage regarding <strong className="text-white">"{article.title}"</strong>, officially published by the <strong className="text-[#00F5D4]">{article.outletName}</strong> editorial desk. It highlights key industry updates under the <span className="text-[#FFE600]">{article.category}</span> ({article.tag}) beat for the gaming community.
-                  </>
-                )}
-              </p>
-            </div>
-
-            {/* Structured Key Takeaways */}
-            <div className="pt-2 border-t border-white/10 space-y-2.5">
-              <div className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-wider flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FFE600]" />
-                {t('news_reader_takeaways_title')}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-                <div className="flex items-start gap-2 p-2.5 rounded-lg bg-black/40 border border-white/10">
-                  <span className="text-[#FFE600] font-bold shrink-0">🎯</span>
-                  <div>
-                    <div className="text-[10px] text-zinc-400 font-bold uppercase">{t('news_reader_topic_label')}</div>
-                    <div className="text-zinc-200 font-sans text-xs line-clamp-2">{article.title}</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2 p-2.5 rounded-lg bg-black/40 border border-white/10">
-                  <span className="text-[#00F5D4] font-bold shrink-0">🏷️</span>
-                  <div>
-                    <div className="text-[10px] text-zinc-400 font-bold uppercase">{t('news_reader_category_label')}</div>
-                    <div className="text-zinc-200 text-xs">{article.category} • #{article.tag}</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Extra unique bullet highlights if any distinct sentence exists */}
-              {article.keyHighlights && article.keyHighlights.length > 0 && (() => {
-                const uniqueBullets = Array.from(new Set(article.keyHighlights))
-                  .filter(h => h.trim() && h.trim().toLowerCase() !== (article.summary || '').trim().toLowerCase());
-                if (uniqueBullets.length === 0) return null;
-                return (
-                  <ul className="space-y-1.5 pt-1 font-mono text-xs text-zinc-200">
-                    {uniqueBullets.map((h, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-[#00F5D4] font-bold shrink-0">▸</span>
-                        <span className="text-zinc-300">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                );
-              })()}
-            </div>
           </div>
 
           {/* ======================================================== */}
@@ -357,26 +319,24 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
 
         </div>
 
-        {/* STICKY FOOTER */}
-        <div className="shrink-0 px-4 sm:px-6 py-3 bg-[#0B0C10] border-t-2 border-black flex items-center justify-between font-mono text-xs text-zinc-400 gap-3">
+        {/* STICKY FOOTER (Clean Back Button Only, No Duplicate Open Article Button) */}
+        <div className="shrink-0 px-4 sm:px-6 py-3 bg-[#0B0C10] border-t-2 border-black flex items-center justify-between font-mono text-xs text-zinc-400">
           <button
             onClick={() => {
               sound.playClick();
               onClose();
             }}
-            className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-white hover:text-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-black bg-[#1E2230] hover:bg-white hover:text-black font-mono text-xs font-bold transition-colors shadow-[2px_2px_0px_#000] cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{t('news_reader_back')}</span>
           </button>
 
-          <button
-            onClick={handleOpenSource}
-            className="flex items-center gap-2 px-4 sm:px-5 py-2 rounded-lg border-2 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-black shadow-[2px_2px_0px_#000] transition-colors cursor-pointer"
-          >
-            <span>{t('news_reader_full_btn', { outlet: article.outletName })}</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </button>
+          <div className="text-[11px] font-mono text-zinc-500 hidden sm:flex items-center gap-2">
+            <span>{article.outletName}</span>
+            <span>•</span>
+            <span>{article.outletDomain}</span>
+          </div>
         </div>
 
       </div>

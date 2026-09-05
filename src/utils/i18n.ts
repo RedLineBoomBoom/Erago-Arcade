@@ -493,12 +493,12 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     en: 'BACK TO FEED',
   },
   'news_reader_summary_title': {
-    id: 'RANGKUMAN BERITA',
-    en: 'NEWS SUMMARY',
+    id: 'RANGKUMAN ISI ARTIKEL',
+    en: 'ARTICLE CONTENT SUMMARY',
   },
   'news_reader_briefing_badge': {
-    id: 'RINGKASAN EKSEKUTIF',
-    en: 'EXECUTIVE BRIEFING',
+    id: 'RINGKASAN RESMI',
+    en: 'OFFICIAL SUMMARY',
   },
   'news_reader_lead_quote': {
     id: 'KUTIPAN REDAKSI',
