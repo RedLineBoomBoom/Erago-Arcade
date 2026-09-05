@@ -6,18 +6,48 @@
     "outletIcon": "🖥️",
     "outletThemeColor": "#E61A24",
     "outletDomain": "pcgamer.com",
+    "title": "Left 4 Dead 2 writer says Valve intentionally 'leaked' its cinematic trailer to get around ESRB rules: 'I think we can't get trouble for that now'",
+    "summary": "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene. Indeed, it was that rapid turnaround, combined with the fact that the first Left 4 Dead was a relatively short game, which led to accusations that Left 4 Dead 2 was nothing more than a cynical ploy by Valve to cash in on the success of the first.",
+    "url": "https://www.pcgamer.com/games/fps/left-4-dead-2-writer-says-valve-intentionally-leaked-its-cinematic-trailer-to-get-around-esrb-rules-i-think-we-cant-get-trouble-for-that-now/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/Aq7A73qPPGvmVaV3mnNazU-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "14 menit yang lalu",
+    "readTime": "5 min read",
+    "isHot": true,
+    "author": "Rick Lane",
+    "keyHighlights": [
+      "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene.",
+      "One reason was that, at the time, Valve had run-ins with numerous countries and ratings boards over the series' depictions of violence and use of profane language.",
+      "Language or violence that might land a game a 'Mature' rating could result in a trailer that depicted the same things being banned outright."
+    ],
+    "fullContent": [
+      "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene. Indeed, it was that rapid turnaround, combined with the fact that the first Left 4 Dead was a relatively short game, which led to accusations that Left 4 Dead 2 was nothing more than a cynical ploy by Valve to cash in on the success of the first.",
+      "Ultimately, Left 4 Dead 2 would prove a worthy follow-up to Valve's cooperative blaster. But it turns out there was some skulduggery afoot behind the scenes on Left 4 Dead 2, just not the kind that fans suspected. Shortly before the sequel's launch, a cinematic trailer—which would ultimately serve as Left 4 Dead 2's introductory cutscene—leaked onto the Internet. Now, it's been revealed that this 'leak' was orchestrated by Valve to evade the censorious watch of the Entertainment Software Ratings Board.",
+      "This is according to former Valve writer and Left 4 Dead designer Chet Faliszek, who revealed Valve's deliberate leak in a YouTube video about cut Left 4 Dead voice lines (via Ars Technica ). In the video, Faliszek explains why Left 4 Dead 2 had a large number of voice lines cut from the final game. One reason was that, at the time, Valve had run-ins with numerous countries and ratings boards over the series' depictions of violence and use of profane language.",
+      "\"You have to remember, especially during Left 4 Dead 1 and Left 4 Dead 2 time, Valve was in fights with the ESRB, with Australia, with Germany, with a bunch of countries about the profanity in the game, or the violence,\" he explains. \"One of [Valve's] lawyers stepped in and said that us writers needed to be babysat on this. And so [the] first thing we did was, well, we made sure there was no profanity in there that crosses the line—basically F-bombs.\"",
+      "Faliszek personally believed that, when it comes to censorship of language and depictions of violence, \"you push it and have the ESRB push back\". But Valve's lawyer felt differently and Faliszek went along with it. However, the ESRB's regulatory oversight didn't just cover games, but extended to the marketing material for those games. And unlike today, the ESRB had different regulatory rules for trailers and games. Language or violence that might land a game a 'Mature' rating could result in a trailer that depicted the same things being banned outright."
+    ]
+  },
+  {
+    "id": "pc-gamer-2",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
     "title": "September's schedule of new games, events, and updates refuses to let 2026 go down in history as a slow year for new releases",
-    "summary": "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1. 0 updates, and events galore.",
+    "summary": "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon.",
     "url": "https://www.pcgamer.com/games/pc-game-release-dates-september-2026/",
     "imageUrl": "https://cdn.mos.cms.futurecdn.net/ipznXnhNVGvuja545n8DeE-1280-80.jpg",
     "category": "PC & Tech",
     "tag": "PC Gaming",
-    "publishedAt": "9 jam yang lalu",
+    "publishedAt": "10 jam yang lalu",
     "readTime": "3 min read",
-    "isHot": true,
+    "isHot": false,
     "author": "Andrea Shearon",
     "keyHighlights": [
-      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.",
+      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore.",
       "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC).",
       "I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
     ],
@@ -30,14 +60,14 @@
     ]
   },
   {
-    "id": "pc-gamer-2",
+    "id": "pc-gamer-3",
     "outletId": "pc-gamer",
     "outletName": "PC Gamer",
     "outletIcon": "🖥️",
     "outletThemeColor": "#E61A24",
     "outletDomain": "pcgamer.com",
     "title": "As Wardogs blows past 200k Steam concurrents, its developers are prepared for the day 'hype dies down'",
-    "summary": "The way our hobby talks about player counts is all sorts of messed up.  Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture.",
+    "summary": "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture.",
     "url": "https://www.pcgamer.com/games/fps/as-wardogs-blows-past-200k-steam-concurrents-its-developers-are-prepared-for-the-day-hype-dies-down/",
     "imageUrl": "https://cdn.mos.cms.futurecdn.net/t9Y89d7jTDuX9WgqPbwKiR-1280-80.jpg",
     "category": "PC & Tech",
@@ -49,7 +79,7 @@
     "keyHighlights": [
       "The way our hobby talks about player counts is all sorts of messed up.",
       "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote .",
-      "Much like the majority of videogames before 2016, Bulkhead does not need Wardogs to be a consistent, top-charting megahit to continue making it."
+      "In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
     ],
     "fullContent": [
       "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture. They're a single data point, yet have become the flimsy scaffolding on which the internet builds elaborate headcanon about a game's quality, viability, or deadness. Sometimes dogpiling is so successful, and the resulting perception so difficult to fight, that simply saying a game is dead is enough to help kill it.",
@@ -60,36 +90,6 @@
     ]
   },
   {
-    "id": "pc-gamer-3",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "Celebrate Labor Day by playing Civilization 7 for free",
-    "summary": "The Labor Day weekend is upon us (in Canada and the US, anyway, and we'll be sure to spare a thought for our UK colleagues who will be working on Monday) and holy cow, it is about time.  If you find yourself in need of something to do, here's a thought: Play Civilization 7, because it's free to play on Steam until September 10.",
-    "url": "https://www.pcgamer.com/games/strategy/celebrate-labor-day-by-playing-civilization-7-for-free/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/PuAfzvCW24RrHX7GDNYgug-1280-80.png",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "12 jam yang lalu",
-    "readTime": "4 min read",
-    "isHot": false,
-    "author": "Andy Chalk",
-    "keyHighlights": [
-      "The Labor Day weekend is upon us (in Canada and the US, anyway, and we'll be sure to spare a thought for our UK colleagues who will be working on Monday) and holy cow, it is about time.",
-      "Firaxis has been banging away on it ever since, to mixed results: A major update released in May brought a big bump in player numbers on Steam, but the reactions expressed via Steam reviews were almost literally split down the middle.",
-      "Just go around to Steam and click the \"Play Game\" button, and after some requisite amount of downloading, you're playing Civ 7 without spending a penny ."
-    ],
-    "fullContent": [
-      "The Labor Day weekend is upon us (in Canada and the US, anyway, and we'll be sure to spare a thought for our UK colleagues who will be working on Monday) and holy cow, it is about time. If you find yourself in need of something to do, here's a thought: Play Civilization 7, because it's free to play on Steam until September 10.",
-      "Civ 7's had kind of a rough go of things since it launched in early 2025. It made some big changes to the formula that didn't go over well with a significant portion of the fan base, the UI was almost universally unpopular, and performance was dodgy.",
-      "Firaxis has been banging away on it ever since, to mixed results: A major update released in May brought a big bump in player numbers on Steam, but the reactions expressed via Steam reviews were almost literally split down the middle. Civ 7's Steam rating remains \"mixed,\" with only 48% positive user reviews, while concurrent player numbers on the platform are still running neck-and-neck with the 16-year-old Civilization 5.",
-      "Civ 5 is much beloved but I imagine Firaxis and Take-Two would like to see people move on.",
-      "Ah, but here's the counterpoint: It's free . Just go around to Steam and click the \"Play Game\" button, and after some requisite amount of downloading, you're playing Civ 7 without spending a penny . It's hard to go wrong, really."
-    ]
-  },
-  {
     "id": "gamespot-1",
     "outletId": "gamespot",
     "outletName": "GameSpot",
@@ -97,7 +97,7 @@
     "outletThemeColor": "#FF1E27",
     "outletDomain": "gamespot.com",
     "title": "Before HBO's The Last Of Us, An Entirely Different Adaptation Was Proposed",
-    "summary": "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media.  Like with many Hollywood productions, The Last of Us had a tumultuous, long development period as a movie before it was ultimately abandoned in favor of what is now a hit series.",
+    "summary": "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media. Like with many Hollywood productions, The Last of Us had a tumultuous, long development period as a movie before it was ultimately abandoned in favor of what is now a hit series.&nbsp;",
     "url": "https://www.gamespot.com/articles/before-hbos-the-last-of-us-an-entirely-different-adaptation-was-proposed/",
     "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-11.57.50-AM-1.png?w=300",
     "category": "Multiplatform",
@@ -108,8 +108,8 @@
     "author": "Eddie Makuch",
     "keyHighlights": [
       "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media.",
-      "People across X recently discovered a post from Sony Pictures in 2014 declaring that The Last of Us was \"soon to be a major motion picture.",
-      "That The Last of Us was originally going to be a movie is not surprising given how many video game movies came before it and how many have been released since (with varying degrees of success)."
+      "People across X recently discovered a post from Sony Pictures in 2014 declaring that The Last of Us was \"soon to be a major motion picture.\"&nbsp; This was a real, studio-sponsored image, not a fan mock-up.",
+      "That The Last of Us was originally going to be a movie is not surprising given how many video game movies came before it and how many have been released since (with varying degrees of success).&nbsp;"
     ],
     "fullContent": [
       "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media. Like with many Hollywood productions, The Last of Us had a tumultuous, long development period as a movie before it was ultimately abandoned in favor of what is now a hit series.&nbsp;",
@@ -127,7 +127,7 @@
     "outletThemeColor": "#FF1E27",
     "outletDomain": "gamespot.com",
     "title": "Onimusha WOTS - High Level Gameplay On Hardest Difficulty",
-    "summary": "We take on Enhanced Byakue on Carnage Difficulty, a harder version of the secret demo boss while taking no damage in Onimusha: Way Of The Sword.  Carnage difficulty is only available after completing the game on normal difficulty.",
+    "summary": "We take on Enhanced Byakue on Carnage Difficulty, a harder version of the secret demo boss while taking no damage in Onimusha: Way Of The Sword. Carnage difficulty is only available after completing the game on normal difficulty.",
     "url": "https://www.gamespot.com/videos/onimusha-wots-high-level-gameplay-on-hardest-difficulty/",
     "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/Gameplay_OWOTSNoDamage_Thumb4.jpg?w=300",
     "category": "Multiplatform",
@@ -152,12 +152,12 @@
     "outletThemeColor": "#FF1E27",
     "outletDomain": "gamespot.com",
     "title": "How To Complete The Cycle Of Love In The Blood Of Dawnwalker - Xanthe Boss Guide",
-    "summary": "Are you befuddled by the tasks in The Cycle of Love in The Blood of Dawnwalker ?  This quest, which is the conclusion of your battles against Xanthe, takes place in a keep.",
+    "summary": "Are you befuddled by the tasks in The Cycle of Love in The Blood of Dawnwalker ? This quest, which is the conclusion of your battles against Xanthe, takes place in a keep.",
     "url": "https://www.gamespot.com/articles/blood-of-dawnwalker-cycle-of-love-xanthe/",
     "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/blood-of-dawnwalker-cycle-of-love-xanthe-.jpg?w=300",
     "category": "Multiplatform",
     "tag": "Reviews",
-    "publishedAt": "9 jam yang lalu",
+    "publishedAt": "10 jam yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "Jason Rodriguez",
@@ -182,7 +182,7 @@
     "outletThemeColor": "#BF1313",
     "outletDomain": "sea.ign.com",
     "title": "14 Predictions for the September 2026 Nintendo Direct and Zelda 40th Anniversary Direct",
-    "summary": "Nintendo is hosting two Directs in the coming days , and it’s pretty much all I’ve been thinking about since the announcement.  On Tuesday, September 8, it’s The Legend of Zelda 40th Anniversary Direct, followed by a more general Nintendo Direct on Wednesday, September 9.",
+    "summary": "Nintendo is hosting two Directs in the coming days , and it’s pretty much all I’ve been thinking about since the announcement. On Tuesday, September 8, it’s The Legend of Zelda 40th Anniversary Direct, followed by a more general Nintendo Direct on Wednesday, September 9.",
     "url": "https://www.ign.com/articles/14-predictions-for-the-september-2026-nintendo-direct-and-zelda-40th-anniversary-direct",
     "imageUrl": "https://assets-prd.ignimgs.com/2026/09/04/unnamed-2-1788565915081.png",
     "category": "Multiplatform",
@@ -223,7 +223,7 @@
     "author": "Virginia Glaze",
     "keyHighlights": [
       "Tim Schafer, game designer and founder of Psychonauts developer Double Fine, gave a strong response after Xbox divested the studio as part of its massive restructuring efforts this summer.",
-      "\" \"No one puts Double Fine out of business except for me,\" he continued.",
+      "\"No one puts Double Fine out of business except for me,\" he continued.",
       "That isn’t stopping it from making more games, though, as the developer recently published a Kickstarter for its next project — with the addendum that if it raises $100 million, they’ll also make Brutal Legend 2."
     ],
     "fullContent": [
@@ -277,11 +277,13 @@
     "imageUrl": "https://www.videogameschronicle.com/files/2026/09/Podcast-187-YT.jpg",
     "category": "Industry & Business",
     "tag": "Industry",
-    "publishedAt": "17 jam yang lalu",
+    "publishedAt": "18 jam yang lalu",
     "readTime": "2 min read",
     "isHot": true,
     "author": "Jordan Middler",
-    "keyHighlights": [],
+    "keyHighlights": [
+      "Plus: The debate over digital ownership rages on…"
+    ],
     "fullContent": [
       "Plus: The debate over digital ownership rages on…"
     ]
@@ -303,7 +305,9 @@
     "readTime": "2 min read",
     "isHot": false,
     "author": "Dave Aubrey",
-    "keyHighlights": [],
+    "keyHighlights": [
+      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
+    ],
     "fullContent": [
       "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
     ]
@@ -339,6 +343,30 @@
     "outletIcon": "📖",
     "outletThemeColor": "#0066CC",
     "outletDomain": "eurogamer.net",
+    "title": "BioWare doesn't need advice for Mass Effect 4, says veteran designer, as long as \"people get out of the way\"",
+    "summary": "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio.",
+    "url": "https://www.eurogamer.net/bioware-mass-effect-4-doesnt-need-advice-veteran-designer",
+    "imageUrl": "https://assetsio.gnwcdn.com/mass-effect-shepard-sad.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "10 menit yang lalu",
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Vikki Blake",
+    "keyHighlights": [
+      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
+    ],
+    "fullContent": [
+      "Original Mass Effect cinematic designer and Mass Effect 2 lead cinematic designer Armando Troisi has insisted the current BioWare team doesn't need outside advice on developing the next installment because so many of the people who built the original trilogy are still at the studio."
+    ]
+  },
+  {
+    "id": "game-informer-2",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
     "title": "Gen-AI controversy aside, Crazy Taxi: World Tour feels like classic arcade Sega - and it's an absolute blast",
     "summary": "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana.",
     "url": "https://www.eurogamer.net/crazy-taxi-world-tour-gamescom-preview",
@@ -347,7 +375,7 @@
     "tag": "Features",
     "publishedAt": "1 jam yang lalu",
     "readTime": "4 min read",
-    "isHot": true,
+    "isHot": false,
     "author": "Matt Wales",
     "keyHighlights": [
       "Crazy Taxi was not my favourite Dreamcast game (please don't ask me to choose between the triumphant rhythm triptych of Rez , Space Channel 5, and Samba de Amigo , however), but there's a specific bit of it that's forever seared into my brain: the giddy thrill of cresting over that one San-Francisco-inspired hill and barreling down toward the ocean, all while The Offspring's All I Want 'Yeah, yeah, yeah, yeah, yeah'ed me into a state of gaming nirvana."
@@ -357,7 +385,7 @@
     ]
   },
   {
-    "id": "game-informer-2",
+    "id": "game-informer-3",
     "outletId": "game-informer",
     "outletName": "Eurogamer",
     "outletIcon": "📖",
@@ -381,46 +409,45 @@
     ]
   },
   {
-    "id": "game-informer-3",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "After AI slop accusations, Humankind 2 studio says its new trailer was definitely \"made by humankind\" and at least five chickens",
-    "summary": "A large portion of the internet pointed their virtual fingers at Humankind 2's new trailer and shouted 'AI slop! ' Developer Amplitude Studios is now denying those claims and has even released a behind-the-scenes clip to prove a whole human crew (plus five chickens) made the Gamescom ONL reveal.",
-    "url": "https://www.eurogamer.net/after-ai-slop-accusations-humankind-2-studio-says-its-new-trailer-was-definitely-made-by-humankind-and-at-least-five-chickens",
-    "imageUrl": "https://assetsio.gnwcdn.com/Humankind-2_wtIn2A3.png?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "15 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Kaan Serin",
-    "keyHighlights": [
-      "A large portion of the internet pointed their virtual fingers at Humankind 2's new trailer and shouted 'AI slop!",
-      "' Developer Amplitude Studios is now denying those claims and has even released a behind-the-scenes clip to prove a whole human crew (plus five chickens) made the Gamescom ONL reveal."
-    ],
-    "fullContent": [
-      "A large portion of the internet pointed their virtual fingers at Humankind 2's new trailer and shouted 'AI slop!' Developer Amplitude Studios is now denying those claims and has even released a behind-the-scenes clip to prove a whole human crew (plus five chickens) made the Gamescom ONL reveal."
-    ]
-  },
-  {
     "id": "thegamer-1",
     "outletId": "thegamer",
     "outletName": "TheGamer",
     "outletIcon": "🕹️",
     "outletThemeColor": "#107C41",
     "outletDomain": "thegamer.com",
+    "title": "Resident Evil: Revelations 3 Leak Reveals First Look At Yuri",
+    "summary": "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc.",
+    "url": "https://www.thegamer.com/resident-evil-revelations-3-leak/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/claire-and-moira-in-resident-evil-revelations-2-standing-by-a-table-holding-a-knife-and-torch-respectively.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "3 menit yang lalu",
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "James Lucas",
+    "keyHighlights": [
+      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
+    ],
+    "fullContent": [
+      "Resident Evil fans claim to have uncovered textures for Yuri, a character from the canceled Revelations 3 game , hiding in the Resident Evil 4 remake's PS5 disc."
+    ]
+  },
+  {
+    "id": "thegamer-2",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
     "title": "Where To Find St. Mihai's Crypt In The Blood of Dawnwalker",
-    "summary": "Shortly after returning from St.  Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
+    "summary": "Shortly after returning from St. Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
     "url": "https://www.thegamer.com/the-blood-of-dawnwalker-monk-and-saint-quest-st-mihai-sword-guide/",
     "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/09/st-mihai-in-the-blood-of-dawnwalker.jpg",
     "category": "Culture & Reviews",
     "tag": "Guides",
-    "publishedAt": "25 menit yang lalu",
+    "publishedAt": "54 menit yang lalu",
     "readTime": "3 min read",
-    "isHot": true,
+    "isHot": false,
     "author": "Kaitlyn Peterson",
     "keyHighlights": [
       "Tyna's with Anca in The Blood of Dawnwalker , you'll look through a seemingly empty book at the inn that actually holds what could be the key to defeating Brencis once and for all.",
@@ -431,7 +458,7 @@
     ]
   },
   {
-    "id": "thegamer-2",
+    "id": "thegamer-3",
     "outletId": "thegamer",
     "outletName": "TheGamer",
     "outletIcon": "🕹️",
@@ -443,7 +470,7 @@
     "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/06/venom-and-spider-man-fighting-in-marvel-s-spider-man-2.png",
     "category": "Culture & Reviews",
     "tag": "Guides",
-    "publishedAt": "41 menit yang lalu",
+    "publishedAt": "1 jam yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "James Lucas",
@@ -455,31 +482,6 @@
     ]
   },
   {
-    "id": "thegamer-3",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "How To Rank Up The Lovers Confidant With Ann Takamaki In Persona 5 Royal",
-    "summary": "Ann Takamaki is one of the first Phantom Thieves you recruit in Persona 5 Royal .  When Joker, Ryuji, and Morgana storm in to change the heart of Suguru Kamoshida, a power-hungry and abusive volleyball coach at Shujin Academy, Ann finds the strength to step up and join them.",
-    "url": "https://www.thegamer.com/persona-5-royal-confidant-guide-lovers-ann-takamaki/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/06/ann-and-the-lovers-arcana-card-in-persona-5-royal-over-a-red-and-black-background.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "55 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Gabrielle Castania",
-    "keyHighlights": [
-      "Ann Takamaki is one of the first Phantom Thieves you recruit in Persona 5 Royal .",
-      "When Joker, Ryuji, and Morgana storm in to change the heart of Suguru Kamoshida, a power-hungry and abusive volleyball coach at Shujin Academy, Ann finds the strength to step up and join them."
-    ],
-    "fullContent": [
-      "Ann Takamaki is one of the first Phantom Thieves you recruit in Persona 5 Royal . When Joker, Ryuji, and Morgana storm in to change the heart of Suguru Kamoshida, a power-hungry and abusive volleyball coach at Shujin Academy, Ann finds the strength to step up and join them."
-    ]
-  },
-  {
     "id": "polygon-1",
     "outletId": "polygon",
     "outletName": "Polygon",
@@ -487,12 +489,12 @@
     "outletThemeColor": "#DF1995",
     "outletDomain": "polygon.com",
     "title": "40 Years Ago, Konami Changed the Video Game Industry Forever",
-    "summary": "New video games released in recent years might sell well, but they rarely transform the industry as a whole.  We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new.",
+    "summary": "New video games released in recent years might sell well, but they rarely transform the industry as a whole. We’ve played too many games across too many genres to believe there’s much left to explore that’s genuinely new.",
     "url": "https://www.polygon.com/40-years-konami-changed-industry/",
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/15973926/DpfYKv3WkAEF7wI.jpg",
     "category": "Culture & Reviews",
     "tag": "Culture",
-    "publishedAt": "25 menit yang lalu",
+    "publishedAt": "54 menit yang lalu",
     "readTime": "3 min read",
     "isHot": true,
     "author": "Jason Venter",
@@ -512,7 +514,7 @@
     "outletThemeColor": "#DF1995",
     "outletDomain": "polygon.com",
     "title": "Samara Weaving's Gritty Action Sleeper Hit Officially Finds a New Home on Streaming",
-    "summary": "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot.  Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen.",
+    "summary": "Samara Weaving is the perfect casting for Emma Frost , adding intense anticipation for Marvel’s X-Men reboot. Weaving has already established a knack for playing memorable female leads, thanks to her reputation as a talented scream queen.",
     "url": "https://www.polygon.com/samara-weaving-ready-or-not-netflix-streaming/",
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/ready-or-not-041524-245cfe47026946b5bf935079f18507d4-1.jpg",
     "category": "Culture & Reviews",
@@ -537,7 +539,7 @@
     "outletThemeColor": "#DF1995",
     "outletDomain": "polygon.com",
     "title": "5 Star Trek Ships That Changed the Legendary Sci-Fi Franchise Forever",
-    "summary": "Great science-fiction ships are never just transportation.  Over time, they become characters in their own right.",
+    "summary": "Great science-fiction ships are never just transportation. Over time, they become characters in their own right.",
     "url": "https://www.polygon.com/star-trek-ships-best-spaceships/",
     "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/enterprise.jpg",
     "category": "Culture & Reviews",
@@ -561,15 +563,40 @@
     "outletIcon": "📢",
     "outletThemeColor": "#FF6B00",
     "outletDomain": "gamerant.com",
+    "title": "Dragon Ball Unveils New Super Saiyan Blue Versions For Goku & Vegeta",
+    "summary": "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS .",
+    "url": "https://gamerant.com/dragon-ball-new-super-saiyan-blue-designs/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/new-super-saiyan-blue.png",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "24 menit yang lalu",
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Renan Fontes",
+    "keyHighlights": [
+      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback.",
+      "Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS ."
+    ],
+    "fullContent": [
+      "Goku and Vegeta are rocking their immensely powerful Ultra forms these days, but Super Saiyan Blue is about to make a huge comeback. Super Saiyan Blue made its first appearance in Dragon Ball Z: Resurrection F , before going to become a staple form throughout all of DBS . Dragon Ball Super is officially debuting brand-new versions of Super Saiyan Blue for Goku and Vegeta, offering them fresh redesigns ahead of the series returning next month."
+    ]
+  },
+  {
+    "id": "game-rant-2",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
     "title": "All Hozuki Pouch Effects & Locations in Onimusha: Way of the Sword",
-    "summary": "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword .  The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects.",
+    "summary": "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword . The very first one you get is as simple as it gets, but if you go out of your way to get materials for Okuni, you'll end up with four other options that each provide very different effects.",
     "url": "https://gamerant.com/onimusha-way-of-the-sword-all-hozuki-pouches-how-get-locations/",
     "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/onimusha-way-of-the-sword-all-hozuki-pouches.jpg",
     "category": "Culture & Reviews",
     "tag": "Theories",
-    "publishedAt": "25 menit yang lalu",
+    "publishedAt": "54 menit yang lalu",
     "readTime": "3 min read",
-    "isHot": true,
+    "isHot": false,
     "author": "Marc Santos",
     "keyHighlights": [
       "Hozuki Pouches are your main healing items in Onimusha: Way of the Sword .",
@@ -580,7 +607,7 @@
     ]
   },
   {
-    "id": "game-rant-2",
+    "id": "game-rant-3",
     "outletId": "game-rant",
     "outletName": "Game Rant",
     "outletIcon": "📢",
@@ -592,7 +619,7 @@
     "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/01/game-rant-games-game-rant-daily-crossword-puzzle-site-banner-graphic.jpg",
     "category": "Culture & Reviews",
     "tag": "Theories",
-    "publishedAt": "25 menit yang lalu",
+    "publishedAt": "54 menit yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "GameRant",
@@ -601,30 +628,6 @@
     ],
     "fullContent": [
       "Recall classic open-world settings and master tactical stealth action lore with today's GameRant Daily Crossword."
-    ]
-  },
-  {
-    "id": "game-rant-3",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "GameRant Daily Crossword Mini (September 6, 2026)",
-    "summary": "Conquer iconic indie adventures and revisit legendary stealth-action settings with today's mini video game crossword.",
-    "url": "https://gamerant.com/game/gamerant-daily-crossword-mini-2026-09-06/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/01/game-rant-games-game-rant-daily-crossword-puzzle-mini-site-banner-graphic.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "25 menit yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "GameRant",
-    "keyHighlights": [
-      "Conquer iconic indie adventures and revisit legendary stealth-action settings with today's mini video game crossword."
-    ],
-    "fullContent": [
-      "Conquer iconic indie adventures and revisit legendary stealth-action settings with today's mini video game crossword."
     ]
   },
   {
@@ -635,7 +638,7 @@
     "outletThemeColor": "#FFE600",
     "outletDomain": "rockpapershotgun.com",
     "title": "What are we all playing this weekend?",
-    "summary": "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough.  Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
+    "summary": "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
     "url": "https://www.rockpapershotgun.com/what-are-we-all-playing-this-weekend-398",
     "imageUrl": "https://assetsio.gnwcdn.com/playing-this-weekend_KdYr8O4.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Multiplatform",
@@ -661,12 +664,12 @@
     "outletThemeColor": "#FFE600",
     "outletDomain": "rockpapershotgun.com",
     "title": "\"Top-down Zelda meets Bloodborne\": action RPG Withering Realms is out now in early access, should you fancy riding the shoulders of a horrible doll",
-    "summary": "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror.  As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
+    "summary": "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
     "url": "https://www.rockpapershotgun.com/top-down-zelda-meets-bloodborne-action-rpg-withering-realms-is-out-now-in-early-access-should-you-fancy-riding-the-shoulders-of-a-horrible-doll",
     "imageUrl": "https://assetsio.gnwcdn.com/Withering-Realms-1.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Multiplatform",
     "tag": "PC Indie",
-    "publishedAt": "17 jam yang lalu",
+    "publishedAt": "18 jam yang lalu",
     "readTime": "3 min read",
     "isHot": false,
     "author": "Edwin Evans-Thirlwell",
@@ -688,7 +691,7 @@
     "outletThemeColor": "#FFE600",
     "outletDomain": "rockpapershotgun.com",
     "title": "Moonlighter 2: The Endless Vault review – a pleasant bout of number go up that’s most remarkable for how much of an improvement it is",
-    "summary": "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day.  In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag.",
+    "summary": "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag.",
     "url": "https://www.rockpapershotgun.com/moonlighter-2-the-endless-vault-review-a-pleasant-bout-of-number-go-up-thats-most-remarkable-for-how-much-of-an-improvement-it-is",
     "imageUrl": "https://assetsio.gnwcdn.com/moonlighter-2_0006_thwack.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Multiplatform",
@@ -715,19 +718,19 @@
     "outletThemeColor": "#0090FF",
     "outletDomain": "gamesradar.com",
     "title": "Iconic Silent Hill artist Masahiro Ito says he \"probably would have been happier\" if he hadn't \"sacrificed\" his love life for Pyramid Head",
-    "summary": "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head.  The tweet largely echoes something Ito said back in 2024 about not having the time for a girlfriend when he was working at Konami, but now he straight-up suggests he regrets sacrificing his love life for the his work.",
+    "summary": "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head. The tweet largely echoes something Ito said back in 2024 about not having the time for a girlfriend when he was working at Konami, but now he straight-up suggests he regrets sacrificing his love life for the his work.",
     "url": "https://www.gamesradar.com/games/silent-hill/iconic-silent-hill-artist-masahiro-ito-says-he-probably-would-have-been-happier-if-he-hadnt-sacrificed-his-love-life-for-pyramid-head/",
     "imageUrl": "https://cdn.mos.cms.futurecdn.net/xMAmF2C6C7KP4QCPM8mPbn-1280-80.jpg",
     "category": "Multiplatform",
     "tag": "PlayStation",
-    "publishedAt": "10 jam yang lalu",
+    "publishedAt": "11 jam yang lalu",
     "readTime": "4 min read",
     "isHot": true,
     "author": "Jordan Gerblick",
     "keyHighlights": [
       "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head.",
       "Ito is a horror icon and should be eternally proud of the work he's done for its unparalleled influence on the genre.",
-      "\" To be honest, lately, I’ve been thinking that if I hadn’t sacrificed my personal life, found a girlfriend, and gotten married early on, I probably would have been happier."
+      "To be honest, lately, I’ve been thinking that if I hadn’t sacrificed my personal life, found a girlfriend, and gotten married early on, I probably would have been happier."
     ],
     "fullContent": [
       "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head. The tweet largely echoes something Ito said back in 2024 about not having the time for a girlfriend when he was working at Konami, but now he straight-up suggests he regrets sacrificing his love life for the his work.",
@@ -756,7 +759,7 @@
     "author": "Jordan Gerblick",
     "keyHighlights": [
       "If we end up seeing Deadpool in Marvel's Spider-Man 3, it would seem we have Peter Parker actor Yuri Lowenthal to thank, at least partly.",
-      "\" In response to this, The Movie Dweeb points out a tweet apparently published at some point from Insomniac creative director Brian Horton.",
+      "In response to this, The Movie Dweeb points out a tweet apparently published at some point from Insomniac creative director Brian Horton.",
       "\"I've pushed [Horton] every time I see him with the Deadpool thing, so if I've just spoiled it for Spider-Man 3, then I would just like to believe that they got the idea from me anyway,\" Lowenthal says."
     ],
     "fullContent": [
@@ -786,7 +789,7 @@
     "author": "Lauren Milici",
     "keyHighlights": [
       "Despite critical acclaim and a slew of Emmy nominations, Spider-Noir will not be returning for a second season at Prime Video.",
-      "According to Deadline, there are still multiple projects on development, and one is \"nearing a series order.",
+      "According to Deadline, there are still multiple projects on development, and one is \"nearing a series order.\"",
       "For more, check out our Spider-Noir review , or if you're still confused about how Spider-Noir is connected to the Spider-Verse movies , we've got the answer."
     ],
     "fullContent": [
@@ -805,7 +808,7 @@
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
     "title": "Audacity 4 is a complete revamp of the ‘world’s most popular’ audio editor",
-    "summary": "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds.  The final version of the new icon isn't nearly as bad as the early rendition that was circulating last October.",
+    "summary": "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds. The final version of the new icon isn't nearly as bad as the early rendition that was circulating last October.",
     "url": "https://www.theverge.com/tech/990658/audacity-4-update-audio-editing",
     "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/Audacity-4.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
@@ -816,7 +819,8 @@
     "author": "Terrence O’Brien",
     "keyHighlights": [
       "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds.",
-      "But more importantly, all the promised improvements to the self-proclaimed \"world's most popular audio editing and recording app\" are here, turning Audacity from a free and capable but extremely clunky audio editor into a powerful modern tool."
+      "But more importantly, all the promised improvements to the self-proclaimed \"world's most popular audio editing and recording app\" are here, turning Audacity from a free and capable but extremely clunky audio editor into a powerful modern tool.",
+      "That means you can trim a clip down, then recover the audio simply …"
     ],
     "fullContent": [
       "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds. The final version of the new icon isn't nearly as bad as the early rendition that was circulating last October. But more importantly, all the promised improvements to the self-proclaimed \"world's most popular audio editing and recording app\" are here, turning Audacity from a free and capable but extremely clunky audio editor into a powerful modern tool.",
@@ -831,12 +835,12 @@
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
     "title": "The White House is making arcade games racist",
-    "summary": "The Tetris Company has already responded to \"Build the Wall,\" which is obviously modeled on the famous puzzle game.  In the Trump administration's game, the player has to stack interlocking shapes to stop a \"zombie border siege\" along the southern border.",
+    "summary": "The Tetris Company has already responded to \"Build the Wall,\" which is obviously modeled on the famous puzzle game. In the Trump administration's game, the player has to stack interlocking shapes to stop a \"zombie border siege\" along the southern border.",
     "url": "https://www.theverge.com/policy/990520/trump-arcade-games-maga-copyright",
     "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/Screenshot-2026-09-04-at-3.23.13-PM.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
     "tag": "Handhelds",
-    "publishedAt": "14 jam yang lalu",
+    "publishedAt": "15 jam yang lalu",
     "readTime": "3 min read",
     "isHot": false,
     "author": "Gaby Del Valle",
@@ -856,7 +860,7 @@
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
     "title": "GoPro says it's still committed 'to your collective stoke'",
-    "summary": "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week.  He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure.",
+    "summary": "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week. He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure.\"",
     "url": "https://www.theverge.com/gadgets/990425/gopro-nick-woodman-starman-letter",
     "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/09-4-mission1-pro-pdp-desktop.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
@@ -867,7 +871,7 @@
     "author": "Stevie Bonifield",
     "keyHighlights": [
       "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week.",
-      "He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure."
+      "YouTuber Mark \"Markiplier\" Fischbach, who prior to the acquisition became GoPro's largest individual shareholder, is not mentioned at all."
     ],
     "fullContent": [
       "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week. He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure.\"",
@@ -907,7 +911,7 @@
     "outletThemeColor": "#001799",
     "outletDomain": "gamesindustry.biz",
     "title": "Inside Tencent's long-term strategy: live service, AI tools, and evergreen titles",
-    "summary": "Many column inches have been spent questioning the wisdom of focusing on live-service.  Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed .",
+    "summary": "Many column inches have been spent questioning the wisdom of focusing on live-service. Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed .",
     "url": "https://www.gamesindustry.biz/inside-tencents-long-term-strategy-live-service-ai-tools-and-evergreen-titles",
     "imageUrl": "https://assetsio.gnwcdn.com/Tencent-Games-booth-Gamescom-2026.jpeg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
@@ -932,17 +936,17 @@
     "outletThemeColor": "#001799",
     "outletDomain": "gamesindustry.biz",
     "title": "Nvidia acquires open-source AI platform Hugging Face for $12.9bn",
-    "summary": "Nvidia has acquired the artificial intelligence platform Hugging Face for $12. 9 billion.",
+    "summary": "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion.",
     "url": "https://www.gamesindustry.biz/nvidia-acquires-open-source-ai-platform-hugging-face-for-129bn",
     "imageUrl": "https://assetsio.gnwcdn.com/nvidia-hugging-face.png?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
     "tag": "Financials",
-    "publishedAt": "20 jam yang lalu",
+    "publishedAt": "21 jam yang lalu",
     "readTime": "2 min read",
     "isHot": false,
     "author": "Sophie McEvoy",
     "keyHighlights": [
-      "Nvidia has acquired the artificial intelligence platform Hugging Face for $12."
+      "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion."
     ],
     "fullContent": [
       "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion."

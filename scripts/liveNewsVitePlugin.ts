@@ -50,6 +50,22 @@ function decodeHtml(html: string): string {
     .trim();
 }
 
+function splitSentences(text: string): string[] {
+  if (!text) return [];
+  const raw = text.split(/(?<=[.!?]["'”’]?)\s+(?=[A-Z0-9"“'‘])/);
+  const result: string[] = [];
+  let buffer = '';
+  for (const part of raw) {
+    buffer = buffer ? buffer + ' ' + part : part;
+    if (!/\b(?:[A-Z]|mr|mrs|dr|ms|prof|sr|jr|vs|etc|e\.g|i\.e)\.$/i.test(buffer.trim())) {
+      result.push(buffer.trim());
+      buffer = '';
+    }
+  }
+  if (buffer.trim()) result.push(buffer.trim());
+  return result;
+}
+
 function parseFeed(xml: string, outlet: OutletConfig) {
   const items: unknown[] = [];
   const itemRegex = /(?:<item[\s>]|<entry[\s>])([\s\S]*?)(?:<\/item>|<\/entry>)/gi;
@@ -139,7 +155,7 @@ function parseFeed(xml: string, outlet: OutletConfig) {
       for (const src of sources) {
         const text = decodeHtml(src);
         if (text.length > 50) {
-          const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+          const sentences = splitSentences(text);
           const chunks: string[] = [];
           let cur = '';
           for (const s of sentences) {
@@ -161,7 +177,7 @@ function parseFeed(xml: string, outlet: OutletConfig) {
     let summary = '';
     if (paragraphs.length > 0) {
       const p1 = paragraphs[0];
-      const sents = p1.match(/[^.!?]+[.!?]+/g) || [p1];
+      const sents = splitSentences(p1);
       summary = sents.slice(0, 2).join(' ').trim();
       if (summary.length < 80 && paragraphs.length > 1) {
         summary += ' ' + paragraphs[1].slice(0, 140).trim();
@@ -173,7 +189,7 @@ function parseFeed(xml: string, outlet: OutletConfig) {
 
     // Real highlights from published text
     const allText = paragraphs.join(' ');
-    const rawSentences = (allText.match(/[^.!?]+[.!?]+/g) || [])
+    const rawSentences = splitSentences(allText)
       .map(s => s.trim())
       .filter(s => s.length > 35 && s.toLowerCase() !== title.toLowerCase());
     const uniqueSentences = Array.from(new Set(rawSentences));
@@ -242,6 +258,17 @@ export function liveNewsPlugin(): Plugin {
         const url = new URL(req.url || '', `http://${req.headers.host}`);
         const force = url.searchParams.get('force') === 'true';
         const now = Date.now();
+
+        // Check if memory cache is contaminated with old boilerplate
+        if (memoryCache && Array.isArray(memoryCache)) {
+          const isStale = (memoryCache as Array<{ fullContent?: string[] }>).some((item) =>
+            Array.isArray(item.fullContent) &&
+            item.fullContent.some((p) => p.includes('Artikel ini dipublikasikan oleh redaksi resmi'))
+          );
+          if (isStale) {
+            memoryCache = null;
+          }
+        }
 
         // Serve memory cache if < 5 minutes old and not forced
         if (!force && memoryCache && (now - lastFetchTime < 5 * 60 * 1000)) {

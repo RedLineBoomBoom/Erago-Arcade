@@ -38,6 +38,22 @@ function decodeHtml(html) {
     .trim();
 }
 
+function splitSentences(text) {
+  if (!text) return [];
+  const raw = text.split(/(?<=[.!?]["'”’]?)\s+(?=[A-Z0-9"“'‘])/);
+  const result = [];
+  let buffer = '';
+  for (const part of raw) {
+    buffer = buffer ? buffer + ' ' + part : part;
+    if (!/\b(?:[A-Z]|mr|mrs|dr|ms|prof|sr|jr|vs|etc|e\.g|i\.e)\.$/i.test(buffer.trim())) {
+      result.push(buffer.trim());
+      buffer = '';
+    }
+  }
+  if (buffer.trim()) result.push(buffer.trim());
+  return result;
+}
+
 function parseFeed(xml, outlet) {
   const items = [];
   const itemRegex = /(?:<item[\s>]|<entry[\s>])([\s\S]*?)(?:<\/item>|<\/entry>)/gi;
@@ -132,7 +148,7 @@ function parseFeed(xml, outlet) {
       for (const src of sources) {
         const text = decodeHtml(src);
         if (text.length > 50) {
-          const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+          const sentences = splitSentences(text);
           const chunks = [];
           let cur = '';
           for (const s of sentences) {
@@ -154,7 +170,7 @@ function parseFeed(xml, outlet) {
     let summary = '';
     if (paragraphs.length > 0) {
       const p1 = paragraphs[0];
-      const sents = p1.match(/[^.!?]+[.!?]+/g) || [p1];
+      const sents = splitSentences(p1);
       summary = sents.slice(0, 2).join(' ').trim();
       if (summary.length < 80 && paragraphs.length > 1) {
         summary += ' ' + paragraphs[1].slice(0, 140).trim();
@@ -166,7 +182,7 @@ function parseFeed(xml, outlet) {
 
     // Real highlights from published text
     const allText = paragraphs.join(' ');
-    const rawSentences = (allText.match(/[^.!?]+[.!?]+/g) || [])
+    const rawSentences = splitSentences(allText)
       .map(s => s.trim())
       .filter(s => s.length > 35 && s.toLowerCase() !== title.toLowerCase());
     const uniqueSentences = Array.from(new Set(rawSentences));

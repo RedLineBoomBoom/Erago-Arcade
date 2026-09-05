@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { 
   X, 
   ExternalLink, 
@@ -14,6 +14,7 @@ import {
 import type { NewsArticle } from '../types/newsFeed';
 import { sound } from '../audio/soundEngine';
 import { useLanguage } from '../utils/i18n';
+import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 
 interface ArticleDetailModalProps {
   isOpen: boolean;
@@ -29,6 +30,57 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
   const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
+  // Automatically upgrade to richest published content if incoming article has stale cache
+  const activeArticle = useMemo(() => {
+    if (!article) return null;
+    const bundled = GAMING_NEWS_ARTICLES.find(
+      (a) => a.id === article.id || a.url === article.url
+    );
+    if (bundled && bundled.fullContent && bundled.fullContent.length > 0) {
+      const hasBoilerplate = (article.fullContent || []).some((p) =>
+        p.includes('Artikel ini dipublikasikan oleh redaksi resmi')
+      );
+      if (hasBoilerplate || bundled.fullContent.length > (article.fullContent?.length || 0)) {
+        return {
+          ...article,
+          summary: bundled.summary || article.summary,
+          keyHighlights:
+            bundled.keyHighlights && bundled.keyHighlights.length > 0
+              ? bundled.keyHighlights
+              : article.keyHighlights,
+          fullContent: bundled.fullContent,
+        };
+      }
+    }
+    return article;
+  }, [article]);
+
+  const cleanParagraphs = useMemo(() => {
+    if (!activeArticle) return [];
+    const raw =
+      activeArticle.fullContent && activeArticle.fullContent.length > 0
+        ? activeArticle.fullContent
+        : [activeArticle.summary];
+
+    const filtered = raw.filter(
+      (p) =>
+        Boolean(p) &&
+        !p.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
+        !p.toLowerCase().includes('klik tombol tautan di bawah')
+    );
+    return filtered.length > 0 ? filtered : [activeArticle.summary];
+  }, [activeArticle]);
+
+  const cleanHighlights = useMemo(() => {
+    if (!activeArticle) return [];
+    return (activeArticle.keyHighlights || []).filter(
+      (h) =>
+        Boolean(h) &&
+        !h.toLowerCase().includes('artikel ini dipublikasikan oleh redaksi resmi') &&
+        !cleanParagraphs.some((p) => p.trim().toLowerCase() === h.trim().toLowerCase())
+    );
+  }, [activeArticle, cleanParagraphs]);
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -41,28 +93,30 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen || !article) return null;
+  const cur = activeArticle || article;
+
+  if (!isOpen || !cur) return null;
 
   const handleOpenSource = () => {
     sound.playClick();
-    window.open(article.url, '_blank', 'noopener,noreferrer');
+    window.open(cur.url, '_blank', 'noopener,noreferrer');
   };
 
   const handleGoogleSearch = () => {
     sound.playClick();
-    const query = encodeURIComponent(`${article.title} ${article.outletName}`);
+    const query = encodeURIComponent(`${cur.title} ${cur.outletName}`);
     window.open(`https://www.google.com/search?q=${query}`, '_blank', 'noopener,noreferrer');
   };
 
   const handleCopyLink = async () => {
     sound.playPowerUp();
     try {
-      await navigator.clipboard.writeText(article.url);
+      await navigator.clipboard.writeText(cur.url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch {
       const textarea = document.createElement('textarea');
-      textarea.value = article.url;
+      textarea.value = cur.url;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
@@ -101,13 +155,13 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
             <div className="hidden sm:flex items-center gap-2">
               <span 
                 className="flex items-center gap-1 px-2.5 py-1 rounded border border-black font-['Press_Start_2P'] text-[7px] font-bold text-white shadow"
-                style={{ backgroundColor: article.outletThemeColor || '#FF2A85' }}
+                style={{ backgroundColor: cur.outletThemeColor || '#FF2A85' }}
               >
-                <span>{article.outletIcon}</span>
-                <span>{article.outletName}</span>
+                <span>{cur.outletIcon}</span>
+                <span>{cur.outletName}</span>
               </span>
               <span className="font-mono text-xs text-zinc-400">
-                {article.outletDomain}
+                {cur.outletDomain}
               </span>
             </div>
           </div>
@@ -132,11 +186,11 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-zinc-400 border-b border-white/10 pb-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-2 py-0.5 rounded bg-black/70 border border-white/20 text-[#00F5D4] font-bold">
-                #{article.tag}
+                #{cur.tag}
               </span>
               <span className="text-zinc-500">•</span>
-              <span>{article.category}</span>
-              {article.isHot && (
+              <span>{cur.category}</span>
+              {cur.isHot && (
                 <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#FFE600] text-black border border-black font-['Press_Start_2P'] text-[6px] font-bold shadow animate-pulse">
                   <Flame className="w-2.5 h-2.5 fill-black" /> HOT
                 </span>
@@ -146,17 +200,17 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
             <div className="flex items-center gap-4 text-zinc-400">
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5 text-[#FFE600]" />
-                {article.publishedAt}
+                {cur.publishedAt}
               </span>
               <span className="text-zinc-500">•</span>
-              <span>{article.readTime}</span>
+              <span>{cur.readTime}</span>
             </div>
           </div>
 
           {/* Headline */}
           <div className="space-y-3">
             <h1 className="font-['Syne'] font-black text-xl sm:text-2xl md:text-3xl text-white leading-tight">
-              {article.title}
+              {cur.title}
             </h1>
 
             {/* Author Byline */}
@@ -167,19 +221,19 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
               <span>
                 {t('news_reader_author_by')}{' '}
                 <strong className="text-white">
-                  {article.author || (language === 'id' ? `Tim Redaksi ${article.outletName}` : `Editorial Staff ${article.outletName}`)}
+                  {cur.author || (language === 'id' ? `Tim Redaksi ${cur.outletName}` : `Editorial Staff ${cur.outletName}`)}
                 </strong>
               </span>
               <span className="text-zinc-500">|</span>
-              <span className="text-zinc-400">{article.outletName}</span>
+              <span className="text-zinc-400">{cur.outletName}</span>
             </div>
           </div>
 
           {/* Featured Image */}
           <div className="relative w-full rounded-xl overflow-hidden border-3 border-black bg-black/60 shadow-[4px_4px_0px_#000]">
             <img
-              src={article.imageUrl}
-              alt={article.title}
+              src={cur.imageUrl}
+              alt={cur.title}
               onError={(e) => {
                 const target = e.currentTarget as HTMLImageElement;
                 target.src = '/images/news/quake2-rtx.jpg';
@@ -187,7 +241,7 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
               className="w-full max-h-[380px] object-cover"
             />
             <div className="absolute bottom-2 right-2 px-2.5 py-1 rounded bg-black/80 border border-white/20 font-mono text-[9px] text-zinc-300 backdrop-blur-xs">
-              {language === 'id' ? 'Sumber Visual' : 'Photo Credit'}: {article.outletName}
+              {language === 'id' ? 'Sumber Visual' : 'Photo Credit'}: {cur.outletName}
             </div>
           </div>
 
@@ -208,28 +262,22 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
 
             {/* Published Article Content Paragraphs */}
             <div className="space-y-4 font-sans text-sm sm:text-base text-zinc-200 leading-relaxed">
-              {article.fullContent && article.fullContent.length > 0 ? (
-                article.fullContent.map((paragraph, idx) => (
-                  <p key={idx} className="text-zinc-200 leading-relaxed text-justify sm:text-left">
-                    {paragraph}
-                  </p>
-                ))
-              ) : (
-                <p className="text-zinc-200 leading-relaxed text-justify sm:text-left">
-                  {article.summary}
+              {cleanParagraphs.map((paragraph, idx) => (
+                <p key={idx} className="text-zinc-200 leading-relaxed text-justify sm:text-left">
+                  {paragraph}
                 </p>
-              )}
+              ))}
             </div>
 
             {/* Key Takeaways from the published report */}
-            {article.keyHighlights && article.keyHighlights.length > 0 && (
+            {cleanHighlights.length > 0 && (
               <div className="rounded-xl border border-white/10 bg-black/40 p-4 space-y-3 mt-4">
                 <div className="text-[10px] font-mono font-bold text-[#00F5D4] uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00F5D4]" />
                   <span>{t('news_reader_takeaways_title')}</span>
                 </div>
                 <ul className="space-y-2 font-mono text-xs sm:text-[13px] text-zinc-100">
-                  {article.keyHighlights.map((highlight, idx) => (
+                  {cleanHighlights.map((highlight, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
                       <span className="text-[#FFE600] font-bold text-sm shrink-0">▸</span>
                       <span>{highlight}</span>
@@ -249,20 +297,20 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 <div className="flex items-center gap-2">
                   <span className="text-xl">🚀</span>
                   <h3 className="font-['Press_Start_2P'] text-[10px] sm:text-xs text-[#FFE600] leading-snug">
-                    {t('news_reader_full_article_cta', { outlet: article.outletName.toUpperCase() })}
+                    {t('news_reader_full_article_cta', { outlet: cur.outletName.toUpperCase() })}
                   </h3>
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-2xl pt-1">
-                  {t('news_reader_full_article_desc', { outlet: article.outletName })}
+                  {t('news_reader_full_article_desc', { outlet: cur.outletName })}
                 </p>
               </div>
 
               <div 
                 className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black font-['Press_Start_2P'] text-[7px] text-white shrink-0 shadow"
-                style={{ backgroundColor: article.outletThemeColor || '#FF2A85' }}
+                style={{ backgroundColor: cur.outletThemeColor || '#FF2A85' }}
               >
-                <span>{article.outletIcon}</span>
-                <span>{article.outletDomain}</span>
+                <span>{cur.outletIcon}</span>
+                <span>{cur.outletDomain}</span>
               </div>
             </div>
 
@@ -272,12 +320,12 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
                 onClick={handleOpenSource}
                 className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl border-3 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[9px] sm:text-xs font-black shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_#000] transition-all cursor-pointer group active:scale-[0.99]"
               >
-                <span>{t('news_reader_full_btn', { outlet: article.outletName.toUpperCase() })}</span>
+                <span>{t('news_reader_full_btn', { outlet: cur.outletName.toUpperCase() })}</span>
                 <ExternalLink className="w-4 h-4 group-hover:rotate-12 group-hover:scale-110 transition-transform" />
               </button>
               <p className="text-[10px] font-mono text-zinc-400 text-center mt-2 flex items-center justify-center gap-1">
                 <span>✦</span>
-                <span>{t('news_reader_external_hint', { outlet: article.outletDomain })}</span>
+                <span>{t('news_reader_external_hint', { outlet: cur.outletDomain })}</span>
                 <span>✦</span>
               </p>
             </div>
@@ -307,13 +355,13 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
               </div>
 
               <div className="font-mono text-[11px] text-zinc-400 truncate max-w-[280px] sm:max-w-xs md:max-w-sm hidden sm:block">
-                {article.url}
+                {cur.url}
               </div>
             </div>
 
             {/* Legal / Source Attribution Notice */}
             <div className="text-[10px] font-mono text-zinc-400/90 pt-1 border-t border-white/5">
-              {t('news_reader_original_source_note', { outlet: article.outletName })}
+              {t('news_reader_original_source_note', { outlet: cur.outletName })}
             </div>
           </div>
 
@@ -333,9 +381,9 @@ export const ArticleDetailModal: React.FC<ArticleDetailModalProps> = ({
           </button>
 
           <div className="text-[11px] font-mono text-zinc-500 hidden sm:flex items-center gap-2">
-            <span>{article.outletName}</span>
+            <span>{cur.outletName}</span>
             <span>•</span>
-            <span>{article.outletDomain}</span>
+            <span>{cur.outletDomain}</span>
           </div>
         </div>
 

@@ -1,9 +1,9 @@
 import type { NewsArticle } from '../types/newsFeed';
 import { GAMING_NEWS_ARTICLES } from '../data/gamingNewsFeed';
 
-const CACHE_KEY = 'erago_live_news_cache_v2';
-const TIMESTAMP_KEY = 'erago_live_news_timestamp_v2';
-const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes fresh cache
+const CACHE_KEY = 'erago_live_news_cache_v5';
+const TIMESTAMP_KEY = 'erago_live_news_timestamp_v5';
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes fresh cache
 
 export type NewsUpdateListener = (articles: NewsArticle[], lastUpdated: number) => void;
 
@@ -20,19 +20,48 @@ class LiveNewsService {
   private loadFromCache() {
     try {
       if (typeof window === 'undefined') return;
+
+      // Purge all legacy caches
+      [
+        'erago_live_news_cache',
+        'erago_live_news_cache_v1',
+        'erago_live_news_cache_v2',
+        'erago_live_news_cache_v3',
+        'erago_live_news_cache_v4'
+      ].forEach((key) => {
+        try {
+          localStorage.removeItem(key);
+          localStorage.removeItem(`${key}_timestamp`);
+        } catch {}
+      });
+
       const cached = localStorage.getItem(CACHE_KEY);
       const time = localStorage.getItem(TIMESTAMP_KEY);
+
       if (cached) {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          this.articles = parsed;
+          // Check if cache contains legacy boilerplate
+          const isContaminated = parsed.some((item: NewsArticle) =>
+            Array.isArray(item.fullContent) &&
+            item.fullContent.some((p: string) => p.includes('Artikel ini dipublikasikan oleh redaksi resmi'))
+          );
+
+          if (!isContaminated) {
+            this.articles = parsed;
+          } else {
+            localStorage.removeItem(CACHE_KEY);
+            this.articles = GAMING_NEWS_ARTICLES;
+          }
         }
+      } else {
+        this.articles = GAMING_NEWS_ARTICLES;
       }
+
       if (time) {
         this.lastUpdated = Number(time) || Date.now();
       }
     } catch {
-      // Fallback to bundled articles
       this.articles = GAMING_NEWS_ARTICLES;
     }
   }
