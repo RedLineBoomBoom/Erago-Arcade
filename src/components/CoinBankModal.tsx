@@ -45,7 +45,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
           onClose();
         }
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in select-none overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fade-in select-none overflow-y-auto"
     >
       {/* Modal Container with strict viewport constraints and scrolling */}
       <div className="relative w-full max-w-lg max-h-[90vh] flex flex-col rounded-2xl border-4 border-black bg-[#14161F] shadow-[8px_8px_0px_#FFE600] text-white overflow-hidden animate-scale-up my-auto">

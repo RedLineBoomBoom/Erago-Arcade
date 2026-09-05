@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
-import { CoinBankModal } from './CoinBankModal';
 
 import type { ViewMode } from '../types/trivia';
 
@@ -25,6 +24,7 @@ interface NavbarProps {
   onOpenThemeModal: () => void;
   onOpenTerminal: () => void;
   onOpenCardBinder: () => void;
+  onOpenBankModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -44,13 +44,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenThemeModal,
   onOpenTerminal,
   onOpenCardBinder,
+  onOpenBankModal,
 }) => {
 
 
   const [isMuted, setIsMuted] = useState(sound.isMuted);
   const [isBgmActive, setIsBgmActive] = useState(sound.isBgmActive);
   const [isExtrasOpen, setIsExtrasOpen] = useState(false);
-  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [currencyState, setCurrencyState] = useState<CurrencyState>(() => ({
     coins: currencyManager.getCoins(),
     accumulatedPoints: currencyManager.getAccumulatedPoints(),
@@ -218,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => {
               sound.playClick();
-              setIsBankModalOpen(true);
+              onOpenBankModal();
             }}
             data-cursor="COINS"
             title="Erago Coin Bank & Rewards Info"
@@ -462,16 +462,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       </div>
-
-      {/* Arcade Coin Bank & Rewards Information Modal */}
-      <CoinBankModal
-        isOpen={isBankModalOpen}
-        onClose={() => setIsBankModalOpen(false)}
-        coins={currencyState.coins}
-        accumulatedPoints={currencyState.accumulatedPoints}
-        onOpenMiniGames={onOpenBonusStage}
-        onOpenBossBattle={onOpenBossBattle}
-      />
     </header>
   );
 };

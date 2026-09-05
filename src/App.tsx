@@ -27,6 +27,7 @@ import { CabinetThemeModal } from './components/CabinetThemeModal';
 import { DosTerminalModal } from './components/DosTerminalModal';
 import { CardBinderModal } from './components/CardBinderModal';
 import { InsufficientCoinsModal } from './components/InsufficientCoinsModal';
+import { CoinBankModal } from './components/CoinBankModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
 import { NewsStrip } from './components/NewsStrip';
@@ -59,14 +60,17 @@ export function App() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isCardBinderOpen, setIsCardBinderOpen] = useState(false);
   const [isInsufficientCoinsOpen, setIsInsufficientCoinsOpen] = useState(false);
+  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [timeRewardCoins, setTimeRewardCoins] = useState<number | null>(null);
   const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
+  const [accumulatedPoints, setAccumulatedPoints] = useState<number>(() => currencyManager.getAccumulatedPoints());
 
   // Apply active console theme on mount and subscribe to currency
   useEffect(() => {
     setActiveTheme(getActiveTheme());
     const unsub = currencyManager.subscribe((state) => {
       setCoins(state.coins);
+      setAccumulatedPoints(state.accumulatedPoints);
     });
     const unsubReward = currencyManager.onTimeReward((awarded) => {
       setTimeRewardCoins(awarded);
@@ -132,7 +136,8 @@ export function App() {
     isThemeModalOpen ||
     isTerminalOpen ||
     isCardBinderOpen ||
-    isInsufficientCoinsOpen;
+    isInsufficientCoinsOpen ||
+    isBankModalOpen;
 
   // Hotkey listeners for CRT ('c'), Mute ('m'), and Terminal ('~')
   useEffect(() => {
@@ -203,6 +208,7 @@ export function App() {
           onOpenThemeModal={() => setIsThemeModalOpen(true)}
           onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenCardBinder={() => setIsCardBinderOpen(true)}
+          onOpenBankModal={() => setIsBankModalOpen(true)}
         />
 
 
@@ -398,6 +404,16 @@ export function App() {
       <TimeRewardBanner
         coinsAwarded={timeRewardCoins}
         onDismiss={() => setTimeRewardCoins(null)}
+      />
+
+      {/* 12. Arcade Coin Bank & Rewards Information Modal */}
+      <CoinBankModal
+        isOpen={isBankModalOpen}
+        onClose={() => setIsBankModalOpen(false)}
+        coins={coins}
+        accumulatedPoints={accumulatedPoints}
+        onOpenMiniGames={() => setIsBonusStageOpen(true)}
+        onOpenBossBattle={() => setIsBossBattleOpen(true)}
       />
     </div>
 
