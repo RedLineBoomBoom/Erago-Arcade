@@ -83,7 +83,15 @@ export function App() {
     return 'home';
   });
   const [crtEnabled, setCrtEnabled] = useState(false);
-  const [isBooting, setIsBooting] = useState(true);
+  const [isBooting, setIsBooting] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('skipBoot') === 'true' || params.get('noboot') === '1') {
+        return false;
+      }
+    }
+    return true;
+  });
 
   // Entertaining Arcade Toys & Expansions Modals
   const [isTrophyModalOpen, setIsTrophyModalOpen] = useState(false);
@@ -243,7 +251,8 @@ export function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     if (typeof window !== 'undefined') {
-      (window as unknown as { __openTerminal?: () => void }).__openTerminal = () => setIsTerminalOpen(true);
+      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void }).__openTerminal = () => setIsTerminalOpen(true);
+      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void }).__dismissBoot = () => setIsBooting(false);
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);

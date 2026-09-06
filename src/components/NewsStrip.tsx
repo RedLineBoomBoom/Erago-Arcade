@@ -33,26 +33,41 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
   const [selectedCategory, setSelectedCategory] = useState<NewsCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [refreshNotice, setRefreshNotice] = useState<string | null>(null);
   const [readingArticle, setReadingArticle] = useState<NewsArticle | null>(null);
   const [articles, setArticles] = useState<NewsArticle[]>(() => liveNewsService.getArticles());
   const [lastUpdated, setLastUpdated] = useState<number>(() => liveNewsService.getLastUpdated());
 
-  // Subscribe to live news updates
+  // Subscribe to live news updates & trigger fresh check on mount if stale
   React.useEffect(() => {
-    return liveNewsService.subscribe((freshArticles, updatedTime) => {
+    const unsub = liveNewsService.subscribe((freshArticles, updatedTime) => {
       setArticles(freshArticles);
       setLastUpdated(updatedTime);
     });
+
+    const elapsed = Date.now() - liveNewsService.getLastUpdated();
+    if (elapsed > 3 * 60 * 1000 || liveNewsService.getArticles().length === 0) {
+      liveNewsService.refreshNews(false).catch(() => {});
+    }
+
+    return unsub;
   }, []);
 
   const handleRefresh = async () => {
     sound.playPowerUp();
     setIsRefreshing(true);
+    setRefreshNotice(null);
     try {
       const result = await liveNewsService.refreshNews(true);
       setArticles(result.articles);
       setLastUpdated(Date.now());
       sound.playJackpot();
+      setRefreshNotice(
+        language === 'id'
+          ? `✅ Berhasil menyinkronkan ${result.articles.length} berita live!`
+          : `✅ Successfully synced ${result.articles.length} live articles!`
+      );
+      setTimeout(() => setRefreshNotice(null), 4000);
     } catch (err) {
       console.error('Failed to refresh news feed:', err);
       sound.playCrtBuzz();
@@ -207,6 +222,13 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
           </div>
         </div>
 
+        {/* Refresh Notification Banner */}
+        {refreshNotice && (
+          <div className="flex items-center gap-2 p-2.5 rounded-lg border-2 border-black bg-[#00F5D4] text-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] animate-bounce-subtle">
+            <span>{refreshNotice}</span>
+          </div>
+        )}
+
         {/* ======================================================== */}
         {/* 2. 12 OUTLETS SELECTOR CHIPS GRID                        */}
         {/* ======================================================== */}
@@ -352,7 +374,7 @@ export const NewsStrip: React.FC<NewsStripProps> = ({ onOpenNewsModal }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 max-h-[580px] overflow-y-auto custom-scrollbar p-1">
                 {filteredArticles.map((article) => (
                   <article
-                    key={article.id}
+                    key={`${article.id}-${article.url || ''}`}
                     onClick={() => {
                       sound.playClick();
                       setReadingArticle(article);

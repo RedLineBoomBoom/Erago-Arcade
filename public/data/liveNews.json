@@ -1,658 +1,53 @@
 [
   {
-    "id": "thegamer-1",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Resident Evil: Revelations 3 Leak Reveals First Look At Yuri",
-    "summary": "Dataminers have uncovered 3D character models and textures for 'Yuri'—a canceled Resident Evil: Revelations 3 protagonist—hidden within the PlayStation 5 disc of the Resident Evil 4 remake.",
-    "url": "https://www.thegamer.com/resident-evil-revelations-3-leak/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/claire-and-moira-in-resident-evil-revelations-2-standing-by-a-table-holding-a-knife-and-torch-respectively.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "3 menit yang lalu",
-    "readTime": "4 min read",
-    "isHot": true,
-    "author": "James Lucas",
-    "keyHighlights": [
-      "Dataminers uncovered unused character textures for protagonist 'Yuri' on the Resident Evil 4 Remake PS5 disc.",
-      "Yuri was originally created as a key character for Capcom's unreleased Resident Evil: Revelations 3.",
-      "Files include facial meshes, high-poly hair shaders, and internal RE Engine development project tags.",
-      "Offers a rare glimpse into Capcom's conceptual pipeline before resources pivoted to Resident Evil 9."
-    ],
-    "fullContent": [
-      "Eagle-eyed Resident Evil dataminers have discovered unused character textures and 3D assets for 'Yuri'—a lead character originally designed for the canceled Resident Evil: Revelations 3—tucked away in the filesystem of the Resident Evil 4 remake's PS5 disc.",
-      "Capcom has long been rumored to have developed concepts for a third Revelations installment in the mid-to-late 2010s before pivoting creative resources toward mainline blockbusters like Resident Evil Village and Resident Evil 9. Yuri was reportedly planned as a resilient operative investigating bioterror anomalies in remote environments.",
-      "The datamined files include detailed facial textures, high-polygon hair shaders, and internal Capcom project tags matching the Revelations production codename. Industry analysts note that Capcom frequently archives prototype assets in shared engine repositories, explaining their accidental inclusion on commercial retail media.",
-      "While Revelations 3 remains officially shelved, the discovery provides fascinating historical insight into Capcom's creative trajectory, proving that beloved spinoff narratives continue to influence the studio's contemporary RE Engine pipeline."
-    ]
-  },
-  {
-    "id": "game-informer-1",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "BioWare doesn't need advice for Mass Effect 4, says veteran designer, as long as \"people get out of the way\"",
-    "summary": "Armando Troisi, lead cinematic designer for Mass Effect 2, fiercely defends BioWare's current Mass Effect 4 team, asserting that original trilogy veterans still at the studio understand the franchise's soul.",
-    "url": "https://www.eurogamer.net/bioware-mass-effect-4-doesnt-need-advice-veteran-designer",
-    "imageUrl": "https://assetsio.gnwcdn.com/mass-effect-shepard-sad.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "10 menit yang lalu",
-    "readTime": "4 min read",
-    "isHot": true,
-    "author": "Vikki Blake",
-    "keyHighlights": [
-      "Mass Effect 2 lead cinematic designer Armando Troisi defends the current BioWare Mass Effect 4 team.",
-      "Affirms that key veterans who built the original Shepard trilogy are still leading the sequel's production.",
-      "Warns that corporate meddling and external pressure are the primary threats to creative vision.",
-      "The Next Mass Effect is in active development on Unreal Engine 5, prioritizing narrative choice and consequences."
-    ],
-    "fullContent": [
-      "Armando Troisi, the celebrated cinematic designer on the original Mass Effect and lead cinematic designer on Mass Effect 2, has publicly defended BioWare's development team, stating the studio does not need outside advice to craft Mass Effect 4 as long as external corporate forces 'get out of the way.'",
-      "Addressing fan anxieties and online skepticism surrounding modern BioWare, Troisi highlighted that dozens of senior designers, narrative architects, and world-builders who crafted Commander Shepard's original journey remain at the studio today.",
-      "Troisi argued that excessive executive interference, shifting trend mandates, and panic over changing industry metrics are what derail ambitious RPGs, not a lack of internal talent. He praised current executive producer Mike Gamble for keeping the core sci-fi vision focused on character-driven choice and consequence.",
-      "With Dragon Age: The Veilguard entering the wild, BioWare's primary focus has transitioned fully to the next Mass Effect, which is being built on Epic's Unreal Engine 5 to deliver the photorealistic interstellar visual fidelity fans have craved."
-    ]
-  },
-  {
-    "id": "pc-gamer-1",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "Left 4 Dead 2 writer says Valve intentionally 'leaked' its cinematic trailer to get around ESRB rules: 'I think we can't get trouble for that now'",
-    "summary": "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene. Indeed, it was that rapid turnaround, combined with the fact that the first Left 4 Dead was a relatively short game, which led to accusations that Left 4 Dead 2 was nothing more than a cynical ploy by Valve to cash in on the success of the first.",
-    "url": "https://www.pcgamer.com/games/fps/left-4-dead-2-writer-says-valve-intentionally-leaked-its-cinematic-trailer-to-get-around-esrb-rules-i-think-we-cant-get-trouble-for-that-now/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/Aq7A73qPPGvmVaV3mnNazU-1280-80.jpg",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "13 menit yang lalu",
-    "readTime": "5 min read",
-    "isHot": true,
-    "author": "Rick Lane",
-    "keyHighlights": [
-      "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene.",
-      "One reason was that, at the time, Valve had run-ins with numerous countries and ratings boards over the series' depictions of violence and use of profane language.",
-      "Language or violence that might land a game a 'Mature' rating could result in a trailer that depicted the same things being banned outright."
-    ],
-    "fullContent": [
-      "It's strange to think about in hindsight, but Left 4 Dead 2 was a controversial game in the run-up to its release in November 2009—just one year after the original Left 4 Dead laid the foundations for today's enormous cooperative gaming scene. Indeed, it was that rapid turnaround, combined with the fact that the first Left 4 Dead was a relatively short game, which led to accusations that Left 4 Dead 2 was nothing more than a cynical ploy by Valve to cash in on the success of the first.",
-      "Ultimately, Left 4 Dead 2 would prove a worthy follow-up to Valve's cooperative blaster. But it turns out there was some skulduggery afoot behind the scenes on Left 4 Dead 2, just not the kind that fans suspected. Shortly before the sequel's launch, a cinematic trailer—which would ultimately serve as Left 4 Dead 2's introductory cutscene—leaked onto the Internet. Now, it's been revealed that this 'leak' was orchestrated by Valve to evade the censorious watch of the Entertainment Software Ratings Board.",
-      "This is according to former Valve writer and Left 4 Dead designer Chet Faliszek, who revealed Valve's deliberate leak in a YouTube video about cut Left 4 Dead voice lines (via Ars Technica ). In the video, Faliszek explains why Left 4 Dead 2 had a large number of voice lines cut from the final game. One reason was that, at the time, Valve had run-ins with numerous countries and ratings boards over the series' depictions of violence and use of profane language.",
-      "\"You have to remember, especially during Left 4 Dead 1 and Left 4 Dead 2 time, Valve was in fights with the ESRB, with Australia, with Germany, with a bunch of countries about the profanity in the game, or the violence,\" he explains. \"One of [Valve's] lawyers stepped in and said that us writers needed to be babysat on this. And so [the] first thing we did was, well, we made sure there was no profanity in there that crosses the line—basically F-bombs.\"",
-      "Faliszek personally believed that, when it comes to censorship of language and depictions of violence, \"you push it and have the ESRB push back\". But Valve's lawyer felt differently and Faliszek went along with it. However, the ESRB's regulatory oversight didn't just cover games, but extended to the marketing material for those games. And unlike today, the ESRB had different regulatory rules for trailers and games. Language or violence that might land a game a 'Mature' rating could result in a trailer that depicted the same things being banned outright."
-    ]
-  },
-  {
-    "id": "game-rant-1",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "Dragon Ball Unveils New Super Saiyan Blue Versions For Goku & Vegeta",
-    "summary": "Bandai Namco and Toei Animation have unveiled stunning new powered-up variations of Super Saiyan Blue for Goku and Vegeta, revitalizing the iconic god transformation across modern gaming media.",
-    "url": "https://gamerant.com/dragon-ball-new-super-saiyan-blue-designs/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/new-super-saiyan-blue.png",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "23 menit yang lalu",
-    "readTime": "4 min read",
-    "isHot": true,
-    "author": "Renan Fontes",
-    "keyHighlights": [
-      "Official Dragon Ball media reveals dynamic new visual variants and aura overhauls for Super Saiyan Blue.",
-      "Goku and Vegeta receive enhanced divine ki particle effects and distinct martial clash animations.",
-      "Features heavily in Dragon Ball: Sparking! Zero and promotional arcade card gaming updates.",
-      "Celebrates Akira Toriyama's god-tier design aesthetic while complementing modern Ultra forms."
-    ],
-    "fullContent": [
-      "While Goku and Vegeta have recently ascended to divine Ultra Instinct and Ultra Ego milestones, the legendary Super Saiyan Blue (Super Saiyan God Super Saiyan) form is making a spectacular resurgence across official Dragon Ball media.",
-      "First introduced in 2015's Dragon Ball Z: Resurrection 'F', Super Saiyan Blue became the defining power signature of the Dragon Ball Super anime. The newly unveiled variations introduce crystalline aura surges, heightened divine ki particle effects, and specialized martial combat stances tailored for high-speed clash animations.",
-      "The refreshed transformations are arriving in tandem with major content updates for Dragon Ball: Sparking! Zero and digital arcade card expansions, highlighting Akira Toriyama's enduring design legacy and providing alternate tactical loadouts for competitive players.",
-      "Fans have warmly received the redesign, noting that restoring Super Saiyan Blue's ferocious speed and tactical ki control bridges the gap between classic Super Saiyan lore and the boundless heights of current manga power scaling."
-    ]
-  },
-  {
-    "id": "thegamer-2",
-    "outletId": "thegamer",
-    "outletName": "TheGamer",
-    "outletIcon": "🕹️",
-    "outletThemeColor": "#107C41",
-    "outletDomain": "thegamer.com",
-    "title": "Where To Find St. Mihai's Crypt In The Blood of Dawnwalker",
-    "summary": "A comprehensive walkthrough revealing how to locate St. Mihai's hidden subterranean crypt and obtain the silver-forged relic needed to conquer Brencis in The Blood of Dawnwalker.",
-    "url": "https://www.thegamer.com/the-blood-of-dawnwalker-monk-and-saint-quest-st-mihai-sword-guide/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/wm/2026/09/st-mihai-in-the-blood-of-dawnwalker.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Guides",
-    "publishedAt": "53 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Kaitlyn Peterson",
-    "keyHighlights": [
-      "Step-by-step navigation guide to locate St. Mihai's hidden subterranean crypt in The Blood of Dawnwalker.",
-      "Explains the puzzle solution for lighting the three raven braziers to bypass the deadly trap seal.",
-      "Acquires the Silver-Forged Dawn Crest required to neutralize Brencis' immortal blood shield.",
-      "Provides tactical survival tips for defeating the high-level bloodhound thrall ambush inside the tombs."
-    ],
-    "fullContent": [
-      "In Rebel Wolves' gothic vampire action RPG The Blood of Dawnwalker, players returning to the tavern with Anca encounter a cryptic enchanted ledger that holds the secret key to vanquishing Brencis: locating the forgotten subterranean Crypt of St. Mihai.",
-      "To uncover the crypt entrance, players must journey north of the ruined chapel through the fog-shrouded weeping willow valley. Once at the iron mausoleum, you must light the three raven braziers in counter-clockwise order to unlock the heavy stone seal without triggering the poison dart trap.",
-      "Inside the crypt awaits the Silver-Forged Dawn Crest, an ancient relic that strips away Brencis' regenerative blood shield. Players should prepare holy water flasks and quick-dodge abilities, as high-tier bloodhound thralls relentlessly ambush trespassers upon claiming the relic.",
-      "Mastering this questline grants significant early-game power and unlocks essential dialogue choices with Anca, cementing Coen's path toward mastering his hybrid vampire heritage."
-    ]
-  },
-  {
     "id": "polygon-1",
     "outletId": "polygon",
     "outletName": "Polygon",
     "outletIcon": "🔷",
     "outletThemeColor": "#DF1995",
     "outletDomain": "polygon.com",
-    "title": "40 Years Ago, Konami Changed the Video Game Industry Forever",
-    "summary": "Four decades ago, Konami revolutionized interactive entertainment with Gradius, Castlevania, and the legendary Konami Code, forever altering the landscape of action games and secret discovery.",
-    "url": "https://www.polygon.com/40-years-konami-changed-industry/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/15973926/DpfYKv3WkAEF7wI.jpg",
+    "title": "Persona 4 Revival Finds Its Kanji, And It Isn't Troy Baker Or Matt Mercer",
+    "summary": "During the past PAX West panel for Persona 4 Revival , Atlus showed off the sizzle reel trailer for Kanji Tatsumi, one of the game's most-discussed characters. While this role has previously been portrayed by Troy Baker and Matt Mercer, Atlus' latest Persona remake will feature a brand-new voice actor for Kanji.",
+    "url": "https://www.polygon.com/persona-4-revival-kanji-tatsumi/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/persona-4-revival-kanji-1.jpg",
     "category": "Culture & Reviews",
     "tag": "Culture",
-    "publishedAt": "53 menit yang lalu",
+    "publishedAt": "11 menit yang lalu",
+    "publishedTimestamp": 1788705932000,
     "readTime": "3 min read",
     "isHot": true,
-    "author": "Jason Venter",
+    "author": "Tomas Franzese",
     "keyHighlights": [
-      "Celebrates 40 years of Konami's golden age of game design across Gradius and Castlevania.",
-      "Chronicles the accidental invention of the Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) by Kazuhisa Hashimoto.",
-      "Examines how the code transformed from an internal test tool into a global pop-culture phenomenon in Contra.",
-      "Explores Konami's lasting architectural influence on the modern Metroidvania and action-adventure genres."
+      "During the past PAX West panel for Persona 4 Revival , Atlus showed off the sizzle reel trailer for Kanji Tatsumi, one of the game's most-discussed characters.",
+      "While this role has previously been portrayed by Troy Baker and Matt Mercer, Atlus' latest Persona remake will feature a brand-new voice actor for Kanji."
     ],
     "fullContent": [
-      "Four decades ago, Konami unleashed a golden era of arcade and console masterpieces that fundamentally reshaped game design, introducing groundbreaking mechanics through Gradius, Castlevania, and the globally celebrated Konami Code.",
-      "During the home conversion of Gradius for the Nintendo Famicom in 1986, developer Kazuhisa Hashimoto found the space shooter too brutally punishing during test playthroughs. To test the late-game levels efficiently, he programmed a simple button sequence into the controller: Up, Up, Down, Down, Left, Right, Left, Right, B, A.",
-      "What was conceived as an internal debugging shortcut quickly became the most famous easter egg in human history, granting 30 lives in Contra and transcending gaming culture into television, films, and modern software easter eggs.",
-      "Beyond cheat codes, Konami's mid-1980s catalog pioneered atmospheric world-building, gothic level design, and dynamic difficulty curves that laid the foundation for the Metroidvania genre and modern side-scrolling action games."
+      "During the past PAX West panel for Persona 4 Revival , Atlus showed off the sizzle reel trailer for Kanji Tatsumi, one of the game's most-discussed characters. While this role has previously been portrayed by Troy Baker and Matt Mercer, Atlus' latest Persona remake will feature a brand-new voice actor for Kanji."
     ]
   },
   {
-    "id": "game-rant-2",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "All Hozuki Pouch Effects & Locations in Onimusha: Way of the Sword",
-    "summary": "Master all five Hozuki Pouch healing and empowerment variants in Onimusha: Way of the Sword, including exact crafting materials and shrine locations.",
-    "url": "https://gamerant.com/onimusha-way-of-the-sword-all-hozuki-pouches-how-get-locations/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/onimusha-way-of-the-sword-all-hozuki-pouches.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "53 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Marc Santos",
-    "keyHighlights": [
-      "Complete guide detailing all five Hozuki Pouch variants in Onimusha: Way of the Sword.",
-      "Breakdown of unique pouch capabilities including status cleanse, soul boosters, and critical damage surges.",
-      "Exact locations for trading rare spirit materials with shrine maiden Okuni.",
-      "Recommended loadout strategies for overcoming high-difficulty samurai boss encounters."
-    ],
-    "fullContent": [
-      "In Capcom's samurai action revival Onimusha: Way of the Sword, Hozuki Pouches serve as the backbone of your combat survival, offering versatile health recovery, status remedies, and potent temporary combat buffs.",
-      "While your starting pouch provides standard vitality restoration, seeking out the shrine maiden Okuni unlocks four specialized pouch variants: the Cleansing Pouch (removes poison and burning), the Demon Soul Pouch (increases red soul yield by 50%), the Iron Will Pouch (grants poise and defense), and the Oni Surge Pouch (temporarily triggers devastating critical strikes).",
-      "Crafting these superior pouches requires harvesting rare botanical herbs, spirit wood, and demon fangs found across feudal castles, bamboo forests, and hidden underground arenas.",
-      "Equipping the optimal pouch configuration for boss gauntlets can turn the tide of battle, providing the decisive edge required to survive on higher difficulty settings."
-    ]
-  },
-  {
-    "id": "game-rant-3",
-    "outletId": "game-rant",
-    "outletName": "Game Rant",
-    "outletIcon": "📢",
-    "outletThemeColor": "#FF6B00",
-    "outletDomain": "gamerant.com",
-    "title": "GameRant Daily Crossword (September 6, 2026)",
-    "summary": "Test your tactical stealth knowledge and 90s console trivia with today's interactive GameRant Daily Crossword puzzle.",
-    "url": "https://gamerant.com/game/gamerant-daily-crossword-2026-09-06/",
-    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/01/game-rant-games-game-rant-daily-crossword-puzzle-site-banner-graphic.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Theories",
-    "publishedAt": "53 menit yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "GameRant",
-    "keyHighlights": [
-      "Daily themed crossword puzzle focusing on tactical stealth video games and 90s console history.",
-      "Includes trivia clues from Metal Gear Solid, Tenchu, Splinter Cell, and Syphon Filter.",
-      "Features interactive hints and automated error-checking for all skill levels.",
-      "Global leaderboards track daily solving times for competitive trivia enthusiasts."
-    ],
-    "fullContent": [
-      "Today's edition of the GameRant Daily Crossword tests gamers' mastery of legendary tactical stealth franchises, classic espionage protagonists, and iconic 1990s console hardware history.",
-      "Featured clues challenge solvers on Solid Snake's cardboard box infiltration tactics, Tenchu: Stealth Assassins' grappling hook navigation, Syphon Filter's infamous taser mechanics, and early 32-bit CD-ROM technology.",
-      "The daily puzzle offers tiered hints for casual players while tracking completion times for competitive speedrunners vying for top spots on the global gaming trivia leaderboards.",
-      "Whether you are reminiscing over vintage PS1 stealth classics or discovering retro lore for the first time, today's puzzle serves as an entertaining tribute to stealth gaming's golden era."
-    ]
-  },
-  {
-    "id": "game-informer-2",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "Gen-AI controversy aside, Crazy Taxi: World Tour feels like classic arcade Sega - and it's an absolute blast",
-    "summary": "Sega's ambitious Crazy Taxi: World Tour captures the pure unhinged adrenaline of the 1999 Dreamcast original, pairing high-speed urban drift chaos with a blazing punk rock soundtrack.",
-    "url": "https://www.eurogamer.net/crazy-taxi-world-tour-gamescom-preview",
-    "imageUrl": "https://assetsio.gnwcdn.com/crazy-taxi-world-tour-germany-header.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Matt Wales",
-    "keyHighlights": [
-      "Hands-on preview confirms Crazy Taxi: World Tour recaptures the chaotic joy of the 1999 original.",
-      "Features responsive arcade handling, insane drifting, steep downhill jumps, and passenger delivery score-attacks.",
-      "Showcases an electrifying punk-rock soundtrack featuring The Offspring and Bad Religion.",
-      "Blends modern open-world multiplayer hubs with classic short-burst arcade gameplay."
-    ],
-    "fullContent": [
-      "Despite modern debates surrounding generative AI prototyping in early production, Sega's upcoming Crazy Taxi: World Tour delivers exactly what nostalgic arcade fans have craved: pure, unadulterated high-speed urban mayhem.",
-      "Hands-on impressions confirm that the tactile driving physics feel remarkably faithful to the 1999 arcade and Dreamcast classic. Barreling down sun-bleached San Francisco and Tokyo-inspired city slopes while executing Crazy Drifts, Crazy Jumps, and near-miss pedestrian dodges feels as exhilarating as ever.",
-      "The soundtrack roars with energy, featuring licensed bangers from The Offspring and Bad Religion alongside vibrant new tracks that perfectly complement the relentless score-attack passenger delivery loops.",
-      "By balancing sprawling open-world multiplayer districts with lightning-fast arcade pickup-and-play sessions, Sega looks poised to deliver a triumphant revival for one of gaming's most beloved franchises."
-    ]
-  },
-  {
-    "id": "thegamer-3",
+    "id": "thegamer-1",
     "outletId": "thegamer",
     "outletName": "TheGamer",
     "outletIcon": "🕹️",
     "outletThemeColor": "#107C41",
     "outletDomain": "thegamer.com",
-    "title": "Venom Game \"Still In Development,\" Credible Insider Says",
-    "summary": "Prominent industry insider NateTheHate confirms that Insomniac Games' standalone Marvel's Venom game remains in active development for PS5, dispelling cancellation fears after Sony's recent studio restructuring.",
-    "url": "https://www.thegamer.com/insomniac-venom-still-in-development/",
-    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/06/venom-and-spider-man-fighting-in-marvel-s-spider-man-2.png",
+    "title": "Blood Of Dawnwalker Mod Lets You Relax Time Restrictions",
+    "summary": "The most popular mod for The Blood of Dawnwalker is one that lets you take complete control of the game’s central and divisive time mechanic.",
+    "url": "https://www.thegamer.com/the-blood-of-dawnwalker-time-control-mod-deadline-extend/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/thebloodofdawnwalkercoen.jpg",
     "category": "Culture & Reviews",
     "tag": "Guides",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "5 min read",
-    "isHot": false,
-    "author": "James Lucas",
-    "keyHighlights": [
-      "Reputable leaker NateTheHate confirms Insomniac Games' standalone Venom title remains in active development for PS5.",
-      "The game is envisioned as a focused standalone chapter bridging Marvel's Spider-Man 2 and the eventual Spider-Man 3.",
-      "The confirmation quells widespread cancellation rumors sparked by PlayStation's recent studio-wide layoffs.",
-      "Features expanded playable symbiote combat, urban destruction, and Tony Todd reprising his role as Venom."
-    ],
-    "fullContent": [
-      "Reputable gaming insider NateTheHate has confirmed that Insomniac Games' standalone Venom project is still in active development and has not been shelved, providing much-needed relief to Marvel gaming enthusiasts who feared the project was quietly scrapped.",
-      "The standalone Venom title—tentatively titled Marvel's Venom: Lethal Protector—was first exposed during the December 2023 Insomniac ransomware leak. Internal roadmaps described it as an expansive mid-scale experience akin to Marvel's Spider-Man: Miles Morales, bridging the critical narrative gap between Spider-Man 2 and the upcoming Marvel's Spider-Man 3.",
-      "Concerns regarding the game's fate arose over the past few months following widespread restructuring and layoffs across PlayStation Studios, which previously claimed Insomniac's multiplayer spinoff project, Spider-Man: The Great Web. Fans worried that Insomniac's singular focus on Marvel's Wolverine might have forced Sony to cancel the Lethal Protector spinoff entirely.",
-      "However, NateTheHate clarified on his latest podcast that the symbiote anti-hero adventure is progressing steadily behind closed doors. The project is expected to expand upon the fan-favorite playable Venom sequence from Spider-Man 2, featuring ferocious tendril combat, monstrous traversal, and legendary actor Tony Todd returning to voice the iconic anti-hero on PlayStation 5."
-    ]
-  },
-  {
-    "id": "polygon-2",
-    "outletId": "polygon",
-    "outletName": "Polygon",
-    "outletIcon": "🔷",
-    "outletThemeColor": "#DF1995",
-    "outletDomain": "polygon.com",
-    "title": "Samara Weaving's Gritty Action Sleeper Hit Officially Finds a New Home on Streaming",
-    "summary": "Samara Weaving's celebrated thriller Ready or Not makes a triumphant debut on streaming platforms, fueling impassioned fan campaigns for her casting as Emma Frost in Marvel's X-Men reboot.",
-    "url": "https://www.polygon.com/samara-weaving-ready-or-not-netflix-streaming/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/ready-or-not-041524-245cfe47026946b5bf935079f18507d4-1.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Culture",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Debopriyaa Dutta",
-    "keyHighlights": [
-      "Acclaimed horror-action thriller Ready or Not arrives on streaming to massive global viewership numbers.",
-      "Samara Weaving's fierce and charismatic performance re-establishes her as a premier modern genre star.",
-      "Sparks renewed fan campaigns for Weaving to portray Emma Frost in Marvel Studios' MCU X-Men reboot.",
-      "Highlights her unique ability to blend high-intensity physical action with sharp, commanding screen presence."
-    ],
-    "fullContent": [
-      "Samara Weaving's breakout survival horror-thriller Ready or Not has officially arrived on major streaming platforms, skyrocketing into the global top ten charts and reigniting passionate fan enthusiasm across social media.",
-      "Weaving's electrifying performance as Grace—a bride forced into a lethal game of hide-and-seek against her wealthy in-laws—solidified her reputation as one of modern cinema's most formidable and charismatic action heroines.",
-      "The streaming resurgence has amplified fervent fan campaigns lobbying Marvel Studios to cast Weaving as the White Queen, Emma Frost, in the upcoming Marvel Cinematic Universe X-Men reboot. Industry commentators note that Weaving's regal poise, biting wit, and ferocious screen presence make her an ideal candidate for the complex telepathic mutant leader.",
-      "As Marvel Studios readies its mutant slate for Phase 6 and beyond, Weaving's enduring star power and cult-classic catalog make her a top contender for upcoming Hollywood comic adaptations."
-    ]
-  },
-  {
-    "id": "polygon-3",
-    "outletId": "polygon",
-    "outletName": "Polygon",
-    "outletIcon": "🔷",
-    "outletThemeColor": "#DF1995",
-    "outletDomain": "polygon.com",
-    "title": "5 Star Trek Ships That Changed the Legendary Sci-Fi Franchise Forever",
-    "summary": "An exploration of the five most iconic starships in Star Trek history—from Matt Jefferies' original Constitution-class Enterprise to the battle-hardened USS Defiant.",
-    "url": "https://www.polygon.com/star-trek-ships-best-spaceships/",
-    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/enterprise.jpg",
-    "category": "Culture & Reviews",
-    "tag": "Culture",
-    "publishedAt": "1 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Terry Terrones",
-    "keyHighlights": [
-      "Explores five revolutionary starships that shaped Star Trek's visual identity and philosophical legacy.",
-      "Spotlights the original USS Enterprise (NCC-1701) designed by art director Matt Jefferies.",
-      "Analyzes the USS Defiant as Star Trek's first dedicated warship, altering Starfleet design doctrines.",
-      "Examines the craft of physical studio model-making and its transition into modern digital VFX pipelines."
-    ],
-    "fullContent": [
-      "Throughout six decades of science-fiction history, Star Trek's greatest starships have evolved from mere transport vehicles into living characters that embody humanity's exploratory spirit and technological ambition.",
-      "Leading the pantheon is Matt Jefferies' original Constitution-class USS Enterprise (NCC-1701), whose twin nacelles, saucer hull, and peaceful naval aesthetic broke away from the militaristic rocket ships of early 1950s pulp sci-fi.",
-      "The retrospective also celebrates the Galaxy-class USS Enterprise-D as a sprawling utopian city in deep space, the battle-tested escort warship USS Defiant that shattered Roddenberry's pacifist design doctrine during the Dominion War, the nimble Intrepid-class USS Voyager, and the menacing Klingon Bird-of-Prey.",
-      "Examining the physical studio miniatures to modern photorealistic CGI pipelines reveals how thoughtful starship architecture continues to inspire real-world aeronautics and speculative engineering today."
-    ]
-  },
-  {
-    "id": "gamespot-1",
-    "outletId": "gamespot",
-    "outletName": "GameSpot",
-    "outletIcon": "🎯",
-    "outletThemeColor": "#FF1E27",
-    "outletDomain": "gamespot.com",
-    "title": "Before HBO's The Last Of Us, An Entirely Different Adaptation Was Proposed",
-    "summary": "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media. Like with many Hollywood productions, The Last of Us had a tumultuous, long development period as a movie before it was ultimately abandoned in favor of what is now a hit series.&nbsp;",
-    "url": "https://www.gamespot.com/articles/before-hbos-the-last-of-us-an-entirely-different-adaptation-was-proposed/",
-    "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/Screenshot-2026-09-03-at-11.57.50-AM-1.png?w=300",
-    "category": "Multiplatform",
-    "tag": "Reviews",
-    "publishedAt": "2 jam yang lalu",
-    "readTime": "4 min read",
-    "isHot": true,
-    "author": "Eddie Makuch",
-    "keyHighlights": [
-      "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media.",
-      "People across X recently discovered a post from Sony Pictures in 2014 declaring that The Last of Us was \"soon to be a major motion picture.\"&nbsp; This was a real, studio-sponsored image, not a fan mock-up.",
-      "That The Last of Us was originally going to be a movie is not surprising given how many video game movies came before it and how many have been released since (with varying degrees of success).&nbsp;"
-    ],
-    "fullContent": [
-      "Naughty Dog's first effort to adapt The Last of Us for the screen was not as an HBO TV show, but a movie, a fact that recently began doing the rounds again on social media. Like with many Hollywood productions, The Last of Us had a tumultuous, long development period as a movie before it was ultimately abandoned in favor of what is now a hit series.&nbsp;",
-      "While not everyone agrees with the creative departures from the source material for the TV series on HBO, it's undeniably a success and one of HBO's biggest hits lately. Let's look back at how The Last of Us originated as a movie and run through the key developments that led to it becoming a TV show.",
-      "People across X recently discovered a post from Sony Pictures in 2014 declaring that The Last of Us was \"soon to be a major motion picture.\"&nbsp;",
-      "This was a real, studio-sponsored image, not a fan mock-up. There was officially produced key art, showing Ellie wielding a knife. There was a \"secret panel\" at San Diego Comic-Con that year featuring director Sam Raimi, who was originally attached to produce the movie, having already had huge success at Sony with his Spider-Man films.",
-      "That The Last of Us was originally going to be a movie is not surprising given how many video game movies came before it and how many have been released since (with varying degrees of success).&nbsp;"
-    ]
-  },
-  {
-    "id": "gamespot-2",
-    "outletId": "gamespot",
-    "outletName": "GameSpot",
-    "outletIcon": "🎯",
-    "outletThemeColor": "#FF1E27",
-    "outletDomain": "gamespot.com",
-    "title": "Onimusha WOTS - High Level Gameplay On Hardest Difficulty",
-    "summary": "High-level gameplay showcase demonstrating a flawless, no-damage boss battle against Enhanced Byakue on punishing Carnage Difficulty in Onimusha: Way of the Sword.",
-    "url": "https://www.gamespot.com/videos/onimusha-wots-high-level-gameplay-on-hardest-difficulty/",
-    "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/Gameplay_OWOTSNoDamage_Thumb4.jpg?w=300",
-    "category": "Multiplatform",
-    "tag": "Reviews",
-    "publishedAt": "3 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Ben Janca",
-    "keyHighlights": [
-      "Demonstrates a flawless, no-damage run against Enhanced Byakue on Carnage difficulty.",
-      "Showcases frame-perfect Issen counters, stance switching, and demonic soul siphoning.",
-      "Carnage difficulty unlocks exclusively after completing the campaign on Normal mode.",
-      "Highlights the surgical combat precision and responsiveness of Capcom's samurai revival."
-    ],
-    "fullContent": [
-      "Veteran action gamers have shared a jaw-dropping gameplay exhibition of Capcom's Onimusha: Way of the Sword, achieving a flawless, zero-damage victory against the secret demo boss Enhanced Byakue on the grueling Carnage difficulty setting.",
-      "Carnage difficulty—which only unlocks after completing the campaign on Normal—drastically accelerates enemy aggression, removes checkpoint safety nets, and reduces player survival windows to mere fractions of a second.",
-      "The showcase highlights the masterclass execution of frame-perfect Issen (flash counter) strikes, seamless mid-combo weapon switching between the dual odachi and thunder spear, and optimal soul siphon positioning to sustain full demonic Oni gauge power.",
-      "Action enthusiasts have praised the combat depth, noting that Capcom's precision hitboxes and responsive parry mechanics make Way of the Sword a worthy successor to the legendary PS2 samurai series."
-    ]
-  },
-  {
-    "id": "game-informer-3",
-    "outletId": "game-informer",
-    "outletName": "Eurogamer",
-    "outletIcon": "📖",
-    "outletThemeColor": "#0066CC",
-    "outletDomain": "eurogamer.net",
-    "title": "What we've been playing - \"Well this is embarrassing, we're wearing the same outfit!\"",
-    "summary": "The Eurogamer editorial team convenes for their weekly gaming roundup, sharing candid stories of co-op gaming blunders, retro platforming discoveries, and community backlog progress.",
-    "url": "https://www.eurogamer.net/what-weve-been-playing-well-this-is-embarrassing-were-wearing-the-same-outfit",
-    "imageUrl": "https://assetsio.gnwcdn.com/star-wars-zero-company-5_fR7jaGA.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Industry & Business",
-    "tag": "Features",
-    "publishedAt": "3 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Matt Wales",
-    "keyHighlights": [
-      "Eurogamer editorial staff share their weekly gaming rotation, personal recommendations, and co-op highlights.",
-      "Features humorous anecdotes including accidental cosmetic matching in multiplayer lobbies.",
-      "Discusses seasonal gaming fatigue and the vital role of compact indie titles as palate cleansers.",
-      "Invites the community to share their current gaming backlog achievements in weekly discussion boards."
-    ],
-    "fullContent": [
-      "The Eurogamer editorial desk returns with this week's candid edition of 'What We've Been Playing,' bringing together staff recommendations, hilarious cooperative gaming blunders, and heartfelt reflections on current gaming backlogs.",
-      "This week's highlights range from competitive squad sessions in cooperative shooters where teammates accidentally coordinated identical cosmetic skins, to solitary late-night dives into atmospheric pixel roguelike deckbuilders.",
-      "The team delves into the growing phenomenon of seasonal gaming fatigue, exploring how smaller, focused indie experiences often provide the perfect palate cleanser between massive hundred-hour open-world blockbusters.",
-      "Readers are invited to join the conversation in the community forums, sharing their weekend gaming discoveries and debating the most memorable multiplayer gaming moments of the season."
-    ]
-  },
-  {
-    "id": "kotaku-1",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "What are we all playing this weekend?",
-    "summary": "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
-    "url": "https://www.rockpapershotgun.com/what-are-we-all-playing-this-weekend-398",
-    "imageUrl": "https://assetsio.gnwcdn.com/playing-this-weekend_KdYr8O4.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "3 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Julian Benson",
-    "keyHighlights": [
-      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough.",
-      "Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body."
-    ],
-    "fullContent": [
-      "This is the first Saturday in a month I've woken up without a blocked nose or a mucus-hurling cough. Trips to Spain, Sweden, and Germany in quick succession and loaded on top of a cross country bike ride may have been a touch to much for my ageing body.",
-      "Still, at last, I am well. In body, if not in spirit. So, better start playing some games then, right?"
-    ]
-  },
-  {
-    "id": "pc-gamer-2",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "September's schedule of new games, events, and updates refuses to let 2026 go down in history as a slow year for new releases",
-    "summary": "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon.",
-    "url": "https://www.pcgamer.com/games/pc-game-release-dates-september-2026/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/ipznXnhNVGvuja545n8DeE-1280-80.jpg",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "10 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Andrea Shearon",
-    "keyHighlights": [
-      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore.",
-      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC).",
-      "I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
-    ],
-    "fullContent": [
-      "After a quiet few months, September finally hits the gas, and our list of monthly PC game happenings is filled with brand new adventures, series continuations, 1.0 updates, and events galore. I'm still playing catch-up after Gamescom, and now we've got Tokyo Game Show queued up soon. It's the same schedule every year, but somehow I'm always caught off guard.",
-      "The Blood of Dawnwalker kicked off the month with a delightfully dismal vampire RPG from the Witcher veterans at Rebel Wolves. Then you've got all month to suck blood as Coen (or be a good two-shoes and abstain, I guess) before Silent Hill: Townfall and Control Resonant launch on the same damn day. It seems everything I've been waiting all year to play has crammed into this 4-week window, and that's not even counting all the big updates.",
-      "The Witcher 3 Remastered is easily among the most notable updates, and everyone who owns the original gets the RPG's makeover for free (along with its DLC). It'll be my first time playing, so between that and Valheim 1.0, I'll be plenty busy until 2027.",
-      "Steam | I've been loving The Blood of Dawnwalker, but you don't have to take my broody, vampire-obsessed word for it. Shaun called it \"one of best action RPGs [he's] played in years,\" in his Blood of Dawnwalker review .",
-      "Steam | I have to say it every time: I still can't believe we're in a Silent Hill renaissance. I'm hoping Townfall continues this trend of one banger release after another, and from how Fraser explains his time as Simon in a hellish version of Scotland, it has a chance."
-    ]
-  },
-  {
-    "id": "gamespot-3",
-    "outletId": "gamespot",
-    "outletName": "GameSpot",
-    "outletIcon": "🎯",
-    "outletThemeColor": "#FF1E27",
-    "outletDomain": "gamespot.com",
-    "title": "How To Complete The Cycle Of Love In The Blood Of Dawnwalker - Xanthe Boss Guide",
-    "summary": "Are you befuddled by the tasks in The Cycle of Love in The Blood of Dawnwalker ? This quest, which is the conclusion of your battles against Xanthe, takes place in a keep.",
-    "url": "https://www.gamespot.com/articles/blood-of-dawnwalker-cycle-of-love-xanthe/",
-    "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/blood-of-dawnwalker-cycle-of-love-xanthe-.jpg?w=300",
-    "category": "Multiplatform",
-    "tag": "Reviews",
-    "publishedAt": "10 jam yang lalu",
+    "publishedAt": "19 menit yang lalu",
+    "publishedTimestamp": 1788705461000,
     "readTime": "2 min read",
-    "isHot": false,
-    "author": "Jason Rodriguez",
-    "keyHighlights": [
-      "Are you befuddled by the tasks in The Cycle of Love in The Blood of Dawnwalker ?",
-      "Down the line, one of Brencis’ soldiers, Leonard, will show up and ask you to eliminate Xanthe.",
-      "With a bit of luck and skill, you might just be able to finish her off there."
-    ],
-    "fullContent": [
-      "Are you befuddled by the tasks in The Cycle of Love in The Blood of Dawnwalker ? This quest, which is the conclusion of your battles against Xanthe, takes place in a keep. Along the way, you have to illuminate your surroundings to access new pathways. Oh, and you also have to consider Xanthe’s offer at the end. Our guide has all the info that you need, but be ready for some minor spoilers , too.",
-      "The Blood of Dawnwalker Cycle of Love quest appears in your journal once you’ve maxed out Xanthe’s anger toward you. As such, you have to spend some time in the campaign taking out her blood guards and disrupting her research into ancient ruins.",
-      "Down the line, one of Brencis’ soldiers, Leonard, will show up and ask you to eliminate Xanthe. He’ll give you a lantern that grants access to her lair, a foreboding castle called Howling Keep. Be ready because you’re about to venture into one of the creepiest areas in the game.",
-      "Note 1: Howling Keep is west of Tantari Woods. Once the quest is active, track the “Get to the mansion” objective to make the marker appear on your map.",
-      "Note 2: Xanthe also appears in the Svartrau City cathedral at night, and only once fairly early in the game. With a bit of luck and skill, you might just be able to finish her off there."
-    ]
-  },
-  {
-    "id": "ign-sea-1",
-    "outletId": "ign-sea",
-    "outletName": "IGN Southeast Asia",
-    "outletIcon": "🔥",
-    "outletThemeColor": "#BF1313",
-    "outletDomain": "sea.ign.com",
-    "title": "14 Predictions for the September 2026 Nintendo Direct and Zelda 40th Anniversary Direct",
-    "summary": "Nintendo is hosting two Directs in the coming days , and it’s pretty much all I’ve been thinking about since the announcement. On Tuesday, September 8, it’s The Legend of Zelda 40th Anniversary Direct, followed by a more general Nintendo Direct on Wednesday, September 9.",
-    "url": "https://www.ign.com/articles/14-predictions-for-the-september-2026-nintendo-direct-and-zelda-40th-anniversary-direct",
-    "imageUrl": "https://assets-prd.ignimgs.com/2026/09/04/unnamed-2-1788565915081.png",
-    "category": "Multiplatform",
-    "tag": "Trailers",
-    "publishedAt": "10 jam yang lalu",
-    "readTime": "3 min read",
     "isHot": true,
-    "author": "Logan Plant",
+    "author": "George Foster",
     "keyHighlights": [
-      "Nintendo is hosting two Directs in the coming days , and it’s pretty much all I’ve been thinking about since the announcement.",
-      "This will undoubtedly be the centerpiece of the presentation.",
-      "You don’t set the internet’s imagination on fire with a 10-second tease of Link’s treehouse if you don’t have really satisfying answers to share when you do finally pull the curtain back, and I expect the Ocarina of Time remake to be a pretty big deal."
+      "The most popular mod for The Blood of Dawnwalker is one that lets you take complete control of the game’s central and divisive time mechanic."
     ],
     "fullContent": [
-      "Nintendo is hosting two Directs in the coming days , and it’s pretty much all I’ve been thinking about since the announcement. On Tuesday, September 8, it’s The Legend of Zelda 40th Anniversary Direct, followed by a more general Nintendo Direct on Wednesday, September 9. While we wait, it&#39;s predictions time!",
-      "Before we start, a couple of disclaimers: these are all purely my guesses based on public information and my analysis of Nintendo’s release patterns, and nothing more. Nothing here is based on any inside information. But, I will be discussing a couple of relevant leaks over the last few months, so if you have been steering clear of information like that, you may not want to read on.",
-      "Zelda is my favorite series, so I’m buzzing thinking about all the possibilities we could see Tuesday morning. But I’m trying to keep things realistic in this piece and only sharing predictions that I think have a legitimate chance of happening.",
-      "This will undoubtedly be the centerpiece of the presentation. We’ve only seen a few seconds of footage of the Ocarina of Time remake , which is set to come out in 2026. So, now’s the time for the full reveal trailer and release date. I can’t wait for this one; my imagination has been running wild over this remake for the last three months, and we’re finally going to see more about the scope of this remake. Is it faithful, or more of a reimagining? What does the kingdom of Hyrule look like beyond Link’s treehouse? All that and more will likely be answered by a more conventional trailer that gives us a proper look at the remake.",
-      "I don’t know exactly what Ocarina of Time will look like, but the teaser trailer from earlier this year tells me Nintendo is very confident in this game. You don’t set the internet’s imagination on fire with a 10-second tease of Link’s treehouse if you don’t have really satisfying answers to share when you do finally pull the curtain back, and I expect the Ocarina of Time remake to be a pretty big deal."
-    ]
-  },
-  {
-    "id": "ign-sea-2",
-    "outletId": "ign-sea",
-    "outletName": "IGN Southeast Asia",
-    "outletIcon": "🔥",
-    "outletThemeColor": "#BF1313",
-    "outletDomain": "sea.ign.com",
-    "title": "'No One Puts Double Fine Out of Business Except for Me' — Tim Schafer Explains How He Kept Double Fine Afloat After Leaving Xbox",
-    "summary": "Tim Schafer, game designer and founder of Psychonauts developer Double Fine, gave a strong response after Xbox divested the studio as part of its massive restructuring efforts this summer.",
-    "url": "https://www.ign.com/articles/no-one-puts-double-fine-out-of-business-except-for-me-tim-schafer-explains-how-he-kept-double-fine-afloat-after-leaving-xbox",
-    "imageUrl": "https://assets-prd.ignimgs.com/2023/02/02/tim-schafer-jpg-1675358045127.gif",
-    "category": "Multiplatform",
-    "tag": "Trailers",
-    "publishedAt": "10 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Virginia Glaze",
-    "keyHighlights": [
-      "Tim Schafer, game designer and founder of Psychonauts developer Double Fine, gave a strong response after Xbox divested the studio as part of its massive restructuring efforts this summer.",
-      "\"No one puts Double Fine out of business except for me,\" he continued.",
-      "That isn’t stopping it from making more games, though, as the developer recently published a Kickstarter for its next project — with the addendum that if it raises $100 million, they’ll also make Brutal Legend 2."
-    ],
-    "fullContent": [
-      "Tim Schafer, game designer and founder of Psychonauts developer Double Fine, gave a strong response after Xbox divested the studio as part of its massive restructuring efforts this summer.",
-      "Speaking with Bloomberg&#39;s Jason Schreier in a September 2026 interview , Schafer admitted that he knew something was up before Xbox’s divestment was officially announced — but he wasn’t about to go down without a fight.",
-      "\"You’re like, &#39;Wait a second, we’re not going out like this,&#39;\" Schafer explained. \"Some people said, &#39;I’m checking out, this is one too many battles for me.’ But for the rest of us, it’s like a creative awakening.\"",
-      "\"No one puts Double Fine out of business except for me,\" he continued. \"Asha’s not going to shoot my dog. I’m going to shoot it. But I’m not going to shoot it, because it’s going to do great. A lot of people want to walk the dog.\"",
-      "Thankfully, Double Fine was able to retain its intellectual property and become fully independent, though it did have to lay off a quarter of its staff as a result of this change. That isn’t stopping it from making more games, though, as the developer recently published a Kickstarter for its next project — with the addendum that if it raises $100 million, they’ll also make Brutal Legend 2."
-    ]
-  },
-  {
-    "id": "ign-sea-3",
-    "outletId": "ign-sea",
-    "outletName": "IGN Southeast Asia",
-    "outletIcon": "🔥",
-    "outletThemeColor": "#BF1313",
-    "outletDomain": "sea.ign.com",
-    "title": "Wonder Woman Casting Rumors Heat Up as Fans Suspect James Gunn Secretly Picked Adria Arjona for the Role",
-    "summary": "DC fans are convinced the DCU&#39;s Wonder Woman will be played by Adria Arjona after she posted a video of her workout routine ahead of Man of Tomorrow .",
-    "url": "https://www.ign.com/articles/wonder-woman-casting-rumors-heat-up-as-fans-suspect-james-gunn-secretly-picked-adria-arjona-for-the-role",
-    "imageUrl": "https://assets-prd.ignimgs.com/2026/09/04/adria-arjona-1788564573723.png",
-    "category": "Multiplatform",
-    "tag": "Trailers",
-    "publishedAt": "10 jam yang lalu",
-    "readTime": "2 min read",
-    "isHot": false,
-    "author": "Michael Cripe",
-    "keyHighlights": [
-      "DC fans are convinced the DCU&#39;s Wonder Woman will be played by Adria Arjona after she posted a video of her workout routine ahead of Man of Tomorrow .",
-      "Rumors that her role would eventually be revealed as Wonder Woman surfaced shortly after her casting, but nothing has stoked the flames quite like a video posted by Women&#39;s Health yesterday .",
-      "Physically, it&#39;s exhausting, but it&#39;s all for the better good."
-    ],
-    "fullContent": [
-      "DC fans are convinced the DCU&#39;s Wonder Woman will be played by Adria Arjona after she posted a video of her workout routine ahead of Man of Tomorrow .",
-      "As the DCU navigates its ups and downs , all eyes are on DC Studios co-CEO and director James Gunn to deliver next year&#39;s Superman sequel. Arjona is just one part of the equation that will help bring David Corenswet&#39;s Last Son of Krypton back to the big screen, but fans think she knows more than she&#39;s letting on when it comes to the part she&#39;ll play in the wider DCU.",
-      "Mixed in with a variety of other superhero parts – including Milly Alcock&#39;s Supergirl , Aaron Pierre&#39;s John Stewart , and Xolo Maridueña as Blue Beetle – Arjona was previously said to be playing the role of DC deep cut Maxima . She reportedly landed the part in April of this year, but fans think Gunn and company are misleading fans in hopes of a big Sadie Sink/Spider-Man-style surprise with Man of Tomorrow.",
-      "Rumors that her role would eventually be revealed as Wonder Woman surfaced shortly after her casting, but nothing has stoked the flames quite like a video posted by Women&#39;s Health yesterday . The seven-minute highlight showed Arjona&#39;s \"intense boxing and strength workout,\" letting viewers peek into how she trains for the parts she plays. Although she explicitly mentioned that training helped her prepare to play Celeste in Onslaught, a later segment brings her rumored DC career into focus.",
-      "\"I&#39;ve never felt strong, but it&#39;s hard,\" Arjona said as headlines related to Wonder Woman rumors flased on the screen. \"Well, I think the excitement of playing the woman I&#39;m playing gives me everything I need to wake up. Physically, it&#39;s exhausting, but it&#39;s all for the better good. The better good? Is that English? The greater good!\""
-    ]
-  },
-  {
-    "id": "pc-gamer-3",
-    "outletId": "pc-gamer",
-    "outletName": "PC Gamer",
-    "outletIcon": "🖥️",
-    "outletThemeColor": "#E61A24",
-    "outletDomain": "pcgamer.com",
-    "title": "As Wardogs blows past 200k Steam concurrents, its developers are prepared for the day 'hype dies down'",
-    "summary": "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture.",
-    "url": "https://www.pcgamer.com/games/fps/as-wardogs-blows-past-200k-steam-concurrents-its-developers-are-prepared-for-the-day-hype-dies-down/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/t9Y89d7jTDuX9WgqPbwKiR-1280-80.jpg",
-    "category": "PC & Tech",
-    "tag": "PC Gaming",
-    "publishedAt": "11 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Morgan Park",
-    "keyHighlights": [
-      "The way our hobby talks about player counts is all sorts of messed up.",
-      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote .",
-      "In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
-    ],
-    "fullContent": [
-      "The way our hobby talks about player counts is all sorts of messed up. Steam concurrents are a useful metric for gauging a game's general popularity, but they paint an incomplete picture. They're a single data point, yet have become the flimsy scaffolding on which the internet builds elaborate headcanon about a game's quality, viability, or deadness. Sometimes dogpiling is so successful, and the resulting perception so difficult to fight, that simply saying a game is dead is enough to help kill it.",
-      "It's a trend that annoys me to no end, so it's refreshing to see a developer speaking openly about concurrents—both about how many it considers \"healthy,\" and why it's normal for the number to rise and fall. It's been a recurring topic for Wardogs developer Bulkhead, whose closed beta surpassed 200,000 concurrents today on Steam. Responding to a TimTheTatman clip on X, CEO Joe Brammer spoke on the milsim's unexpected popularity, and its inevitable (but healthy) decline.",
-      "\"Wardogs will continue to lose players for months as the hype dies down,\" Brammer wrote . \"Doesn't make it a bad game or even a problem, we planned for 5k players concurrent! It'll maintain a healthy playerbase and we'll continue to build the 1.0 version of the game then... it'll boom again :) And so the cycle continues :)\"",
-      "It's a cycle many of us are familiar with, but rarely acknowledge. I tend to build a rotation of multiplayer favorites that I regularly return to, either to check out an update or scratch an itch. It is, I think, a pretty healthy way to enjoy videogames, but the rise of live service \"forever\" games, as well as high-profile failures, have proliferated the idea that videogames are those species of shark that will die if they ever stop swimming.",
-      "Much like the majority of videogames before 2016, Bulkhead does not need Wardogs to be a consistent, top-charting megahit to continue making it. In a video published last month outlining \" 10 reasons not to buy Wardogs ,\" game director Howard Philpott expanded on Bulkhead's expectations:"
+      "The most popular mod for The Blood of Dawnwalker is one that lets you take complete control of the game’s central and divisive time mechanic."
     ]
   },
   {
@@ -662,27 +57,80 @@
     "outletIcon": "📡",
     "outletThemeColor": "#0090FF",
     "outletDomain": "gamesradar.com",
-    "title": "Iconic Silent Hill artist Masahiro Ito says he \"probably would have been happier\" if he hadn't \"sacrificed\" his love life for Pyramid Head",
-    "summary": "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head. The tweet largely echoes something Ito said back in 2024 about not having the time for a girlfriend when he was working at Konami, but now he straight-up suggests he regrets sacrificing his love life for the his work.",
-    "url": "https://www.gamesradar.com/games/silent-hill/iconic-silent-hill-artist-masahiro-ito-says-he-probably-would-have-been-happier-if-he-hadnt-sacrificed-his-love-life-for-pyramid-head/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/xMAmF2C6C7KP4QCPM8mPbn-1280-80.jpg",
+    "title": "Dune: Awakening lead says the MMO can be \"a really great\" solo experience, but if players \"expect it to be like The Last of Us, they're probably barking at the wrong tree\"",
+    "summary": "Dune: Awakening 's new single-player mode could be a great way to experience the MMO-survival mashup's story by yourself, but don't jump in expecting a The Last of Us replacement.",
+    "url": "https://www.gamesradar.com/games/survival/dune-awakening-lead-says-the-mmo-can-be-a-really-great-solo-experience-but-if-players-expect-it-to-be-like-the-last-of-us-theyre-probably-barking-at-the-wrong-tree/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/biWXtPrAmC8uy88nAVwzbW-1280-80.jpg",
     "category": "Multiplatform",
     "tag": "PlayStation",
-    "publishedAt": "11 jam yang lalu",
-    "readTime": "4 min read",
+    "publishedAt": "25 menit yang lalu",
+    "publishedTimestamp": 1788705121000,
+    "readTime": "3 min read",
     "isHot": true,
-    "author": "Jordan Gerblick",
+    "author": "Kaan Serin",
     "keyHighlights": [
-      "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head.",
-      "Ito is a horror icon and should be eternally proud of the work he's done for its unparalleled influence on the genre.",
-      "To be honest, lately, I’ve been thinking that if I hadn’t sacrificed my personal life, found a girlfriend, and gotten married early on, I probably would have been happier."
+      "Dune: Awakening 's new single-player mode could be a great way to experience the MMO-survival mashup's story by yourself, but don't jump in expecting a The Last of Us replacement.",
+      "\"If they expect it to be like The Last of Us, they're probably barking at the wrong tree, right?",
+      "\"Transforming a persistent, server-authoritative, open-world survival game with multiple maps into a smooth local experience is no small feat, and today, we want to talk about the technical work our team has done to enable solo survival on Arrakis,\" the studio wrote earlier this summer."
     ],
     "fullContent": [
-      "\"The 8 years I spent developing Silent Hill 1, 2 & 3 at Konami, I gave up on getting a girlfriend,\" reads a new tweet from Masahiro Ito, the legendary Team Silent artist best known for designing Silent Hill 2 antagonist Pyramid Head. The tweet largely echoes something Ito said back in 2024 about not having the time for a girlfriend when he was working at Konami, but now he straight-up suggests he regrets sacrificing his love life for the his work.",
-      "\"Never even went on a single date w/ a lady,\" he says. \"I sacrificed my days off & slept on cardboards spread out on the floor, but I never in my wildest dreams imagined I'd end up like this on X.\"",
-      "That is... incredibly sad. Ito is a horror icon and should be eternally proud of the work he's done for its unparalleled influence on the genre. That said, as a married man who wouldn't trade my family for the world, it's fair for him to long for love.",
-      "\"To be honest, lately, I've been thinking that if I hadn't sacrificed my personal life, found a girlfriend, and gotten married early on, I probably would have been happier.\"",
-      "To be honest, lately, I’ve been thinking that if I hadn’t sacrificed my personal life, found a girlfriend, and gotten married early on, I probably would have been happier. September 4, 2026"
+      "Dune: Awakening 's new single-player mode could be a great way to experience the MMO-survival mashup's story by yourself, but don't jump in expecting a The Last of Us replacement.",
+      "Developer Funcom has been hard at work translating its beloved online game into a single-player context , with a new mode coming out alongside Dune: Awakening's console release later this month.",
+      "We asked chief creative officer Joel Bylos about what fans should expect from the new mode in an interview from Gamescom - and if would-be lone wolves will get what they're looking for in Arrakis.",
+      "\"I think if people play the game [this month] and what they're looking for is a really great survival game experience that they can play single-player, that'll be no issue,\" Bylos tells us. \"If they expect it to be like The Last of Us, they're probably barking at the wrong tree, right? So, I think, if their expectations are correct for what kind of genre it is and what type of game it is, they'll be perfectly satisfied.\"",
+      "The ability to journey through Funcom's adaptation of Frank Herbert's beloved novels has apparently been a long-requested feature from fans, but it's also a feature that's been quite hard to make. \"Transforming a persistent, server-authoritative, open-world survival game with multiple maps into a smooth local experience is no small feat, and today, we want to talk about the technical work our team has done to enable solo survival on Arrakis,\" the studio wrote earlier this summer."
+    ]
+  },
+  {
+    "id": "game-rant-1",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "Rumor: 2 Major Nintendo Franchises Could Be Getting Switch 2 Games",
+    "summary": "Nintendo may be preparing new Switch 2 games for both Super Smash Bros. and Nintendogs , according to claims from a leaker whose recent track record has drawn attention. While Nintendo has already brought several of its biggest franchises to Switch 2, some of its most recognizable series still lack dedicated entries for the new console.",
+    "url": "https://gamerant.com/nintendo-switch-2-smash-bros-nintendogs-rumor/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/wm/2026/09/rumor-2-major-nintendo-franchises-could-be-getting-switch-2-games.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "26 menit yang lalu",
+    "publishedTimestamp": 1788705012000,
+    "readTime": "4 min read",
+    "isHot": true,
+    "author": "Adrian Morales",
+    "keyHighlights": [
+      "Nintendo may be preparing new Switch 2 games for both Super Smash Bros. and Nintendogs , according to claims from a leaker whose recent track record has drawn attention.",
+      "While Nintendo has already brought several of its biggest franchises to Switch 2, some of its most recognizable series still lack dedicated entries for the new console."
+    ],
+    "fullContent": [
+      "Nintendo may be preparing new Switch 2 games for both Super Smash Bros. and Nintendogs , according to claims from a leaker whose recent track record has drawn attention. While Nintendo has already brought several of its biggest franchises to Switch 2, some of its most recognizable series still lack dedicated entries for the new console."
+    ]
+  },
+  {
+    "id": "game-rant-2",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "Fable Is Treating NPCs the Way More Open-World RPGs Should",
+    "summary": "Playground Games' much-anticipated Fable reboot is looking promising, but it's nevertheless going to be uncharted territory for its developer. Prior to this action-adventure pivot, Playground Games was best known for the open-world arcade-sim racing series Forza Horizon .",
+    "url": "https://gamerant.com/fable-kill-any-npc-open-world-rpg-consequences/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/fable-protagonist-with-beggar-npc.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "26 menit yang lalu",
+    "publishedTimestamp": 1788705012000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Nick Rodriguez",
+    "keyHighlights": [
+      "Playground Games' much-anticipated Fable reboot is looking promising, but it's nevertheless going to be uncharted territory for its developer.",
+      "Prior to this action-adventure pivot, Playground Games was best known for the open-world arcade-sim racing series Forza Horizon ."
+    ],
+    "fullContent": [
+      "Playground Games' much-anticipated Fable reboot is looking promising, but it's nevertheless going to be uncharted territory for its developer. Prior to this action-adventure pivot, Playground Games was best known for the open-world arcade-sim racing series Forza Horizon ."
     ]
   },
   {
@@ -692,27 +140,136 @@
     "outletIcon": "📡",
     "outletThemeColor": "#0090FF",
     "outletDomain": "gamesradar.com",
-    "title": "PlayStation's Peter Parker actor has pushed Insomniac to put Deadpool in Spider-Man 3: \"I would like to believe that they got the idea from me\"",
-    "summary": "If we end up seeing Deadpool in Marvel's Spider-Man 3, it would seem we have Peter Parker actor Yuri Lowenthal to thank, at least partly.",
-    "url": "https://www.gamesradar.com/games/spider-man/playstations-peter-parker-actor-has-pushed-insomniac-to-put-deadpool-in-spider-man-3-i-would-like-to-believe-that-they-got-the-idea-from-me/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/4t8346E4bmkMH2VLhi6K8X-1280-80.jpg",
+    "title": "Ex-Rockstar dev's chilling new psychological horror could be the next Silent Hill – even in a rough design build",
+    "summary": "\"This is Agnes.\" I'm gawking at the most beautifully horrifying hand-painted statue I've ever seen in my life as James Macleod, Ritual Tides creative director and CEO of developer studio Vertpaint, beams with pride.",
+    "url": "https://www.gamesradar.com/games/horror/ex-rockstar-devs-chilling-new-psychological-horror-could-be-the-next-silent-hill-even-in-a-rough-design-build/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/uSaUHii4rUcduqsnNTH7fb-1280-80.jpg",
     "category": "Multiplatform",
     "tag": "PlayStation",
-    "publishedAt": "11 jam yang lalu",
-    "readTime": "2 min read",
+    "publishedAt": "27 menit yang lalu",
+    "publishedTimestamp": 1788705000000,
+    "readTime": "3 min read",
     "isHot": false,
-    "author": "Jordan Gerblick",
+    "author": "Jasmine Gould-Wilson",
     "keyHighlights": [
-      "If we end up seeing Deadpool in Marvel's Spider-Man 3, it would seem we have Peter Parker actor Yuri Lowenthal to thank, at least partly.",
-      "In response to this, The Movie Dweeb points out a tweet apparently published at some point from Insomniac creative director Brian Horton.",
-      "\"I've pushed [Horton] every time I see him with the Deadpool thing, so if I've just spoiled it for Spider-Man 3, then I would just like to believe that they got the idea from me anyway,\" Lowenthal says."
+      "I'm gawking at the most beautifully horrifying hand-painted statue I've ever seen in my life as James Macleod, Ritual Tides creative director and CEO of developer studio Vertpaint, beams with pride.",
+      "Then Macleod throws a curveball: Gamescom chaos has descended and the demo build is fundamentally broken.",
+      "Developer: Vertpaint Platform(s): PC, PS5, Xbox Series X Release date: TBC Macleod opens the level build to pan across a gritty grey coastal landscape, my first introduction to the fictional town of Hortus, and I lean closer to the screen instinctively."
     ],
     "fullContent": [
-      "If we end up seeing Deadpool in Marvel's Spider-Man 3, it would seem we have Peter Parker actor Yuri Lowenthal to thank, at least partly.",
-      "Talking to The Movie Dweeb on Instagram , Lowenthal was asked to comment on a potential Wolverine and Spider-Man collab in Insomniac's next open-world Spider-Man game. Insomniac is currently hard at work prepping for the release of Marvel's Wolverine , out September 15, but considering the success of Spider-Man, the standalone Miles Morales game, and Spider-Man 2, another Peter Parker game seems likely to happen at some point even though nothing's been confirmed yet. And of course, a Wolverine x Spider-Man match-up seems all the more likely with Insomniac now having worked on both IPs.",
-      "Lowenthal thinks a Wolverine collab would be \"terribly exciting,\" but he says \"there is one character that I would opt for even more strongly than Wolverine, and it would be Deadpool.\"",
-      "In response to this, The Movie Dweeb points out a tweet apparently published at some point from Insomniac creative director Brian Horton. I tried to track down the tweet, but Horton's Twitter account has been deactivated and there's no Bluesky equivalent, so take this with a grain of salt. According to The Movie Dweeb, the tweet read \"worlds collide\" and included hashtags for Wolverine and Spider-Man. Lowenthal says the tweet is news to him, but confirmed he's pushed Horton repeatedly on Deadpool being in the next Spider-Man game.",
-      "\"I've pushed [Horton] every time I see him with the Deadpool thing, so if I've just spoiled it for Spider-Man 3, then I would just like to believe that they got the idea from me anyway,\" Lowenthal says."
+      "\"This is Agnes.\" I'm gawking at the most beautifully horrifying hand-painted statue I've ever seen in my life as James Macleod, Ritual Tides creative director and CEO of developer studio Vertpaint, beams with pride. Agnes looks like a cross between a humanoid centipede, a fleshy slug with a burst rear end, and the giant baby monster from Resident Evil Village . In short, she's gorgeous. .",
+      "But even without Agnes' beady yellow eyes watching expectantly from the table, Ritual Tides has been among my most-wanted upcoming horror games for years. All I know going into this preview is what was given up in its brief 2024 teaser trailer – a title, a genre, and some cryptic ink-on-paper artwork – so I'm desperate to find out what kind of nightmare awaits.",
+      "Then Macleod throws a curveball: Gamescom chaos has descended and the demo build is fundamentally broken. Luckily, he has a backup plan in the form of a level design build, so I can at least get a feel for what the ex-Rockstar developer has been cooking up since shipping GTA 5 and Red Dead Redemption 2 . \"So,\" Macleod begins. \"Are you a Resident Evil or Silent Hill fan?\"",
+      "Developer: Vertpaint Platform(s): PC, PS5, Xbox Series X Release date: TBC",
+      "Macleod opens the level build to pan across a gritty grey coastal landscape, my first introduction to the fictional town of Hortus, and I lean closer to the screen instinctively."
+    ]
+  },
+  {
+    "id": "polygon-2",
+    "outletId": "polygon",
+    "outletName": "Polygon",
+    "outletIcon": "🔷",
+    "outletThemeColor": "#DF1995",
+    "outletDomain": "polygon.com",
+    "title": "7 Huge Differences Between Christopher Nolan's 'Interstellar' and Steven Spielberg's Original Script",
+    "summary": "But before Christopher Nolan signed on as the director of Interstellar , the director was none other than Steven Spielberg, who developed the story with Nolan’s screenwriter brother, Jonathan Nolan. Spielberg had been on the project for about a year when he moved his production company, DreamWorks, from Paramount to Disney, meaning he had to drop out as Interstellar ’s director.",
+    "url": "https://www.polygon.com/steven-spielberg-interstellar-script-differences/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/01/mcdinte_ec206.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Culture",
+    "publishedAt": "55 menit yang lalu",
+    "publishedTimestamp": 1788703274000,
+    "readTime": "4 min read",
+    "isHot": false,
+    "author": "Brian VanHooker",
+    "keyHighlights": [
+      "But before Christopher Nolan signed on as the director of Interstellar , the director was none other than Steven Spielberg, who developed the story with Nolan’s screenwriter brother, Jonathan Nolan.",
+      "Spielberg had been on the project for about a year when he moved his production company, DreamWorks, from Paramount to Disney, meaning he had to drop out as Interstellar ’s director."
+    ],
+    "fullContent": [
+      "But before Christopher Nolan signed on as the director of Interstellar , the director was none other than Steven Spielberg, who developed the story with Nolan’s screenwriter brother, Jonathan Nolan. Spielberg had been on the project for about a year when he moved his production company, DreamWorks, from Paramount to Disney, meaning he had to drop out as Interstellar ’s director. Shortly afterward, Christopher Nolan came on as director, which came with a major rewrite by the director himself."
+    ]
+  },
+  {
+    "id": "polygon-3",
+    "outletId": "polygon",
+    "outletName": "Polygon",
+    "outletIcon": "🔷",
+    "outletThemeColor": "#DF1995",
+    "outletDomain": "polygon.com",
+    "title": "55 Years Later, Stanley Kubrick's Gritty Sci-Fi Masterpiece Is Officially Back on Streaming",
+    "summary": "Stanley Kubrick marks a before-and-after in the history of cinema . Few directors have received as much acclaim in life and death, admired by peers and audiences alike.",
+    "url": "https://www.polygon.com/a-clockwork-orange-streaming-on-hbo-max-september-2026/",
+    "imageUrl": "https://static0.polygonimages.com/wordpress/wp-content/uploads/2026/09/image-1.png",
+    "category": "Culture & Reviews",
+    "tag": "Culture",
+    "publishedAt": "55 menit yang lalu",
+    "publishedTimestamp": 1788703274000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Maria Loreto",
+    "keyHighlights": [
+      "Stanley Kubrick marks a before-and-after in the history of cinema .",
+      "Kubrick might be the ultimate gateway filmmaker for cinephiles, a step beyond the delightful and accessible thrills of Quentin Tarantino but not as far removed and cerebral as Andrei Tarkovsky."
+    ],
+    "fullContent": [
+      "Stanley Kubrick marks a before-and-after in the history of cinema . Few directors have received as much acclaim in life and death, admired by peers and audiences alike. Kubrick might be the ultimate gateway filmmaker for cinephiles, a step beyond the delightful and accessible thrills of Quentin Tarantino but not as far removed and cerebral as Andrei Tarkovsky. Kubrick always managed to make entertainment that was undoubtedly high art, adding an implicating twist to all of his films. They never leave you off the hook."
+    ]
+  },
+  {
+    "id": "pc-gamer-1",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
+    "title": "I never thought a fishing sim could be this fun, but How to Fish proves me wrong with its ridiculous physics, killer spider crabs, and classic co-op chaos",
+    "summary": "I stand knee deep in a pool of blood. My coworkers, comrades, and friends reduced to food for soulless seagulls.",
+    "url": "https://www.pcgamer.com/games/sim/i-never-thought-a-fishing-sim-could-be-this-fun-but-how-to-fish-proves-me-wrong-with-its-ridiculous-physics-killer-spider-crabs-and-classic-co-op-chaos/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/MJNFqUmQNN2tGm5zFkbWZK-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "57 menit yang lalu",
+    "publishedTimestamp": 1788703200000,
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Elie Gould",
+    "keyHighlights": [
+      "I stand knee deep in a pool of blood.",
+      "The cycle of work involves players buying a basic fishing rod at first, using this to fish for, well, fish and crustaceans, and then beating them to death with your bare knuckles, brass knuckles, or a sick-ass knife.",
+      "But when you add three other people with nothing to lose and access to friendly-fire things get out of hand in the best way possible."
+    ],
+    "fullContent": [
+      "I stand knee deep in a pool of blood. My coworkers, comrades, and friends reduced to food for soulless seagulls. Give a man a fish and he may throw it into the mouth of a weary fisherman, teach a man to fish and he shall bring forth the wrath of a spider crab who knows how to stab you with your own knife.",
+      "This was my first experience of the new multiplayer fishing sim How to Fish , and now I can see why it's become such a smash-hit among bored and borderline-violent friendship groups.",
+      "It has a simple premise: you and up to four friends learn how to fish. The cycle of work involves players buying a basic fishing rod at first, using this to fish for, well, fish and crustaceans, and then beating them to death with your bare knuckles, brass knuckles, or a sick-ass knife. Then you can either eat your catch to replenish your health or hunger or feed it to the lonely fisherman who sits on the dock and gives you coins for your hard work. With the coins gained you can buy more tools to help you fish, like the knife, or supplies which you can use as bait, such as half a hotdog or an empty beer can.",
+      "When I first woke up on the island I was met with a friendly punch in the face.",
+      "Some things can be so simple that they become boring, and perhaps How to Fish would fall into this trap, if it were just you and the fisherman on the island. But when you add three other people with nothing to lose and access to friendly-fire things get out of hand in the best way possible."
+    ]
+  },
+  {
+    "id": "gamespot-1",
+    "outletId": "gamespot",
+    "outletName": "GameSpot",
+    "outletIcon": "🎯",
+    "outletThemeColor": "#FF1E27",
+    "outletDomain": "gamespot.com",
+    "title": "Marvel’s Wolverine Everything To Know",
+    "summary": "From its drastically different narrative to the intricacies of Logan’s moveset, here’s everything to know about Marvel’s Wolverine.",
+    "url": "https://www.gamespot.com/videos/marvels-wolverine-everything-to-know/",
+    "imageUrl": "/images/news/quake2-rtx.jpg",
+    "category": "Multiplatform",
+    "tag": "Reviews",
+    "publishedAt": "57 menit yang lalu",
+    "publishedTimestamp": 1788703200000,
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Tom Caswell",
+    "keyHighlights": [
+      "From its drastically different narrative to the intricacies of Logan’s moveset, here’s everything to know about Marvel’s Wolverine."
+    ],
+    "fullContent": [
+      "From its drastically different narrative to the intricacies of Logan’s moveset, here’s everything to know about Marvel’s Wolverine."
     ]
   },
   {
@@ -722,27 +279,86 @@
     "outletIcon": "📡",
     "outletThemeColor": "#0090FF",
     "outletDomain": "gamesradar.com",
-    "title": "Spider-Noir canceled after one season at Prime Video despite receiving 11 Emmy nominations",
-    "summary": "Despite critical acclaim and a slew of Emmy nominations, Spider-Noir will not be returning for a second season at Prime Video.",
-    "url": "https://www.gamesradar.com/entertainment/marvel-tv-shows/spider-noir-canceled-after-one-season-at-prime-video-despite-receiving-11-emmy-nominations/",
-    "imageUrl": "https://cdn.mos.cms.futurecdn.net/6BEg4zZtMkcALhnyvubNqS-1280-80.jpg",
+    "title": "After Persona 3 Reload, Atlus \"put all the effort into making a full remake\" of Persona 4 Golden: \"Let's take all the lessons we learned\"",
+    "summary": "Atlus took everything it learned from Persona 3 Reload and went all out for Persona 4 Revival , according to series producer Kazuhisa Wada.",
+    "url": "https://www.gamesradar.com/games/persona/after-persona-3-reload-atlus-put-all-the-effort-into-making-a-full-remake-of-persona-4-golden-lets-take-all-the-lessons-we-learned/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/ijf6nrJ4zRfu2B9DhMdKUT-1280-80.jpg",
     "category": "Multiplatform",
     "tag": "PlayStation",
-    "publishedAt": "12 jam yang lalu",
+    "publishedAt": "59 menit yang lalu",
+    "publishedTimestamp": 1788703080000,
     "readTime": "2 min read",
     "isHot": false,
-    "author": "Lauren Milici",
+    "author": "Kaan Serin",
     "keyHighlights": [
-      "Despite critical acclaim and a slew of Emmy nominations, Spider-Noir will not be returning for a second season at Prime Video.",
-      "According to Deadline, there are still multiple projects on development, and one is \"nearing a series order.\"",
-      "For more, check out our Spider-Noir review , or if you're still confused about how Spider-Noir is connected to the Spider-Verse movies , we've got the answer."
+      "Atlus took everything it learned from Persona 3 Reload and went all out for Persona 4 Revival , according to series producer Kazuhisa Wada.",
+      "He explains \"there was a lot that we wanted to do\" with Persona 3 Reload, but since it was the team's first go at such a substantial remake, \"we weren't really sure how much we could handle.\"",
+      "\"Marie's story was so inherent to the main story of [P4 Golden] that we couldn't release it later\" like the studio did with Episode Aegis."
     ],
     "fullContent": [
-      "Despite critical acclaim and a slew of Emmy nominations, Spider-Noir will not be returning for a second season at Prime Video.",
-      "Per Deadline , it seems like Amazon MGM Studios and Sony Pictures Television expected bigger streaming numbers when making their decision. But given recent reports that the first season's budget was somewhere around $400 million, I can see why the studios might've needed the show to become a megahit in order to justify spending that money on a second season.",
-      "Amazon and Sony are still moving ahead with their multi-title deal to use IP from Sony's Universe of Marvel characters. You might remember that the first Spider-Man spin-off, Silk: Spider-Society, was ultimately canceled before entering production. Spider-Noir is now the second canceled project... and there's a third on the way. According to Deadline, there are still multiple projects on development, and one is \"nearing a series order.\" Details are, of course, being kept under wraps.",
-      "Spider-Noir saw Nicolas Cage as a jaded, down-on-his-luck private detective version of Ben Reilly aka the Spider, who finds himself returning to superheroism and going up against classic Rogue Gallery villains like Sandman and Silvermane. The series has a 91% on Rotten Tomatoes, with our own Spider-Noir review praising the show's originality and Cage's excellent and equally odd acting choices.",
-      "Spider-Noir is streaming now in both black-and-white and in color on Prime Video. For more, check out our Spider-Noir review , or if you're still confused about how Spider-Noir is connected to the Spider-Verse movies , we've got the answer."
+      "Atlus took everything it learned from Persona 3 Reload and went all out for Persona 4 Revival , according to series producer Kazuhisa Wada.",
+      "In a move that was a little controversial at the time, Persona 3 Reload actually remade the original Persona 3 rather than the expanded Persona 3 Reload release. Some content introduced in the re-release eventually made its way into Persona 3 Reload thanks to the Episode Aegis expansion (and a few unofficial mods), but things are different this time around.",
+      "Persona 4 Revival is a remake of Persona 4 Golden, not base game Persona 4. So, why the change? We asked Atlus' Kazuhisa Wada about the different approach in a chat from Gamescom. He explains \"there was a lot that we wanted to do\" with Persona 3 Reload, but since it was the team's first go at such a substantial remake, \"we weren't really sure how much we could handle.\"",
+      "Eventually, Atlus decided to simply focus on \"making the base experience just the best it can possibly be.\" The Episode Aegis arc was a section the team thought could come \"later as something when we have the time to do it, we can give it the treatment it deserves.\"",
+      "Things were different by the time Persona 4 Revival rolled around, Wada says. \"Marie's story was so inherent to the main story of [P4 Golden] that we couldn't release it later\" like the studio did with Episode Aegis."
+    ]
+  },
+  {
+    "id": "game-rant-3",
+    "outletId": "game-rant",
+    "outletName": "Game Rant",
+    "outletIcon": "📢",
+    "outletThemeColor": "#FF6B00",
+    "outletDomain": "gamerant.com",
+    "title": "Hidden Treasure No. 3 Location in Onimusha: Way of the Sword",
+    "summary": "Hidden Treasure No. 3 in Onimusha: Way of the Sword is a type of Chance Encounter quest that can be easy to miss if you’re not in the right area.",
+    "url": "https://gamerant.com/onimusha-way-of-the-sword-find-hidden-treasure-no-3-location/",
+    "imageUrl": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2026/09/how-to-find-hidden-treasure-no-3-in-onimusha-way-of-the-sword.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Theories",
+    "publishedAt": "1 jam yang lalu",
+    "publishedTimestamp": 1788702581000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Usama Ali",
+    "keyHighlights": [
+      "3 in Onimusha: Way of the Sword is a type of Chance Encounter quest that can be easy to miss if you’re not in the right area.",
+      "Once there, you’ll need to use Oni Vision to find the hidden treasure.",
+      "3 and how to find the treasure in Onimusha WOTS ."
+    ],
+    "fullContent": [
+      "Hidden Treasure No. 3 in Onimusha: Way of the Sword is a type of Chance Encounter quest that can be easy to miss if you’re not in the right area. The quest requires Musashi to investigate a location shown on an old drawing and use his Oni abilities to reveal the treasure hidden there. The Hidden Treasure No. 3 quest begins by speaking with an NPC and then following the map marker to the correct area. Once there, you’ll need to use Oni Vision to find the hidden treasure. This guide explains where to start Hidden Treasure No. 3 and how to find the treasure in Onimusha WOTS ."
+    ]
+  },
+  {
+    "id": "pc-gamer-2",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
+    "title": "Blending Deus Ex with Escape from Butcher Bay, Deficit is one of the best-feeling indie immersive sims I've played—even if the stealth system needs serious work",
+    "summary": "Immersive sims like Deus Ex and Dishonored are among the hardest kinds of games to make, so I always try to be supportive when an indie developer takes on the absurd challenge of creating one. Yet while there have been some good examples in recent years like Skin Deep and New Blood's early access Thief-like Gloomwood , a lot of the experiments in indie imsim design have been simply too janky for me to enjoy.",
+    "url": "https://www.pcgamer.com/games/fps/blending-deus-ex-with-escape-from-butcher-bay-deficit-is-one-of-the-best-feeling-indie-immersive-sims-ive-played-even-if-the-stealth-system-needs-serious-work/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/GcA5zNG6zmPkhFyUwEVAPj-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "1 jam yang lalu",
+    "publishedTimestamp": 1788701665000,
+    "readTime": "4 min read",
+    "isHot": false,
+    "author": "Rick Lane",
+    "keyHighlights": [
+      "Immersive sims like Deus Ex and Dishonored are among the hardest kinds of games to make, so I always try to be supportive when an indie developer takes on the absurd challenge of creating one.",
+      "You're tasked with infiltrating a sprawling fortress known as Hadrian's Wall to steal a device called the Interpolator, on behalf of a nameless client known as, well, The Client.",
+      "Enemies are pleasingly reactive to being mercilessly beaten about the head too, stumbling and staggering before eventually collapsing in a pile of physics-powered limbs."
+    ],
+    "fullContent": [
+      "Immersive sims like Deus Ex and Dishonored are among the hardest kinds of games to make, so I always try to be supportive when an indie developer takes on the absurd challenge of creating one. Yet while there have been some good examples in recent years like Skin Deep and New Blood's early access Thief-like Gloomwood , a lot of the experiments in indie imsim design have been simply too janky for me to enjoy.",
+      "Part of the problem is I'm a highly tactile player, and my primary concern when playing any game is whether it feels good beneath the fingers. If a game falls at that initial hurdle, then it's likely (though not inevitable) that I'll drop it pretty quickly. Fortunately, I had the opposite experience with Deficit , an indie imsim with such a strong sense of physicality that I kept playing the demo despite some clear issues.",
+      "Developed by Item42, which previously created the cooperative shooter Perish , Deficit sees you play as a freelance spy in a dilapidated, dystopian world. You're tasked with infiltrating a sprawling fortress known as Hadrian's Wall to steal a device called the Interpolator, on behalf of a nameless client known as, well, The Client.",
+      "The premise is very Deus Ex, and Deficit involves a mix of sneaking and shooting similar to Ion Storm's cyberpunk classic. But Deficit's more specific inspiration is The Chronicles of Riddick: Escape from Butcher Bay , the surprisingly great tie-in game to David Twohy's mediocre Pitch Black sequel. Your character's melee attacks, which include wild swings of your fists and overhand jabs with makeshift knives—are hugely reminiscent of Riddick's brawling style in Starbreeze's cult 2004 hit.",
+      "While I'd need to go back to Butcher Bay to verify this, Deficit's brawling seems more physical than that of Butcher Bay. When you thwack a guard with a hammer, you can almost feel the impact shudder up your arm. Enemies are pleasingly reactive to being mercilessly beaten about the head too, stumbling and staggering before eventually collapsing in a pile of physics-powered limbs."
     ]
   },
   {
@@ -752,24 +368,25 @@
     "outletIcon": "⚡",
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
-    "title": "Audacity 4 is a complete revamp of the ‘world’s most popular’ audio editor",
-    "summary": "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds. The final version of the new icon isn't nearly as bad as the early rendition that was circulating last October.",
-    "url": "https://www.theverge.com/tech/990658/audacity-4-update-audio-editing",
-    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/Audacity-4.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+    "title": "The Fairphone 6 Plus is the midrange phone we desperately needed",
+    "summary": "The Fairphone 6 Plus feels like an extremely average midrange Android phone and I couldn't be more thrilled.",
+    "url": "https://www.theverge.com/tech/990436/fairphone-6-plus-review",
+    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/268725_Fairphone_6_Plus_review_AJohnson_0001.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
     "tag": "Handhelds",
-    "publishedAt": "13 jam yang lalu",
-    "readTime": "3 min read",
+    "publishedAt": "1 jam yang lalu",
+    "publishedTimestamp": 1788699600000,
+    "readTime": "2 min read",
     "isHot": true,
-    "author": "Terrence O’Brien",
+    "author": "Allison Johnson",
     "keyHighlights": [
-      "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds.",
-      "But more importantly, all the promised improvements to the self-proclaimed \"world's most popular audio editing and recording app\" are here, turning Audacity from a free and capable but extremely clunky audio editor into a powerful modern tool.",
-      "That means you can trim a clip down, then recover the audio simply …"
+      "The Fairphone 6 Plus feels like an extremely average midrange Android phone and I couldn't be more thrilled.",
+      "Fairphone seeks out ethically sourced materials and offers a high degree of repairability for its devices.",
+      "The latest generations of Fairphone have inched toward closing that gap, and the 6 Plus achieves two huge milestones: It feels very much like using a middling Android phone, and it's actually on sale in the US."
     ],
     "fullContent": [
-      "Audacity 4 has been in the works for some time, and had its own mini controversy last year when an unfortunate redesigned logo started making the rounds. The final version of the new icon isn't nearly as bad as the early rendition that was circulating last October. But more importantly, all the promised improvements to the self-proclaimed \"world's most popular audio editing and recording app\" are here, turning Audacity from a free and capable but extremely clunky audio editor into a powerful modern tool.",
-      "The biggest change is the move to a non-destructive editing workflow. That means you can trim a clip down, then recover the audio simply …"
+      "The Fairphone 6 Plus feels like an extremely average midrange Android phone and I couldn't be more thrilled.",
+      "The mission has always been admirable. Fairphone seeks out ethically sourced materials and offers a high degree of repairability for its devices. But the phones themselves required a lot of sacrifices, like putting up with underpowered processors and bad cameras, in order to embrace the sustainability mission. The latest generations of Fairphone have inched toward closing that gap, and the 6 Plus achieves two huge milestones: It feels very much like using a middling Android phone, and it's actually on sale in the US."
     ]
   },
   {
@@ -779,27 +396,193 @@
     "outletIcon": "⚡",
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
-    "title": "The White House is making arcade games racist",
-    "summary": "An investigative report exploring controversial partisan political knock-offs of classic arcade puzzles and The Tetris Company's formal intellectual property response.",
-    "url": "https://www.theverge.com/policy/990520/trump-arcade-games-maga-copyright",
-    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/Screenshot-2026-09-04-at-3.23.13-PM.png?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+    "title": "Competitive Pokémon is on phones now, but you still need a Switch to become a champion",
+    "summary": "To get started with competitive Pok&eacute;mon battles, all you need is your phone. But to compete at the highest level, like at the Pok&eacute;mon World Championships, you're going to need a Switch.",
+    "url": "https://www.theverge.com/games/990691/competitive-pokemon-champions-mobile-tournament-accessibility",
+    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/IMG_4405_91ad42.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
     "tag": "Handhelds",
-    "publishedAt": "15 jam yang lalu",
+    "publishedAt": "1 jam yang lalu",
+    "publishedTimestamp": 1788699600000,
     "readTime": "3 min read",
     "isHot": false,
-    "author": "Gaby Del Valle",
+    "author": "Kallie Plagge",
     "keyHighlights": [
-      "Investigative report examines unauthorized partisan political games mimicking classic arcade puzzles.",
-      "The Tetris Company issues formal copyright and trademark warnings against unauthorized brand appropriation.",
-      "Civil rights organizations and gaming historians criticize the weaponization of nostalgic game mechanics.",
-      "Legal experts discuss fair use boundaries regarding interactive entertainment and political campaigns."
+      "To get started with competitive Pok&eacute;mon battles, all you need is your phone.",
+      "Battle simulator Pok&eacute;mon Champions originally launched on the Switch and Switch 2 in April, with the mobile version following in June.",
+      "I find myself playing Champions on my phone more often just because it's always in …"
     ],
     "fullContent": [
-      "The intersection of video game nostalgia and hyper-partisan political campaigning has sparked intense scrutiny following the release of an unauthorized political web game heavily modeled on classic puzzle arcade mechanics.",
-      "The puzzle game in question mimics the falling tetromino block-matching gameplay of Tetris, tasking players with stacking physical barriers along the southern border. The controversial thematic framing prompted swift condemnation from civil liberties organizations and gaming historians alike.",
-      "The Tetris Company issued a formal statement addressing the situation, reiterating its strict copyright enforcement, trademark protections, and commitment to preventing the iconic puzzle brand from being appropriated for polarizing partisan agendas.",
-      "Industry legal scholars emphasize that while parody protections exist under fair use, utilizing proprietary gameplay mechanics, visual geometries, and copyrighted sound designs for political messaging sets a dangerous precedent for entertainment IP."
+      "To get started with competitive Pok&eacute;mon battles, all you need is your phone. But to compete at the highest level, like at the Pok&eacute;mon World Championships, you're going to need a Switch. And there doesn't seem to be a good reason why.",
+      "Battle simulator Pok&eacute;mon Champions originally launched on the Switch and Switch 2 in April, with the mobile version following in June. The experience is nearly identical across the game's versions; since it's cross-platform, the choice really comes down to what devices you own and whether you prefer tapping or using a controller. I find myself playing Champions on my phone more often just because it's always in …"
+    ]
+  },
+  {
+    "id": "ign-sea-1",
+    "outletId": "ign-sea",
+    "outletName": "IGN Southeast Asia",
+    "outletIcon": "🔥",
+    "outletThemeColor": "#BF1313",
+    "outletDomain": "sea.ign.com",
+    "title": "Riot Co-Founder Calls League of Legends MMO the 'Grail' Quest, 5 Years After It Was Announced",
+    "summary": "League of Legends developer Riot Games is still bashing away on its MMO, which co-founder Mark Merrill recently described as the studio’s “grail quest.”",
+    "url": "https://www.ign.com/articles/riot-co-founder-calls-league-of-legends-mmo-the-grail-quest-5-years-after-it-was-announced",
+    "imageUrl": "https://assets-prd.ignimgs.com/2026/09/06/02bw005-bilgewater-unit-hired-gun-1788698434115.jpg",
+    "category": "Multiplatform",
+    "tag": "Trailers",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788698538000,
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Wesley Yin-Poole",
+    "keyHighlights": [
+      "League of Legends developer Riot Games is still bashing away on its MMO, which co-founder Mark Merrill recently described as the studio’s “grail quest.”",
+      "Merrill said Riot jokingly calls the MMO the “grail” because “f**k it, many a brave knight are gonna die on the grail quest.",
+      "And I think the future’s incredibly bright.”"
+    ],
+    "fullContent": [
+      "League of Legends developer Riot Games is still bashing away on its MMO, which co-founder Mark Merrill recently described as the studio’s “grail quest.”",
+      "Riot announced its MMO five years ago , in August 2021. Since then it’s seen a number of changes and various high-profile developers exit the project. But speaking to Kinda Funny Games’ Greg Miller at PAX , Merrill insisted it’s still in the works.",
+      "“We know what players’ hopes and dreams are,” he said. “It’s just on us as a team, and can we succeed in the execution?”",
+      "Merrill said Riot jokingly calls the MMO the “grail” because “f**k it, many a brave knight are gonna die on the grail quest. But f**k it, it’s the grail, so let’s go.”",
+      "“That’s the mindset that we really try to cultivate. And that is hard to do at scale,” he continued. “But I think we’re doing a reasonable job. And I think the future’s incredibly bright.”"
+    ]
+  },
+  {
+    "id": "game-informer-1",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "Valve staged its own Left 4 Dead 2 trailer \"leak\" to get around an ESRB ban, says former writer",
+    "summary": "Valve itself \"leaked\" the 2009 Left 4 Dead 2 trailer.",
+    "url": "https://www.eurogamer.net/valve-left-4-dead-2-trailer-leak-esrb-chet-faliszek",
+    "imageUrl": "https://assetsio.gnwcdn.com/l4d2_main.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788698529000,
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Vikki Blake",
+    "keyHighlights": [
+      "Valve itself \"leaked\" the 2009 Left 4 Dead 2 trailer."
+    ],
+    "fullContent": [
+      "Valve itself \"leaked\" the 2009 Left 4 Dead 2 trailer."
+    ]
+  },
+  {
+    "id": "thegamer-2",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
+    "title": "The Legend Of Zelda Movie First Trailer Likely At Nintendo Direct",
+    "summary": "Nintendo and Sony ’s live-action The Legend of Zelda movie seems incredibly likely to get its first trailer at the upcoming Zelda-focused Nintendo Direct .",
+    "url": "https://www.thegamer.com/the-legend-of-zelda-movie-first-trailer-nintendo-direct-likely/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/08/link-and-zelda-in-the-live-action-movie-crouched-and-kneeling-in-a-field-1.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788698217000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "George Foster",
+    "keyHighlights": [
+      "Nintendo and Sony ’s live-action The Legend of Zelda movie seems incredibly likely to get its first trailer at the upcoming Zelda-focused Nintendo Direct ."
+    ],
+    "fullContent": [
+      "Nintendo and Sony ’s live-action The Legend of Zelda movie seems incredibly likely to get its first trailer at the upcoming Zelda-focused Nintendo Direct ."
+    ]
+  },
+  {
+    "id": "pc-gamer-3",
+    "outletId": "pc-gamer",
+    "outletName": "PC Gamer",
+    "outletIcon": "🖥️",
+    "outletThemeColor": "#E61A24",
+    "outletDomain": "pcgamer.com",
+    "title": "Here's 10 more minutes of the most interesting game shown at this year's Opening Night Live",
+    "summary": "I was largely nonplussed by Gamescom's Opening Night Live , particularly its relentless barrage of identikit fantasy action games that I struggled to tell apart. But one game stood out like a rat-powered computer in an elven glade, and that was Ontos , Frictional Games' latest horror adventure/existential crisis generator.",
+    "url": "https://www.pcgamer.com/games/horror/heres-10-more-minutes-of-the-most-interesting-game-shown-at-this-years-opening-night-live/",
+    "imageUrl": "https://cdn.mos.cms.futurecdn.net/GwYHwW92uf99D6czpkxudQ-1280-80.jpg",
+    "category": "PC & Tech",
+    "tag": "PC Gaming",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788697646000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Rick Lane",
+    "keyHighlights": [
+      "I was largely nonplussed by Gamescom's Opening Night Live , particularly its relentless barrage of identikit fantasy action games that I struggled to tell apart.",
+      "There's a lot of tactile environment interaction, poking around computers for text logs, and a grisly sequence where Aditi plucks some electrodes out of a live rat's exposed brain.",
+      "It's a reasonable request, provided the voice in the rat computer really does belong to the original Crombie."
+    ],
+    "fullContent": [
+      "I was largely nonplussed by Gamescom's Opening Night Live , particularly its relentless barrage of identikit fantasy action games that I struggled to tell apart. But one game stood out like a rat-powered computer in an elven glade, and that was Ontos , Frictional Games' latest horror adventure/existential crisis generator.",
+      "The Gamescom trailer was a barrage of unsettling, distinctive imagery, from rodent server-racks to slack-jawed dudes with electrodes protruding from their heads. I was instantly intrigued and keen to learn more, so I was delighted to discover that Frictional graced us with a longer look at Ontos in action.",
+      "The 10-minute showcase focuses on the same part of the game as the shorter trailer. But it adds significant context to how Ontos plays and the kinds of challenges you'll be dealing with. It starts with the player character—a woman named Aditi—arriving at the hospital wing of Ontos' repurposed 'Moon Hotel' Samsara via an internal railway system, before exploring the wing and unpicking an experiment run by a scientist called Crombie.",
+      "In moment-to-moment play, Ontos shares a lot in common with most of Frictional's other games (the exception being Amnesia: The Bunker , which is more of a proto immersive sim). There's a lot of tactile environment interaction, poking around computers for text logs, and a grisly sequence where Aditi plucks some electrodes out of a live rat's exposed brain. On top of this is a sprinkling of stealth, as Aditi evades a security camera by throwing a box across the room. Interestingly, the camera tracks the box's movement as it arcs through the air, which I'm sure must have featured in another game up to now. But I cannot recall an example of it.",
+      "Eventually, Aditi arrives at Crombie's experiment, which involves the rat server-rack seen in the Gamescom trailer. Crombie, speaking through the rat server, says he tried to create a copy of his personality to be stored in the rat RAM, but accidentally uploaded his consciousness from his own body, which sits slumped on a chair in the same room in a near-vegetative state. He then asks Aditi to help him return his consciousness to his body. It's a reasonable request, provided the voice in the rat computer really does belong to the original Crombie."
+    ]
+  },
+  {
+    "id": "vgc-1",
+    "outletId": "vgc",
+    "outletName": "Video Games Chronicle (VGC)",
+    "outletIcon": "⚡",
+    "outletThemeColor": "#0055FF",
+    "outletDomain": "videogameschronicle.com",
+    "title": "Project ZETA's main aim is to take the 'running away' part out of Capture the Flag",
+    "summary": "Hands-on: This South Korean online battle game makes it impossible for the player to avoid combat…",
+    "url": "https://www.videogameschronicle.com/features/project-zetas-main-aim-is-to-take-the-running-away-part-out-of-capture-the-flag/",
+    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/project-zeta.jpg",
+    "category": "Industry & Business",
+    "tag": "Industry",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788696625000,
+    "readTime": "2 min read",
+    "isHot": true,
+    "author": "Chris Scullion",
+    "keyHighlights": [
+      "Hands-on: This South Korean online battle game makes it impossible for the player to avoid combat…"
+    ],
+    "fullContent": [
+      "Hands-on: This South Korean online battle game makes it impossible for the player to avoid combat…"
+    ]
+  },
+  {
+    "id": "ign-sea-2",
+    "outletId": "ign-sea",
+    "outletName": "IGN Southeast Asia",
+    "outletIcon": "🔥",
+    "outletThemeColor": "#BF1313",
+    "outletDomain": "sea.ign.com",
+    "title": "Skytech Gaming Blaze 5 Review",
+    "summary": "A custom pre-built gaming PC like the Skytech Gaming Blaze 5 is going to save you a lot of work if you’re not technically savvy or simply don’t have the patience to put together a modern-day puzzle. With its Nvidia GeForce RTX 5070 graphics card and AMD Ryzen 7 9800X3D, you’re getting solid mid-tier performance.",
+    "url": "https://www.ign.com/articles/skytech-gaming-blaze-5-review",
+    "imageUrl": "https://assets-prd.ignimgs.com/2026/09/05/skytech-gaming-blaze-5-review-1-1788568565864.jpg",
+    "category": "Multiplatform",
+    "tag": "Trailers",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788696000000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Bo Moore",
+    "keyHighlights": [
+      "A custom pre-built gaming PC like the Skytech Gaming Blaze 5 is going to save you a lot of work if you’re not technically savvy or simply don’t have the patience to put together a modern-day puzzle.",
+      "So keep in mind that if you see them at a higher price, there’s a chance they’ll go on sale for less.",
+      "For example, the CPU fan cables are blocking the RAM and the SSD sits very snugly between the CPU and the motherboard’s heatsink."
+    ],
+    "fullContent": [
+      "A custom pre-built gaming PC like the Skytech Gaming Blaze 5 is going to save you a lot of work if you’re not technically savvy or simply don’t have the patience to put together a modern-day puzzle. With its Nvidia GeForce RTX 5070 graphics card and AMD Ryzen 7 9800X3D, you’re getting solid mid-tier performance. And it’s all packed away in an easy-to-open glass case with shiny RGB components.",
+      "That said, it’s not without issue. Upgrading or replacing components is likely going to take moving a few things out of the way, as it’s a bit crowded on the motherboard. Even if you don’t plan on upgrading, you’ll either be annoyed by the finicky RGB lighting or the fact that the power button and front ports are at the very bottom of the tower, making floor placement very awkward. These may not be dealbreakers for some, but you should know what you’re getting into.",
+      "The Skytech Gaming Blaze 5 is available now starting at $1,599 . That’ll get you an Intel i7 14700F, an RTX 5070 12GB, 16GB of RAM, and a 1TB SSD. If you want the model that I reviewed (AMD Ryzen 7 9800X3D with 32GB of RAM and a 2TB SSD), that’ll bump you up all the way to $2,299. These are active sale prices, both of which will increase by $400 if they go back to MSRP. So keep in mind that if you see them at a higher price, there’s a chance they’ll go on sale for less.",
+      "The Skytech Gaming Blaze 5 isn’t terribly bigger than your average mid-tower, coming in at 18.3 x 20.6 x 9.4 inches. A good chunk of the sides are wrapped in tempered glass and RGB LEDs, with light bars found around the case, on the seven case fans, the two RAM sticks, and the PSU shroud – the GPU is the only component left out of the fun. The rest of the case is painted black, which isn’t my favorite gamer aesthetic, but it does allow the rest of the RGB to shine.",
+      "Breaking into this rig is pleasantly easy. The glass panel pops off with a little pressure, held in by several pegs and a larger clip. The RTX 5070 isn’t terribly large, but it doesn’t leave a lot of headroom for one of the two PCIe 4.0 x16 slots that are available just beneath it. If you did want to plug something in there, it’d need to be relatively thin, and I’d worry about how tight it would be squeezed up against the GPU. All the cables are neatly tucked away, but you’ll need to work around a few things to replace some components. For example, the CPU fan cables are blocking the RAM and the SSD sits very snugly between the CPU and the motherboard’s heatsink."
     ]
   },
   {
@@ -809,24 +592,273 @@
     "outletIcon": "⚡",
     "outletThemeColor": "#E00051",
     "outletDomain": "theverge.com",
-    "title": "GoPro says it's still committed 'to your collective stoke'",
-    "summary": "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week. He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure.\"",
-    "url": "https://www.theverge.com/gadgets/990425/gopro-nick-woodman-starman-letter",
-    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/09-4-mission1-pro-pdp-desktop.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
+    "title": "DIY plug-in solar gains momentum in the US",
+    "summary": "This is The Stepback , a weekly newsletter breaking down one essential story from the tech world. For more on e-bikes, power stations, and how to work anywhere , follow Thomas Ricker .",
+    "url": "https://www.theverge.com/column/990183/diy-plug-in-solar-us",
+    "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/banner.jpg?quality=90&#038;strip=all&#038;crop=0,0,100,100",
     "category": "PC & Tech",
     "tag": "Handhelds",
-    "publishedAt": "16 jam yang lalu",
-    "readTime": "4 min read",
+    "publishedAt": "2 jam yang lalu",
+    "publishedTimestamp": 1788696000000,
+    "readTime": "3 min read",
     "isHot": false,
-    "author": "Stevie Bonifield",
+    "author": "Thomas Ricker",
     "keyHighlights": [
-      "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week.",
-      "YouTuber Mark \"Markiplier\" Fischbach, who prior to the acquisition became GoPro's largest individual shareholder, is not mentioned at all."
+      "This is The Stepback , a weekly newsletter breaking down one essential story from the tech world.",
+      "With a deep breath, I took the cable seething with 800W of solar power and plugged it directly into a standard wall jack in my home.",
+      "As unnerving as it sounds to treat a common household power outlet as a power input , these DIY plug-in sol …"
     ],
     "fullContent": [
-      "GoPro CEO Nick Woodman said in a letter to customers that making cameras is still his company's \"core DNA,\" after a proposed $285 million acquisition by Starman was announced earlier this week. He claims the merger puts GoPro in a better position to continue developing its content creation tech, after saying in the deal announcement that it would work with Starman to address \"important areas of national security related to cameras, optics and AI infrastructure.\"",
-      "YouTuber Mark \"Markiplier\" Fischbach, who prior to the acquisition became GoPro's largest individual shareholder, is not mentioned at all.",
-      "To our GoPro community, fans and custom …"
+      "This is The Stepback , a weekly newsletter breaking down one essential story from the tech world. For more on e-bikes, power stations, and how to work anywhere , follow Thomas Ricker . The Stepback arrives in our subscribers' inboxes at 8AM ET. Opt in for The Stepback here .",
+      "With a deep breath, I took the cable seething with 800W of solar power and plugged it directly into a standard wall jack in my home. Nothing sparked, nothing smoked, and by the end of that sunny summer day, my electricity bill had dropped to nearly $0.",
+      "As unnerving as it sounds to treat a common household power outlet as a power input , these DIY plug-in sol …"
+    ]
+  },
+  {
+    "id": "game-informer-2",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "Dutch artist responds to the White House's Build the Wall game with Build that Bridge",
+    "summary": "A Dutch artist has released Build that Bridge, a free browser game built as a direct response to Build the Wall, the Tetris-style minigame the White House launched on Arcade.Gov last week .",
+    "url": "https://www.eurogamer.net/build-that-bridge-tetris-response-white-house-wall-game",
+    "imageUrl": "https://assetsio.gnwcdn.com/Screenshot-2026-09-06-at-12.17.35.png?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "3 jam yang lalu",
+    "publishedTimestamp": 1788693863000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Vikki Blake",
+    "keyHighlights": [
+      "A Dutch artist has released Build that Bridge, a free browser game built as a direct response to Build the Wall, the Tetris-style minigame the White House launched on Arcade.Gov last week ."
+    ],
+    "fullContent": [
+      "A Dutch artist has released Build that Bridge, a free browser game built as a direct response to Build the Wall, the Tetris-style minigame the White House launched on Arcade.Gov last week ."
+    ]
+  },
+  {
+    "id": "thegamer-3",
+    "outletId": "thegamer",
+    "outletName": "TheGamer",
+    "outletIcon": "🕹️",
+    "outletThemeColor": "#107C41",
+    "outletDomain": "thegamer.com",
+    "title": "Fortnite And Rocket League Have Fake Kingdom Hearts Keyblades",
+    "summary": "A recent Rocket League update has leaked the Kingdom Hearts collab content and confirmed that it’s not just Fortnite that has had to change the Kingdom Key symbol.",
+    "url": "https://www.thegamer.com/kingdom-hearts-fortnite-rocket-league-collab-fake-kingdom-key-keyblade-explained/",
+    "imageUrl": "https://static0.thegamerimages.com/wordpress/wp-content/uploads/2026/09/kingdomheartskeyblade-1.jpg",
+    "category": "Culture & Reviews",
+    "tag": "Guides",
+    "publishedAt": "3 jam yang lalu",
+    "publishedTimestamp": 1788693728000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "George Foster",
+    "keyHighlights": [
+      "A recent Rocket League update has leaked the Kingdom Hearts collab content and confirmed that it’s not just Fortnite that has had to change the Kingdom Key symbol."
+    ],
+    "fullContent": [
+      "A recent Rocket League update has leaked the Kingdom Hearts collab content and confirmed that it’s not just Fortnite that has had to change the Kingdom Key symbol."
+    ]
+  },
+  {
+    "id": "game-informer-3",
+    "outletId": "game-informer",
+    "outletName": "Eurogamer",
+    "outletIcon": "📖",
+    "outletThemeColor": "#0066CC",
+    "outletDomain": "eurogamer.net",
+    "title": "The Blood of Dawnwalker has sold 1 million copies in just 3 days",
+    "summary": "The Blood of Dawnwalker has sold more than a million copies worldwide in just three days.",
+    "url": "https://www.eurogamer.net/blood-of-dawnwalker-1-million-sales-rebel-wolves",
+    "imageUrl": "https://assetsio.gnwcdn.com/ambrus-dawnwalker.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Industry & Business",
+    "tag": "Features",
+    "publishedAt": "3 jam yang lalu",
+    "publishedTimestamp": 1788692468000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Vikki Blake",
+    "keyHighlights": [
+      "The Blood of Dawnwalker has sold more than a million copies worldwide in just three days."
+    ],
+    "fullContent": [
+      "The Blood of Dawnwalker has sold more than a million copies worldwide in just three days."
+    ]
+  },
+  {
+    "id": "kotaku-1",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "The Sunday Papers",
+    "summary": "Sundays are for luxuriating in the chill of the September air and hoping for more of the drenching rain that's ended the summer heat. Though, it's a luxuriating that's quickly pierced by the worry that we've seen the last warm weather of the year.",
+    "url": "https://www.rockpapershotgun.com/the-sunday-papers-826",
+    "imageUrl": "https://assetsio.gnwcdn.com/the-sunday-papers-big.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "5 jam yang lalu",
+    "publishedTimestamp": 1788685200000,
+    "readTime": "3 min read",
+    "isHot": true,
+    "author": "Julian Benson",
+    "keyHighlights": [
+      "Sundays are for luxuriating in the chill of the September air and hoping for more of the drenching rain that's ended the summer heat.",
+      "Though, it's a luxuriating that's quickly pierced by the worry that we've seen the last warm weather of the year."
+    ],
+    "fullContent": [
+      "Sundays are for luxuriating in the chill of the September air and hoping for more of the drenching rain that's ended the summer heat. Though, it's a luxuriating that's quickly pierced by the worry that we've seen the last warm weather of the year. Winter isn't far off and all the gaps around the windows in the living room are going to start making themselves known again."
+    ]
+  },
+  {
+    "id": "ign-sea-3",
+    "outletId": "ign-sea",
+    "outletName": "IGN Southeast Asia",
+    "outletIcon": "🔥",
+    "outletThemeColor": "#BF1313",
+    "outletDomain": "sea.ign.com",
+    "title": "How to Watch the September 2026 Nintendo Direct and Zelda 40th Anniversary Direct",
+    "summary": "People are always asking, “When is the next Nintendo Direct??” And for the next few days, the appropriate answer is, “Which one?”",
+    "url": "https://www.ign.com/articles/how-to-watch-the-september-2026-nintendo-direct-and-zelda-40th-anniversary-direct",
+    "imageUrl": "https://assets-prd.ignimgs.com/2026/06/09/nintendodirect-blogroll-1781017491411.jpg",
+    "category": "Multiplatform",
+    "tag": "Trailers",
+    "publishedAt": "14 jam yang lalu",
+    "publishedTimestamp": 1788653056000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Logan Plant",
+    "keyHighlights": [
+      "People are always asking, “When is the next Nintendo Direct??”",
+      "IGN will host live watch parties for each presentation; here’s everything you need to know about how to watch the September 2026 Nintendo Directs.",
+      "They’ll talk for an hour about everything covered in the show."
+    ],
+    "fullContent": [
+      "People are always asking, “When is the next Nintendo Direct??” And for the next few days, the appropriate answer is, “Which one?” That’s because Nintendo is going big this September with two Nintendo Direct showcases airing on back-to-back days . Outside of game-specific presentations like the Splatoon Raiders and Fire Emblem: Fortune’s Weave Directs, these will be the first Nintendo Directs since the big June 2026 showcase that gave us our first glimpse at The Legend of Zelda: Ocarina of Time remake . We’re expecting to see a lot more of that on Tuesday, as the first show is The Legend of Zelda 40th Anniversary Direct, followed by a general Nintendo Direct and a Nintendo Treehouse: Live stream on Wednesday.",
+      "IGN will host live watch parties for each presentation; here’s everything you need to know about how to watch the September 2026 Nintendo Directs.",
+      "Nintendo is getting things started with The Legend of Zelda on Tuesday, September 8, at 7am PT / 10am ET / 4pm CEST . Nintendo said that the livestream will last roughly 30 minutes, adding, “To celebrate the series’ 40th anniversary, we will deliver a variety of information related to The Legend of Zelda.”",
+      "IGN will host a pre-show five minutes before the Direct , starting at 6:55am PT / 9:55am ET / 3:55 pm CEST.",
+      "Once the Direct ends, stick around for a live Nintendo Voice Chat post-show featuring Zelda experts and superfans Logan Plant (that’s me!), Brian Altano, and Peer Schneider – who reviewed the original Ocarina of Time back in 1998, you know. They’ll talk for an hour about everything covered in the show."
+    ]
+  },
+  {
+    "id": "kotaku-2",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "Deliver packages in foresty mountains and avoid thieving boars in the Death Stranding-adjacent and quite calm-looking Pinetrail",
+    "summary": "I can take or leave a majority of Death Stranding 's story (BB forever, though), but I gotta give it to Kojima: delivering stuff is fun. There's a genuine complexity to the process of deciding what to pack and how you pack it, making the simple act of delivering something like a pizza legitimately challenging.",
+    "url": "https://www.rockpapershotgun.com/deliver-packages-in-foresty-mountains-and-avoid-thieving-boars-in-the-death-stranding-adjacent-and-quite-calm-looking-pinetrail",
+    "imageUrl": "https://assetsio.gnwcdn.com/pinetrail.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "17 jam yang lalu",
+    "publishedTimestamp": 1788645226000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Oisin Kuhnke",
+    "keyHighlights": [
+      "I can take or leave a majority of Death Stranding 's story (BB forever, though), but I gotta give it to Kojima: delivering stuff is fun.",
+      "There's a genuine complexity to the process of deciding what to pack and how you pack it, making the simple act of delivering something like a pizza legitimately challenging."
+    ],
+    "fullContent": [
+      "I can take or leave a majority of Death Stranding 's story (BB forever, though), but I gotta give it to Kojima: delivering stuff is fun. There's a genuine complexity to the process of deciding what to pack and how you pack it, making the simple act of delivering something like a pizza legitimately challenging. So I'm quite tickled by the look of Pinetrail, a much less apocalyptic delivery game where you drive a tiny three-wheel rickshaw truck transporting packages across luscious forests and mountains."
+    ]
+  },
+  {
+    "id": "kotaku-3",
+    "outletId": "kotaku",
+    "outletName": "Rock Paper Shotgun",
+    "outletIcon": "💬",
+    "outletThemeColor": "#FFE600",
+    "outletDomain": "rockpapershotgun.com",
+    "title": "Laser Guy is a twin-stick \"anti-shooter\" about a stressed out game developer who can't stop shooting laser beams from his eye",
+    "summary": "Do I need to explain how Cyclops from the X-Men's powers work? I'm going to anyway just in case.",
+    "url": "https://www.rockpapershotgun.com/laser-guy-is-a-twin-stick-anti-shooter-about-a-stressed-out-game-developer-who-cant-stop-shooting-laser-beams-from-his-eyes",
+    "imageUrl": "https://assetsio.gnwcdn.com/laser-guy.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
+    "category": "Multiplatform",
+    "tag": "PC Indie",
+    "publishedAt": "18 jam yang lalu",
+    "publishedTimestamp": 1788640405000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Oisin Kuhnke",
+    "keyHighlights": [
+      "Do I need to explain how Cyclops from the X-Men's powers work?",
+      "I'm not an X-Men nerd though, so correct me in the comments.",
+      "Which, as it turns out, makes for a fun video game concept, as it's now been manifested in the form of Laser Guy, a twin-stick \" anti-shooter \" all about not killing your co-workers."
+    ],
+    "fullContent": [
+      "Do I need to explain how Cyclops from the X-Men's powers work? I'm going to anyway just in case. He shoots beams from his eyes! More or less, I think it's technically energy from a punch dimension? I'm not an X-Men nerd though, so correct me in the comments. Main point is, he can never stop shooting those beams, which is why he has to always be wearing glasses at the very least. Which, as it turns out, makes for a fun video game concept, as it's now been manifested in the form of Laser Guy, a twin-stick \" anti-shooter \" all about not killing your co-workers."
+    ]
+  },
+  {
+    "id": "gamespot-2",
+    "outletId": "gamespot",
+    "outletName": "GameSpot",
+    "outletIcon": "🎯",
+    "outletThemeColor": "#FF1E27",
+    "outletDomain": "gamespot.com",
+    "title": "All Infamy Edicts In The Blood Of Dawnwalker - Vampire Court Guide",
+    "summary": "Do you want to increase your infamy in The Blood of Dawnwalker ? Coen’s Infamy or Notoriety represents how effectively you’ve disrupted the operations of the vampire boyars in Vale Sangora.",
+    "url": "https://www.gamespot.com/articles/blood-of-dawnwalker-edicts-infamy-vampire-court-guide/",
+    "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/blood-of-dawnwalker-infamy-notoriety-edicts-.jpg?w=300",
+    "category": "Multiplatform",
+    "tag": "Reviews",
+    "publishedAt": "19 jam yang lalu",
+    "publishedTimestamp": 1788634849000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Jason Rodriguez",
+    "keyHighlights": [
+      "Do you want to increase your infamy in The Blood of Dawnwalker ?",
+      "The Vampire Court in The Blood of Dawnwalker has their own fiefdoms and responsibilities.",
+      "Likewise, there are activities that won’t be available until you discover clues: From left to right: Destroying Ambrus' blood supplies, rescuing people from Bakir's pillories, and exorcising demons in Xanthe's excavation sites."
+    ],
+    "fullContent": [
+      "Do you want to increase your infamy in The Blood of Dawnwalker ? Coen’s Infamy or Notoriety represents how effectively you’ve disrupted the operations of the vampire boyars in Vale Sangora. The more activities you complete, the greater their ire, culminating in epic battles where you can finally put them out of their misery. We're going to tackle all of these mechanics, but be forewarned that there are some spoilers ahead.",
+      "You can check your Infamy in The Blood of Dawnwalker via the Court menu. In it, you’ll see the knyaz, Brencis, and his three lieutenants/boyars: Ambrus, Bakir, and Xanthe.",
+      "The Vampire Court in The Blood of Dawnwalker has their own fiefdoms and responsibilities. Ambrus, whose strongholds are in the northern part of Vale Sangora, handles blood tithes and transportation. Bakir, who controls the southwest, mixes alcohol with blood in distilleries, while also punishing innocent people in pillories. As for Xanthe, she conducts research into the esoteric, as well as abducts young women for her experiments.",
+      "The vast majority of these activities cost 3x Time Segments to complete. It’s important to plan ahead in case you want to tackle several of them in quick succession. Likewise, there are activities that won’t be available until you discover clues:",
+      "From left to right: Destroying Ambrus' blood supplies, rescuing people from Bakir's pillories, and exorcising demons in Xanthe's excavation sites."
+    ]
+  },
+  {
+    "id": "gamespot-3",
+    "outletId": "gamespot",
+    "outletName": "GameSpot",
+    "outletIcon": "🎯",
+    "outletThemeColor": "#FF1E27",
+    "outletDomain": "gamespot.com",
+    "title": "How To Defeat All Vampire Court Bosses In The Blood Of Dawnwalker",
+    "summary": "Are you wondering about how to defeat all major bosses in The Blood of Dawnwalker ? These creatures of the night have lorded over the valley, murdering and punishing those they deem unfit to serve them.",
+    "url": "https://www.gamespot.com/articles/blood-of-dawnwalker-boss-guide-brencis-ambrus-bakir-xanthe/",
+    "imageUrl": "https://www.gamespot.com/wp-content/uploads/2026/09/blood-of-dawnwalker-boss-guide-brencis-ambrus-xanthe-bakir-.jpg?w=300",
+    "category": "Multiplatform",
+    "tag": "Reviews",
+    "publishedAt": "19 jam yang lalu",
+    "publishedTimestamp": 1788634715000,
+    "readTime": "3 min read",
+    "isHot": false,
+    "author": "Jason Rodriguez",
+    "keyHighlights": [
+      "Are you wondering about how to defeat all major bosses in The Blood of Dawnwalker ?",
+      "The last one, their leader, Brencis, is pretty much part of the game’s finale.",
+      "You can learn more about this sequence in our Lacra: Our Rotten Roots guide ."
+    ],
+    "fullContent": [
+      "Are you wondering about how to defeat all major bosses in The Blood of Dawnwalker ? These creatures of the night have lorded over the valley, murdering and punishing those they deem unfit to serve them. Now, they’ve also taken Coen’s family, and you must find a way to bring them down. Our guide has all the details that you need, but be forewarned that there will be major spoilers ahead.",
+      "Three of the four major bosses in The Blood of Dawnwalker can be fought as part of general campaign progression. The last one, their leader, Brencis, is pretty much part of the game’s finale. The game basically ends once you beat him.",
+      "In the case of Ambrus, Bakir, and Xanthe, they have their own operations/activities that you can disrupt. We discuss these facets in detail in our Infamy Edicts guide , but here’s a quick summary nonetheless:",
+      "Note 1: These foes are quite challenging, so we advise you to equip legendary weapons and armors , as well as pick the best skills/perks , before facing them.",
+      "Note 2: There's another powerful vampire lord somewhere in Vale Sangora, though you only meet him during a companion's quest. You can learn more about this sequence in our Lacra: Our Rotten Roots guide ."
     ]
   },
   {
@@ -837,56 +869,21 @@
     "outletThemeColor": "#001799",
     "outletDomain": "gamesindustry.biz",
     "title": "PAX Unplugged Houston to debut in June 2027: \"It's a chance to bring PAX back to the PAX South fans that missed us\"",
-    "summary": "ReedPop and Penny Arcade officially announce the expansion of the PAX brand with PAX Unplugged Houston, scheduled to debut in Texas in June 2027.",
+    "summary": "ReedPop and Penny Arcade have announced the inaugural PAX Unplugged Houston, scheduled for June 2027.",
     "url": "https://www.gamesindustry.biz/pax-unplugged-houston-to-debut-in-june-2027-its-a-chance-to-bring-pax-back-to-the-pax-south-fans-that-missed-us",
     "imageUrl": "https://assetsio.gnwcdn.com/pax-unplugged.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
     "tag": "Financials",
-    "publishedAt": "16 jam yang lalu",
-    "readTime": "3 min read",
+    "publishedAt": "1 hari yang lalu",
+    "publishedTimestamp": 1788544800000,
+    "readTime": "2 min read",
     "isHot": true,
     "author": "Sophie McEvoy",
     "keyHighlights": [
-      "ReedPop and Penny Arcade announce the inaugural PAX Unplugged Houston, premiering in June 2027.",
-      "Marks the triumphant return of the PAX brand to Texas following the discontinuation of PAX South.",
-      "Dedicated exclusively to tabletop gaming, collectible card games, board games, and RPG communities.",
-      "Hosted at the George R. Brown Convention Center, featuring expansive free-play libraries and tournaments."
+      "ReedPop and Penny Arcade have announced the inaugural PAX Unplugged Houston, scheduled for June 2027."
     ],
     "fullContent": [
-      "ReedPop and Penny Arcade have officially unveiled the launch of PAX Unplugged Houston, a massive new convention dedicated entirely to tabletop gaming, board games, tabletop RPGs, and miniature wargaming, slated to debut in June 2027.",
-      "The event will take place at the George R. Brown Convention Center in downtown Houston, marking the triumphant return of the official PAX brand to the Texas gaming community following the retirement of PAX South in San Antonio in 2022.",
-      "Convention organizers noted that Texas has one of the fastest-growing and most passionate tabletop communities in North America. The event promises hundreds of free-to-play board game libraries, developer panels, tournament zones, and premier exhibitor booths from major industry publishers.",
-      "The expansion reflects the explosive global growth of the analog gaming sector, which has experienced unprecedented revenue gains driven by modern board games, trading card games, and resurgence in tabletop roleplaying."
-    ]
-  },
-  {
-    "id": "vgc-1",
-    "outletId": "vgc",
-    "outletName": "Video Games Chronicle (VGC)",
-    "outletIcon": "⚡",
-    "outletThemeColor": "#0055FF",
-    "outletDomain": "videogameschronicle.com",
-    "title": "Podcast: GTA 6 boosts console sales... but will it last?",
-    "summary": "The VGC podcast panel examines the massive surge in PlayStation 5 Pro and Xbox hardware purchases driven by Grand Theft Auto VI anticipation, alongside the fierce digital ownership debate.",
-    "url": "https://www.videogameschronicle.com/blog/podcast/podcast-gta-6-boosts-console-sales-but-will-it-last/",
-    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/Podcast-187-YT.jpg",
-    "category": "Industry & Business",
-    "tag": "Industry",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": true,
-    "author": "Jordan Middler",
-    "keyHighlights": [
-      "VGC podcast analyzes hardware adoption surges fueled by Grand Theft Auto VI anticipation.",
-      "Consumers proactively invest in premium consoles like the PS5 Pro to prepare for Rockstar's blockbuster.",
-      "Panel questions whether the hardware momentum will hold amid rising prices and economic pressures.",
-      "In-depth discussion on physical disc preservation versus the legal fragility of digital game licenses."
-    ],
-    "fullContent": [
-      "In the latest episode of the VGC podcast, the editorial panel tackles the dramatic spike in current-generation console hardware sales spurred by mounting excitement for Rockstar Games' upcoming Grand Theft Auto VI.",
-      "Retail analytics indicate that consumers are proactively upgrading to the PlayStation 5 Pro and high-storage Xbox Series X consoles specifically to ensure optimal performance when GTA VI launches, marking one of the strongest mid-generation hardware cycles in console history.",
-      "The panel debates whether this momentum can be sustained into the latter half of the decade, or if rising hardware costs, component shortages, and broader macroeconomic pressures will curtail long-term console adoption.",
-      "The episode also dives deep into the contentious debate surrounding digital ownership rights versus physical media preservation, examining how digital licensing terms threaten consumer access as platforms phase out optical disc drives."
+      "ReedPop and Penny Arcade have announced the inaugural PAX Unplugged Houston, scheduled for June 2027."
     ]
   },
   {
@@ -896,81 +893,47 @@
     "outletIcon": "⚡",
     "outletThemeColor": "#0055FF",
     "outletDomain": "videogameschronicle.com",
+    "title": "Podcast: GTA 6 boosts console sales... but will it last?",
+    "summary": "Plus: The debate over digital ownership rages on…",
+    "url": "https://www.videogameschronicle.com/blog/podcast/podcast-gta-6-boosts-console-sales-but-will-it-last/",
+    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/Podcast-187-YT.jpg",
+    "category": "Industry & Business",
+    "tag": "Industry",
+    "publishedAt": "1 hari yang lalu",
+    "publishedTimestamp": 1788540727000,
+    "readTime": "2 min read",
+    "isHot": false,
+    "author": "Jordan Middler",
+    "keyHighlights": [
+      "Plus: The debate over digital ownership rages on…"
+    ],
+    "fullContent": [
+      "Plus: The debate over digital ownership rages on…"
+    ]
+  },
+  {
+    "id": "vgc-3",
+    "outletId": "vgc",
+    "outletName": "Video Games Chronicle (VGC)",
+    "outletIcon": "⚡",
+    "outletThemeColor": "#0055FF",
+    "outletDomain": "videogameschronicle.com",
     "title": "Blood of Dawnwalker: Xanthe’s Mansion lantern puzzle solution",
-    "summary": "A step-by-step puzzle guide to solving the four chromatic lanterns inside Xanthe's Mansion and unlocking the sealed vampire matriarch boss arena in The Blood of Dawnwalker.",
+    "summary": "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…",
     "url": "https://www.videogameschronicle.com/guide/blood-of-dawnwalker-xanthes-mansion-lantern-puzzle-solution/",
     "imageUrl": "https://www.videogameschronicle.com/files/2026/09/xanthe_1.jpg",
     "category": "Industry & Business",
     "tag": "Industry",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "3 min read",
+    "publishedAt": "1 hari yang lalu",
+    "publishedTimestamp": 1788538939000,
+    "readTime": "2 min read",
     "isHot": false,
     "author": "Dave Aubrey",
     "keyHighlights": [
-      "Detailed puzzle walkthrough for deciphering the lantern light sequence in Xanthe's Mansion.",
-      "Explains the Latin crest riddle order: Ruby, Amethyst, Sapphire, and Topaz.",
-      "Avoids triggering the deadly venomous gargoyle trap by entering the correct chromatic pattern.",
-      "Unlocks the legendary Crimson Rapier weapon and opens the path to the matriarch boss encounter."
+      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
     ],
     "fullContent": [
-      "Navigating the opulent, shadow-draped corridors of Xanthe's Mansion in The Blood of Dawnwalker presents players with one of the game's most intricate environmental brainteasers: the four chromatic lanterns guarding the matriarch's inner sanctum.",
-      "To break the blood seal, players must first inspect the Latin inscription carved upon the marble family crest in the grand foyer. The poem hints at the progression of dawn: light the Ruby lantern first (representing midnight dusk), followed by the Amethyst, Sapphire, and finally the Topaz lantern at the balcony.",
-      "Solving the sequence properly rotates the central light prisms, lowering the iron portcullis without spawning the venomous gargoyle guardians that appear if an incorrect color is ignited.",
-      "Unlocking this chamber yields the Crimson Rapier and allows players to confront Xanthe before she completes her midnight blood ritual, securing critical story rewards."
-    ]
-  },
-  {
-    "id": "kotaku-2",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "\"Top-down Zelda meets Bloodborne\": action RPG Withering Realms is out now in early access, should you fancy riding the shoulders of a horrible doll",
-    "summary": "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
-    "url": "https://www.rockpapershotgun.com/top-down-zelda-meets-bloodborne-action-rpg-withering-realms-is-out-now-in-early-access-should-you-fancy-riding-the-shoulders-of-a-horrible-doll",
-    "imageUrl": "https://assetsio.gnwcdn.com/Withering-Realms-1.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Edwin Evans-Thirlwell",
-    "keyHighlights": [
-      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror.",
-      "You play a ghost child, clinging to the shoulders of a living marionette.",
-      "You wouldn't accept if that thing offered you a piggyback."
-    ],
-    "fullContent": [
-      "Withering Rooms was an unexpectedly devious and absorbing slice of dollhouse action-RPG horror. As such, I've been looking forward to Withering Realms, the standalone sort-of-sequel, which launches in early access today.",
-      "The new game takes place in the 1920s, following the 'premature' end of World War 1 thanks to an occult catastrophe. You play a ghost child, clinging to the shoulders of a living marionette. The marionette is a real fright, its body a coatful of springs and hinges, its face a one-eyed rictus: it reminds me of certain scenes from Phil Tippett's stop motion masterpiece Mad God and also, of Curly from Mouthwashing . You wouldn't accept if that thing offered you a piggyback. But it is pretty handy in a fight."
-    ]
-  },
-  {
-    "id": "kotaku-3",
-    "outletId": "kotaku",
-    "outletName": "Rock Paper Shotgun",
-    "outletIcon": "💬",
-    "outletThemeColor": "#FFE600",
-    "outletDomain": "rockpapershotgun.com",
-    "title": "Moonlighter 2: The Endless Vault review – a pleasant bout of number go up that’s most remarkable for how much of an improvement it is",
-    "summary": "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag.",
-    "url": "https://www.rockpapershotgun.com/moonlighter-2-the-endless-vault-review-a-pleasant-bout-of-number-go-up-thats-most-remarkable-for-how-much-of-an-improvement-it-is",
-    "imageUrl": "https://assetsio.gnwcdn.com/moonlighter-2_0006_thwack.jpg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
-    "category": "Multiplatform",
-    "tag": "PC Indie",
-    "publishedAt": "18 jam yang lalu",
-    "readTime": "4 min read",
-    "isHot": false,
-    "author": "Jay Castello",
-    "keyHighlights": [
-      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day.",
-      "In the shop, you figure out how to get the best price for these items.",
-      "All this time, you will be thinking about multipliers."
-    ],
-    "fullContent": [
-      "The Moonlighter games cast you as Will, a dungeoneer-merchant hybrid, delving into randomly shifting combat arenas by night and selling the treasures you unearth there by day. In the dungeons, you fight various monsters and beasties and are then offered upgrades to your combat build or a handful of relics you must fit in your bag. In the shop, you figure out how to get the best price for these items. And then you spend that money on upgrades that help you to dungeon delve better and start all over again.",
-      "All this time, you will be thinking about multipliers."
+      "Everything you need to complete Xanthe's Mansion and defeat Xanthe in The Blood of Dawnwalker…"
     ]
   },
   {
@@ -981,56 +944,22 @@
     "outletThemeColor": "#001799",
     "outletDomain": "gamesindustry.biz",
     "title": "Inside Tencent's long-term strategy: live service, AI tools, and evergreen titles",
-    "summary": "An in-depth economic analysis of Tencent Games' strategic pivot, prioritizing high-yield evergreen franchises and AI tool integration over speculative live-service gambles.",
+    "summary": "Many column inches have been spent questioning the wisdom of focusing on live-service. Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed .",
     "url": "https://www.gamesindustry.biz/inside-tencents-long-term-strategy-live-service-ai-tools-and-evergreen-titles",
     "imageUrl": "https://assetsio.gnwcdn.com/Tencent-Games-booth-Gamescom-2026.jpeg?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
     "tag": "Financials",
-    "publishedAt": "18 jam yang lalu",
+    "publishedAt": "1 hari yang lalu",
+    "publishedTimestamp": 1788537423000,
     "readTime": "3 min read",
     "isHot": false,
     "author": "Lewis Packwood",
     "keyHighlights": [
-      "Detailed report analyzing Tencent Games' economic strategy shifting away from risky live-service bets.",
-      "Focuses investment on multi-billion dollar evergreen titans including Honor of Kings and PUBG Mobile.",
-      "Deploys proprietary generative AI workflows to streamline 3D art pipelines and localization efficiency.",
-      "Contrasts Tencent's disciplined operational model with recent high-profile Western studio closures."
+      "Many column inches have been spent questioning the wisdom of focusing on live-service.",
+      "Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed ."
     ],
     "fullContent": [
-      "As Western gaming conglomerates struggle with costly live-service failures and consecutive studio closures, global gaming titan Tencent is charting a disciplined, highly calculated course focused on enduring evergreen titles and internal AI workflow integration.",
-      "Tencent has scaled back risky exploratory live-service ventures, opting instead to double down on proven multi-billion dollar ecosystems like Honor of Kings, PUBG Mobile, and partnerships with Riot Games and Epic Games.",
-      "The conglomerate is heavily embedding proprietary machine learning tools across its pipeline—from automated 3D asset generation to dynamic localization models—substantially decreasing development cycles and operational overhead across its subsidiary studios.",
-      "Financial analysts point to Tencent's diversified balance sheet as a blueprint for sustainability, proving that steady recurring revenues paired with strategic minority investments in creative European and North American studios outperform reckless trend-chasing."
-    ]
-  },
-  {
-    "id": "vgc-3",
-    "outletId": "vgc",
-    "outletName": "Video Games Chronicle (VGC)",
-    "outletIcon": "⚡",
-    "outletThemeColor": "#0055FF",
-    "outletDomain": "videogameschronicle.com",
-    "title": "Halloween the Game single-player review: Is there enough here for solo players?",
-    "summary": "A comprehensive review of IllFonic's Halloween: The Game, evaluating the single-player campaign, Michael Myers' dynamic stalking AI, and whether solo content justifies the ticket price.",
-    "url": "https://www.videogameschronicle.com/review/halloween-the-game-single-player-review-is-there-enough-here-for-solo-players/",
-    "imageUrl": "https://www.videogameschronicle.com/files/2026/09/halloween-the-game.jpg",
-    "category": "Industry & Business",
-    "tag": "Industry",
-    "publishedAt": "19 jam yang lalu",
-    "readTime": "3 min read",
-    "isHot": false,
-    "author": "Chris Scullion",
-    "keyHighlights": [
-      "Comprehensive review evaluating the single-player campaign mode of IllFonic's Halloween: The Game.",
-      "Praises Michael Myers' dynamic stalking AI, authentic film locations, and John Carpenter's score.",
-      "Gameplay focuses on tense hide-and-seek stealth, environmental puzzles, and evasion rather than direct combat.",
-      "Verdict: A loving, atmospheric treat for solo horror enthusiasts, though multiplayer remains the core attraction."
-    ],
-    "fullContent": [
-      "IllFonic's latest asymmetrical horror adaptation, Halloween: The Game, attempts an ambitious feat by delivering a dedicated single-player story campaign alongside its core multiplayer survival experience.",
-      "Stepping into the shoes of terrified Haddonfield residents across iconic movie locations—including the Myers residence and Laurie Strode's fortified house—reveals an atmospheric masterclass. The dynamic AI for Michael Myers proves genuinely unsettling, observing players from the treeline before striking from pitch-black shadows.",
-      "The single-player challenges prioritize tactical stealth, circuit repair, and stealthy evasions over combat, accompanied by John Carpenter's chilling, authentic synth score that ratchets up heart-pounding dread.",
-      "While the solo campaign offers roughly six to eight hours of tense cat-and-mouse thrills that diehard horror fans will cherish, the long-term replayability remains firmly anchored in the chaotic multiplayer lobbies."
+      "Many column inches have been spent questioning the wisdom of focusing on live-service. Sony gambled and lost , as did many other companies chasing the dream of steady recurring revenues, while firms like Capcom that stuck to the traditional path have emerged relatively unscathed ."
     ]
   },
   {
@@ -1041,26 +970,21 @@
     "outletThemeColor": "#001799",
     "outletDomain": "gamesindustry.biz",
     "title": "Nvidia acquires open-source AI platform Hugging Face for $12.9bn",
-    "summary": "Nvidia finalizes a monumental $12.9 billion acquisition of open-source AI hub Hugging Face, poised to transform real-time NPC intelligence, neural rendering, and interactive world generation.",
+    "summary": "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion.",
     "url": "https://www.gamesindustry.biz/nvidia-acquires-open-source-ai-platform-hugging-face-for-129bn",
     "imageUrl": "https://assetsio.gnwcdn.com/nvidia-hugging-face.png?width=690&amp;quality=85&amp;format=jpg&amp;auto=webp",
     "category": "Industry & Business",
     "tag": "Financials",
-    "publishedAt": "21 jam yang lalu",
-    "readTime": "3 min read",
+    "publishedAt": "2 hari yang lalu",
+    "publishedTimestamp": 1788529836000,
+    "readTime": "2 min read",
     "isHot": false,
     "author": "Sophie McEvoy",
     "keyHighlights": [
-      "Nvidia completes historic $12.9 billion acquisition of open-source AI powerhouse Hugging Face.",
-      "Pairs Nvidia's high-performance AI GPU architectures with over one million open-source machine learning models.",
-      "Directly empowers game developers with neural rendering tools, procedural physics, and intelligent conversational NPCs.",
-      "Jensen Huang confirms Hugging Face will maintain open-source accessibility and platform independence."
+      "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion."
     ],
     "fullContent": [
-      "In one of the most consequential technology transactions of the decade, semiconductor titan Nvidia has officially acquired the world's leading open-source AI repository, Hugging Face, for $12.9 billion.",
-      "The acquisition unites Nvidia's industry-leading Blackwell and Rubin GPU acceleration hardware with Hugging Face's global ecosystem of over one million open-source neural network models and millions of machine learning engineers.",
-      "For the video game industry, this merger promises groundbreaking breakthroughs: accelerated on-device conversational NPC behavior, neural physics simulations, and automated real-time texture generation integrated directly into Nvidia RTX drivers and Unreal/Unity development plugins.",
-      "Nvidia CEO Jensen Huang emphasized that Hugging Face will retain its open-source ethos and platform independence, ensuring that game developers and academic researchers continue to benefit from freely accessible AI model repositories."
+      "Nvidia has acquired the artificial intelligence platform Hugging Face for $12.9 billion."
     ]
   }
 ]
