@@ -306,22 +306,38 @@ export function App() {
       {/* Dynamic Content Views */}
       <main className="flex-1 py-4 sm:py-6 w-full max-w-full overflow-x-hidden">
         {currentView === 'home' && (
-          <GameMenuHome
-            onSelectView={setCurrentView}
-            onOpenBonusStage={() => setIsBonusStageOpen(true)}
-            onOpenBossBattle={() => setIsBossBattleOpen(true)}
-            onOpenCardBinder={() => setIsCardBinderOpen(true)}
-            onOpenTrophies={() => setIsTrophyModalOpen(true)}
-            onOpenJukebox={() => setIsJukeboxOpen(true)}
-            onOpenTerminal={() => setIsTerminalOpen(true)}
-            onOpenBankModal={() => setIsBankModalOpen(true)}
-            onOpenSoundboard={() => setIsSoundboardOpen(true)}
-            coins={coins}
-            unlockedCount={unlockedIds.size}
-            totalCount={TRIVIA_DATABASE.length}
-            crtEnabled={crtEnabled}
-            onToggleCrt={() => setCrtEnabled(!crtEnabled)}
-          />
+          <div className="space-y-8 w-full max-w-full">
+            <GameMenuHome
+              onSelectView={setCurrentView}
+              onOpenBonusStage={() => setIsBonusStageOpen(true)}
+              onOpenBossBattle={() => setIsBossBattleOpen(true)}
+              onOpenCardBinder={() => setIsCardBinderOpen(true)}
+              onOpenTrophies={() => setIsTrophyModalOpen(true)}
+              onOpenJukebox={() => setIsJukeboxOpen(true)}
+              onOpenTerminal={() => setIsTerminalOpen(true)}
+              onOpenBankModal={() => setIsBankModalOpen(true)}
+              onOpenSoundboard={() => setIsSoundboardOpen(true)}
+              coins={coins}
+              unlockedCount={unlockedIds.size}
+              totalCount={TRIVIA_DATABASE.length}
+              crtEnabled={crtEnabled}
+              onToggleCrt={() => setCrtEnabled(!crtEnabled)}
+            />
+
+            {/* Standalone Real-Time Steam Game Sales Section */}
+            <SteamSalesStrip
+              onOpenSalesTab={() => setCurrentView('sales')}
+              onOpenSalesModal={() => setCurrentView('sales')}
+            />
+
+            {/* Quick Access Gaming News Press Wire Strip */}
+            <NewsStrip
+              onOpenNewsModal={(outletId) => {
+                setNewsOutletFilter(outletId || 'all');
+                setIsNewsModalOpen(true);
+              }}
+            />
+          </div>
         )}
 
         {currentView === 'arcade' && (
@@ -376,21 +392,6 @@ export function App() {
               disabledHotkeys={isAnyModalOpen}
               coins={coins}
             />
-
-            {/* Standalone Real-Time Steam Game Sales Section (Above News Strip) */}
-            <SteamSalesStrip
-              onOpenSalesTab={() => setCurrentView('sales')}
-              onOpenSalesModal={() => setCurrentView('sales')}
-            />
-
-            {/* Quick Access Gaming News Press Wire Strip */}
-            <NewsStrip
-              onOpenNewsModal={(outletId) => {
-                setNewsOutletFilter(outletId || 'all');
-                setIsNewsModalOpen(true);
-              }}
-            />
-
           </div>
         )}
 
