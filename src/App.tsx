@@ -45,7 +45,7 @@ import { unlockAchievement } from './utils/achievements';
 import { useLanguage } from './utils/i18n';
 
 export function App() {
-  const { toggleLanguage, t } = useLanguage();
+  const { language, toggleLanguage, t } = useLanguage();
 
   // Random trivia selected instantly upon opening the website (supports ?id=... deep link)
   const [activeTrivia, setActiveTrivia] = useState<TriviaItem>(() => {
@@ -342,6 +342,23 @@ export function App() {
 
         {currentView === 'arcade' && (
           <div className="space-y-4 w-full max-w-full">
+            {/* Top Navigation Bar: Back to Main Menu */}
+            <div className="mx-auto w-full max-w-[1720px] px-2 sm:px-4 lg:px-6 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  setCurrentView('home');
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-sm border-2 border-black bg-[#14161F] hover:bg-[#FFE600] text-[#FFE600] hover:text-black font-['Press_Start_2P'] text-[7.5px] sm:text-[8px] transition-all shadow-[2px_2px_0px_#000] cursor-pointer"
+              >
+                <span>←</span>
+                <span>{language === 'id' ? 'MENU UTAMA' : 'MAIN MENU'}</span>
+              </button>
+              <span className="font-['Press_Start_2P'] text-[7px] sm:text-[8px] text-zinc-500 uppercase tracking-wider hidden sm:inline">
+                {language === 'id' ? 'MODE 01 // TRIVIA ROULETTE' : 'MODE 01 // TRIVIA ROULETTE'}
+              </span>
+            </div>
+
             {/* Slot Reel Bar */}
             <div className="flex flex-col items-center justify-center gap-2 text-center px-4">
               <div className="flex items-center gap-2">
@@ -402,6 +419,7 @@ export function App() {
               setActiveTrivia(item);
               setCurrentView('arcade');
             }}
+            onBackToMenu={() => setCurrentView('home')}
           />
         )}
 
@@ -414,7 +432,7 @@ export function App() {
         )}
 
         {currentView === 'cheats' && (
-          <CheatCodesPage />
+          <CheatCodesPage onBackToMenu={() => setCurrentView('home')} />
         )}
 
         {currentView === 'news' && (

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper, Tag, Gamepad2 } from 'lucide-react';
+import { Volume2, VolumeX, Tv, Radio, Sparkles, ChevronDown, Newspaper, Tag, Gamepad2 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 
@@ -159,42 +159,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 sound.playClick();
-                onViewChange('arcade');
-              }}
-              data-cursor="SPIN"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
-                currentView === 'arcade'
-                  ? 'bg-[#FF2A85] text-black font-bold shadow-inner'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <Shuffle className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
-              <span className="hidden lg:inline">{t('tab_roulette')}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                sound.playClick();
-                onViewChange('lookbook');
-              }}
-              data-cursor="CATALOG"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
-                currentView === 'lookbook'
-                  ? 'bg-[#00F5D4] text-black font-bold shadow-inner'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <BookOpen className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
-              <span className="hidden lg:inline">{t('tab_lookbook')}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                sound.playClick();
                 onViewChange('quiz');
               }}
               data-cursor="PLAY"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
                 currentView === 'quiz'
                   ? 'bg-[#FFE600] text-black font-bold shadow-inner'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
@@ -207,26 +175,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 sound.playClick();
-                onViewChange('cheats');
-              }}
-              data-cursor="CHEATS"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
-                currentView === 'cheats'
-                  ? 'bg-[#9D4EDD] text-white font-bold shadow-inner'
-                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <Terminal className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
-              <span className="hidden lg:inline">{t('tab_cheats')}</span>
-            </button>
-
-            <button
-              onClick={() => {
-                sound.playClick();
                 onViewChange('news');
               }}
               data-cursor="NEWS"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
                 currentView === 'news'
                   ? 'bg-[#00F5D4] text-black font-bold shadow-inner'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
@@ -647,39 +599,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => {
               sound.playClick();
-              onViewChange('arcade');
-            }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all cursor-pointer ${
-              currentView === 'arcade'
-                ? 'bg-[#FF2A85] text-black font-bold shadow-inner'
-                : 'bg-[#14161F] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <Shuffle className="h-2.5 w-2.5" />
-            <span>{t('tab_roulette')}</span>
-          </button>
-
-          <button
-            onClick={() => {
-              sound.playClick();
-              onViewChange('lookbook');
-            }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
-              currentView === 'lookbook'
-                ? 'bg-[#00F5D4] text-black font-bold shadow-inner'
-                : 'bg-[#14161F] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <BookOpen className="h-2.5 w-2.5" />
-            <span>{t('tab_lookbook')}</span>
-          </button>
-
-          <button
-            onClick={() => {
-              sound.playClick();
               onViewChange('quiz');
             }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
+            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all cursor-pointer ${
               currentView === 'quiz'
                 ? 'bg-[#FFE600] text-black font-bold shadow-inner'
                 : 'bg-[#14161F] text-zinc-400 hover:text-white'
@@ -687,21 +609,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Sparkles className="h-2.5 w-2.5" />
             <span>{t('tab_quiz')}</span>
-          </button>
-
-          <button
-            onClick={() => {
-              sound.playClick();
-              onViewChange('cheats');
-            }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
-              currentView === 'cheats'
-                ? 'bg-[#9D4EDD] text-white font-bold shadow-inner'
-                : 'bg-[#14161F] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <Terminal className="h-2.5 w-2.5" />
-            <span>{t('tab_cheats')}</span>
           </button>
 
           <button

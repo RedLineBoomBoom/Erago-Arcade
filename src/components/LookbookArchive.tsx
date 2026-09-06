@@ -9,11 +9,13 @@ import { useLanguage, getTranslatedTrivia, translateRarity, translateTag } from 
 interface LookbookArchiveProps {
   items: TriviaItem[];
   onSelectTrivia: (item: TriviaItem) => void;
+  onBackToMenu?: () => void;
 }
 
 export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
   items,
   onSelectTrivia,
+  onBackToMenu,
 }) => {
   const { language } = useLanguage();
   const [search, setSearch] = useState('');
@@ -47,6 +49,18 @@ export const LookbookArchive: React.FC<LookbookArchiveProps> = ({
       <div className="border-b-3 border-black pb-6 space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
+            {onBackToMenu && (
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  onBackToMenu();
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm border-2 border-black bg-[#14161F] hover:bg-[#FFE600] text-[#FFE600] hover:text-black font-['Press_Start_2P'] text-[7.5px] sm:text-[8px] transition-all shadow-[2px_2px_0px_#000] cursor-pointer mb-3"
+              >
+                <span>←</span>
+                <span>{language === 'id' ? 'MENU UTAMA' : 'MAIN MENU'}</span>
+              </button>
+            )}
             <div className="flex items-center gap-2">
               <span className="rounded bg-[#00F5D4] px-2 py-0.5 font-['Press_Start_2P'] text-[9px] font-bold text-black uppercase">
                 {language === 'id' ? 'KATALOG ARSIP' : 'ARCHIVE CATALOG'}
