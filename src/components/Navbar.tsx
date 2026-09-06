@@ -575,22 +575,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
 
-          {/* CRT Monitor Filter Switch (Desktop 2xl+) */}
-          <button
-            onClick={() => {
-              sound.playCrtBuzz();
-              onToggleCrt();
-            }}
-            data-cursor="CRT"
-            title="Toggle CRT Screen Scanline Filter [Hotkey: C]"
-            className={`hidden 2xl:flex h-7 sm:h-8 w-7 sm:w-8 items-center justify-center rounded-sm border-2 border-black transition-all shadow-[1px_1px_0px_#000] sm:shadow-[2px_2px_0px_#000] shrink-0 ${
-              crtEnabled
-                ? 'bg-[#00F5D4] text-black shadow-inner'
-                : 'bg-[#1a1c26] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <Tv className="h-3.5 w-3.5" />
-          </button>
+          {/* CRT Monitor Filter Switch (Desktop 2xl+ when not on main menu) */}
+          {currentView !== 'home' && (
+            <button
+              onClick={() => {
+                sound.playCrtBuzz();
+                onToggleCrt();
+              }}
+              data-cursor="CRT"
+              title="Toggle CRT Screen Scanline Filter [Hotkey: C]"
+              className={`hidden 2xl:flex h-7 sm:h-8 w-7 sm:w-8 items-center justify-center rounded-sm border-2 border-black transition-all shadow-[1px_1px_0px_#000] sm:shadow-[2px_2px_0px_#000] shrink-0 ${
+                crtEnabled
+                  ? 'bg-[#00F5D4] text-black shadow-inner'
+                  : 'bg-[#1a1c26] text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Tv className="h-3.5 w-3.5" />
+            </button>
+          )}
 
           {/* Master SFX Toggle */}
           <button
