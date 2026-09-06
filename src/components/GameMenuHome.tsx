@@ -17,10 +17,11 @@ import {
   ShieldCheck,
   Disc,
   Activity,
+  Users,
 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { useLanguage } from '../utils/i18n';
-import { useOnlinePlayersCount } from '../utils/onlinePlayersService';
+import { useOnlinePlayersCount, type ArcadeSectionId } from '../utils/onlinePlayersService';
 import type { ViewMode } from '../types/trivia';
 
 interface GameMenuHomeProps {
@@ -38,6 +39,10 @@ interface GameMenuHomeProps {
   totalCount: number;
   crtEnabled: boolean;
   onToggleCrt: () => void;
+  totalActivePlayers?: number;
+  totalInGamePlayers?: number;
+  localTabsCount?: number;
+  sectionPlayerCounts?: Record<ArcadeSectionId, number>;
 }
 
 interface MenuItemDef {
@@ -74,9 +79,17 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
   totalCount,
   crtEnabled,
   onToggleCrt,
+  totalActivePlayers: propTotalActivePlayers,
+  totalInGamePlayers: propTotalInGamePlayers,
+  localTabsCount: propLocalTabsCount,
+  sectionPlayerCounts: propSectionPlayerCounts,
 }) => {
   const { language, t } = useLanguage();
-  const { totalActivePlayers, localTabsCount } = useOnlinePlayersCount();
+  const fallbackPresence = useOnlinePlayersCount('main-menu');
+  const totalActivePlayers = propTotalActivePlayers ?? fallbackPresence.totalActivePlayers;
+  const totalInGamePlayers = propTotalInGamePlayers ?? fallbackPresence.totalInGamePlayers;
+  const localTabsCount = propLocalTabsCount ?? fallbackPresence.localTabsCount;
+  const sectionPlayerCounts = propSectionPlayerCounts ?? fallbackPresence.sectionPlayerCounts;
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [isLaunching, setIsLaunching] = useState<boolean>(false);
 
@@ -332,7 +345,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                 {t('menu_home_badge')}
               </span>
               <div 
-                title={`Active Players: ${totalActivePlayers} online (Local sessions: ${localTabsCount})`}
+                title={`Active Players: ${totalActivePlayers} online // ${totalInGamePlayers} in-game (Local sessions: ${localTabsCount})`}
                 className="px-2.5 py-1 rounded bg-black/80 border border-white/20 text-[#FFE600] font-mono text-[8.5px] sm:text-[9.5px] flex items-center gap-2 shadow-[2px_2px_0px_#000]"
               >
                 <span className="relative flex h-2 w-2">
@@ -343,7 +356,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   {totalActivePlayers}P READY
                 </span>
                 <span className="font-mono text-[8px] text-[#00F5D4] font-bold hidden sm:inline border-l border-white/20 pl-2">
-                  {totalActivePlayers} {language === 'id' ? 'PEMAIN ONLINE' : 'PLAYERS ONLINE'}
+                  {totalInGamePlayers} {language === 'id' ? 'SEDANG IN-GAME' : 'IN-GAME'}
                 </span>
               </div>
             </div>
@@ -500,6 +513,29 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
 
                   {/* Right Side: Badges & Action Arrow */}
                   <div className="flex items-center gap-2 shrink-0">
+                    {/* Real-Time In-Game Player Count Indicator */}
+                    <div
+                      title={`${sectionPlayerCounts[item.id as ArcadeSectionId] || 1} ${
+                        language === 'id' ? 'pemain sedang in-game di mode ini' : 'players in-game in this mode'
+                      }`}
+                      className={`flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded-full border transition-all ${
+                        isSelected
+                          ? 'bg-black/95 border-[#00F5D4] text-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.4)]'
+                          : 'bg-black/70 border-white/15 text-zinc-300 group-hover:border-[#00F5D4]/40 group-hover:text-white'
+                      }`}
+                    >
+                      <span className="relative flex h-1.5 w-1.5 shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                      </span>
+                      <span className="font-['Press_Start_2P'] text-[7px] sm:text-[7.5px] font-bold text-[#FFE600]">
+                        {sectionPlayerCounts[item.id as ArcadeSectionId] || 1}P
+                      </span>
+                      <span className="text-[6.5px] sm:text-[7px] font-mono text-zinc-400 uppercase tracking-tight hidden md:inline">
+                        {language === 'id' ? 'IN-GAME' : 'IN-GAME'}
+                      </span>
+                    </div>
+
                     {item.statBadge && (
                       <span
                         className="hidden sm:inline-block px-2 py-0.5 rounded font-['Press_Start_2P'] text-[7px] border border-black/40 shadow-[1px_1px_0px_#000]"
@@ -644,6 +680,33 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                       }}
                     />
                   ))}
+                </div>
+              </div>
+
+              {/* Real-time Mode Lobby & Player Telemetry */}
+              <div className="rounded-lg bg-black/85 border-2 border-black p-3 mb-4 shadow-[3px_3px_0px_#000] space-y-2">
+                <div className="flex items-center justify-between text-[8px] font-['Press_Start_2P']">
+                  <span className="text-zinc-400 flex items-center gap-1.5">
+                    <Users className="w-3 h-3 text-[#00F5D4]" />
+                    <span>{language === 'id' ? 'STATUS LOBBY REAL-TIME' : 'REAL-TIME LOBBY STATUS'}</span>
+                  </span>
+                  <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    <span>ONLINE</span>
+                  </span>
+                </div>
+                <div className="flex items-center justify-between pt-1.5 border-t border-white/10 font-mono text-xs">
+                  <span className="text-zinc-300 text-[11px]">
+                    {language === 'id' ? 'Pemain Sedang In-Game di Mode Ini:' : 'Active Players In This Mode:'}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-['Press_Start_2P'] text-[9px] sm:text-[10px] text-[#FFE600] font-bold">
+                      {sectionPlayerCounts[activeItem.id as ArcadeSectionId] || 1} {language === 'id' ? 'PEMAIN' : 'PLAYERS'}
+                    </span>
+                    <span className="px-1.5 py-0.2 rounded text-[7px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-500/30">
+                      IN-GAME
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

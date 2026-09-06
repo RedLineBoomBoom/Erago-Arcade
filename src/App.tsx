@@ -43,6 +43,7 @@ import type { TamperIncident } from './utils/securityLedger';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
 import { unlockAchievement } from './utils/achievements';
 import { useLanguage } from './utils/i18n';
+import { useOnlinePlayersCount, type ArcadeSectionId } from './utils/onlinePlayersService';
 
 export function App() {
   const { language, toggleLanguage, t } = useLanguage();
@@ -112,6 +113,30 @@ export function App() {
   const [tamperIncident, setTamperIncident] = useState<TamperIncident | null>(null);
   const [coins, setCoins] = useState<number>(() => currencyManager.getCoins());
   const [accumulatedPoints, setAccumulatedPoints] = useState<number>(() => currencyManager.getAccumulatedPoints());
+
+  // Active section tracking for live multi-tab & network player presence
+  const activeSectionId: ArcadeSectionId = useMemo(() => {
+    if (isBonusStageOpen) return 'bonus-minigames';
+    if (isBossBattleOpen) return 'boss-rush';
+    if (isCardBinderOpen) return 'card-binder';
+    if (isJukeboxOpen) return 'chiptune-jukebox';
+    if (currentView === 'arcade') return 'trivia-roulette';
+    if (currentView === 'quiz') return 'quiz-speedrun';
+    if (currentView === 'lookbook') return 'cartridge-lookbook';
+    if (currentView === 'sales') return 'steam-radar';
+    if (currentView === 'news') return 'gaming-news';
+    if (currentView === 'cheats') return 'cheat-vault';
+    return 'main-menu';
+  }, [
+    isBonusStageOpen,
+    isBossBattleOpen,
+    isCardBinderOpen,
+    isJukeboxOpen,
+    currentView,
+  ]);
+
+  const { totalActivePlayers, totalInGamePlayers, localTabsCount, sectionPlayerCounts } =
+    useOnlinePlayersCount(activeSectionId);
 
   // Apply active console theme on mount and subscribe to currency
   useEffect(() => {
@@ -331,6 +356,10 @@ export function App() {
               totalCount={TRIVIA_DATABASE.length}
               crtEnabled={crtEnabled}
               onToggleCrt={() => setCrtEnabled(!crtEnabled)}
+              totalActivePlayers={totalActivePlayers}
+              totalInGamePlayers={totalInGamePlayers}
+              localTabsCount={localTabsCount}
+              sectionPlayerCounts={sectionPlayerCounts}
             />
 
             {/* Standalone Real-Time Steam Game Sales Section */}
