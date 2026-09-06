@@ -345,7 +345,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                 {t('menu_home_badge')}
               </span>
               <div 
-                title={`Active Players: ${totalActivePlayers} online // ${totalInGamePlayers} in-game (Local sessions: ${localTabsCount})`}
+                title={`Live Active Players: ${totalActivePlayers} online // ${totalInGamePlayers} in-game (Local sessions: ${localTabsCount})`}
                 className="px-2.5 py-1 rounded bg-black/80 border border-white/20 text-[#FFE600] font-mono text-[8.5px] sm:text-[9.5px] flex items-center gap-2 shadow-[2px_2px_0px_#000]"
               >
                 <span className="relative flex h-2 w-2">
@@ -356,6 +356,9 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   {totalActivePlayers}P READY
                 </span>
                 <span className="font-mono text-[8px] text-[#00F5D4] font-bold hidden sm:inline border-l border-white/20 pl-2">
+                  {totalActivePlayers} {totalActivePlayers === 1 ? (language === 'id' ? 'PEMAIN ONLINE' : 'PLAYER ONLINE') : (language === 'id' ? 'PEMAIN ONLINE' : 'PLAYERS ONLINE')}
+                </span>
+                <span className="font-mono text-[8px] text-[#FF2A85] font-bold hidden sm:inline border-l border-white/20 pl-2">
                   {totalInGamePlayers} {language === 'id' ? 'SEDANG IN-GAME' : 'IN-GAME'}
                 </span>
               </div>
@@ -514,27 +517,42 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   {/* Right Side: Badges & Action Arrow */}
                   <div className="flex items-center gap-2 shrink-0">
                     {/* Real-Time In-Game Player Count Indicator */}
-                    <div
-                      title={`${sectionPlayerCounts[item.id as ArcadeSectionId] || 1} ${
-                        language === 'id' ? 'pemain sedang in-game di mode ini' : 'players in-game in this mode'
-                      }`}
-                      className={`flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded-full border transition-all ${
-                        isSelected
-                          ? 'bg-black/95 border-[#00F5D4] text-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.4)]'
-                          : 'bg-black/70 border-white/15 text-zinc-300 group-hover:border-[#00F5D4]/40 group-hover:text-white'
-                      }`}
-                    >
-                      <span className="relative flex h-1.5 w-1.5 shrink-0">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-                      </span>
-                      <span className="font-['Press_Start_2P'] text-[7px] sm:text-[7.5px] font-bold text-[#FFE600]">
-                        {sectionPlayerCounts[item.id as ArcadeSectionId] || 1}P
-                      </span>
-                      <span className="text-[6.5px] sm:text-[7px] font-mono text-zinc-400 uppercase tracking-tight hidden md:inline">
-                        {language === 'id' ? 'IN-GAME' : 'IN-GAME'}
-                      </span>
-                    </div>
+                    {(() => {
+                      const sectionCount = sectionPlayerCounts[item.id as ArcadeSectionId] || 0;
+                      return (
+                        <div
+                          title={`${sectionCount} ${
+                            language === 'id' ? 'pemain sedang in-game di mode ini' : 'players in-game in this mode'
+                          }`}
+                          className={`flex items-center gap-1.5 px-2 py-0.5 sm:py-1 rounded-full border transition-all ${
+                            sectionCount > 0
+                              ? 'bg-emerald-950/90 border-emerald-400/80 text-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.4)]'
+                              : isSelected
+                              ? 'bg-black/95 border-[#00F5D4]/60 text-[#00F5D4] shadow-[0_0_10px_rgba(0,245,212,0.25)]'
+                              : 'bg-black/70 border-white/10 text-zinc-500 group-hover:border-white/20 group-hover:text-zinc-300'
+                          }`}
+                        >
+                          {sectionCount > 0 ? (
+                            <span className="relative flex h-1.5 w-1.5 shrink-0">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                            </span>
+                          ) : (
+                            <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 shrink-0" />
+                          )}
+                          <span
+                            className={`font-['Press_Start_2P'] text-[7px] sm:text-[7.5px] font-bold ${
+                              sectionCount > 0 ? 'text-[#00F5D4]' : 'text-zinc-400'
+                            }`}
+                          >
+                            {sectionCount}P
+                          </span>
+                          <span className="text-[6.5px] sm:text-[7px] font-mono text-zinc-400 uppercase tracking-tight hidden md:inline">
+                            {language === 'id' ? 'IN-GAME' : 'IN-GAME'}
+                          </span>
+                        </div>
+                      );
+                    })()}
 
                     {item.statBadge && (
                       <span
@@ -699,14 +717,29 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   <span className="text-zinc-300 text-[11px]">
                     {language === 'id' ? 'Pemain Sedang In-Game di Mode Ini:' : 'Active Players In This Mode:'}
                   </span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-['Press_Start_2P'] text-[9px] sm:text-[10px] text-[#FFE600] font-bold">
-                      {sectionPlayerCounts[activeItem.id as ArcadeSectionId] || 1} {language === 'id' ? 'PEMAIN' : 'PLAYERS'}
-                    </span>
-                    <span className="px-1.5 py-0.2 rounded text-[7px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-500/30">
-                      IN-GAME
-                    </span>
-                  </div>
+                  {(() => {
+                    const activeModeInGame = sectionPlayerCounts[activeItem.id as ArcadeSectionId] || 0;
+                    return (
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`font-['Press_Start_2P'] text-[9px] sm:text-[10px] font-bold ${
+                            activeModeInGame > 0 ? 'text-[#00F5D4]' : 'text-zinc-400'
+                          }`}
+                        >
+                          {activeModeInGame} {language === 'id' ? 'PEMAIN' : (activeModeInGame === 1 ? 'PLAYER' : 'PLAYERS')}
+                        </span>
+                        <span
+                          className={`px-1.5 py-0.2 rounded text-[7px] font-mono ${
+                            activeModeInGame > 0
+                              ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/40'
+                              : 'bg-black/60 text-zinc-500 border border-white/10'
+                          }`}
+                        >
+                          {activeModeInGame > 0 ? 'IN-GAME' : 'STANDBY'}
+                        </span>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             </div>

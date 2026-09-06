@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-// Channel name for synchronizing active browser tabs locally
-const BROADCAST_CHANNEL_NAME = 'erago_arcade_presence_v1';
-const STORAGE_KEY_TABS = 'erago_active_tabs_registry';
+// Channel name for synchronizing active browser tabs locally (same browser profile fallback)
+const BROADCAST_CHANNEL_NAME = 'erago_arcade_presence_v2';
+const STORAGE_KEY_TABS = 'erago_active_tabs_registry_v2';
+const SESSION_STORAGE_KEY = 'erago_arcade_session_id';
 
 export type ArcadeSectionId =
   | 'trivia-roulette'
@@ -36,46 +37,6 @@ export interface TabPresence {
   sectionId: ArcadeSectionId;
 }
 
-// Generates a unique tab session identifier
-const generateSessionId = (): string => {
-  return Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(4);
-};
-
-// Natural distribution weights across the 10 game modes
-const SECTION_WEIGHTS: Record<ArcadeSectionId, number> = {
-  'trivia-roulette': 0.22,
-  'quiz-speedrun': 0.18,
-  'boss-rush': 0.14,
-  'bonus-minigames': 0.12,
-  'cartridge-lookbook': 0.09,
-  'steam-radar': 0.08,
-  'gaming-news': 0.06,
-  'card-binder': 0.04,
-  'chiptune-jukebox': 0.04,
-  'cheat-vault': 0.03,
-  'main-menu': 0, // Lobby
-};
-
-/**
- * Calculates a realistic time-based arcade visitor baseline (16 to 34 players)
- * with gentle organic fluctuations, combined with actual local active tabs.
- */
-const getBaselinePlayers = (): number => {
-  const now = new Date();
-  const hour = now.getHours(); // 0 - 23
-  const minute = now.getMinutes();
-
-  // Peak gaming hours (18:00 - 02:00) have higher activity
-  const isPrimeTime = hour >= 18 || hour <= 2;
-  const base = isPrimeTime ? 24 : 18;
-
-  // Deterministic seed based on 5-minute time window + slight sine wave
-  const cycleIndex = Math.floor((hour * 60 + minute) / 4);
-  const seedWave = Math.sin(cycleIndex * 0.7) * 5 + Math.cos(cycleIndex * 1.3) * 3;
-
-  return Math.max(14, Math.round(base + seedWave));
-};
-
 export interface OnlinePlayersData {
   totalActivePlayers: number;
   totalInGamePlayers: number;
@@ -84,130 +45,184 @@ export interface OnlinePlayersData {
   reportActiveSection: (sectionId: ArcadeSectionId) => void;
 }
 
-export const useOnlinePlayersCount = (currentSection: ArcadeSectionId = 'main-menu'): OnlinePlayersData => {
-  const [localTabsCount, setLocalTabsCount] = useState<number>(1);
-  const [globalBaseline, setGlobalBaseline] = useState<number>(getBaselinePlayers);
-  const [jitter, setJitter] = useState<number>(0);
-  const [peerSectionCounts, setPeerSectionCounts] = useState<Record<ArcadeSectionId, number>>(() => ({
-    'trivia-roulette': 0,
-    'quiz-speedrun': 0,
-    'cartridge-lookbook': 0,
-    'steam-radar': 0,
-    'gaming-news': 0,
-    'cheat-vault': 0,
-    'bonus-minigames': 0,
-    'boss-rush': 0,
-    'card-binder': 0,
-    'chiptune-jukebox': 0,
-    'main-menu': 0,
-  }));
+// Generate or retrieve persistent per-tab session ID
+const getOrCreateSessionId = (): string => {
+  if (typeof window === 'undefined') return 'server';
+  try {
+    let id = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (!id) {
+      const devicePrefix = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        ? 'mob'
+        : 'desk';
+      id = `${devicePrefix}-${Math.random().toString(36).substring(2, 8)}-${Date.now().toString(36).substring(4)}`;
+      sessionStorage.setItem(SESSION_STORAGE_KEY, id);
+    }
+    return id;
+  } catch {
+    return `tab-${Math.random().toString(36).substring(2, 9)}`;
+  }
+};
 
-  const tabIdRef = useRef<string>(generateSessionId());
+const getDeviceType = (): 'desktop' | 'mobile' | 'tablet' => {
+  if (typeof window === 'undefined') return 'desktop';
+  const ua = navigator.userAgent || '';
+  if (/iPad|Tablet/i.test(ua)) return 'tablet';
+  if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) || window.innerWidth < 768) {
+    return 'mobile';
+  }
+  return 'desktop';
+};
+
+const createEmptySectionCounts = (): Record<ArcadeSectionId, number> => ({
+  'trivia-roulette': 0,
+  'quiz-speedrun': 0,
+  'cartridge-lookbook': 0,
+  'steam-radar': 0,
+  'gaming-news': 0,
+  'cheat-vault': 0,
+  'bonus-minigames': 0,
+  'boss-rush': 0,
+  'card-binder': 0,
+  'chiptune-jukebox': 0,
+  'main-menu': 0,
+});
+
+export const useOnlinePlayersCount = (currentSection: ArcadeSectionId = 'main-menu'): OnlinePlayersData => {
+  const [totalActivePlayers, setTotalActivePlayers] = useState<number>(1);
+  const [totalInGamePlayers, setTotalInGamePlayers] = useState<number>(0);
+  const [localTabsCount, setLocalTabsCount] = useState<number>(1);
+  const [sectionPlayerCounts, setSectionPlayerCounts] = useState<Record<ArcadeSectionId, number>>(createEmptySectionCounts);
+
+  const sessionIdRef = useRef<string>(getOrCreateSessionId());
   const currentSectionRef = useRef<ArcadeSectionId>(currentSection);
   currentSectionRef.current = currentSection;
 
   const channelRef = useRef<BroadcastChannel | null>(null);
+  const isServerAvailableRef = useRef<boolean>(true);
 
-  // Heartbeat function to register this tab and count sections in localStorage
-  const reportPresence = useCallback((explicitSection?: ArcadeSectionId) => {
-    try {
-      const activeSection = explicitSection || currentSectionRef.current;
-      const tabId = tabIdRef.current;
-      const now = Date.now();
-      const raw = localStorage.getItem(STORAGE_KEY_TABS);
-      let registry: TabPresence[] = raw ? JSON.parse(raw) : [];
-
-      // Filter out dead tabs older than 7 seconds
-      registry = registry.filter((item) => now - item.timestamp < 7000 && item.id !== tabId);
-
-      // Add current tab with its current section
-      registry.push({ id: tabId, timestamp: now, sectionId: activeSection });
-
-      localStorage.setItem(STORAGE_KEY_TABS, JSON.stringify(registry));
-      setLocalTabsCount(registry.length);
-
-      // Count peers in each section
-      const counts: Record<ArcadeSectionId, number> = {
-        'trivia-roulette': 0,
-        'quiz-speedrun': 0,
-        'cartridge-lookbook': 0,
-        'steam-radar': 0,
-        'gaming-news': 0,
-        'cheat-vault': 0,
-        'bonus-minigames': 0,
-        'boss-rush': 0,
-        'card-binder': 0,
-        'chiptune-jukebox': 0,
-        'main-menu': 0,
-      };
-
-      registry.forEach((item) => {
-        if (item.sectionId && counts[item.sectionId] !== undefined) {
-          counts[item.sectionId]++;
-        }
-      });
-
-      setPeerSectionCounts(counts);
-    } catch {
-      // Fallback for private browsing storage errors
-    }
-  }, []);
-
-  // Safe message emitter
+  // Safe BroadcastChannel message sender
   const safePostMessage = useCallback((message: unknown) => {
     try {
       if (channelRef.current) {
         channelRef.current.postMessage(message);
       }
     } catch {
-      // Channel closed or not ready
+      // Channel closed or unmounted
     }
   }, []);
 
-  // Update when currentSection prop changes
+  // Update local fallback storage and peer counts
+  const reportLocalTabPresence = useCallback((explicitSection?: ArcadeSectionId) => {
+    try {
+      const activeSection = explicitSection || currentSectionRef.current;
+      const tabId = sessionIdRef.current;
+      const now = Date.now();
+      const raw = localStorage.getItem(STORAGE_KEY_TABS);
+      let registry: TabPresence[] = raw ? JSON.parse(raw) : [];
+
+      // Filter out stale tabs (> 6s) and this tab
+      registry = registry.filter((item) => now - item.timestamp < 6000 && item.id !== tabId);
+
+      // Add current tab
+      registry.push({ id: tabId, timestamp: now, sectionId: activeSection });
+
+      localStorage.setItem(STORAGE_KEY_TABS, JSON.stringify(registry));
+      setLocalTabsCount(registry.length);
+
+      // If server is unavailable, use local tab counts as fallback
+      if (!isServerAvailableRef.current) {
+        const counts = createEmptySectionCounts();
+        let inGame = 0;
+        registry.forEach((item) => {
+          if (item.sectionId && counts[item.sectionId] !== undefined) {
+            counts[item.sectionId]++;
+          }
+          if (item.sectionId && item.sectionId !== 'main-menu') {
+            inGame++;
+          }
+        });
+
+        setTotalActivePlayers(Math.max(1, registry.length));
+        setTotalInGamePlayers(inGame);
+        setSectionPlayerCounts(counts);
+      }
+    } catch {
+      // Ignore private browsing storage error
+    }
+  }, []);
+
+  // Send server heartbeat to /api/presence
+  const sendServerHeartbeat = useCallback(async (explicitSection?: ArcadeSectionId) => {
+    const sessionId = sessionIdRef.current;
+    const sectionId = explicitSection || currentSectionRef.current;
+    const deviceType = getDeviceType();
+
+    try {
+      const res = await fetch('/api/presence', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, sectionId, deviceType }),
+        signal: AbortSignal.timeout(3500),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        isServerAvailableRef.current = true;
+        if (typeof data.totalActivePlayers === 'number') {
+          setTotalActivePlayers(Math.max(1, data.totalActivePlayers));
+        }
+        if (typeof data.totalInGamePlayers === 'number') {
+          setTotalInGamePlayers(data.totalInGamePlayers);
+        }
+        if (data.sectionPlayerCounts) {
+          setSectionPlayerCounts(data.sectionPlayerCounts);
+        }
+      } else {
+        isServerAvailableRef.current = false;
+        reportLocalTabPresence();
+      }
+    } catch {
+      isServerAvailableRef.current = false;
+      reportLocalTabPresence();
+    }
+  }, [reportLocalTabPresence]);
+
+  // Handle section changes dynamically
   useEffect(() => {
-    reportPresence(currentSection);
+    reportLocalTabPresence(currentSection);
+    sendServerHeartbeat(currentSection);
     safePostMessage({
       type: 'SECTION_CHANGE',
-      tabId: tabIdRef.current,
+      sessionId: sessionIdRef.current,
       sectionId: currentSection,
     });
-  }, [currentSection, reportPresence, safePostMessage]);
+  }, [currentSection, reportLocalTabPresence, sendServerHeartbeat, safePostMessage]);
 
+  // Main lifecycle: SSE stream + periodic heartbeat + unload handling
   useEffect(() => {
-    const tabId = tabIdRef.current;
+    const sessionId = sessionIdRef.current;
 
-    // Initialize BroadcastChannel if supported
+    // 1. Setup BroadcastChannel for instant local cross-tab sync
     if (typeof BroadcastChannel !== 'undefined') {
       try {
         const channel = new BroadcastChannel(BROADCAST_CHANNEL_NAME);
         channelRef.current = channel;
 
         channel.onmessage = (event) => {
-          if (event.data?.type === 'PING') {
-            try {
-              channel.postMessage({
-                type: 'PONG',
-                tabId,
-                sectionId: currentSectionRef.current,
-              });
-            } catch {}
-            reportPresence();
-          } else if (
-            event.data?.type === 'PONG' ||
+          if (
+            event.data?.type === 'PING' ||
             event.data?.type === 'JOIN' ||
             event.data?.type === 'LEAVE' ||
             event.data?.type === 'SECTION_CHANGE'
           ) {
-            reportPresence();
+            reportLocalTabPresence();
           }
         };
 
-        // Notify other tabs that this tab joined
         try {
           channel.postMessage({
             type: 'JOIN',
-            tabId,
+            sessionId,
             sectionId: currentSectionRef.current,
           });
         } catch {}
@@ -216,51 +231,98 @@ export const useOnlinePlayersCount = (currentSection: ArcadeSectionId = 'main-me
       }
     }
 
-    reportPresence();
+    reportLocalTabPresence();
+    sendServerHeartbeat();
 
-    // Heartbeat interval every 3 seconds
+    // 2. Setup Server-Sent Events (SSE) for instant cross-device live updates
+    let eventSource: EventSource | null = null;
+    try {
+      eventSource = new EventSource('/api/presence/stream');
+
+      eventSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (typeof data.totalActivePlayers === 'number') {
+            setTotalActivePlayers(Math.max(1, data.totalActivePlayers));
+          }
+          if (typeof data.totalInGamePlayers === 'number') {
+            setTotalInGamePlayers(data.totalInGamePlayers);
+          }
+          if (data.sectionPlayerCounts) {
+            setSectionPlayerCounts(data.sectionPlayerCounts);
+          }
+        } catch {
+          // Ignore parse errors
+        }
+      };
+
+      eventSource.onerror = () => {
+        // If SSE fails (e.g. static site), fallback gracefully to polling
+        if (eventSource) {
+          eventSource.close();
+          eventSource = null;
+        }
+      };
+    } catch {
+      // SSE not supported
+    }
+
+    // 3. Heartbeat timer (every 2.5 seconds)
     const heartbeatTimer = setInterval(() => {
-      reportPresence();
+      reportLocalTabPresence();
+      sendServerHeartbeat();
       safePostMessage({
         type: 'PING',
-        tabId,
+        sessionId,
         sectionId: currentSectionRef.current,
       });
-    }, 3000);
+    }, 2500);
 
-    // Subtle natural organic fluctuation every 14 seconds (+/- 1-2 players)
-    const jitterTimer = setInterval(() => {
-      setJitter((prev) => {
-        const delta = (Math.random() > 0.5 ? 1 : -1) * (Math.random() > 0.6 ? 2 : 1);
-        const next = prev + delta;
-        return Math.max(-4, Math.min(4, next));
-      });
-      setGlobalBaseline(getBaselinePlayers());
-    }, 14000);
-
-    // Cleanup on tab close/unload
-    const handleUnload = () => {
+    // 4. Handle window beforeunload / pagehide to leave cleanly
+    const handleLeave = () => {
       try {
-        safePostMessage({ type: 'LEAVE', tabId });
+        // Beacon to server
+        const leavePayload = JSON.stringify({ sessionId });
+        const leaveUrl = `/api/presence/leave?sessionId=${encodeURIComponent(sessionId)}`;
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(leaveUrl, leavePayload);
+        } else {
+          fetch(leaveUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: leavePayload,
+            keepalive: true,
+          }).catch(() => {});
+        }
+
+        // Local storage cleanup
         const now = Date.now();
         const raw = localStorage.getItem(STORAGE_KEY_TABS);
         if (raw) {
           const registry: TabPresence[] = JSON.parse(raw);
-          const filtered = registry.filter((item) => item.id !== tabId && now - item.timestamp < 7000);
+          const filtered = registry.filter((item) => item.id !== sessionId && now - item.timestamp < 6000);
           localStorage.setItem(STORAGE_KEY_TABS, JSON.stringify(filtered));
         }
+
+        // Notify local peers
+        safePostMessage({ type: 'LEAVE', sessionId });
       } catch {
-        // Ignore
+        // Ignore unload errors
       }
     };
 
-    window.addEventListener('beforeunload', handleUnload);
+    window.addEventListener('beforeunload', handleLeave);
+    window.addEventListener('pagehide', handleLeave);
 
     return () => {
       clearInterval(heartbeatTimer);
-      clearInterval(jitterTimer);
-      handleUnload();
-      window.removeEventListener('beforeunload', handleUnload);
+      if (eventSource) {
+        eventSource.close();
+      }
+      handleLeave();
+      window.removeEventListener('beforeunload', handleLeave);
+      window.removeEventListener('pagehide', handleLeave);
+
       if (channelRef.current) {
         try {
           channelRef.current.close();
@@ -268,51 +330,13 @@ export const useOnlinePlayersCount = (currentSection: ArcadeSectionId = 'main-me
         channelRef.current = null;
       }
     };
-  }, [reportPresence, safePostMessage]);
-
-  // Total active players = baseline arcade concurrents + local peer tabs
-  const totalActivePlayers = Math.max(1, globalBaseline + jitter + (localTabsCount - 1));
-
-  // Compute realistic in-game distribution across the 10 modes
-  // ~82% of online players are actively in a game mode, remaining are in lobby
-  const inGamePool = Math.max(10, Math.round(totalActivePlayers * 0.82));
-
-  const nowMinutes = new Date().getMinutes();
-  const nowSeconds = new Date().getSeconds();
-
-  const sectionPlayerCounts: Record<ArcadeSectionId, number> = {
-    'trivia-roulette': 0,
-    'quiz-speedrun': 0,
-    'cartridge-lookbook': 0,
-    'steam-radar': 0,
-    'gaming-news': 0,
-    'cheat-vault': 0,
-    'bonus-minigames': 0,
-    'boss-rush': 0,
-    'card-binder': 0,
-    'chiptune-jukebox': 0,
-    'main-menu': Math.max(1, totalActivePlayers - inGamePool + (peerSectionCounts['main-menu'] || 0)),
-  };
-
-  ARCADE_SECTIONS_LIST.forEach((secId, idx) => {
-    const weight = SECTION_WEIGHTS[secId];
-    // Gentle dynamic sine wave fluctuation per mode every 30s
-    const wave = Math.sin((nowMinutes * 60 + nowSeconds) / 25 + idx * 0.9) * 0.7;
-    const baseShare = Math.max(1, Math.round(inGamePool * weight + wave));
-    const peerTabBonus = peerSectionCounts[secId] || 0;
-    sectionPlayerCounts[secId] = baseShare + peerTabBonus;
-  });
-
-  const totalInGamePlayers = ARCADE_SECTIONS_LIST.reduce(
-    (sum, secId) => sum + (sectionPlayerCounts[secId] || 0),
-    0
-  );
+  }, [reportLocalTabPresence, sendServerHeartbeat, safePostMessage]);
 
   return {
     totalActivePlayers,
     totalInGamePlayers,
     localTabsCount,
     sectionPlayerCounts,
-    reportActiveSection: reportPresence,
+    reportActiveSection: reportLocalTabPresence,
   };
 };
