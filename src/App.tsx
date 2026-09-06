@@ -206,7 +206,12 @@ export function App() {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    if (typeof window !== 'undefined') {
+      (window as unknown as { __openTerminal?: () => void }).__openTerminal = () => setIsTerminalOpen(true);
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isAnyModalOpen]);
 
 

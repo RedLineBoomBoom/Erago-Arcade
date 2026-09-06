@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Terminal as TerminalIcon } from 'lucide-react';
+import { X, Terminal as TerminalIcon, Sparkles } from 'lucide-react';
 import { TRIVIA_DATABASE } from '../data/triviaData';
 
 import { CHEAT_CODES_DATABASE } from '../data/cheatsData';
 import { sound } from '../audio/soundEngine';
 import { unlockAchievement } from '../utils/achievements';
 import { getTranslatedTrivia, getLanguage } from '../utils/i18n';
+import { MatrixRainCanvas } from './MatrixRainCanvas';
 
 interface DosTerminalModalProps {
   isOpen: boolean;
@@ -20,6 +21,9 @@ interface HistoryItem {
 
 export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onClose, onReboot }) => {
   const [inputVal, setInputVal] = useState('');
+  const [isMatrixMode, setIsMatrixMode] = useState(false);
+  const [isMatrixBgActive, setIsMatrixBgActive] = useState(false);
+  const lang = getLanguage();
   const [history, setHistory] = useState<HistoryItem[]>([
     {
       command: 'SYSTEM_BOOT',
@@ -70,15 +74,16 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
         output = (
           <div className="space-y-0.5 text-zinc-300">
             <div>AVAILABLE COMMANDS:</div>
-            <div>• <strong className="text-yellow-400">DIR</strong> : Display files in current directory</div>
-            <div>• <strong className="text-yellow-400">TRIVIA</strong> : Fetch random gaming trivia snippet</div>
-            <div>• <strong className="text-yellow-400">CHEAT [NAME]</strong> : Search cheat code library</div>
-            <div>• <strong className="text-yellow-400">ART [MARIO|DOOM|PACMAN|ZELDA]</strong> : Render ASCII art</div>
-            <div>• <strong className="text-yellow-400">TYPE SECRET.TXT</strong> : Read confidential lore</div>
-            <div>• <strong className="text-yellow-400">MATRIX</strong> : Trigger green digital rain stream</div>
-            <div>• <strong className="text-yellow-400">REBOOT</strong> : Restart and trigger console boot sequence</div>
-            <div>• <strong className="text-yellow-400">CLS</strong> : Clear terminal screen</div>
-            <div>• <strong className="text-yellow-400">EXIT</strong> : Close command prompt</div>
+            <div>• <strong className="text-yellow-400">DIR</strong> : {lang === 'id' ? 'Tampilkan file direktori' : 'Display files in current directory'}</div>
+            <div>• <strong className="text-yellow-400">TRIVIA</strong> : {lang === 'id' ? 'Ambil trivia game acak' : 'Fetch random gaming trivia snippet'}</div>
+            <div>• <strong className="text-yellow-400">CHEAT [NAMA]</strong> : {lang === 'id' ? 'Cari pustaka cheat code' : 'Search cheat code library'}</div>
+            <div>• <strong className="text-yellow-400">ART [MARIO|DOOM|PACMAN|ZELDA]</strong> : {lang === 'id' ? 'Tampilkan ASCII art' : 'Render ASCII art'}</div>
+            <div>• <strong className="text-yellow-400">TYPE SECRET.TXT</strong> : {lang === 'id' ? 'Baca dokumen rahasia' : 'Read confidential lore'}</div>
+            <div>• <strong className="text-yellow-400">MATRIX</strong> : {lang === 'id' ? 'Buka layar penuh efek digital rain Matrix hijau' : 'Trigger green digital rain stream screensaver'}</div>
+            <div>• <strong className="text-yellow-400">MATRIX BG</strong> : {lang === 'id' ? 'Aktifkan/matikan Matrix di latar belakang terminal' : 'Toggle Matrix rain in terminal background'}</div>
+            <div>• <strong className="text-yellow-400">REBOOT</strong> : {lang === 'id' ? 'Restart sistem operasi Erago Arcade' : 'Restart and trigger console boot sequence'}</div>
+            <div>• <strong className="text-yellow-400">CLS</strong> : {lang === 'id' ? 'Bersihkan layar terminal' : 'Clear terminal screen'}</div>
+            <div>• <strong className="text-yellow-400">EXIT</strong> : {lang === 'id' ? 'Tutup terminal MS-DOS' : 'Close command prompt'}</div>
           </div>
         );
         break;
@@ -143,13 +148,64 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
       }
 
       case 'matrix':
-        output = (
-          <div className="text-emerald-400 font-mono text-[11px] leading-tight">
-            01000101 01010010 01000001 01000111 01001111 00100000 01000001 01010010 01000011 01000001 01000100 01000101<br />
-            Wake up, Neo... The Erago Arcade matrix has you...<br />
-            01100011 01101000 01100101 01100001 01110100 01110011 00100000 01101111 01101110 01101100 01111001
-          </div>
-        );
+        if (arg === 'bg' || arg === 'background') {
+          setIsMatrixBgActive((prev) => !prev);
+          output = (
+            <div className="text-emerald-400 font-mono space-y-1 p-2 rounded border border-emerald-500/30 bg-black/60">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5 text-[#00F5D4]" />
+                <span className="font-bold">
+                  [MATRIX BACKGROUND STREAM]: <span className="text-yellow-400">{!isMatrixBgActive ? 'AKTIF / ON' : 'NONAKTIF / OFF'}</span>
+                </span>
+              </div>
+              <div className="text-[10px] text-zinc-400">
+                {lang === 'id'
+                  ? 'Efek aliran digital rain di latar belakang terminal berhasil diperbarui.'
+                  : 'Terminal background digital rain stream has been toggled.'}
+              </div>
+            </div>
+          );
+        } else if (arg === 'off' || arg === 'stop') {
+          setIsMatrixBgActive(false);
+          setIsMatrixMode(false);
+          output = <div className="text-zinc-400">[MATRIX STREAM STOPPED]</div>;
+        } else {
+          // Trigger the real Matrix Digital Rain!
+          sound.playCrtBuzz();
+          sound.playPowerUp();
+          setIsMatrixMode(true);
+          output = (
+            <div className="space-y-1.5 p-2.5 rounded border border-emerald-500/40 bg-black/70 font-mono">
+              <div className="flex items-center justify-between text-[#00F5D4] font-bold text-[11px]">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block" />
+                  [MATRIX DIGITAL RAIN PROTOCOL]
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sound.playClick();
+                    sound.playCrtBuzz();
+                    setIsMatrixMode(true);
+                  }}
+                  className="px-2 py-0.5 rounded border border-emerald-400 bg-emerald-900/60 hover:bg-emerald-400 hover:text-black text-[9.5px] font-bold transition-all cursor-pointer shadow-[1px_1px_0px_#000]"
+                >
+                  ▶ {lang === 'id' ? 'BUKA LAGI EFEK MATRIX' : 'RE-LAUNCH MATRIX RAIN'}
+                </button>
+              </div>
+              <div className="text-emerald-400 text-[11px] leading-tight">
+                01000101 01010010 01000001 01000111 01001111 00100000 01000001 01010010 01000011 01000001 01000100 01000101<br />
+                Wake up, Neo... The Erago Arcade matrix has you...<br />
+                01100011 01101000 01100101 01100001 01110100 01110011 00100000 01101111 01101110 01101100 01111001
+              </div>
+              <div className="text-[10px] text-zinc-400">
+                {lang === 'id'
+                  ? 'Aliran kode digital Matrix layar penuh aktif. Tekan ESC atau klik di mana saja untuk kembali. Ketik MATRIX BG untuk hujan kode di background.'
+                  : 'Full-screen Matrix digital rain active. Press ESC or click anywhere to return. Type MATRIX BG for background rain.'}
+              </div>
+            </div>
+          );
+        }
         break;
 
       case 'art':
@@ -176,10 +232,33 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
     ▀██████▀`}
             </pre>
           );
+        } else if (arg.includes('doom')) {
+          output = (
+            <pre className="text-orange-500 text-[9px] leading-tight select-none font-mono">
+{`   [ DOOM SLAYER HELMET ]
+    ▄▄▄███████▄▄▄
+   ███████████████
+  ███  ███████  ███
+  ████ ▄▄▄▄▄▄▄ ████
+  ███ █▀▀▀▀▀▀▀█ ███
+   ███  ▀▀▀▀▀  ███
+    ▀▀███████▀▀`}
+            </pre>
+          );
+        } else if (arg.includes('zelda')) {
+          output = (
+            <pre className="text-yellow-300 text-[10px] leading-tight select-none font-mono">
+{`        ▲
+       ▲ ▲
+    [ TRIFORCE ]
+   IT'S DANGEROUS TO GO ALONE!
+   TAKE THIS ➔ ⚔️`}
+            </pre>
+          );
         } else {
           output = (
             <div className="text-yellow-400 font-mono">
-              Try: ART MARIO, ART PACMAN
+              Try: ART MARIO, ART PACMAN, ART DOOM, ART ZELDA
             </div>
           );
         }
@@ -238,19 +317,51 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none">
       <div className="relative w-full max-w-2xl rounded-xl border-4 border-black bg-[#070D09] shadow-[8px_8px_0px_#000] overflow-hidden flex flex-col h-[520px] font-mono">
         {/* DOS Window Title Bar */}
-        <div className="flex items-center justify-between px-4 py-2 bg-[#1A1C26] border-b-2 border-black text-white text-xs">
-          <div className="flex items-center gap-2">
-            <TerminalIcon className="w-4 h-4 text-emerald-400" />
-            <span className="font-bold">MS-DOS Prompt - C:\ERAGO\COMMAND.COM</span>
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-[#1A1C26] border-b-2 border-black text-white text-xs select-none">
+          <div className="flex items-center gap-2 truncate">
+            <TerminalIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="font-bold truncate">MS-DOS Prompt - C:\ERAGO\COMMAND.COM</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
+            {/* Quick Matrix Rain Launch Button */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                sound.playCrtBuzz();
+                setIsMatrixMode(true);
+              }}
+              title={lang === 'id' ? 'Buka Efek Matrix Digital Rain (Layar Penuh)' : 'Trigger Green Matrix Digital Rain Effect'}
+              className="flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500 hover:bg-emerald-400 hover:text-black text-emerald-300 font-mono text-[9px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00FF66] animate-ping" />
+              <span>MATRIX</span>
+            </button>
+
+            {/* Quick Matrix BG Rain Toggle */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                setIsMatrixBgActive((prev) => !prev);
+              }}
+              title={lang === 'id' ? 'Toggle Hujan Matrix di Background Prompt' : 'Toggle Matrix Rain in Background'}
+              className={`flex items-center gap-1 px-1.5 py-0.5 rounded border font-mono text-[9px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                isMatrixBgActive
+                  ? 'bg-emerald-400 text-black border-emerald-300'
+                  : 'bg-[#141622] text-zinc-400 border-zinc-700 hover:text-white'
+              }`}
+            >
+              <span>BG:{isMatrixBgActive ? 'ON' : 'OFF'}</span>
+            </button>
+
+            {/* Close Button */}
             <button
               onClick={() => {
                 sound.playClick();
                 onClose();
               }}
-              className="flex h-5 w-5 items-center justify-center rounded bg-[#FF2A85] text-white hover:bg-white hover:text-black text-xs font-bold"
+              className="flex h-5 w-5 items-center justify-center rounded bg-[#FF2A85] text-white hover:bg-white hover:text-black text-xs font-bold shadow-[1px_1px_0px_#000] cursor-pointer"
+              aria-label="Close Terminal"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -260,33 +371,52 @@ export const DosTerminalModal: React.FC<DosTerminalModalProps> = ({ isOpen, onCl
         {/* Terminal Screen Body */}
         <div 
           onClick={() => inputRef.current?.focus()}
-          className="flex-1 p-4 overflow-y-auto custom-scrollbar text-emerald-400 text-xs sm:text-sm space-y-3 cursor-text"
+          className="relative flex-1 p-4 overflow-y-auto custom-scrollbar text-emerald-400 text-xs sm:text-sm space-y-3 cursor-text"
           style={{ textShadow: '0 0 4px rgba(52, 211, 153, 0.4)' }}
         >
-          {history.map((h, i) => (
-            <div key={i} className="space-y-1">
-              <div className="flex items-center gap-1.5 text-emerald-300">
-                <span className="text-zinc-500">C:\ERAGO&gt;</span>
-                <span className="font-bold">{h.command}</span>
-              </div>
-              <div className="pl-2">{h.output}</div>
-            </div>
-          ))}
+          {/* Subtle Background Matrix Digital Rain if enabled */}
+          {isMatrixBgActive && (
+            <MatrixRainCanvas isBackground language={lang} />
+          )}
 
-          {/* Active Command Line Input */}
-          <form onSubmit={handleCommand} className="flex items-center gap-1.5 pt-1">
-            <span className="text-zinc-500 font-bold shrink-0">C:\ERAGO&gt;</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              className="flex-1 bg-transparent text-emerald-400 outline-none border-none font-mono text-xs sm:text-sm caret-emerald-400"
-              autoFocus
-            />
-          </form>
-          <div ref={bottomRef} />
+          <div className="relative z-10 space-y-3">
+            {history.map((h, i) => (
+              <div key={i} className="space-y-1">
+                <div className="flex items-center gap-1.5 text-emerald-300">
+                  <span className="text-zinc-500">C:\ERAGO&gt;</span>
+                  <span className="font-bold">{h.command}</span>
+                </div>
+                <div className="pl-2">{h.output}</div>
+              </div>
+            ))}
+
+            {/* Active Command Line Input */}
+            <form onSubmit={handleCommand} className="flex items-center gap-1.5 pt-1">
+              <span className="text-zinc-500 font-bold shrink-0">C:\ERAGO&gt;</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+                className="flex-1 bg-transparent text-emerald-400 outline-none border-none font-mono text-xs sm:text-sm caret-emerald-400"
+                autoFocus
+              />
+            </form>
+            <div ref={bottomRef} />
+          </div>
         </div>
+
+        {/* Full-Screen Matrix Digital Rain Overlay */}
+        {isMatrixMode && (
+          <MatrixRainCanvas
+            language={lang}
+            onExit={() => {
+              sound.playClick();
+              setIsMatrixMode(false);
+              setTimeout(() => inputRef.current?.focus(), 80);
+            }}
+          />
+        )}
       </div>
     </div>
   );
