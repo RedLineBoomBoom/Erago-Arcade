@@ -520,15 +520,32 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 
 
-          {/* Cartridge Unlocked Badge (Visible on wide screens >= 1800px when not on main menu) */}
-          {currentView !== 'home' && (
-            <div className="hidden min-[1800px]:flex items-center gap-1.5 rounded-sm border-2 border-black bg-black/60 px-2 py-1 text-xs shrink-0">
-              <span className="inline-block h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
-              <span className="font-['Press_Start_2P'] text-[7px] text-zinc-300">
-                {t('discovered')}: <strong className="text-[#FFE600]">{unlockedCount}</strong>/{totalCount}
-              </span>
-            </div>
-          )}
+          {/* Cartridge Discoveries Unlocked Badge */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              onViewChange('lookbook');
+            }}
+            data-cursor="LOOKBOOK"
+            title={
+              language === 'id'
+                ? `Koleksi Cartridge Game: ${unlockedCount}/${totalCount} Terbuka (Klik untuk Buka)`
+                : `Game Cartridge Discoveries: ${unlockedCount}/${totalCount} Unlocked (Click to Open)`
+            }
+            className={`flex h-7 sm:h-8 items-center gap-1 sm:gap-1.5 rounded-sm border-2 border-black px-1.5 sm:px-2 font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] sm:shadow-[2px_2px_0px_#000] group shrink-0 cursor-pointer ${
+              currentView === 'lookbook'
+                ? 'bg-[#00F5D4] text-black shadow-inner'
+                : 'bg-[#1A1C26] hover:bg-[#00F5D4] text-zinc-200 hover:text-black'
+            }`}
+          >
+            <span className="inline-block h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-[#00F5D4] group-hover:bg-black animate-pulse shrink-0" />
+            <span className="hidden xl:inline text-[6px] text-zinc-400 group-hover:text-black">
+              {language === 'id' ? 'TERBUKA:' : 'DISCOVERED:'}
+            </span>
+            <span className="text-[#FFE600] group-hover:text-black font-bold">
+              {unlockedCount}/{totalCount}
+            </span>
+          </button>
 
 
           {/* Language Switcher (ID / EN) */}
