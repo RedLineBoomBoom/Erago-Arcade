@@ -388,7 +388,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               </button>
             </div>
 
-            {/* Swipe & Drag Header Controls Bar (Active on All Devices) */}
+            {/* Swipe & Drag Header Controls Bar */}
             <div className="flex items-center justify-between px-2.5 py-1.5 text-zinc-400 bg-black/40 rounded-lg border border-white/10">
               <div className="flex items-center gap-2 font-mono text-[8px] sm:text-[9px]">
                 <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse shrink-0" />
@@ -399,40 +399,19 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                   {activeMobileIndex + 1}/{displayedDeals.length}
                 </span>
                 <span className="hidden sm:inline font-mono text-[9px] text-zinc-400">
-                  {language === 'id' ? '• Geser / drag untuk melihat diskon lainnya' : '• Drag or slide to view more deals'}
+                  {language === 'id' ? '• Geser / drag atau gunakan tombol panah untuk melihat diskon lainnya' : '• Drag, swipe, or use arrow buttons to browse deals'}
                 </span>
-              </div>
-
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => scrollCarousel('prev')}
-                  disabled={!canScrollLeft && activeMobileIndex === 0}
-                  aria-label="Previous deal"
-                  className="flex items-center gap-1 px-2 py-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-30 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000] font-['Press_Start_2P'] text-[6.5px] cursor-pointer"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">PREV</span>
-                </button>
-                <button
-                  onClick={() => scrollCarousel('next')}
-                  disabled={!canScrollRight && activeMobileIndex === displayedDeals.length - 1}
-                  aria-label="Next deal"
-                  className="flex items-center gap-1 px-2 py-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-30 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000] font-['Press_Start_2P'] text-[6.5px] cursor-pointer"
-                >
-                  <span className="hidden sm:inline">NEXT</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
               </div>
             </div>
 
             {/* Showcase Deals: Horizontal Swipeable & Draggable Carousel on ALL Screens */}
             <div className="relative group/slider">
-              {/* Floating Desktop Edge Chevrons */}
+              {/* Floating Edge Arrow Chevrons */}
               {canScrollLeft && (
                 <button
                   onClick={() => scrollCarousel('prev')}
                   aria-label="Scroll left"
-                  className="hidden md:flex absolute -left-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                  className="flex absolute -left-2.5 sm:-left-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
                 >
                   <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                 </button>
@@ -441,7 +420,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                 <button
                   onClick={() => scrollCarousel('next')}
                   aria-label="Scroll right"
-                  className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                  className="flex absolute -right-2.5 sm:-right-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
                 >
                   <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                 </button>
