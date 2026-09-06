@@ -108,6 +108,18 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'BERITA',
     en: 'NEWS',
   },
+  'tab_sales': {
+    id: 'DISKON',
+    en: 'SALES',
+  },
+  'tab_trophies': {
+    id: 'TROPHY',
+    en: 'TROPHIES',
+  },
+  'tab_terminal': {
+    id: 'MS-DOS',
+    en: 'MS-DOS',
+  },
   'menu_home_badge': {
     id: 'SISTEM SIAP // SILAKAN PILIH MODE',
     en: 'SYSTEM READY // SELECT GAME MODE',
@@ -241,10 +253,6 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
   'hub_sales_desc': {
     id: 'Diskon Real-Time & SteamDB',
     en: 'Live Deals & SteamDB',
-  },
-  'tab_sales': {
-    id: 'DISKON',
-    en: 'SALES',
   },
   'hub_reboot': {
     id: 'REBOOT KONSOL',

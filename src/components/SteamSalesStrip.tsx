@@ -36,18 +36,32 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
   const carouselRef = useRef<HTMLDivElement>(null);
   const [activeMobileIndex, setActiveMobileIndex] = useState(0);
 
+  // Mouse drag-to-scroll state
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollStartLeft, setScrollStartLeft] = useState(0);
+  const [draggedFar, setDraggedFar] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
   // Sync currency preference when website language switches
   useEffect(() => {
     setCurrencyMode(language === 'id' ? 'IDR' : 'USD');
   }, [language]);
 
-  // Track mobile carousel scroll position for indicator dots and counter
+  // Track carousel scroll position for indicator dots, bounds, and counter
   const handleCarouselScroll = () => {
     if (!carouselRef.current) return;
     const container = carouselRef.current;
     const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
     const firstCard = container.firstElementChild as HTMLElement | null;
-    const cardWidth = firstCard ? firstCard.offsetWidth + 12 : 270;
+    const cardWidth = firstCard ? firstCard.offsetWidth + 14 : 260;
     const index = Math.round(scrollLeft / cardWidth);
     setActiveMobileIndex(Math.max(0, Math.min(index, displayedDeals.length - 1)));
   };
@@ -64,15 +78,50 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
   const scrollCarousel = (direction: 'prev' | 'next') => {
     sound.playClick();
-    const targetIndex = direction === 'prev' 
-      ? Math.max(0, activeMobileIndex - 1)
-      : Math.min(displayedDeals.length - 1, activeMobileIndex + 1);
-    scrollToIndex(targetIndex);
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const firstCard = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstCard ? firstCard.offsetWidth + 14 : 260;
+    const scrollAmount = cardWidth * 2; // Scroll 2 cards per click for fluid arcade browsing
+    container.scrollBy({
+      left: direction === 'prev' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
   };
 
-  // Reset mobile carousel scroll when discount tier changes
+  // Mouse drag-to-scroll event handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!carouselRef.current) return;
+    setIsDragging(true);
+    setDraggedFar(false);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollStartLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 6) {
+      setDraggedFar(true);
+    }
+    carouselRef.current.scrollLeft = scrollStartLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  // Reset carousel scroll when discount tier changes
   useEffect(() => {
     setActiveMobileIndex(0);
+    setCanScrollLeft(false);
+    setCanScrollRight(true);
     if (carouselRef.current) {
       carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
     }
@@ -170,7 +219,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
       list = [...list].sort((a, b) => (b.dealRating || 0) - (a.dealRating || 0) || b.discountPercent - a.discountPercent);
     }
 
-    return list.slice(0, 6);
+    return list.slice(0, 24);
   }, [sales, discountTier]);
 
   return (
@@ -339,148 +388,194 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               </button>
             </div>
 
-            {/* Mobile swipe header hint & touch navigation controls (< sm) */}
-            <div className="flex sm:hidden items-center justify-between px-0.5 pt-0.5 text-zinc-400">
-              <div className="flex items-center gap-1.5 font-mono text-[8px]">
-                <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse" />
-                <span className="font-['Press_Start_2P'] text-[6.5px] text-[#FFE600]">
-                  {language === 'id' ? 'GESER HIGHLIGHT' : 'SWIPE HIGHLIGHTS'}
+            {/* Swipe & Drag Header Controls Bar (Active on All Devices) */}
+            <div className="flex items-center justify-between px-2.5 py-1.5 text-zinc-400 bg-black/40 rounded-lg border border-white/10">
+              <div className="flex items-center gap-2 font-mono text-[8px] sm:text-[9px]">
+                <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse shrink-0" />
+                <span className="font-['Press_Start_2P'] text-[6.5px] sm:text-[7.5px] text-[#FFE600]">
+                  {language === 'id' ? 'GESER HIGHLIGHT DISKON' : 'SLIDE HIGHLIGHT DEALS'}
                 </span>
-                <span className="bg-black/60 px-1.5 py-0.5 rounded border border-white/10 text-[7px] text-zinc-300 font-mono font-bold">
+                <span className="bg-black/80 px-2 py-0.5 rounded border border-white/10 text-[7.5px] sm:text-[8.5px] text-zinc-200 font-mono font-bold">
                   {activeMobileIndex + 1}/{displayedDeals.length}
+                </span>
+                <span className="hidden sm:inline font-mono text-[9px] text-zinc-400">
+                  {language === 'id' ? '• Geser / drag untuk melihat diskon lainnya' : '• Drag or slide to view more deals'}
                 </span>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => scrollCarousel('prev')}
-                  disabled={activeMobileIndex === 0}
+                  disabled={!canScrollLeft && activeMobileIndex === 0}
                   aria-label="Previous deal"
-                  className="p-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-40 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000]"
+                  className="flex items-center gap-1 px-2 py-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-30 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000] font-['Press_Start_2P'] text-[6.5px] cursor-pointer"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">PREV</span>
                 </button>
                 <button
                   onClick={() => scrollCarousel('next')}
-                  disabled={activeMobileIndex === displayedDeals.length - 1}
+                  disabled={!canScrollRight && activeMobileIndex === displayedDeals.length - 1}
                   aria-label="Next deal"
-                  className="p-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-40 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000]"
+                  className="flex items-center gap-1 px-2 py-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-30 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000] font-['Press_Start_2P'] text-[6.5px] cursor-pointer"
                 >
+                  <span className="hidden sm:inline">NEXT</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Showcase Deals: Horizontal Swipeable Carousel on Mobile (< sm), Responsive Grid on sm+ */}
-            <div
-              ref={carouselRef}
-              key={discountTier}
-              onScroll={handleCarouselScroll}
-              className="flex sm:grid overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 pb-2 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0 scroll-smooth animate-fade-in"
-            >
-              {displayedDeals.map((item) => {
-                const isSuperDeal = item.discountPercent >= 85;
-                const hasHighRating = (item.steamRatingPercent || 0) >= 90;
+            {/* Showcase Deals: Horizontal Swipeable & Draggable Carousel on ALL Screens */}
+            <div className="relative group/slider">
+              {/* Floating Desktop Edge Chevrons */}
+              {canScrollLeft && (
+                <button
+                  onClick={() => scrollCarousel('prev')}
+                  aria-label="Scroll left"
+                  className="hidden md:flex absolute -left-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                >
+                  <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                </button>
+              )}
+              {canScrollRight && (
+                <button
+                  onClick={() => scrollCarousel('next')}
+                  aria-label="Scroll right"
+                  className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full border-2 border-black bg-[#FFE600] text-black items-center justify-center shadow-[3px_3px_0px_#000] hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                >
+                  <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+                </button>
+              )}
 
-                return (
-                  <article
-                    key={item.id || item.appId}
-                    onClick={handleOpenSales}
-                    className="group relative flex flex-col justify-between rounded-xl border-2 border-black bg-[#0C0E17] hover:bg-[#161926] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#FFE600] hover:-translate-y-0.5 cursor-pointer w-[76vw] max-w-[270px] shrink-0 snap-center sm:w-auto sm:shrink sm:snap-none"
-                  >
-                    {/* Thumbnail Artwork Banner */}
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/80 border-b-2 border-black">
-                      <img
-                        src={item.bannerUrl}
-                        alt={item.title}
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          if (!target.src.includes('capsule_231x87')) {
-                            target.src = `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${item.appId}/capsule_231x87.jpg`;
-                          }
-                        }}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+              <div
+                ref={carouselRef}
+                key={discountTier}
+                onScroll={handleCarouselScroll}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+                className={`flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-3.5 pb-2.5 px-0.5 scroll-smooth select-none ${
+                  isDragging ? 'cursor-grabbing' : 'cursor-grab'
+                }`}
+              >
+                {displayedDeals.map((item) => {
+                  const isSuperDeal = item.discountPercent >= 85;
+                  const hasHighRating = (item.steamRatingPercent || 0) >= 90;
 
-                      {/* Discount Badge */}
-                      <div className="absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded border border-black bg-[#FFE600] px-1.5 py-0.5 font-['Press_Start_2P'] text-[8px] font-black text-black shadow-[1px_1px_0px_#000]">
-                        <span>-{item.discountPercent}%</span>
+                  return (
+                    <article
+                      key={item.id || item.appId}
+                      onClick={(e) => {
+                        if (draggedFar) {
+                          e.preventDefault();
+                          return;
+                        }
+                        handleOpenSales();
+                      }}
+                      className="group relative flex flex-col justify-between rounded-xl border-2 border-black bg-[#0C0E17] hover:bg-[#161926] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#FFE600] hover:-translate-y-0.5 cursor-pointer w-[240px] sm:w-[250px] md:w-[260px] shrink-0 snap-start select-none"
+                    >
+                      {/* Thumbnail Artwork Banner */}
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/80 border-b-2 border-black pointer-events-none">
+                        <img
+                          src={item.bannerUrl}
+                          alt={item.title}
+                          loading="lazy"
+                          draggable={false}
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            if (!target.src.includes('capsule_231x87')) {
+                              target.src = `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${item.appId}/capsule_231x87.jpg`;
+                            }
+                          }}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+
+                        {/* Discount Badge */}
+                        <div className="absolute top-1.5 left-1.5 flex items-center gap-0.5 rounded border border-black bg-[#FFE600] px-1.5 py-0.5 font-['Press_Start_2P'] text-[8px] font-black text-black shadow-[1px_1px_0px_#000]">
+                          <span>-{item.discountPercent}%</span>
+                        </div>
+
+                        {/* Highlight Tag */}
+                        {isSuperDeal ? (
+                          <div className="absolute top-1.5 right-1.5 flex items-center gap-0.5 rounded border border-black bg-[#FF2A85] px-1 py-0.5 font-['Press_Start_2P'] text-[5px] font-bold text-white shadow animate-pulse">
+                            <span>HOT</span>
+                          </div>
+                        ) : hasHighRating ? (
+                          <div className="absolute top-1.5 right-1.5 flex items-center gap-0.5 rounded border border-black bg-[#00F5D4] px-1 py-0.5 font-['Press_Start_2P'] text-[5px] font-bold text-black shadow">
+                            <span>90%+</span>
+                          </div>
+                        ) : null}
                       </div>
 
-                      {/* Highlight Tag */}
-                      {isSuperDeal ? (
-                        <div className="absolute top-1.5 right-1.5 flex items-center gap-0.5 rounded border border-black bg-[#FF2A85] px-1 py-0.5 font-['Press_Start_2P'] text-[5px] font-bold text-white shadow animate-pulse">
-                          <span>HOT</span>
-                        </div>
-                      ) : hasHighRating ? (
-                        <div className="absolute top-1.5 right-1.5 flex items-center gap-0.5 rounded border border-black bg-[#00F5D4] px-1 py-0.5 font-['Press_Start_2P'] text-[5px] font-bold text-black shadow">
-                          <span>90%+</span>
-                        </div>
-                      ) : null}
-                    </div>
+                      {/* Card Body */}
+                      <div className="p-2.5 flex flex-col flex-1 justify-between gap-1.5 pointer-events-none">
+                        <div>
+                          <h3 
+                            className="font-['Space_Grotesk'] font-bold text-xs text-white line-clamp-1 group-hover:text-[#FFE600] transition-colors"
+                            title={item.title}
+                          >
+                            {item.title}
+                          </h3>
 
-                    {/* Card Body */}
-                    <div className="p-2.5 flex flex-col flex-1 justify-between gap-1.5">
-                      <div>
-                        <h3 
-                          className="font-['Space_Grotesk'] font-bold text-xs text-white line-clamp-1 group-hover:text-[#FFE600] transition-colors"
-                          title={item.title}
+                          <div className="flex items-center justify-between font-mono text-[9px] text-zinc-400 mt-0.5">
+                            {item.steamRatingPercent ? (
+                              <span className="flex items-center gap-0.5 text-[#00F5D4]">
+                                <Star className="w-2.5 h-2.5 fill-current text-[#FFE600]" />
+                                <span>{item.steamRatingPercent}%</span>
+                              </span>
+                            ) : (
+                              <span className="text-zinc-500">Steam</span>
+                            )}
+                            <span className="text-zinc-500 text-[8px]">#{item.appId}</span>
+                          </div>
+                        </div>
+
+                        {/* Price Strip */}
+                        <div className="pt-1.5 border-t border-white/10 flex items-baseline justify-between gap-1">
+                          <span className="font-mono text-[9px] text-zinc-500 line-through">
+                            {formatPrice(item.normalPrice)}
+                          </span>
+                          <span className="font-['Space_Grotesk'] font-black text-xs text-[#00F5D4]">
+                            {formatPrice(item.salePrice)}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Direct Links Action */}
+                      <div className="grid grid-cols-2 gap-1 p-1.5 bg-[#08090F] border-t border-black">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenLink(e, item.steamUrl);
+                          }}
+                          className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#00F5D4] hover:text-black py-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all"
+                          title={`Buka ${item.title} di Toko Steam`}
                         >
-                          {item.title}
-                        </h3>
-
-                        <div className="flex items-center justify-between font-mono text-[9px] text-zinc-400 mt-0.5">
-                          {item.steamRatingPercent ? (
-                            <span className="flex items-center gap-0.5 text-[#00F5D4]">
-                              <Star className="w-2.5 h-2.5 fill-current text-[#FFE600]" />
-                              <span>{item.steamRatingPercent}%</span>
-                            </span>
-                          ) : (
-                            <span className="text-zinc-500">Steam</span>
-                          )}
-                          <span className="text-zinc-500 text-[8px]">#{item.appId}</span>
-                        </div>
+                          <span>STORE</span>
+                          <ExternalLink className="w-2 h-2" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenLink(e, item.steamDbUrl);
+                          }}
+                          className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#FFE600] hover:text-black py-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all"
+                          title={`Buka ${item.title} di SteamDB`}
+                        >
+                          <span>STEAMDB</span>
+                          <ExternalLink className="w-2 h-2" />
+                        </button>
                       </div>
-
-                      {/* Price Strip */}
-                      <div className="pt-1.5 border-t border-white/10 flex items-baseline justify-between gap-1">
-                        <span className="font-mono text-[9px] text-zinc-500 line-through">
-                          {formatPrice(item.normalPrice)}
-                        </span>
-                        <span className="font-['Space_Grotesk'] font-black text-xs text-[#00F5D4]">
-                          {formatPrice(item.salePrice)}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Direct Links Action */}
-                    <div className="grid grid-cols-2 gap-1 p-1.5 bg-[#08090F] border-t border-black">
-                      <button
-                        onClick={(e) => handleOpenLink(e, item.steamUrl)}
-                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#00F5D4] hover:text-black py-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all"
-                        title={`Buka ${item.title} di Toko Steam`}
-                      >
-                        <span>STORE</span>
-                        <ExternalLink className="w-2 h-2" />
-                      </button>
-                      <button
-                        onClick={(e) => handleOpenLink(e, item.steamDbUrl)}
-                        className="flex items-center justify-center gap-1 rounded border border-black bg-[#1F2438] hover:bg-[#FFE600] hover:text-black py-1 font-['Press_Start_2P'] text-[5.5px] text-zinc-300 font-bold transition-all"
-                        title={`Buka ${item.title} di SteamDB`}
-                      >
-                        <span>STEAMDB</span>
-                        <ExternalLink className="w-2 h-2" />
-                      </button>
-                    </div>
-                  </article>
-                );
-              })}
+                    </article>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Mobile Carousel Pagination Dots */}
-            <div className="flex sm:hidden items-center justify-center gap-1.5 pt-0.5 pb-1">
-              {displayedDeals.map((_, dotIdx) => (
+            {/* Carousel Pagination Dots */}
+            <div className="flex items-center justify-center gap-1.5 pt-0.5 pb-1">
+              {displayedDeals.slice(0, 12).map((_, dotIdx) => (
                 <button
                   key={dotIdx}
                   onClick={() => scrollToIndex(dotIdx)}
@@ -492,6 +587,9 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                   }`}
                 />
               ))}
+              {displayedDeals.length > 12 && (
+                <span className="font-mono text-[8px] text-zinc-500">+{displayedDeals.length - 12}</span>
+              )}
             </div>
 
             {/* Bottom Strip Bar: CTA to Open Full Sales Modal */}

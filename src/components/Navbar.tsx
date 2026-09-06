@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Volume2, VolumeX, Tv, Radio, Sparkles, ChevronDown, Newspaper, Tag, Gamepad2 } from 'lucide-react';
+import { Volume2, VolumeX, Tv, Radio, Sparkles, ChevronDown, Newspaper, Tag, Gamepad2, Trophy, Terminal } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               data-cursor="SALES"
               title="SteamDB Live Game Sales"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
                 currentView === 'sales'
                   ? 'bg-[#FFE600] text-black font-bold shadow-inner'
                   : 'text-[#FFE600] hover:bg-[#FFE600] hover:text-black'
@@ -206,6 +206,34 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[6px] text-white font-bold animate-pulse">
                 -90%
               </span>
+            </button>
+
+            {/* Trophy Cabinet Tab Button */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenTrophies();
+              }}
+              data-cursor="TROPHY"
+              title="Trophy Cabinet & Achievements"
+              className="flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] text-[#F59E0B] hover:bg-[#F59E0B] hover:text-black transition-all cursor-pointer"
+            >
+              <Trophy className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
+              <span className="hidden lg:inline">{t('tab_trophies')}</span>
+            </button>
+
+            {/* MS-DOS Terminal Tab Button */}
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenTerminal();
+              }}
+              data-cursor="MSDOS"
+              title="Vintage MS-DOS Prompt CLI [C:\ERAGO>]"
+              className="flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] text-[#84CC16] hover:bg-[#84CC16] hover:text-black transition-all cursor-pointer"
+            >
+              <Terminal className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
+              <span className="hidden lg:inline">{t('tab_terminal')}</span>
             </button>
           </nav>
         </div>
@@ -631,7 +659,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               sound.playClick();
               onViewChange('sales');
             }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
+            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all cursor-pointer ${
               currentView === 'sales'
                 ? 'bg-[#FFE600] text-black font-bold shadow-inner'
                 : 'bg-[#14161F] text-[#FFE600] hover:bg-[#FFE600] hover:text-black'
@@ -642,6 +670,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[5.5px] text-white font-bold animate-pulse ml-0.5">
               -90%
             </span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenTrophies();
+            }}
+            className="flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] text-[#F59E0B] bg-[#14161F] hover:bg-[#F59E0B] hover:text-black transition-all cursor-pointer"
+          >
+            <Trophy className="h-2.5 w-2.5" />
+            <span>{t('tab_trophies')}</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenTerminal();
+            }}
+            className="flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] text-[#84CC16] bg-[#14161F] hover:bg-[#84CC16] hover:text-black transition-all cursor-pointer"
+          >
+            <Terminal className="h-2.5 w-2.5" />
+            <span>{t('tab_terminal')}</span>
           </button>
         </nav>
       </div>

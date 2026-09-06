@@ -9,7 +9,6 @@ import {
   Gamepad2,
   Swords,
   Layers,
-  Trophy,
   Radio,
   Coins,
   ArrowRight,
@@ -17,9 +16,11 @@ import {
   Play,
   ShieldCheck,
   Disc,
+  Activity,
 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { useLanguage } from '../utils/i18n';
+import { useOnlinePlayersCount } from '../utils/onlinePlayersService';
 import type { ViewMode } from '../types/trivia';
 
 interface GameMenuHomeProps {
@@ -27,11 +28,11 @@ interface GameMenuHomeProps {
   onOpenBonusStage: () => void;
   onOpenBossBattle: () => void;
   onOpenCardBinder: () => void;
-  onOpenTrophies: () => void;
+  onOpenTrophies?: () => void;
   onOpenJukebox: () => void;
-  onOpenTerminal: () => void;
+  onOpenTerminal?: () => void;
   onOpenBankModal: () => void;
-  onOpenSoundboard: () => void;
+  onOpenSoundboard?: () => void;
   coins: number;
   unlockedCount: number;
   totalCount: number;
@@ -64,9 +65,9 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
   onOpenBonusStage,
   onOpenBossBattle,
   onOpenCardBinder,
-  onOpenTrophies,
+  onOpenTrophies: _onOpenTrophies,
   onOpenJukebox,
-  onOpenTerminal,
+  onOpenTerminal: _onOpenTerminal,
   onOpenBankModal,
   coins,
   unlockedCount,
@@ -75,6 +76,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
   onToggleCrt,
 }) => {
   const { language, t } = useLanguage();
+  const { totalActivePlayers, localTabsCount } = useOnlinePlayersCount();
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [isLaunching, setIsLaunching] = useState<boolean>(false);
 
@@ -244,26 +246,8 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
         statBadge: '3D Binder',
       },
       {
-        id: 'trophy-cabinet',
-        number: '10',
-        titleKey: 'TROPHY CABINET',
-        category: 'special',
-        badgeKey: 'RECORDS',
-        color: '#F59E0B',
-        hoverBg: 'hover:bg-[#F59E0B]/15',
-        icon: Trophy,
-        descId: 'Lemari piala dan medali prestasi arcade! Buka pencapaian tersembunyi, kuis beruntun, dan penguasaan trivia video game.',
-        descEn: 'Arcade trophy case & achievements! Unlock secret milestones, flawless quiz streaks, and retro video game mastery badges.',
-        featureBulletsId: ['Medali & Badge Unik', 'Pencapaian Tersembunyi', 'Status Penyelesaian', 'Suara Fanfare Juara'],
-        featureBulletsEn: ['Unique Badges & Medals', 'Hidden Achievements', 'Completion Status', 'Trophy Audio Fanfares'],
-        actionType: 'modal',
-        modalAction: onOpenTrophies,
-        coinsReward: 'Piala Prestasi',
-        statBadge: 'Achievements',
-      },
-      {
         id: 'chiptune-jukebox',
-        number: '11',
+        number: '10',
         titleKey: 'CHIPTUNE JUKEBOX',
         category: 'special',
         badgeKey: 'FM SYNTH',
@@ -279,24 +263,6 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
         coinsReward: 'Musik Arcade',
         statBadge: 'FM Audio',
       },
-      {
-        id: 'dos-terminal',
-        number: '12',
-        titleKey: 'MS-DOS TERMINAL',
-        category: 'special',
-        badgeKey: 'VINTAGE CLI',
-        color: '#84CC16',
-        hoverBg: 'hover:bg-[#84CC16]/15',
-        icon: Terminal,
-        descId: 'Command prompt vintage C:\\ERAGO> berbalut warna hijau fosfor monokrom. Ketikkan perintah tersembunyi, reboot sistem, atau panggil easter egg.',
-        descEn: 'Vintage C:\\ERAGO> command prompt in phosphor green monochrome. Type secret commands, inspect system logs, or trigger reboots.',
-        featureBulletsId: ['Prompt C:\\ERAGO> Asli', 'Perintah Rahasia & Cheats', 'Reboot Ulang Mesin', 'Tampilan Monitor Monokrom'],
-        featureBulletsEn: ['Authentic C:\\ERAGO> Prompt', 'Secret Commands & Cheats', 'Full System Reboot', 'Monochrome CRT Emulation'],
-        actionType: 'modal',
-        modalAction: onOpenTerminal,
-        coinsReward: 'Perintah Rahasia',
-        statBadge: 'CLI System',
-      },
     ],
     [
       unlockedCount,
@@ -304,9 +270,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
       onOpenBonusStage,
       onOpenBossBattle,
       onOpenCardBinder,
-      onOpenTrophies,
       onOpenJukebox,
-      onOpenTerminal,
     ]
   );
 
@@ -367,10 +331,21 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
               <span className="px-2 py-0.5 rounded bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-bold shadow-[2px_2px_0px_#000]">
                 {t('menu_home_badge')}
               </span>
-              <span className="px-2 py-0.5 rounded bg-black/60 border border-white/20 text-[#FFE600] font-mono text-[9px] sm:text-[10px] flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>1P READY</span>
-              </span>
+              <div 
+                title={`Active Players: ${totalActivePlayers} online (Local sessions: ${localTabsCount})`}
+                className="px-2.5 py-1 rounded bg-black/80 border border-white/20 text-[#FFE600] font-mono text-[8.5px] sm:text-[9.5px] flex items-center gap-2 shadow-[2px_2px_0px_#000]"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                </span>
+                <span className="font-['Press_Start_2P'] text-[7.5px] sm:text-[8px] text-[#FFE600]">
+                  {totalActivePlayers}P READY
+                </span>
+                <span className="font-mono text-[8px] text-[#00F5D4] font-bold hidden sm:inline border-l border-white/20 pl-2">
+                  {totalActivePlayers} {language === 'id' ? 'PEMAIN ONLINE' : 'PLAYERS ONLINE'}
+                </span>
+              </div>
             </div>
 
             <h1 className="font-['Press_Start_2P'] text-lg sm:text-2xl lg:text-3xl text-white tracking-wider text-shadow-retro mt-1 flex items-center gap-2">
@@ -445,7 +420,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
               {t('menu_category_core')}
             </span>
             <span className="font-mono text-[10px] text-zinc-400">
-              12 MODES AVAILABLE
+              10 MODES AVAILABLE // SELECT & ENTER
             </span>
           </div>
 
@@ -579,8 +554,11 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
             <div className="absolute bottom-2 left-2 w-2 h-2 border-b-2 border-l-2 border-white/30 pointer-events-none" />
             <div className="absolute bottom-2 right-2 w-2 h-2 border-b-2 border-r-2 border-white/30 pointer-events-none" />
 
+            {/* Scanlines Effect Overlay */}
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.3)_50%)] bg-[length:100%_4px] opacity-30 z-10" />
+
             {/* Header: Mode Number + Category */}
-            <div>
+            <div className="relative z-20">
               <div className="flex items-center justify-between gap-2 border-b-2 border-black/80 pb-3 mb-4">
                 <div className="flex items-center gap-2">
                   <span
@@ -594,10 +572,13 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   </span>
                 </div>
 
-                <span className="font-mono text-[10px] text-emerald-400 flex items-center gap-1.5 font-bold">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  ONLINE
-                </span>
+                <div className="flex items-center gap-2 font-mono text-[9px]">
+                  <span className="text-zinc-500 hidden sm:inline">[60Hz V-SYNC]</span>
+                  <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    ONLINE
+                  </span>
+                </div>
               </div>
 
               {/* Mode Large Icon & Title */}
@@ -623,13 +604,13 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
               </div>
 
               {/* Description Prose */}
-              <div className="rounded-lg bg-black/50 border border-white/10 p-3.5 mb-4 text-xs font-['Space_Grotesk'] text-zinc-200 leading-relaxed">
+              <div className="rounded-lg bg-black/50 border border-white/10 p-3.5 mb-3 text-xs font-['Space_Grotesk'] text-zinc-200 leading-relaxed">
                 {language === 'id' ? activeItem.descId : activeItem.descEn}
               </div>
 
               {/* Key Features Bullet Points */}
-              <div className="space-y-1.5 mb-6">
-                <div className="font-['Press_Start_2P'] text-[7.5px] text-zinc-400 uppercase mb-2">
+              <div className="space-y-1.5 mb-3">
+                <div className="font-['Press_Start_2P'] text-[7.5px] text-zinc-400 uppercase mb-1">
                   // {language === 'id' ? 'FITUR UTAMA' : 'KEY FEATURES'}
                 </div>
                 {(language === 'id' ? activeItem.featureBulletsId : activeItem.featureBulletsEn).map((bullet, bIdx) => (
@@ -639,10 +620,36 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                   </div>
                 ))}
               </div>
+
+              {/* Dynamic Oscilloscope HUD Visualizer */}
+              <div className="rounded-lg bg-black/70 border border-white/10 p-2.5 mb-4 relative overflow-hidden">
+                <div className="flex items-center justify-between text-[7px] font-mono text-zinc-400 mb-1.5 px-0.5">
+                  <span className="flex items-center gap-1 font-bold" style={{ color: activeItem.color }}>
+                    <Activity className="w-2.5 h-2.5 animate-pulse" />
+                    <span>SIGNAL // {activeItem.number}</span>
+                  </span>
+                  <span className="text-[7px] text-zinc-500 font-mono">60 FPS // 44.1kHz DSP</span>
+                </div>
+                {/* Visualizer Wave Bars */}
+                <div className="flex items-end justify-between gap-1 h-7 px-0.5">
+                  {[45, 75, 30, 90, 60, 85, 40, 95, 70, 50, 80, 65, 90, 35, 75, 55, 85, 40, 95, 60].map((baseHeight, barIdx) => (
+                    <div
+                      key={barIdx}
+                      className="flex-1 rounded-xs transition-all duration-300"
+                      style={{
+                        height: `${Math.max(18, (baseHeight + (barIdx % 3 === 0 ? 25 : -15)) % 100)}%`,
+                        backgroundColor: activeItem.color,
+                        opacity: 0.85,
+                        boxShadow: `0 0 8px ${activeItem.color}88`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Launch Big Action Button */}
-            <div className="space-y-2 pt-2 border-t-2 border-black/80">
+            <div className="relative z-20 space-y-2 pt-2 border-t-2 border-black/80">
               <button
                 onClick={() => handleLaunch(activeItem)}
                 disabled={isLaunching}
