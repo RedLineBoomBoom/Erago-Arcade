@@ -27,34 +27,43 @@ export const ARCADE_SECTIONS_LIST: ArcadeSectionId[] = [
   'chiptune-jukebox',
 ];
 
-interface SessionRecord {
-  sessionId: string;
-  sectionId: ArcadeSectionId;
+interface DeviceRecord {
+  deviceId: string;
   deviceType: 'desktop' | 'mobile' | 'tablet';
   lastSeen: number;
+  tabs: Map<string, { sectionId: ArcadeSectionId; lastSeen: number }>;
 }
 
-// In-memory central presence registry on the Vite server
-const activeSessions = new Map<string, SessionRecord>();
+// In-memory central presence registry on the Vite server (grouped by physical deviceId)
+const activeDevices = new Map<string, DeviceRecord>();
 const sseClients = new Set<http.ServerResponse>();
 
-// Sessions without heartbeat for > 4 seconds are considered disconnected
-const PRUNE_TIMEOUT_MS = 4000;
+// Sessions without heartbeat for > 4.5 seconds are considered disconnected
+const PRUNE_TIMEOUT_MS = 4500;
 
-function pruneInactiveSessions(): boolean {
+function pruneInactiveDevices(): boolean {
   const now = Date.now();
   let changed = false;
-  for (const [id, session] of activeSessions.entries()) {
-    if (now - session.lastSeen > PRUNE_TIMEOUT_MS) {
-      activeSessions.delete(id);
+
+  for (const [devId, dev] of activeDevices.entries()) {
+    for (const [tabId, tab] of dev.tabs.entries()) {
+      if (now - tab.lastSeen > PRUNE_TIMEOUT_MS) {
+        dev.tabs.delete(tabId);
+        changed = true;
+      }
+    }
+
+    if (dev.tabs.size === 0 || now - dev.lastSeen > PRUNE_TIMEOUT_MS) {
+      activeDevices.delete(devId);
       changed = true;
     }
   }
+
   return changed;
 }
 
 function getPresenceSnapshot() {
-  pruneInactiveSessions();
+  pruneInactiveDevices();
 
   const sectionPlayerCounts: Record<ArcadeSectionId, number> = {
     'trivia-roulette': 0,
@@ -71,21 +80,35 @@ function getPresenceSnapshot() {
   };
 
   let totalInGamePlayers = 0;
-  for (const session of activeSessions.values()) {
-    if (sectionPlayerCounts[session.sectionId] !== undefined) {
-      sectionPlayerCounts[session.sectionId]++;
+
+  for (const dev of activeDevices.values()) {
+    let devInGame = false;
+    let devSection: ArcadeSectionId = 'main-menu';
+
+    for (const tab of dev.tabs.values()) {
+      if (tab.sectionId && tab.sectionId !== 'main-menu') {
+        devInGame = true;
+        devSection = tab.sectionId;
+        break;
+      } else if (tab.sectionId) {
+        devSection = tab.sectionId;
+      }
     }
-    if (session.sectionId !== 'main-menu') {
+
+    if (devInGame) {
       totalInGamePlayers++;
+    }
+    if (sectionPlayerCounts[devSection] !== undefined) {
+      sectionPlayerCounts[devSection]++;
     }
   }
 
-  const totalActivePlayers = Math.max(1, activeSessions.size);
+  const totalActivePlayers = Math.max(1, activeDevices.size);
 
   return {
     totalActivePlayers,
     totalInGamePlayers,
-    activeSessionsCount: activeSessions.size,
+    activeDevicesCount: activeDevices.size,
     sectionPlayerCounts,
     timestamp: Date.now(),
   };
@@ -130,7 +153,7 @@ export function presencePlugin(): Plugin {
   const startPruning = () => {
     if (pruneInterval) return;
     pruneInterval = setInterval(() => {
-      const changed = pruneInactiveSessions();
+      const changed = pruneInactiveDevices();
       if (changed) {
         broadcastToClients();
       }
@@ -173,7 +196,7 @@ export function presencePlugin(): Plugin {
       });
     });
 
-    // 2. Session Heartbeat and Leave Endpoints
+    // 2. Device Heartbeat and Leave Endpoints
     server.middlewares.use('/api/presence', async (req, res, next) => {
       const url = new URL(req.url || '', `http://${req.headers.host}`);
       const pathname = url.pathname;
@@ -192,11 +215,20 @@ export function presencePlugin(): Plugin {
       // POST /api/presence/leave
       if (pathname === '/leave' || pathname === '/api/presence/leave') {
         const body = await parseJsonBody(req);
-        const sessionId = (body.sessionId as string) || url.searchParams.get('sessionId');
-        if (sessionId && activeSessions.has(sessionId)) {
-          activeSessions.delete(sessionId);
+        const deviceId = (body.deviceId as string) || (body.sessionId as string) || url.searchParams.get('deviceId') || url.searchParams.get('sessionId');
+        const tabId = (body.tabId as string) || (body.sessionId as string) || url.searchParams.get('tabId') || url.searchParams.get('sessionId');
+
+        if (deviceId && activeDevices.has(deviceId)) {
+          const dev = activeDevices.get(deviceId)!;
+          if (tabId) {
+            dev.tabs.delete(tabId);
+          }
+          if (dev.tabs.size === 0 || !tabId) {
+            activeDevices.delete(deviceId);
+          }
           broadcastToClients();
         }
+
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ success: true, ...getPresenceSnapshot() }));
         return;
@@ -205,17 +237,25 @@ export function presencePlugin(): Plugin {
       // POST /api/presence (or /heartbeat)
       if (req.method === 'POST') {
         const body = await parseJsonBody(req);
-        const sessionId = (body.sessionId as string) || url.searchParams.get('sessionId');
+        const deviceId = (body.deviceId as string) || (body.sessionId as string) || url.searchParams.get('deviceId') || url.searchParams.get('sessionId');
+        const tabId = (body.tabId as string) || (body.sessionId as string) || url.searchParams.get('tabId') || deviceId;
         const sectionId = (body.sectionId as ArcadeSectionId) || 'main-menu';
         const deviceType = (body.deviceType as 'desktop' | 'mobile' | 'tablet') || 'desktop';
 
-        if (sessionId) {
-          activeSessions.set(sessionId, {
-            sessionId,
-            sectionId,
-            deviceType,
-            lastSeen: Date.now(),
-          });
+        if (deviceId && tabId) {
+          let dev = activeDevices.get(deviceId);
+          const now = Date.now();
+          if (!dev) {
+            dev = {
+              deviceId,
+              deviceType,
+              lastSeen: now,
+              tabs: new Map(),
+            };
+            activeDevices.set(deviceId, dev);
+          }
+          dev.lastSeen = now;
+          dev.tabs.set(tabId, { sectionId, lastSeen: now });
           broadcastToClients();
         }
 
