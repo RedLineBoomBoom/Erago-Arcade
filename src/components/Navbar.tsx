@@ -520,13 +520,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 
 
-          {/* Cartridge Unlocked Badge (Visible on wide screens >= 1800px) */}
-          <div className="hidden min-[1800px]:flex items-center gap-1.5 rounded-sm border-2 border-black bg-black/60 px-2 py-1 text-xs shrink-0">
-            <span className="inline-block h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
-            <span className="font-['Press_Start_2P'] text-[7px] text-zinc-300">
-              {t('discovered')}: <strong className="text-[#FFE600]">{unlockedCount}</strong>/{totalCount}
-            </span>
-          </div>
+          {/* Cartridge Unlocked Badge (Visible on wide screens >= 1800px when not on main menu) */}
+          {currentView !== 'home' && (
+            <div className="hidden min-[1800px]:flex items-center gap-1.5 rounded-sm border-2 border-black bg-black/60 px-2 py-1 text-xs shrink-0">
+              <span className="inline-block h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse"></span>
+              <span className="font-['Press_Start_2P'] text-[7px] text-zinc-300">
+                {t('discovered')}: <strong className="text-[#FFE600]">{unlockedCount}</strong>/{totalCount}
+              </span>
+            </div>
+          )}
 
 
           {/* Language Switcher (ID / EN) */}

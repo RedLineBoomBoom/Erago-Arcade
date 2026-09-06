@@ -15,7 +15,6 @@ import {
   Tv,
   Play,
   ShieldCheck,
-  Disc,
   Activity,
   Users,
 } from 'lucide-react';
@@ -388,23 +387,6 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
                 <div className="font-['Press_Start_2P'] text-[6px] opacity-75">CREDITS</div>
                 <div className="font-['Press_Start_2P'] text-[9px] font-bold">
                   {coins.toLocaleString()} COINS
-                </div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => {
-                sound.playClick();
-                onSelectView('lookbook');
-              }}
-              title="Cartridges Archive"
-              className="flex items-center gap-2 px-3 py-2 rounded-lg border-2 border-black bg-[#FF2A85] text-white shadow-[3px_3px_0px_#000] hover:scale-105 transition-transform cursor-pointer"
-            >
-              <Disc className="w-4 h-4 text-white" />
-              <div className="text-left">
-                <div className="font-['Press_Start_2P'] text-[6px] opacity-80">CARTRIDGES</div>
-                <div className="font-['Press_Start_2P'] text-[9px] font-bold">
-                  {unlockedCount}/{totalCount}
                 </div>
               </div>
             </button>
