@@ -46,8 +46,16 @@ import { useLanguage } from './utils/i18n';
 export function App() {
   const { toggleLanguage, t } = useLanguage();
 
-  // Random trivia selected instantly upon opening the website
+  // Random trivia selected instantly upon opening the website (supports ?id=... deep link)
   const [activeTrivia, setActiveTrivia] = useState<TriviaItem>(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetId = urlParams.get('id');
+      if (targetId) {
+        const found = TRIVIA_DATABASE.find((t) => t.id === targetId);
+        if (found) return found;
+      }
+    }
     const randomIndex = Math.floor(Math.random() * TRIVIA_DATABASE.length);
     return TRIVIA_DATABASE[randomIndex];
   });
