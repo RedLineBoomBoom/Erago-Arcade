@@ -133,7 +133,7 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in select-none">
-      <div className={`relative w-full max-w-2xl rounded-2xl border-4 border-black bg-[#14161F] p-6 shadow-[8px_8px_0px_#000] space-y-6 ${isShaking ? 'animate-[bounce_0.2s_infinite]' : ''}`}>
+      <div className={`relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl border-4 border-black bg-[#14161F] p-5 sm:p-6 shadow-[8px_8px_0px_#000] space-y-5 sm:space-y-6 custom-scrollbar ${isShaking ? 'animate-[bounce_0.2s_infinite]' : ''}`}>
         {/* Header */}
         <div className="flex items-center justify-between border-b-2 border-white/10 pb-4">
           <div className="flex items-center gap-3">
@@ -211,36 +211,36 @@ export const BossBattleModal: React.FC<BossBattleModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Player Status Bar */}
-        <div className="flex items-center justify-between px-4 py-2 bg-[#1A1C26] rounded-lg border-2 border-black font-mono text-xs">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-3 px-4 py-2 bg-[#1A1C26] rounded-lg border-2 border-black font-mono text-xs">
+          <div className="flex items-center gap-2 shrink-0">
             <Heart className="w-4 h-4 text-red-500 fill-red-500" />
             <span>HERO HP: <strong className="text-white">{playerHp} / 100</strong></span>
           </div>
 
-          <div className="text-[11px] text-[#00F5D4] truncate max-w-[280px]">
+          <div className="text-[11px] text-[#00F5D4] font-medium text-right truncate flex-1">
             {battleLog}
           </div>
         </div>
 
         {/* Dynamic Battle Stage or Victory/Defeat */}
         {battleStatus === 'playing' ? (
-          <div className="rounded-xl border-3 border-black bg-[#1A1C26] p-4 shadow-[4px_4px_0px_#000] space-y-4">
-            <div className="font-mono text-xs text-zinc-300 font-medium">
+          <div className="rounded-xl border-3 border-black bg-[#1A1C26] p-4 sm:p-5 shadow-[4px_4px_0px_#000] space-y-4">
+            <div className="font-mono text-xs sm:text-sm text-zinc-200 font-medium leading-relaxed">
               ⚔️ <strong className="text-[#FFE600]">{currentTrivia.gameTitle}:</strong> {currentTrivia.quizQuestion}
             </div>
 
             {/* Answer Attack Options */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
               {currentTrivia.quizOptions.map((opt, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleAnswer(idx)}
-                  className="flex items-center gap-2 p-3 rounded-lg border-2 border-black bg-[#282E40] text-white font-mono text-xs hover:bg-[#FFE600] hover:text-black font-bold shadow-[2px_2px_0px_#000] transition-all text-left group"
+                  className="flex items-start gap-2.5 p-3 sm:p-3.5 rounded-lg border-2 border-black bg-[#282E40] text-white font-mono text-xs hover:bg-[#FFE600] hover:text-black font-bold shadow-[2px_2px_0px_#000] transition-all text-left group min-h-[50px]"
                 >
-                  <span className="flex h-5 w-5 items-center justify-center rounded bg-black/40 border border-white/20 text-[9px] group-hover:bg-black group-hover:text-white">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-black/40 border border-white/20 text-[9px] group-hover:bg-black group-hover:text-white mt-0.5 font-bold">
                     {String.fromCharCode(65 + idx)}
                   </span>
-                  <span className="truncate">{opt}</span>
+                  <span className="flex-1 break-words leading-relaxed text-zinc-100 group-hover:text-black">{opt}</span>
                 </button>
               ))}
             </div>
