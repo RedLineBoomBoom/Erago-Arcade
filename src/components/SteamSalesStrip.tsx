@@ -22,9 +22,10 @@ const IDR_EXCHANGE_RATE = 16300;
 
 interface SteamSalesStripProps {
   onOpenSalesModal?: () => void;
+  onOpenSalesTab?: () => void;
 }
 
-export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesModal }) => {
+export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesModal, onOpenSalesTab }) => {
   const { language, t } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(true);
   const [sales, setSales] = useState<SteamSaleItem[]>(() => steamSalesService.getSales());
@@ -114,6 +115,15 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
     e.stopPropagation();
     sound.playClick();
     window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleOpenSales = () => {
+    sound.playClick();
+    if (onOpenSalesTab) {
+      onOpenSalesTab();
+    } else if (onOpenSalesModal) {
+      onOpenSalesModal();
+    }
   };
 
   // Counts of available deals per tier
@@ -375,12 +385,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                 return (
                   <article
                     key={item.id || item.appId}
-                    onClick={() => {
-                      if (onOpenSalesModal) {
-                        sound.playClick();
-                        onOpenSalesModal();
-                      }
-                    }}
+                    onClick={handleOpenSales}
                     className="group relative flex flex-col justify-between rounded-xl border-2 border-black bg-[#0C0E17] hover:bg-[#161926] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#FFE600] hover:-translate-y-0.5 cursor-pointer w-[76vw] max-w-[270px] shrink-0 snap-center sm:w-auto sm:shrink sm:snap-none"
                   >
                     {/* Thumbnail Artwork Banner */}
@@ -500,16 +505,13 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                 </span>
               </div>
 
-              {onOpenSalesModal && (
+              {(onOpenSalesTab || onOpenSalesModal) && (
                 <button
-                  onClick={() => {
-                    sound.playClick();
-                    onOpenSalesModal();
-                  }}
+                  onClick={handleOpenSales}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl border-2 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer"
                 >
                   <Sparkles className="w-3 h-3" />
-                  <span>{language === 'id' ? 'BUKA SEMUA DISKON DI POPUP LENGKAP' : 'OPEN FULL SALES POPUP RADAR'}</span>
+                  <span>{language === 'id' ? 'LIHAT SEMUA DISKON // BUKA TAB SALES' : 'VIEW ALL DEALS // OPEN SALES TAB'}</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               )}

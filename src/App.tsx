@@ -33,6 +33,7 @@ import { SteamSalesModal } from './components/SteamSalesModal';
 import { TimeRewardBanner } from './components/TimeRewardBanner';
 import { VaultTamperBanner } from './components/VaultTamperBanner';
 import { GamingNewsSection } from './components/GamingNewsSection';
+import { SteamSalesPage } from './components/SteamSalesPage';
 import { SteamSalesStrip } from './components/SteamSalesStrip';
 import { NewsStrip } from './components/NewsStrip';
 import { ConsoleBootLoader } from './components/ConsoleBootLoader';
@@ -324,7 +325,8 @@ export function App() {
 
             {/* Standalone Real-Time Steam Game Sales Section (Above News Strip) */}
             <SteamSalesStrip
-              onOpenSalesModal={() => setIsSalesModalOpen(true)}
+              onOpenSalesTab={() => setCurrentView('sales')}
+              onOpenSalesModal={() => setCurrentView('sales')}
             />
 
             {/* Quick Access Gaming News Press Wire Strip */}
@@ -361,6 +363,10 @@ export function App() {
 
         {currentView === 'news' && (
           <GamingNewsSection onBackToArcade={() => setCurrentView('arcade')} />
+        )}
+
+        {currentView === 'sales' && (
+          <SteamSalesPage onBackToArcade={() => setCurrentView('arcade')} />
         )}
       </main>
 

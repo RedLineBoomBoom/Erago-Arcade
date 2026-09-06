@@ -220,23 +220,25 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden lg:inline">{t('tab_news')}</span>
             </button>
 
-            {onOpenSalesModal && (
-              <button
-                onClick={() => {
-                  sound.playClick();
-                  onOpenSalesModal();
-                }}
-                data-cursor="SALES"
-                title="SteamDB Live Game Sales"
-                className="flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] text-[#FFE600] hover:bg-[#FFE600] hover:text-black transition-all"
-              >
-                <Tag className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
-                <span className="hidden lg:inline">{t('tab_sales')}</span>
-                <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[6px] text-white font-bold animate-pulse">
-                  -90%
-                </span>
-              </button>
-            )}
+            <button
+              onClick={() => {
+                sound.playClick();
+                onViewChange('sales');
+              }}
+              data-cursor="SALES"
+              title="SteamDB Live Game Sales"
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
+                currentView === 'sales'
+                  ? 'bg-[#FFE600] text-black font-bold shadow-inner'
+                  : 'text-[#FFE600] hover:bg-[#FFE600] hover:text-black'
+              }`}
+            >
+              <Tag className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
+              <span className="hidden lg:inline">{t('tab_sales')}</span>
+              <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[6px] text-white font-bold animate-pulse">
+                -90%
+              </span>
+            </button>
           </nav>
         </div>
 
@@ -686,18 +688,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>{t('tab_news')}</span>
           </button>
 
-          {onOpenSalesModal && (
-            <button
-              onClick={() => {
-                sound.playClick();
-                onOpenSalesModal();
-              }}
-              className="flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] bg-[#14161F] text-[#FFE600] hover:bg-[#FFE600] hover:text-black transition-all"
-            >
-              <Tag className="h-2.5 w-2.5" />
-              <span>{t('tab_sales')}</span>
-            </button>
-          )}
+          <button
+            onClick={() => {
+              sound.playClick();
+              onViewChange('sales');
+            }}
+            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
+              currentView === 'sales'
+                ? 'bg-[#FFE600] text-black font-bold shadow-inner'
+                : 'bg-[#14161F] text-[#FFE600] hover:bg-[#FFE600] hover:text-black'
+            }`}
+          >
+            <Tag className="h-2.5 w-2.5" />
+            <span>{t('tab_sales')}</span>
+            <span className="rounded bg-[#FF2A85] px-1 py-0.2 text-[5.5px] text-white font-bold animate-pulse ml-0.5">
+              -90%
+            </span>
+          </button>
         </nav>
       </div>
     </header>
