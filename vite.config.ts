@@ -6,8 +6,12 @@ import { steamSalesPlugin } from './scripts/steamSalesVitePlugin.ts'
 import { presencePlugin } from './scripts/presenceVitePlugin.ts'
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(), tailwindcss(), liveNewsPlugin(), steamSalesPlugin(), presencePlugin()],
+export default defineConfig(({ command }) => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(command === 'serve' ? [liveNewsPlugin(), steamSalesPlugin(), presencePlugin()] : []),
+  ],
   server: {
     host: true,
     port: 5173,
@@ -19,6 +23,6 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
-})
+}))
 
 
