@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Sparkles, Clock, Coins } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { triggerArcadeConfetti } from '../utils/arcadeConfetti';
@@ -9,17 +9,30 @@ interface TimeRewardBannerProps {
 }
 
 export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded, onDismiss }) => {
+  const onDismissRef = useRef(onDismiss);
+  onDismissRef.current = onDismiss;
+
+  // Track if confetti and sound have already fired for the current reward event
+  const isTriggeredRef = useRef(false);
+
   useEffect(() => {
     if (coinsAwarded !== null) {
-      sound.playJackpot();
-      triggerArcadeConfetti(window.innerWidth / 2, 80, 60);
+      if (!isTriggeredRef.current) {
+        isTriggeredRef.current = true;
+        sound.playJackpot();
+        triggerArcadeConfetti(window.innerWidth / 2, 80, 60);
+      }
 
       const timer = setTimeout(() => {
-        onDismiss();
-      }, 7000);
+        onDismissRef.current();
+        isTriggeredRef.current = false;
+      }, 6000);
+
       return () => clearTimeout(timer);
+    } else {
+      isTriggeredRef.current = false;
     }
-  }, [coinsAwarded, onDismiss]);
+  }, [coinsAwarded]);
 
   if (coinsAwarded === null) return null;
 
@@ -57,9 +70,10 @@ export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded
           <button
             onClick={() => {
               sound.playClick();
+              isTriggeredRef.current = false;
               onDismiss();
             }}
-            className="flex h-6 w-6 items-center justify-center rounded border border-black bg-white/10 hover:bg-[#FF2A85] text-white transition-colors"
+            className="flex h-6 w-6 items-center justify-center rounded border border-black bg-white/10 hover:bg-[#FF2A85] text-white transition-colors cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>

@@ -138,6 +138,14 @@ export function App() {
   const { totalActivePlayers, totalInGamePlayers, localTabsCount, sectionPlayerCounts } =
     useOnlinePlayersCount(activeSectionId);
 
+  const handleDismissTimeReward = useCallback(() => {
+    setTimeRewardCoins(null);
+  }, []);
+
+  const handleDismissTamper = useCallback(() => {
+    setTamperIncident(null);
+  }, []);
+
   // Apply active console theme on mount and subscribe to currency
   useEffect(() => {
     setActiveTheme(getActiveTheme());
@@ -583,13 +591,13 @@ export function App() {
       {/* 11. Passive 10-Minute Playtime Reward Banner Toast */}
       <TimeRewardBanner
         coinsAwarded={timeRewardCoins}
-        onDismiss={() => setTimeRewardCoins(null)}
+        onDismiss={handleDismissTimeReward}
       />
 
       {/* Cryptographic Anti-Tamper Security Violation Toast */}
       <VaultTamperBanner
         incident={tamperIncident}
-        onDismiss={() => setTamperIncident(null)}
+        onDismiss={handleDismissTamper}
       />
 
       {/* 12. Arcade Coin Bank & Rewards Information Modal */}

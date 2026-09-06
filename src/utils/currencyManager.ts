@@ -54,6 +54,7 @@ class CurrencyManager {
   #trackerIntervalId: number | null = null;
   #lastSavedSeconds: number = 0;
   #lastWallClockMs: number = Date.now();
+  #lastTimeRewardGrantedAtMs: number = Date.now();
 
   // Short-term burst velocity tracker (60-second window)
   #velocityWindowStart: number = Date.now();
@@ -588,23 +589,30 @@ class CurrencyManager {
 
       // Time reward (10 minutes = 600 seconds)
       if (this.#playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
-        this.#playtimeSeconds = this.#playtimeSeconds % TIME_REWARD_INTERVAL_SECONDS;
-        this.#lastSavedSeconds = this.#playtimeSeconds;
+        this.#playtimeSeconds = 0;
+        this.#lastSavedSeconds = 0;
 
-        if (this.#evaluateHourlyCoinGain(TIME_REWARD_COINS)) {
-          const coinsBefore = this.#readCoins();
-          const newCoins = coinsBefore + TIME_REWARD_COINS;
-          if (newCoins <= MAX_COIN_CEILING) {
-            this.#writeCoins(newCoins);
-            this.#lastTrackedCoins = newCoins;
-            this.#persist();
-            sound.playCoin();
+        const nowMs = Date.now();
+        const timeSinceLastReward = nowMs - this.#lastTimeRewardGrantedAtMs;
+        // Strict wall-clock cooldown: at least (TIME_REWARD_INTERVAL_SECONDS - 10) seconds between grants
+        if (timeSinceLastReward >= (TIME_REWARD_INTERVAL_SECONDS - 10) * 1000) {
+          this.#lastTimeRewardGrantedAtMs = nowMs;
 
-            for (const listener of this.#timeRewardListeners) {
-              try {
-                listener(TIME_REWARD_COINS);
-              } catch (err) {
-                console.error('Time reward listener error:', err);
+          if (this.#evaluateHourlyCoinGain(TIME_REWARD_COINS)) {
+            const coinsBefore = this.#readCoins();
+            const newCoins = coinsBefore + TIME_REWARD_COINS;
+            if (newCoins <= MAX_COIN_CEILING) {
+              this.#writeCoins(newCoins);
+              this.#lastTrackedCoins = newCoins;
+              this.#persist();
+              sound.playCoin();
+
+              for (const listener of this.#timeRewardListeners) {
+                try {
+                  listener(TIME_REWARD_COINS);
+                } catch (err) {
+                  console.error('Time reward listener error:', err);
+                }
               }
             }
           }
