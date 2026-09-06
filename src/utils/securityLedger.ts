@@ -18,7 +18,9 @@ const LEGACY_STORAGE_KEY_POINTS = 'erago_arcade_points_acc';
 const LEGACY_STORAGE_KEY_PLAYTIME = 'erago_arcade_playtime_sec';
 
 export const SAFE_BASELINE_COINS = 2000;
-export const MAX_COIN_CEILING = 25000; // Absolute maximum legitimate coin capacity
+export const MAX_COIN_CEILING = 1000000; // Plafon kapasitas koin (dinaikkan dari 25.000 agar pemain normal bebas menabung koin)
+export const HOURLY_INSTANT_GAIN_LIMIT = 50000; // Batas lonjakan koin instan dalam < 1 jam
+export const HOURLY_WINDOW_MS = 3600000; // Jendela waktu 1 jam (3.600.000 ms)
 
 export interface VaultStatePayload {
   coins: number;
@@ -27,6 +29,8 @@ export interface VaultStatePayload {
   timestamp: number;
   nonce: number;
   chainHash?: string;
+  hourlyWindowStart?: number;
+  hourlyCoinsGained?: number;
 }
 
 export interface SecureVaultEnvelope {
@@ -279,13 +283,25 @@ class SecurityLedgerManager {
     if (!Number.isInteger(payload.nonce) || payload.nonce < 0) {
       return false;
     }
+    if (payload.hourlyCoinsGained !== undefined && (!Number.isFinite(payload.hourlyCoinsGained) || payload.hourlyCoinsGained < 0)) {
+      return false;
+    }
+    if (payload.hourlyWindowStart !== undefined && (!Number.isFinite(payload.hourlyWindowStart) || payload.hourlyWindowStart < 0)) {
+      return false;
+    }
     return true;
   }
 
   /**
    * Persists vault state into encrypted and signed envelope
    */
-  public saveSecureVault(state: { coins: number; accumulatedPoints: number; playtimeSeconds: number }): boolean {
+  public saveSecureVault(state: {
+    coins: number;
+    accumulatedPoints: number;
+    playtimeSeconds: number;
+    hourlyWindowStart?: number;
+    hourlyCoinsGained?: number;
+  }): boolean {
     try {
       // Hard ceiling clamp before encryption
       if (state.coins > MAX_COIN_CEILING) {
@@ -307,6 +323,8 @@ class SecurityLedgerManager {
         timestamp,
         nonce,
         chainHash: this.lastKnownSignature,
+        hourlyWindowStart: state.hourlyWindowStart ?? timestamp,
+        hourlyCoinsGained: Math.max(0, Math.floor(state.hourlyCoinsGained ?? 0)),
       };
 
       if (!this.validateSanity(payload)) {
@@ -365,12 +383,24 @@ class SecurityLedgerManager {
   /**
    * Loads and cryptographically validates vault state
    */
-  public loadSecureVault(): { coins: number; accumulatedPoints: number; playtimeSeconds: number } {
+  public loadSecureVault(): {
+    coins: number;
+    accumulatedPoints: number;
+    playtimeSeconds: number;
+    hourlyWindowStart: number;
+    hourlyCoinsGained: number;
+  } {
     try {
       const raw = localStorage.getItem(LEDGER_STORAGE_KEY);
       if (!raw) {
         // First initialization
-        const freshState = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const freshState = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(freshState);
         return freshState;
       }
@@ -380,7 +410,13 @@ class SecurityLedgerManager {
         envelope = JSON.parse(raw);
       } catch {
         this.notifyTamper('Penyimpanan ledger rusak atau diedit secara manual di DevTools', SAFE_BASELINE_COINS);
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -394,7 +430,13 @@ class SecurityLedgerManager {
         typeof envelope.timestamp !== 'number'
       ) {
         this.notifyTamper('Format header envelope kriptografis tidak valid', SAFE_BASELINE_COINS);
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -402,7 +444,13 @@ class SecurityLedgerManager {
       // Check vault ID binding (prevents importing forged ledger from other device)
       if (envelope.vaultId !== this.vaultId) {
         this.notifyTamper('ID Brankas tidak cocok dengan perangkat ini (Kloning terdeteksi)', SAFE_BASELINE_COINS);
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -412,7 +460,13 @@ class SecurityLedgerManager {
       const expectedSyncSig = this.computeSyncSignature(envelope.payloadCipher, envelope.nonce, envelope.timestamp, prevSig);
       if (envelope.syncSignature !== expectedSyncSig) {
         this.notifyTamper('Tanda tangan digital brankas tidak cocok (Manipulasi koin terdeteksi)', SAFE_BASELINE_COINS);
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -421,7 +475,13 @@ class SecurityLedgerManager {
       const payload = this.decryptPayload(envelope.payloadCipher, envelope.nonce);
       if (!payload) {
         this.notifyTamper('Gagal mendekripsi payload brankas (Kunci stream XOR corrupt)', SAFE_BASELINE_COINS);
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -432,7 +492,13 @@ class SecurityLedgerManager {
           `Nilai koin (${payload.coins.toLocaleString()}) melampaui batas wajar permainan (Plafon ${MAX_COIN_CEILING.toLocaleString()})`,
           SAFE_BASELINE_COINS
         );
-        const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+        const restored = {
+          coins: SAFE_BASELINE_COINS,
+          accumulatedPoints: 0,
+          playtimeSeconds: 0,
+          hourlyWindowStart: Date.now(),
+          hourlyCoinsGained: 0,
+        };
         this.saveSecureVault(restored);
         return restored;
       }
@@ -446,10 +512,18 @@ class SecurityLedgerManager {
         coins: payload.coins,
         accumulatedPoints: payload.accumulatedPoints,
         playtimeSeconds: payload.playtimeSeconds,
+        hourlyWindowStart: payload.hourlyWindowStart ?? Date.now(),
+        hourlyCoinsGained: payload.hourlyCoinsGained ?? 0,
       };
     } catch {
       this.notifyTamper('Pengecualian tak terduga saat memvalidasi brankas', SAFE_BASELINE_COINS);
-      const restored = { coins: SAFE_BASELINE_COINS, accumulatedPoints: 0, playtimeSeconds: 0 };
+      const restored = {
+        coins: SAFE_BASELINE_COINS,
+        accumulatedPoints: 0,
+        playtimeSeconds: 0,
+        hourlyWindowStart: Date.now(),
+        hourlyCoinsGained: 0,
+      };
       this.saveSecureVault(restored);
       return restored;
     }

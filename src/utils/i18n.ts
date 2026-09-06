@@ -655,16 +655,16 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     en: 'UNIQUE DEVICE ID',
   },
   'vault_anti_tamper_desc': {
-    id: 'Koin dilindungi segel digital HMAC-SHA256. Setiap modifikasi ilegal di DevTools akan terdeteksi dan saldo otomatis dikarantina ke 2.000 koin aman.',
-    en: 'Coins are secured with HMAC-SHA256 digital seals. Any illegal DevTools modification is detected and quarantined to 2,000 baseline coins.',
+    id: 'Koin dilindungi segel digital HMAC-SHA256 & limit kecepatan (maks 50.000 koin/<1 jam). Lonjakan koin instan abnormal akan otomatis dikarantina ke 2.000 koin aman.',
+    en: 'Coins are secured with HMAC-SHA256 digital seals & velocity guards (max 50,000 coins/<1 hr). Abnormal instant balance spikes are automatically quarantined to 2,000 baseline coins.',
   },
   'tamper_alert_title': {
     id: '⚠️ DETEKSI MANIPULASI BRANKAS',
     en: '⚠️ VAULT TAMPERING DETECTED',
   },
   'tamper_alert_desc': {
-    id: 'Perubahan saldo koin tidak sah terdeteksi di penyimpanan browser! Sistem kriptografis telah memulihkan saldo Anda ke nilai aman.',
-    en: 'Unauthorized balance alteration detected in browser storage! Cryptographic ledger restored your balance to a safe baseline.',
+    id: 'Perubahan saldo tidak sah atau lonjakan koin instan > 50.000 koin dalam kurun waktu kurang dari 1 jam terdeteksi! Saldo koin telah dikembalikan ke 2.000 koin.',
+    en: 'Unauthorized balance alteration or instant spike > 50,000 coins in under 1 hour detected! Coin balance has been restored to 2,000 coins.',
   },
   'tamper_alert_dismiss': {
     id: 'MENGERTI',

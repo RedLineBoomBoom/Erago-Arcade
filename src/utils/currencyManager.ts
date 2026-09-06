@@ -3,6 +3,8 @@ import {
   securityLedger,
   SAFE_BASELINE_COINS,
   MAX_COIN_CEILING,
+  HOURLY_INSTANT_GAIN_LIMIT,
+  HOURLY_WINDOW_MS,
   type TamperIncident,
 } from './securityLedger';
 
@@ -15,9 +17,9 @@ export const TIME_REWARD_INTERVAL_SECONDS = 600; // 10 minutes
 export const BOSS_CLEAR_REWARD_COINS = 20;
 
 // Security Velocity & Ceiling Constraints
-const MAX_SINGLE_COIN_GRANT = 2000;
-const MAX_COINS_PER_MINUTE = 5000;
-const MAX_CONVERT_POINTS_SINGLE = 10000;
+const MAX_SINGLE_COIN_GRANT = HOURLY_INSTANT_GAIN_LIMIT;
+const MAX_COINS_PER_MINUTE = HOURLY_INSTANT_GAIN_LIMIT;
+const MAX_CONVERT_POINTS_SINGLE = 500000;
 
 export interface CurrencyState {
   coins: number;
@@ -53,9 +55,14 @@ class CurrencyManager {
   #lastSavedSeconds: number = 0;
   #lastWallClockMs: number = Date.now();
 
-  // Velocity Tracker
+  // Short-term burst velocity tracker (60-second window)
   #velocityWindowStart: number = Date.now();
   #velocityCoinsGranted: number = 0;
+
+  // 1-Hour Velocity & Instant Spike Guard
+  #hourlyWindowStart: number = Date.now();
+  #hourlyCoinsGained: number = 0;
+  #lastTrackedCoins: number = SAFE_BASELINE_COINS;
 
   // Ephemeral Ticket Registry
   #ticketRegistry: Map<string, GameTicket> = new Map();
@@ -119,12 +126,18 @@ class CurrencyManager {
     this.#writeCoins(state.coins);
     this.#accumulatedPoints = state.accumulatedPoints;
     this.#playtimeSeconds = state.playtimeSeconds;
+    this.#hourlyWindowStart = state.hourlyWindowStart;
+    this.#hourlyCoinsGained = state.hourlyCoinsGained;
+    this.#lastTrackedCoins = state.coins;
     this.#lastSavedSeconds = this.#playtimeSeconds;
     this.#lastWallClockMs = Date.now();
 
     // 2. Register security ledger tamper callback
     securityLedger.onTamperDetected((incident) => {
       this.#writeCoins(incident.revertedToCoins);
+      this.#hourlyCoinsGained = 0;
+      this.#hourlyWindowStart = Date.now();
+      this.#lastTrackedCoins = incident.revertedToCoins;
       this.#notify();
       for (const listener of this.#tamperListeners) {
         try {
@@ -143,6 +156,9 @@ class CurrencyManager {
           this.#writeCoins(updated.coins);
           this.#accumulatedPoints = updated.accumulatedPoints;
           this.#playtimeSeconds = updated.playtimeSeconds;
+          this.#hourlyWindowStart = updated.hourlyWindowStart;
+          this.#hourlyCoinsGained = updated.hourlyCoinsGained;
+          this.#lastTrackedCoins = updated.coins;
           this.#notify();
         } else if (
           e.key === 'erago_arcade_coins' ||
@@ -201,6 +217,8 @@ class CurrencyManager {
       coins: this.#readCoins(),
       accumulatedPoints: this.#accumulatedPoints,
       playtimeSeconds: this.#playtimeSeconds,
+      hourlyWindowStart: this.#hourlyWindowStart,
+      hourlyCoinsGained: this.#hourlyCoinsGained,
     });
   }
 
@@ -225,6 +243,9 @@ class CurrencyManager {
   public tripTamper(reason: string) {
     this.#writeCoins(SAFE_BASELINE_COINS);
     this.#accumulatedPoints = 0;
+    this.#hourlyCoinsGained = 0;
+    this.#hourlyWindowStart = Date.now();
+    this.#lastTrackedCoins = SAFE_BASELINE_COINS;
     this.#persist();
     this.#notify();
     securityLedger.notifyTamper(reason, SAFE_BASELINE_COINS);
@@ -286,7 +307,34 @@ class CurrencyManager {
   }
 
   /**
-   * Velocity Enforcer: Ensures coins cannot be farmed or looped rapidly
+   * Hourly Velocity Enforcer:
+   * Detects if user gains > 50,000 coins within < 1 hour (instantly or cumulatively).
+   * If detected, immediately quarantines and restores balance to 2,000 coins.
+   * Legitimate normal accumulation passes safely.
+   */
+  #evaluateHourlyCoinGain(amount: number): boolean {
+    const now = Date.now();
+
+    // If 1 hour (3,600,000 ms) has elapsed, reset window
+    if (now - this.#hourlyWindowStart >= HOURLY_WINDOW_MS) {
+      this.#hourlyWindowStart = now;
+      this.#hourlyCoinsGained = 0;
+    }
+
+    // Check instant injection > 50,000 or cumulative hourly gain > 50,000
+    if (amount > HOURLY_INSTANT_GAIN_LIMIT || (this.#hourlyCoinsGained + amount) > HOURLY_INSTANT_GAIN_LIMIT) {
+      this.tripTamper(
+        `Lonjakan koin instan terdeteksi (> ${HOURLY_INSTANT_GAIN_LIMIT.toLocaleString()} koin dalam < 1 jam). Saldo dikembalikan ke ${SAFE_BASELINE_COINS.toLocaleString()} koin.`
+      );
+      return false;
+    }
+
+    this.#hourlyCoinsGained += amount;
+    return true;
+  }
+
+  /**
+   * Velocity Enforcer: Ensures coins cannot be farmed or looped rapidly in short bursts
    */
   #checkVelocity(grantAmount: number): boolean {
     const now = Date.now();
@@ -296,11 +344,7 @@ class CurrencyManager {
     }
 
     if (this.#velocityCoinsGranted + grantAmount > MAX_COINS_PER_MINUTE) {
-      if (grantAmount > MAX_SINGLE_COIN_GRANT * 2) {
-        this.tripTamper(`Lonjakan koin tidak wajar terdeteksi (${grantAmount.toLocaleString()} koin)`);
-      } else {
-        console.warn(`[ERAGO VAULT] Kuota kecepatan koin per menit tercapai (Maks ${MAX_COINS_PER_MINUTE.toLocaleString()} koin/menit). Penambahan ditunda.`);
-      }
+      this.tripTamper(`Lonjakan koin per menit tidak wajar terdeteksi (${grantAmount.toLocaleString()} koin)`);
       return false;
     }
 
@@ -352,6 +396,18 @@ class CurrencyManager {
     return securityLedger.getVaultSecurityStatus();
   }
 
+  /** Current hourly velocity status */
+  public getHourlyVelocityStatus() {
+    const elapsed = Date.now() - this.#hourlyWindowStart;
+    const remainingMs = Math.max(0, HOURLY_WINDOW_MS - elapsed);
+    return {
+      hourlyCoinsGained: this.#hourlyCoinsGained,
+      limit: HOURLY_INSTANT_GAIN_LIMIT,
+      windowElapsedMs: elapsed,
+      windowRemainingMs: remainingMs,
+    };
+  }
+
   /** Manually trigger cryptographic verification */
   public verifyIntegrity(): boolean {
     const state = securityLedger.loadSecureVault();
@@ -375,7 +431,13 @@ class CurrencyManager {
     const roundedAmount = Math.floor(amount);
 
     if (roundedAmount > MAX_SINGLE_COIN_GRANT) {
-      this.tripTamper(`Pemberian koin tunggal (${amount}) melebihi batas wajar (${MAX_SINGLE_COIN_GRANT})`);
+      this.tripTamper(
+        `Lonjakan koin instan terdeteksi (${roundedAmount.toLocaleString()} koin melebihi batas wajar). Saldo dikembalikan ke ${SAFE_BASELINE_COINS.toLocaleString()} koin.`
+      );
+      return this.#readCoins();
+    }
+
+    if (!this.#evaluateHourlyCoinGain(roundedAmount)) {
       return this.#readCoins();
     }
 
@@ -392,6 +454,7 @@ class CurrencyManager {
     }
 
     this.#writeCoins(newTotal);
+    this.#lastTrackedCoins = newTotal;
     this.#persist();
     if (playAudio) {
       sound.playCoin();
@@ -416,6 +479,7 @@ class CurrencyManager {
     }
 
     this.#writeCoins(currentCoins - roundedAmount);
+    this.#lastTrackedCoins = currentCoins - roundedAmount;
     this.#persist();
     this.#notify();
     return true;
@@ -443,6 +507,9 @@ class CurrencyManager {
     const coinsAwarded = hundreds * COINS_PER_100_POINTS;
 
     if (coinsAwarded > 0) {
+      if (!this.#evaluateHourlyCoinGain(coinsAwarded)) {
+        return { coinsAwarded: 0, newTotalPoints: 0 };
+      }
       if (!this.#checkVelocity(coinsAwarded)) {
         return { coinsAwarded: 0, newTotalPoints: this.#accumulatedPoints };
       }
@@ -453,6 +520,7 @@ class CurrencyManager {
         return { coinsAwarded: 0, newTotalPoints: 0 };
       }
       this.#writeCoins(newTotal);
+      this.#lastTrackedCoins = newTotal;
       sound.playCoin();
     }
 
@@ -487,6 +555,16 @@ class CurrencyManager {
         this.tripTamper(`Total koin (${currentCoins.toLocaleString()}) melebihi batas wajar`);
         return;
       }
+
+      // Check sudden un-audited memory jumps (> 50,000 coins jumped without calling addCoins)
+      if (currentCoins - this.#lastTrackedCoins > HOURLY_INSTANT_GAIN_LIMIT) {
+        this.tripTamper(
+          `Lonjakan koin instan terdeteksi di memori (> ${HOURLY_INSTANT_GAIN_LIMIT.toLocaleString()} koin). Saldo dikembalikan ke ${SAFE_BASELINE_COINS.toLocaleString()} koin.`
+        );
+        return;
+      }
+      this.#lastTrackedCoins = currentCoins;
+
       // Re-randomize masks in memory every second
       this.#writeCoins(currentCoins);
 
@@ -513,18 +591,21 @@ class CurrencyManager {
         this.#playtimeSeconds = this.#playtimeSeconds % TIME_REWARD_INTERVAL_SECONDS;
         this.#lastSavedSeconds = this.#playtimeSeconds;
 
-        const coinsBefore = this.#readCoins();
-        const newCoins = coinsBefore + TIME_REWARD_COINS;
-        if (newCoins <= MAX_COIN_CEILING) {
-          this.#writeCoins(newCoins);
-          this.#persist();
-          sound.playCoin();
+        if (this.#evaluateHourlyCoinGain(TIME_REWARD_COINS)) {
+          const coinsBefore = this.#readCoins();
+          const newCoins = coinsBefore + TIME_REWARD_COINS;
+          if (newCoins <= MAX_COIN_CEILING) {
+            this.#writeCoins(newCoins);
+            this.#lastTrackedCoins = newCoins;
+            this.#persist();
+            sound.playCoin();
 
-          for (const listener of this.#timeRewardListeners) {
-            try {
-              listener(TIME_REWARD_COINS);
-            } catch (err) {
-              console.error('Time reward listener error:', err);
+            for (const listener of this.#timeRewardListeners) {
+              try {
+                listener(TIME_REWARD_COINS);
+              } catch (err) {
+                console.error('Time reward listener error:', err);
+              }
             }
           }
         }
@@ -539,6 +620,9 @@ class CurrencyManager {
     this.#writeCoins(STARTING_COINS);
     this.#accumulatedPoints = 0;
     this.#playtimeSeconds = 0;
+    this.#hourlyCoinsGained = 0;
+    this.#hourlyWindowStart = Date.now();
+    this.#lastTrackedCoins = STARTING_COINS;
     this.#persist();
     this.#notify();
   }
