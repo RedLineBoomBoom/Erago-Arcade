@@ -16,6 +16,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'pcgamer.com',
     tagline: 'The Global Authority on PC Gaming',
     description: 'Liputan terlengkap untuk berita game PC, review hardware grafis, modding komunitas, esports, dan panduan Steam.',
+    descriptionId: 'Liputan terlengkap untuk berita game PC, review hardware grafis, modding komunitas, esports, dan panduan Steam.',
+    descriptionEn: 'The global authority and comprehensive coverage for PC gaming news, hardware reviews, community modding, esports, and Steam guides.',
     category: 'PC & Tech',
     themeColor: '#E61A24',
     accentColor: '#FFE600',
@@ -35,6 +37,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'gamespot.com',
     tagline: 'Where Gamers Find Truth & Play',
     description: 'Salah satu media game tertua di dunia yang menyajikan review mendalam, berita breaking industri, panduan walkthrough, dan video show.',
+    descriptionId: 'Salah satu media game tertua di dunia yang menyajikan review mendalam, berita breaking industri, panduan walkthrough, dan video show.',
+    descriptionEn: 'One of the world\'s most enduring gaming outlets delivering in-depth reviews, breaking industry news, walkthrough guides, and video shows.',
     category: 'Multiplatform',
     themeColor: '#FF1E27',
     accentColor: '#00F5D4',
@@ -54,6 +58,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'sea.ign.com',
     tagline: 'Southeast Asia Hub for Gaming & Entertainment',
     description: 'Portal resmi IGN untuk kawasan Asia Tenggara. Menyajikan berita video game, ulasan film, serial anime, pop-culture, dan liputan event regional.',
+    descriptionId: 'Portal resmi IGN untuk kawasan Asia Tenggara. Menyajikan berita video game, ulasan film, serial anime, pop-culture, dan liputan event regional.',
+    descriptionEn: 'Official IGN portal for Southeast Asia, delivering video game news, movie reviews, anime series, pop-culture, and regional event coverage.',
     category: 'Multiplatform',
     themeColor: '#BF1313',
     accentColor: '#FFE600',
@@ -73,6 +79,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'videogameschronicle.com',
     tagline: 'The Video Game News Source for Industry Insiders',
     description: 'Publikasi jurnalisme game terpercaya dari para jurnalis veteran Inggris dengan investigasi eksklusif, bocoran industri, dan laporan korporat.',
+    descriptionId: 'Publikasi jurnalisme game terpercaya dari para jurnalis veteran Inggris dengan investigasi eksklusif, bocoran industri, dan laporan korporat.',
+    descriptionEn: 'Trusted video game journalism from veteran UK reporters delivering exclusive investigations, industry scoops, leaks, and corporate reporting.',
     category: 'Industry & Business',
     themeColor: '#0055FF',
     accentColor: '#00F5D4',
@@ -92,6 +100,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'gameinformer.com',
     tagline: 'Legendary Gaming Magazine & Digital Journalism',
     description: 'Publikasi majalah legendaris sejak era 16-bit dengan liputan eksklusif cover story, wawancara developer legendaris, dan investigasi mendalam.',
+    descriptionId: 'Publikasi majalah legendaris sejak era 16-bit dengan liputan eksklusif cover story, wawancara developer legendaris, dan investigasi mendalam.',
+    descriptionEn: 'Legendary gaming magazine publishing since the 16-bit era featuring world-exclusive cover stories, developer interviews, and deep investigative journalism.',
     category: 'Industry & Business',
     themeColor: '#0066CC',
     accentColor: '#FF2A85',
@@ -111,6 +121,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'thegamer.com',
     tagline: 'Guides, Features, and Opinions for True Gamers',
     description: 'Menghadirkan jutaan panduan game yang komprehensif, daftar peringkat terbaik, opini kritis, dan liputan budaya fandom kontemporer.',
+    descriptionId: 'Menghadirkan jutaan panduan game yang komprehensif, daftar peringkat terbaik, opini kritis, dan liputan budaya fandom kontemporer.',
+    descriptionEn: 'Delivering comprehensive gaming walkthroughs, definitive franchise rankings, critical opinion essays, and contemporary fandom culture coverage.',
     category: 'Culture & Reviews',
     themeColor: '#107C41',
     accentColor: '#00F5D4',
@@ -130,6 +142,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'polygon.com',
     tagline: 'Where Gaming Meets Modern Culture',
     description: 'Jurnalisme budaya pop modern Vox Media yang mengulas game, film, komik, sains fiksi, dan pengaruh teknologi dalam seni hiburan interaktif.',
+    descriptionId: 'Jurnalisme budaya pop modern Vox Media yang mengulas game, film, komik, sains fiksi, dan pengaruh teknologi dalam seni hiburan interaktif.',
+    descriptionEn: 'Vox Media\'s modern culture journalism exploring video games, movies, comics, sci-fi, and the cultural influence of technology on interactive entertainment.',
     category: 'Culture & Reviews',
     themeColor: '#DF1995',
     accentColor: '#FFE600',
@@ -149,6 +163,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'gamerant.com',
     tagline: 'By Gamers, For Gamers',
     description: 'Sumber harian untuk berita game terhangat, teori penggemar, panduan rahasia game open-world, dan kabar konsol generasi terkini.',
+    descriptionId: 'Sumber harian untuk berita game terhangat, teori penggemar, panduan rahasia game open-world, dan kabar konsol generasi terkini.',
+    descriptionEn: 'Daily source for trending gaming news, fan theories, open-world secret guides, character builds, and latest console updates.',
     category: 'Culture & Reviews',
     themeColor: '#FF6B00',
     accentColor: '#FFE600',
@@ -168,6 +184,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'kotaku.com',
     tagline: 'Gaming Reviews, News, Tips and More',
     description: 'Publikasi ikonik yang terkenal dengan gaya penulisan unik, kabar komunitas gaming, liputan cosplay, serta investigasi budaya kerja game dev.',
+    descriptionId: 'Publikasi ikonik yang terkenal dengan gaya penulisan unik, kabar komunitas gaming, liputan cosplay, serta investigasi budaya kerja game dev.',
+    descriptionEn: 'Iconic publication known for distinct commentary, gaming community culture, cosplay highlights, and investigative reporting on game studio workplaces.',
     category: 'Multiplatform',
     themeColor: '#FFE600',
     accentColor: '#000000',
@@ -187,6 +205,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'gamesradar.com',
     tagline: 'Games, TV, Film & Everything You Love',
     description: 'Portal media Future Publishing yang merangkum ulasan game, bocoran film bioskop, komik, panduan hardware periferal, dan tips gaming.',
+    descriptionId: 'Portal media Future Publishing yang merangkum ulasan game, bocoran film bioskop, komik, panduan hardware periferal, dan tips gaming.',
+    descriptionEn: 'Future Publishing entertainment portal featuring video game reviews, movie scoops, comics, peripheral buying advice, and secret guides.',
     category: 'Multiplatform',
     themeColor: '#0090FF',
     accentColor: '#FFE600',
@@ -206,6 +226,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'theverge.com',
     tagline: 'At the Intersection of Technology, Science, and Games',
     description: 'Divisi game The Verge yang fokus pada teknologi mutakhir, cloud gaming, handheld consoles, industri AI, dan masa depan perangkat keras grafis.',
+    descriptionId: 'Divisi game The Verge yang fokus pada teknologi mutakhir, cloud gaming, handheld consoles, industri AI, dan masa depan perangkat keras grafis.',
+    descriptionEn: 'The Verge\'s gaming desk covering cutting-edge technology, handheld PCs, cloud gaming platforms, AI innovations, and the future of graphics hardware.',
     category: 'PC & Tech',
     themeColor: '#E00051',
     accentColor: '#00F5D4',
@@ -225,6 +247,8 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     domain: 'bloomberg.com',
     tagline: 'Global Business, Financial Intel & Gaming Economics',
     description: 'Liputan finansial dan investigasi bisnis game tingkat dunia oleh jurnalis ternama seperti Jason Schreier. Meliput merger korporasi, IPO, dan ekonomi industri.',
+    descriptionId: 'Liputan finansial dan investigasi bisnis game tingkat dunia oleh jurnalis ternama seperti Jason Schreier. Meliput merger korporasi, IPO, dan ekonomi industri.',
+    descriptionEn: 'World-class financial journalism and video game business investigations led by Jason Schreier, covering studio acquisitions, corporate mergers, and industry economics.',
     category: 'Industry & Business',
     themeColor: '#001799',
     accentColor: '#FFE600',
@@ -238,3 +262,17 @@ export const NEWS_OUTLETS_DATABASE: NewsOutlet[] = [
     ],
   },
 ];
+
+/**
+ * Helper to get localized outlet description based on language
+ */
+export const getOutletDescription = (
+  outlet: NewsOutlet | null | undefined,
+  lang: 'id' | 'en'
+): string => {
+  if (!outlet) return '';
+  if (lang === 'en') {
+    return outlet.descriptionEn || outlet.description;
+  }
+  return outlet.descriptionId || outlet.description;
+};

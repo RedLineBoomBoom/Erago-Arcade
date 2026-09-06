@@ -12,7 +12,7 @@ import {
   Flame,
   CheckCircle2
 } from 'lucide-react';
-import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
+import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES, getOutletDescription } from '../data/newsOutletsData';
 import { liveNewsService, sortArticlesNewestFirst } from '../utils/liveNewsService';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
@@ -450,7 +450,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
               </span>
             </div>
             <p className="font-mono text-xs text-zinc-300">
-              "{currentOutletMeta.tagline}" — {currentOutletMeta.description}
+              "{currentOutletMeta.tagline}" — {getOutletDescription(currentOutletMeta, language)}
             </p>
           </div>
 
@@ -658,7 +658,7 @@ export const GamingNewsSection: React.FC<GamingNewsSectionProps> = ({ onBackToAr
 
                       {/* Description */}
                       <p className="font-mono text-xs text-zinc-300 leading-relaxed">
-                        {outlet.description}
+                        {getOutletDescription(outlet, language)}
                       </p>
 
                       {/* Focus Topic Tags */}

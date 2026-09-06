@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { liveNewsService, sortArticlesNewestFirst } from '../utils/liveNewsService';
-import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES } from '../data/newsOutletsData';
+import { NEWS_OUTLETS_DATABASE, NEWS_CATEGORIES, getOutletDescription } from '../data/newsOutletsData';
 import type { NewsCategory } from '../types/news';
 import type { NewsArticle } from '../types/newsFeed';
 import { ArticleDetailModal } from './ArticleDetailModal';
@@ -315,7 +315,7 @@ export const GamingNewsModal: React.FC<GamingNewsModalProps> = ({
                   </span>
                 </div>
                 <p className="font-mono text-xs text-zinc-300">
-                  {currentOutletMeta.tagline} — {currentOutletMeta.description}
+                  {currentOutletMeta.tagline} — {getOutletDescription(currentOutletMeta, language)}
                 </p>
               </div>
 

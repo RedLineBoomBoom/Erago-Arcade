@@ -12,6 +12,8 @@ export interface NewsOutlet {
   domain: string;
   tagline: string;
   description: string;
+  descriptionId?: string;
+  descriptionEn?: string;
   category: 'Multiplatform' | 'PC & Tech' | 'Industry & Business' | 'Culture & Reviews';
   themeColor: string;
   accentColor: string;
