@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { 
   Tag, 
   ExternalLink, 
@@ -7,6 +7,8 @@ import {
   Maximize2, 
   ChevronUp, 
   ChevronDown, 
+  ChevronLeft,
+  ChevronRight,
   RefreshCw, 
   DollarSign, 
   Sparkles,
@@ -31,11 +33,50 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
   const [currencyMode, setCurrencyMode] = useState<CurrencyMode>(language === 'id' ? 'IDR' : 'USD');
   const [discountTier, setDiscountTier] = useState<DiscountTierFilter>('all');
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
 
   // Sync currency preference when website language switches
   useEffect(() => {
     setCurrencyMode(language === 'id' ? 'IDR' : 'USD');
   }, [language]);
+
+  // Track mobile carousel scroll position for indicator dots and counter
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    const scrollLeft = container.scrollLeft;
+    const firstCard = container.firstElementChild as HTMLElement | null;
+    const cardWidth = firstCard ? firstCard.offsetWidth + 12 : 270;
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveMobileIndex(Math.max(0, Math.min(index, displayedDeals.length - 1)));
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (!carouselRef.current) return;
+    sound.playClick();
+    const container = carouselRef.current;
+    const targetCard = container.children[index] as HTMLElement | null;
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  };
+
+  const scrollCarousel = (direction: 'prev' | 'next') => {
+    sound.playClick();
+    const targetIndex = direction === 'prev' 
+      ? Math.max(0, activeMobileIndex - 1)
+      : Math.min(displayedDeals.length - 1, activeMobileIndex + 1);
+    scrollToIndex(targetIndex);
+  };
+
+  // Reset mobile carousel scroll when discount tier changes
+  useEffect(() => {
+    setActiveMobileIndex(0);
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  }, [discountTier]);
 
   // Subscribe to live sales service
   useEffect(() => {
@@ -228,16 +269,16 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
         {/* ======================================================== */}
         {isExpanded && (
           <div className="space-y-4 animate-fade-in">
-            {/* Quick Filter Pill Buttons */}
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="font-['Press_Start_2P'] text-[7px] text-[#FFE600] mr-1 hidden sm:inline">
+            {/* Quick Filter Pill Buttons (Single scrollable row on mobile) */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0 flex-nowrap sm:flex-wrap">
+                <span className="font-['Press_Start_2P'] text-[7px] text-[#FFE600] mr-1 hidden sm:inline shrink-0">
                   FILTER:
                 </span>
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('all'); }}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer shrink-0 ${
                     discountTier === 'all'
                       ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
@@ -249,7 +290,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('75plus'); }}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer shrink-0 ${
                     discountTier === '75plus'
                       ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
@@ -261,7 +302,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('50plus'); }}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer shrink-0 ${
                     discountTier === '50plus'
                       ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
@@ -273,7 +314,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('under5'); }}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer shrink-0 ${
                     discountTier === 'under5'
                       ? 'bg-[#00F5D4] text-black shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
@@ -285,7 +326,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
 
                 <button
                   onClick={() => { sound.playClick(); setDiscountTier('topRated'); }}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer ${
+                  className={`flex items-center gap-1 px-2.5 py-1 rounded border-2 border-black font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] cursor-pointer shrink-0 ${
                     discountTier === 'topRated'
                       ? 'bg-[#FF2A85] text-white shadow-[2px_2px_0px_#000] -translate-y-0.5'
                       : 'bg-[#1C2030] text-zinc-300 hover:bg-[#FFE600] hover:text-black'
@@ -299,15 +340,52 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               {/* Browse on SteamDB Link */}
               <button
                 onClick={(e) => handleOpenLink(e, 'https://steamdb.info/sales/')}
-                className="hidden md:flex items-center gap-1 font-['Press_Start_2P'] text-[7px] text-[#00F5D4] hover:text-[#FFE600] transition-colors cursor-pointer"
+                className="hidden md:flex items-center gap-1 font-['Press_Start_2P'] text-[7px] text-[#00F5D4] hover:text-[#FFE600] transition-colors cursor-pointer shrink-0"
               >
                 <span>steamdb.info/sales</span>
                 <ExternalLink className="w-2.5 h-2.5" />
               </button>
             </div>
 
-            {/* Showcase Deals Grid (6 cards) with Key on Tier for Instant Visual Animation */}
-            <div key={discountTier} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 animate-fade-in">
+            {/* Mobile swipe header hint & touch navigation controls (< sm) */}
+            <div className="flex sm:hidden items-center justify-between px-0.5 pt-0.5 text-zinc-400">
+              <div className="flex items-center gap-1.5 font-mono text-[8px]">
+                <span className="flex h-2 w-2 rounded-full bg-[#00F5D4] animate-pulse" />
+                <span className="font-['Press_Start_2P'] text-[6.5px] text-[#FFE600]">
+                  {language === 'id' ? 'GESER HIGHLIGHT' : 'SWIPE HIGHLIGHTS'}
+                </span>
+                <span className="bg-black/60 px-1.5 py-0.5 rounded border border-white/10 text-[7px] text-zinc-300 font-mono font-bold">
+                  {activeMobileIndex + 1}/{displayedDeals.length}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => scrollCarousel('prev')}
+                  disabled={activeMobileIndex === 0}
+                  aria-label="Previous deal"
+                  className="p-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-40 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000]"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  onClick={() => scrollCarousel('next')}
+                  disabled={activeMobileIndex === displayedDeals.length - 1}
+                  aria-label="Next deal"
+                  className="p-1 rounded-md border-2 border-black bg-[#1C2030] text-zinc-300 disabled:opacity-40 disabled:pointer-events-none hover:bg-[#FFE600] hover:text-black active:scale-95 transition-all shadow-[1px_1px_0px_#000]"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Showcase Deals: Horizontal Swipeable Carousel on Mobile (< sm), Responsive Grid on sm+ */}
+            <div
+              ref={carouselRef}
+              key={discountTier}
+              onScroll={handleCarouselScroll}
+              className="flex sm:grid overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 pb-2 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0 scroll-smooth animate-fade-in"
+            >
               {displayedDeals.map((item) => {
                 const isSuperDeal = item.discountPercent >= 85;
                 const hasHighRating = (item.steamRatingPercent || 0) >= 90;
@@ -321,7 +399,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                         onOpenSalesModal();
                       }
                     }}
-                    className="group relative flex flex-col justify-between rounded-xl border-2 border-black bg-[#0C0E17] hover:bg-[#161926] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#FFE600] hover:-translate-y-0.5 cursor-pointer"
+                    className="group relative flex flex-col justify-between rounded-xl border-2 border-black bg-[#0C0E17] hover:bg-[#161926] transition-all duration-200 overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#FFE600] hover:-translate-y-0.5 cursor-pointer w-[76vw] max-w-[270px] shrink-0 snap-center sm:w-auto sm:shrink sm:snap-none"
                   >
                     {/* Thumbnail Artwork Banner */}
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/80 border-b-2 border-black">
@@ -413,14 +491,30 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               })}
             </div>
 
+            {/* Mobile Carousel Pagination Dots */}
+            <div className="flex sm:hidden items-center justify-center gap-1.5 pt-0.5 pb-1">
+              {displayedDeals.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  onClick={() => scrollToIndex(dotIdx)}
+                  aria-label={`Lihat game ${dotIdx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                    activeMobileIndex === dotIdx
+                      ? 'w-6 bg-[#FFE600] shadow-[0_0_6px_#FFE600]'
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+
             {/* Bottom Strip Bar: CTA to Open Full Sales Modal */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-white/10 text-xs font-mono text-zinc-400">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-ping" />
+              <div className="flex items-center gap-2 text-center sm:text-left text-[11px] sm:text-xs">
+                <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-ping shrink-0" />
                 <span>
                   {language === 'id'
-                    ? `Menampilkan diskon pilihan Steam & SteamDB (${sales.length}+ game aktif)`
-                    : `Showing featured Steam & SteamDB discounts (${sales.length}+ active deals)`}
+                    ? `Menampilkan highlight pilihan Steam & SteamDB (${sales.length}+ game aktif)`
+                    : `Showing featured Steam & SteamDB highlights (${sales.length}+ active deals)`}
                 </span>
               </div>
 
@@ -430,7 +524,7 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
                     sound.playClick();
                     onOpenSalesModal();
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl border-2 border-black bg-[#FFE600] hover:bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] sm:text-[8px] font-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0px_#000] transition-all cursor-pointer"
                 >
                   <Sparkles className="w-3 h-3" />
                   <span>{language === 'id' ? 'BUKA SEMUA DISKON DI POPUP LENGKAP' : 'OPEN FULL SALES POPUP RADAR'}</span>
