@@ -135,7 +135,7 @@ export const STEAM_DB_MAP: Record<string, { appId: number; name: string }> = {
   't-196': { appId: 2138330, name: 'Cyberpunk 2077: Phantom Liberty' },
   't-197': { appId: 2379780, name: 'Balatro' },
   't-198': { appId: 231200, name: 'Kentucky Route Zero' },
-  't-199': { appId: 1672750, name: 'DELTARUNE' },
+  't-199': { appId: 1671210, name: 'DELTARUNE' },
 };
 
 /**
