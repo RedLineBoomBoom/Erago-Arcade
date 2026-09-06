@@ -4,7 +4,6 @@ import {
   ExternalLink, 
   Flame, 
   Star, 
-  Maximize2, 
   ChevronUp, 
   ChevronDown, 
   ChevronLeft,
@@ -222,23 +221,6 @@ export const SteamSalesStrip: React.FC<SteamSalesStripProps> = ({ onOpenSalesMod
               <RefreshCw className={`w-3 h-3 ${isRefreshing ? 'animate-spin text-[#FFE600]' : ''}`} />
               <span className="hidden md:inline">SYNC</span>
             </button>
-
-            {/* Open Full Sales Popup Modal */}
-            {onOpenSalesModal && (
-              <button
-                onClick={() => {
-                  sound.playClick();
-                  onOpenSalesModal();
-                }}
-                data-cursor="SALES"
-                title={language === 'id' ? 'Buka Popup Lengkap Radar Diskon' : 'Open Complete Sales Radar Modal'}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border-2 border-black bg-[#00F5D4] hover:bg-white text-black font-['Press_Start_2P'] text-[7px] font-bold shadow-[2px_2px_0px_#000] transition-all cursor-pointer"
-              >
-                <Maximize2 className="w-3 h-3" />
-                <span className="hidden sm:inline">{language === 'id' ? 'BUKA POPUP' : 'OPEN POPUP'}</span>
-                <span className="sm:hidden">{language === 'id' ? 'POPUP' : 'POPUP'}</span>
-              </button>
-            )}
 
             {/* Expand / Collapse Button */}
             <button
