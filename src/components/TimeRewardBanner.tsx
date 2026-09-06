@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { X, Sparkles, Clock, Coins } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { triggerArcadeConfetti } from '../utils/arcadeConfetti';
+import { useLanguage } from '../utils/i18n';
 
 interface TimeRewardBannerProps {
   coinsAwarded: number | null;
@@ -9,6 +10,7 @@ interface TimeRewardBannerProps {
 }
 
 export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded, onDismiss }) => {
+  const { language, t } = useLanguage();
   const onDismissRef = useRef(onDismiss);
   onDismissRef.current = onDismiss;
 
@@ -50,19 +52,19 @@ export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded
 
             <div className="space-y-1">
               <div className="flex items-center gap-1.5">
-                <span className="px-1.5 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] font-bold">
-                  TIME BONUS
+                <span className="px-1.5 py-0.5 rounded-xs bg-[#00F5D4] text-black font-['Press_Start_2P'] text-[7px] font-bold uppercase">
+                  {t('time_reward_badge')}
                 </span>
                 <Clock className="w-3.5 h-3.5 text-[#00F5D4]" />
               </div>
 
               <h4 className="font-['Syne'] font-black text-base text-[#FFE600] flex items-center gap-1">
-                <span>+{coinsAwarded} COINS DITERIMA!</span>
+                <span>{t('time_reward_title', { coins: coinsAwarded })}</span>
                 <Sparkles className="w-4 h-4 text-[#FFE600] animate-spin" />
               </h4>
 
               <p className="font-mono text-[11px] text-zinc-300 leading-tight">
-                Terima kasih telah menjelajahi Erago Arcade selama 10 menit! Hadiah loyalitas koin telah ditambahkan.
+                {t('time_reward_desc')}
               </p>
             </div>
           </div>
@@ -73,6 +75,7 @@ export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded
               isTriggeredRef.current = false;
               onDismiss();
             }}
+            title={language === 'id' ? 'Tutup Notifikasi' : 'Dismiss Notification'}
             className="flex h-6 w-6 items-center justify-center rounded border border-black bg-white/10 hover:bg-[#FF2A85] text-white transition-colors cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />

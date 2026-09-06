@@ -48,7 +48,7 @@ export const VaultTamperBanner: React.FC<VaultTamperBannerProps> = ({ incident, 
 
           <div className="pt-1 flex items-center justify-between">
             <span className="font-mono text-[10px] text-zinc-400">
-              Saldo diamankan ke: <strong className="text-[#FFE600]">{incident.revertedToCoins.toLocaleString()} Koin</strong>
+              {t('tamper_alert_reverted', { coins: incident.revertedToCoins.toLocaleString() })}
             </span>
 
             <button

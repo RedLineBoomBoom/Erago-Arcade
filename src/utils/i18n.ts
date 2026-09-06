@@ -722,6 +722,24 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'MENGERTI',
     en: 'ACKNOWLEDGE',
   },
+  'tamper_alert_reverted': {
+    id: 'Saldo diamankan ke: {coins} Koin',
+    en: 'Balance restored to: {coins} Coins',
+  },
+
+  // Passive Time Reward Toast Banner
+  'time_reward_badge': {
+    id: 'BONUS WAKTU',
+    en: 'TIME BONUS',
+  },
+  'time_reward_title': {
+    id: '+{coins} KOIN DITERIMA!',
+    en: '+{coins} COINS RECEIVED!',
+  },
+  'time_reward_desc': {
+    id: 'Terima kasih telah menjelajahi Erago Arcade selama 10 menit! Hadiah loyalitas koin telah ditambahkan.',
+    en: 'Thank you for exploring Erago Arcade for 10 minutes! Loyalty coin reward has been added.',
+  },
 
   // Steam Sales & SteamDB Integration Modal
   'sales_modal_title': {

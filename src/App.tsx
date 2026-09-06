@@ -284,8 +284,9 @@ export function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     if (typeof window !== 'undefined') {
-      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void }).__openTerminal = () => setIsTerminalOpen(true);
-      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void }).__dismissBoot = () => setIsBooting(false);
+      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void; __triggerTimeReward?: (coins?: number) => void }).__openTerminal = () => setIsTerminalOpen(true);
+      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void; __triggerTimeReward?: (coins?: number) => void }).__dismissBoot = () => setIsBooting(false);
+      (window as unknown as { __openTerminal?: () => void; __dismissBoot?: () => void; __triggerTimeReward?: (coins?: number) => void }).__triggerTimeReward = (c = 100) => setTimeRewardCoins(c);
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
