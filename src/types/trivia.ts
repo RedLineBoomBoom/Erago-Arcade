@@ -40,5 +40,5 @@ export interface TriviaItem {
   quizExplanation: string;
 }
 
-export type ViewMode = 'arcade' | 'lookbook' | 'quiz' | 'cheats' | 'news' | 'sales';
+export type ViewMode = 'home' | 'arcade' | 'lookbook' | 'quiz' | 'cheats' | 'news' | 'sales';
 

@@ -84,6 +84,10 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
     id: 'VAULT TRIVIA VIDEO GAME // SEJAK 1980–2024',
     en: 'VIDEO GAME TRIVIA VAULT // EST. 1980–2024',
   },
+  'tab_home': {
+    id: 'MENU',
+    en: 'MENU',
+  },
   'tab_roulette': {
     id: 'PUTAR',
     en: 'ROULETTE',
@@ -103,6 +107,46 @@ export const DICTIONARY: Record<string, { id: string; en: string }> = {
   'tab_news': {
     id: 'BERITA',
     en: 'NEWS',
+  },
+  'menu_home_badge': {
+    id: 'SISTEM SIAP // SILAKAN PILIH MODE',
+    en: 'SYSTEM READY // SELECT GAME MODE',
+  },
+  'menu_home_title': {
+    id: 'MENU UTAMA ERAGO ARCADE',
+    en: 'ERAGO ARCADE MAIN MENU',
+  },
+  'menu_home_subtitle': {
+    id: 'Semua fitur & section arcade siap dimainkan. Pilih mode dengan tombol panah [↑/↓] atau klik mouse.',
+    en: 'All arcade sections & features ready to play. Select a mode with [↑/↓] arrow keys or mouse click.',
+  },
+  'menu_preview_badge': {
+    id: 'PRATINJAU MODE // MONITOR HUD',
+    en: 'MODE PREVIEW // HUD MONITOR',
+  },
+  'menu_insert_coin_blink': {
+    id: 'TEKAN MULAI ATAU ENTER',
+    en: 'PRESS START OR ENTER',
+  },
+  'menu_launch_mode': {
+    id: 'MULAI PETUALANGAN',
+    en: 'LAUNCH MISSION',
+  },
+  'menu_back_to_menu': {
+    id: 'MENU UTAMA',
+    en: 'MAIN MENU',
+  },
+  'menu_hotkey_guide': {
+    id: '[↑/↓] NAVIGASI • [ENTER] PILIH • [ESC] MENU • [C] CRT SCANLINES • [M] MUTE AUDIO',
+    en: '[↑/↓] NAVIGATE • [ENTER] SELECT • [ESC] MENU • [C] CRT SCANLINES • [M] MUTE AUDIO',
+  },
+  'menu_category_core': {
+    id: 'MODE UTAMA // CORE STAGES',
+    en: 'CORE MODES // MAIN STAGES',
+  },
+  'menu_category_special': {
+    id: 'BONUS & FITUR SPESIAL // CABINET TOYS',
+    en: 'BONUS & SPECIAL FEATURES // CABINET TOYS',
   },
 
   // Arcade Extras Hub

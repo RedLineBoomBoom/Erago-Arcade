@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper, Tag } from 'lucide-react';
+import { Volume2, VolumeX, Tv, Radio, Sparkles, BookOpen, Shuffle, Terminal, ChevronDown, Newspaper, Tag, Gamepad2 } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
 
@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div 
           onClick={() => {
             sound.playClick();
-            onViewChange('arcade');
+            onViewChange('home');
           }}
           className="flex items-center gap-1 sm:gap-2.5 cursor-pointer group select-none py-0.5 shrink-0 z-10"
           data-cursor="HOME"
@@ -143,10 +143,26 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 sound.playClick();
+                onViewChange('home');
+              }}
+              data-cursor="MENU"
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
+                currentView === 'home'
+                  ? 'bg-[#FFE600] text-black font-bold shadow-inner'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Gamepad2 className="h-2.5 w-2.5 xl:h-3 xl:w-3" />
+              <span className="hidden lg:inline">{t('tab_home')}</span>
+            </button>
+
+            <button
+              onClick={() => {
+                sound.playClick();
                 onViewChange('arcade');
               }}
               data-cursor="SPIN"
-              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all ${
+              className={`flex items-center gap-1 xl:gap-1.5 rounded-xs px-1 xl:px-1.5 2xl:px-2 py-0.5 sm:py-1 font-['Press_Start_2P'] text-[6.5px] 2xl:text-[7.5px] transition-all cursor-pointer ${
                 currentView === 'arcade'
                   ? 'bg-[#FF2A85] text-black font-bold shadow-inner'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
@@ -616,9 +632,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => {
               sound.playClick();
+              onViewChange('home');
+            }}
+            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all cursor-pointer ${
+              currentView === 'home'
+                ? 'bg-[#FFE600] text-black font-bold shadow-inner'
+                : 'bg-[#14161F] text-zinc-400 hover:text-white'
+            }`}
+          >
+            <Gamepad2 className="h-2.5 w-2.5" />
+            <span>{t('tab_home')}</span>
+          </button>
+
+          <button
+            onClick={() => {
+              sound.playClick();
               onViewChange('arcade');
             }}
-            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all ${
+            className={`flex items-center gap-1 rounded-sm border-2 border-black px-2 py-1 font-['Press_Start_2P'] text-[7px] transition-all cursor-pointer ${
               currentView === 'arcade'
                 ? 'bg-[#FF2A85] text-black font-bold shadow-inner'
                 : 'bg-[#14161F] text-zinc-400 hover:text-white'

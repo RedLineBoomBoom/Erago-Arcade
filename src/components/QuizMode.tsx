@@ -10,9 +10,10 @@ import { useLanguage, getTranslatedTrivia } from '../utils/i18n';
 interface QuizModeProps {
   triviaList: TriviaItem[];
   onBackToArcade: () => void;
+  onBackToMenu?: () => void;
 }
 
-export const QuizMode: React.FC<QuizModeProps> = ({ triviaList, onBackToArcade }) => {
+export const QuizMode: React.FC<QuizModeProps> = ({ triviaList, onBackToArcade, onBackToMenu }) => {
   const { language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -187,18 +188,28 @@ export const QuizMode: React.FC<QuizModeProps> = ({ triviaList, onBackToArcade }
         )}
 
         {/* Navigation buttons */}
-        <div className="flex items-center justify-between border-t-2 border-black pt-4">
-          <button
-            onClick={onBackToArcade}
-            className="font-['Press_Start_2P'] text-[8px] text-zinc-400 hover:text-white"
-          >
-            {language === 'id' ? '← KEMBALI KE PUTARAN' : '← BACK TO ROULETTE'}
-          </button>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t-2 border-black pt-4">
+          <div className="flex items-center gap-3">
+            {onBackToMenu && (
+              <button
+                onClick={onBackToMenu}
+                className="font-['Press_Start_2P'] text-[8px] text-[#FFE600] hover:underline cursor-pointer flex items-center gap-1"
+              >
+                <span>← {language === 'id' ? 'MENU UTAMA' : 'MAIN MENU'}</span>
+              </button>
+            )}
+            <button
+              onClick={onBackToArcade}
+              className="font-['Press_Start_2P'] text-[8px] text-zinc-400 hover:text-white cursor-pointer"
+            >
+              {language === 'id' ? 'PUTARAN TRIVIA →' : 'ROULETTE →'}
+            </button>
+          </div>
 
           {isAnswered && (
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 rounded-sm border-2 border-black bg-[#FFE600] px-5 py-2.5 font-['Press_Start_2P'] text-[9px] font-bold text-black brutal-shadow-sm hover:bg-[#ffea33] hover:-translate-y-0.5 transition-transform"
+              className="flex items-center gap-2 rounded-sm border-2 border-black bg-[#FFE600] px-5 py-2.5 font-['Press_Start_2P'] text-[9px] font-bold text-black brutal-shadow-sm hover:bg-[#ffea33] hover:-translate-y-0.5 transition-transform cursor-pointer"
             >
               <span>{language === 'id' ? 'PERTANYAAN BERIKUTNYA' : 'NEXT QUESTION'}</span>
               <span>→</span>

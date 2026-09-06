@@ -37,6 +37,7 @@ import { SteamSalesPage } from './components/SteamSalesPage';
 import { SteamSalesStrip } from './components/SteamSalesStrip';
 import { NewsStrip } from './components/NewsStrip';
 import { ConsoleBootLoader } from './components/ConsoleBootLoader';
+import { GameMenuHome } from './components/GameMenuHome';
 import { currencyManager, ROLL_COST } from './utils/currencyManager';
 import type { TamperIncident } from './utils/securityLedger';
 import { getActiveTheme, setActiveTheme } from './utils/themeManager';
@@ -63,7 +64,24 @@ export function App() {
   const [isRolling, setIsRolling] = useState(false);
   const [selectedEra, setSelectedEra] = useState<GameEra>('All');
   const [selectedTag, setSelectedTag] = useState<TriviaTag>('All');
-  const [currentView, setCurrentView] = useState<ViewMode>('arcade');
+  const [currentView, setCurrentView] = useState<ViewMode>(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('id')) return 'arcade';
+      const view = urlParams.get('view');
+      if (
+        view === 'arcade' ||
+        view === 'lookbook' ||
+        view === 'quiz' ||
+        view === 'cheats' ||
+        view === 'news' ||
+        view === 'sales'
+      ) {
+        return view as ViewMode;
+      }
+    }
+    return 'home';
+  });
   const [crtEnabled, setCrtEnabled] = useState(false);
   const [isBooting, setIsBooting] = useState(true);
 
@@ -193,6 +211,15 @@ export function App() {
         return;
       }
 
+      // Escape returns to main menu if not in home view and no modal open
+      if (e.key === 'Escape') {
+        if (!isAnyModalOpen && currentView !== 'home') {
+          sound.playClick();
+          setCurrentView('home');
+          return;
+        }
+      }
+
       if (isAnyModalOpen) return;
 
       if (e.key === 's' || e.key === 'S') {
@@ -278,6 +305,25 @@ export function App() {
 
       {/* Dynamic Content Views */}
       <main className="flex-1 py-4 sm:py-6 w-full max-w-full overflow-x-hidden">
+        {currentView === 'home' && (
+          <GameMenuHome
+            onSelectView={setCurrentView}
+            onOpenBonusStage={() => setIsBonusStageOpen(true)}
+            onOpenBossBattle={() => setIsBossBattleOpen(true)}
+            onOpenCardBinder={() => setIsCardBinderOpen(true)}
+            onOpenTrophies={() => setIsTrophyModalOpen(true)}
+            onOpenJukebox={() => setIsJukeboxOpen(true)}
+            onOpenTerminal={() => setIsTerminalOpen(true)}
+            onOpenBankModal={() => setIsBankModalOpen(true)}
+            onOpenSoundboard={() => setIsSoundboardOpen(true)}
+            coins={coins}
+            unlockedCount={unlockedIds.size}
+            totalCount={TRIVIA_DATABASE.length}
+            crtEnabled={crtEnabled}
+            onToggleCrt={() => setCrtEnabled(!crtEnabled)}
+          />
+        )}
+
         {currentView === 'arcade' && (
           <div className="space-y-4 w-full max-w-full">
             {/* Slot Reel Bar */}
@@ -362,6 +408,7 @@ export function App() {
           <QuizMode
             triviaList={TRIVIA_DATABASE}
             onBackToArcade={() => setCurrentView('arcade')}
+            onBackToMenu={() => setCurrentView('home')}
           />
         )}
 
