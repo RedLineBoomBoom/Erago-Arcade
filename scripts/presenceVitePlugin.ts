@@ -125,15 +125,22 @@ function parseJsonBody(req: http.IncomingMessage): Promise<Record<string, unknow
 }
 
 export function presencePlugin(): Plugin {
-  // Prune dead sessions and broadcast every 1.2s
-  setInterval(() => {
-    const changed = pruneInactiveSessions();
-    if (changed) {
-      broadcastToClients();
-    }
-  }, 1200);
+  let pruneInterval: NodeJS.Timeout | null = null;
+
+  const startPruning = () => {
+    if (pruneInterval) return;
+    pruneInterval = setInterval(() => {
+      const changed = pruneInactiveSessions();
+      if (changed) {
+        broadcastToClients();
+      }
+    }, 1200);
+    pruneInterval.unref?.();
+  };
 
   const setupMiddleware = (server: { middlewares: { use: (path: string, handler: (req: http.IncomingMessage, res: http.ServerResponse, next: () => void) => void) => void } }) => {
+    startPruning();
+
     // 1. SSE Real-time Stream
     server.middlewares.use('/api/presence/stream', (req, res) => {
       res.writeHead(200, {
@@ -158,6 +165,7 @@ export function presencePlugin(): Plugin {
           sseClients.delete(res);
         }
       }, 15000);
+      pingTimer.unref?.();
 
       req.on('close', () => {
         clearInterval(pingTimer);
