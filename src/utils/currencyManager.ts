@@ -54,7 +54,7 @@ class CurrencyManager {
   #trackerIntervalId: number | null = null;
   #lastSavedSeconds: number = 0;
   #lastWallClockMs: number = Date.now();
-  #lastTimeRewardGrantedAtMs: number = Date.now();
+  #lastTimeRewardGrantedAtMs: number = 0;
 
   // Short-term burst velocity tracker (60-second window)
   #velocityWindowStart: number = Date.now();
@@ -129,6 +129,7 @@ class CurrencyManager {
     this.#playtimeSeconds = state.playtimeSeconds;
     this.#hourlyWindowStart = state.hourlyWindowStart;
     this.#hourlyCoinsGained = state.hourlyCoinsGained;
+    this.#lastTimeRewardGrantedAtMs = state.lastRewardTimestamp ?? 0;
     this.#lastTrackedCoins = state.coins;
     this.#lastSavedSeconds = this.#playtimeSeconds;
     this.#lastWallClockMs = Date.now();
@@ -159,6 +160,9 @@ class CurrencyManager {
           this.#playtimeSeconds = updated.playtimeSeconds;
           this.#hourlyWindowStart = updated.hourlyWindowStart;
           this.#hourlyCoinsGained = updated.hourlyCoinsGained;
+          if (typeof updated.lastRewardTimestamp === 'number') {
+            this.#lastTimeRewardGrantedAtMs = updated.lastRewardTimestamp;
+          }
           this.#lastTrackedCoins = updated.coins;
           this.#notify();
         } else if (
@@ -220,6 +224,7 @@ class CurrencyManager {
       playtimeSeconds: this.#playtimeSeconds,
       hourlyWindowStart: this.#hourlyWindowStart,
       hourlyCoinsGained: this.#hourlyCoinsGained,
+      lastRewardTimestamp: this.#lastTimeRewardGrantedAtMs,
     });
   }
 
@@ -543,42 +548,38 @@ class CurrencyManager {
     return { secondsRemaining: remaining, formatted, progressPercent };
   }
 
-  /** Active Integrity Heartbeat & Playtime Tracker */
-  #startPlaytimeTracker() {
-    if (this.#trackerIntervalId !== null) return;
+  /**
+   * Main heartbeat tick: enforces memory rotation, tracks elapsed playtime accurately
+   * across active and background tabs, and awards the 10-minute loyalty reward.
+   */
+  #heartbeatTick() {
+    // 1. Polymorphic Memory Rotation & Self-Check
+    const currentCoins = this.#readCoins();
+    if (currentCoins > MAX_COIN_CEILING) {
+      this.tripTamper(`Total koin (${currentCoins.toLocaleString()}) melebihi batas wajar`);
+      return;
+    }
 
-    this.#lastWallClockMs = Date.now();
+    // Check sudden un-audited memory jumps (> 50,000 coins jumped without calling addCoins)
+    if (currentCoins - this.#lastTrackedCoins > HOURLY_INSTANT_GAIN_LIMIT) {
+      this.tripTamper(
+        `Lonjakan koin instan terdeteksi di memori (> ${HOURLY_INSTANT_GAIN_LIMIT.toLocaleString()} koin). Saldo dikembalikan ke ${SAFE_BASELINE_COINS.toLocaleString()} koin.`
+      );
+      return;
+    }
+    this.#lastTrackedCoins = currentCoins;
 
-    this.#trackerIntervalId = window.setInterval(() => {
-      // 1. Polymorphic Memory Rotation & Self-Check
-      const currentCoins = this.#readCoins();
-      if (currentCoins > MAX_COIN_CEILING) {
-        this.tripTamper(`Total koin (${currentCoins.toLocaleString()}) melebihi batas wajar`);
-        return;
-      }
+    // Re-randomize masks in memory every heartbeat
+    this.#writeCoins(currentCoins);
 
-      // Check sudden un-audited memory jumps (> 50,000 coins jumped without calling addCoins)
-      if (currentCoins - this.#lastTrackedCoins > HOURLY_INSTANT_GAIN_LIMIT) {
-        this.tripTamper(
-          `Lonjakan koin instan terdeteksi di memori (> ${HOURLY_INSTANT_GAIN_LIMIT.toLocaleString()} koin). Saldo dikembalikan ke ${SAFE_BASELINE_COINS.toLocaleString()} koin.`
-        );
-        return;
-      }
-      this.#lastTrackedCoins = currentCoins;
+    // 2. Playtime counter (tracks elapsed seconds accurately including background tabs)
+    const now = Date.now();
+    const wallElapsedMs = Math.max(0, now - this.#lastWallClockMs);
 
-      // Re-randomize masks in memory every second
-      this.#writeCoins(currentCoins);
-
-      // 2. Playtime counter (tracks elapsed seconds accurately including background tabs)
-      const now = Date.now();
-      const wallElapsedMs = now - this.#lastWallClockMs;
-      this.#lastWallClockMs = now;
-
-      // Allow natural passage of time (up to 10 seconds per heartbeat to accommodate browser background throttling)
-      const secondsPassed = (wallElapsedMs >= 1000 && wallElapsedMs <= 10000)
-        ? Math.floor(wallElapsedMs / 1000)
-        : 1;
-
+    if (wallElapsedMs >= 1000) {
+      // Retain sub-second remainder so clock accuracy is never drifted
+      this.#lastWallClockMs = now - (wallElapsedMs % 1000);
+      const secondsPassed = Math.max(1, Math.min(1800, Math.floor(wallElapsedMs / 1000)));
       this.#playtimeSeconds += secondsPassed;
 
       // Persist every 15 seconds
@@ -586,41 +587,77 @@ class CurrencyManager {
         this.#persist();
         this.#lastSavedSeconds = this.#playtimeSeconds;
       }
+    }
 
-      // Time reward (10 minutes = 600 seconds)
-      if (this.#playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
-        this.#playtimeSeconds = 0;
-        this.#lastSavedSeconds = 0;
+    // Time reward (10 minutes = 600 seconds)
+    if (this.#playtimeSeconds >= TIME_REWARD_INTERVAL_SECONDS) {
+      const nowMs = Date.now();
+      const timeSinceLastReward = nowMs - this.#lastTimeRewardGrantedAtMs;
+      // Cooldown check: either first reward or at least 60s since last reward
+      // (to prevent double-granting while remaining robust to clock shifts)
+      const cooldownPassed = this.#lastTimeRewardGrantedAtMs === 0 || timeSinceLastReward >= 60000;
 
-        const nowMs = Date.now();
-        const timeSinceLastReward = nowMs - this.#lastTimeRewardGrantedAtMs;
-        // Strict wall-clock cooldown: at least (TIME_REWARD_INTERVAL_SECONDS - 10) seconds between grants
-        if (timeSinceLastReward >= (TIME_REWARD_INTERVAL_SECONDS - 10) * 1000) {
-          this.#lastTimeRewardGrantedAtMs = nowMs;
+      if (cooldownPassed) {
+        // Rollover excess seconds so player progress is never discarded
+        this.#playtimeSeconds = this.#playtimeSeconds % TIME_REWARD_INTERVAL_SECONDS;
+        this.#lastSavedSeconds = this.#playtimeSeconds;
+        this.#lastTimeRewardGrantedAtMs = nowMs;
 
-          if (this.#evaluateHourlyCoinGain(TIME_REWARD_COINS)) {
-            const coinsBefore = this.#readCoins();
-            const newCoins = coinsBefore + TIME_REWARD_COINS;
-            if (newCoins <= MAX_COIN_CEILING) {
-              this.#writeCoins(newCoins);
-              this.#lastTrackedCoins = newCoins;
-              this.#persist();
-              sound.playCoin();
+        if (this.#evaluateHourlyCoinGain(TIME_REWARD_COINS)) {
+          const coinsBefore = this.#readCoins();
+          const newCoins = coinsBefore + TIME_REWARD_COINS;
+          if (newCoins <= MAX_COIN_CEILING) {
+            this.#writeCoins(newCoins);
+            this.#lastTrackedCoins = newCoins;
+            this.#persist();
+            sound.playCoin();
 
-              for (const listener of this.#timeRewardListeners) {
-                try {
-                  listener(TIME_REWARD_COINS);
-                } catch (err) {
-                  console.error('Time reward listener error:', err);
-                }
+            for (const listener of this.#timeRewardListeners) {
+              try {
+                listener(TIME_REWARD_COINS);
+              } catch (err) {
+                console.error('Time reward listener error:', err);
               }
             }
           }
         }
       }
+    }
 
-      this.#notify();
+    this.#notify();
+  }
+
+  /** Active Integrity Heartbeat & Playtime Tracker */
+  #startPlaytimeTracker() {
+    if (this.#trackerIntervalId !== null) return;
+
+    this.#lastWallClockMs = Date.now();
+
+    this.#trackerIntervalId = window.setInterval(() => {
+      this.#heartbeatTick();
     }, 1000);
+
+    // Sync wall clock immediately upon tab refocus
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          this.#heartbeatTick();
+        }
+      });
+    }
+  }
+
+  /** Get total accumulated playtime seconds */
+  public getPlaytimeSeconds(): number {
+    return this.#playtimeSeconds;
+  }
+
+  /** Fast-forward playtime for automated test verification */
+  public advancePlaytimeForTesting(seconds: number) {
+    if (Number.isFinite(seconds) && seconds > 0) {
+      this.#playtimeSeconds += Math.floor(seconds);
+      this.#heartbeatTick();
+    }
   }
 
   /** Reset currency balance to safe baseline */
@@ -630,13 +667,18 @@ class CurrencyManager {
     this.#playtimeSeconds = 0;
     this.#hourlyCoinsGained = 0;
     this.#hourlyWindowStart = Date.now();
+    this.#lastTimeRewardGrantedAtMs = 0;
     this.#lastTrackedCoins = STARTING_COINS;
     this.#persist();
     this.#notify();
   }
 }
 
-// Freeze and seal prototype and export instance
+// Freeze and seal prototype and export canonical singleton instance
 Object.freeze(CurrencyManager.prototype);
-export const currencyManager = new CurrencyManager();
+const globalScope = typeof globalThis !== 'undefined' ? (globalThis as unknown as { __ERAGO_CURRENCY_MANAGER__?: CurrencyManager }) : {};
+export const currencyManager = globalScope.__ERAGO_CURRENCY_MANAGER__ || new CurrencyManager();
+if (typeof globalThis !== 'undefined') {
+  globalScope.__ERAGO_CURRENCY_MANAGER__ = currencyManager;
+}
 Object.seal(currencyManager);

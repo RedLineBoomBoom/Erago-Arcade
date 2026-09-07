@@ -39,7 +39,7 @@ export const TimeRewardBanner: React.FC<TimeRewardBannerProps> = ({ coinsAwarded
   if (coinsAwarded === null) return null;
 
   return (
-    <div className="fixed top-18 right-4 z-50 max-w-sm sm:max-w-md animate-slide-in select-none">
+    <div className="fixed top-20 right-4 z-[9999] max-w-sm sm:max-w-md animate-slide-in select-none pointer-events-auto">
       <div className="relative rounded-2xl border-3 border-black bg-gradient-to-r from-[#14161F] via-[#1E2230] to-[#14161F] p-4 shadow-[6px_6px_0px_#FFE600] text-white">
         {/* Animated Top Border Line */}
         <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FFE600] via-[#FF2A85] to-[#00F5D4] rounded-t-xl" />
