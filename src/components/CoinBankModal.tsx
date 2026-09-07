@@ -3,6 +3,7 @@ import { X, Coins, Clock, Sparkles, Gamepad2, Swords, RefreshCw, ShieldCheck, Sh
 import { sound } from '../audio/soundEngine';
 import { currencyManager, BOSS_CLEAR_REWARD_COINS } from '../utils/currencyManager';
 import { useLanguage } from '../utils/i18n';
+import { useAntiTamperText } from '../utils/antiInspectWatchdog';
 
 interface CoinBankModalProps {
   isOpen: boolean;
@@ -24,6 +25,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
   const { language, t } = useLanguage();
   const [playtime, setPlaytime] = useState(() => currencyManager.getPlaytimeRemaining());
   const [securityStatus, setSecurityStatus] = useState(() => currencyManager.getSecurityStatus());
+  const bankCoinRef = useAntiTamperText(coins.toLocaleString(), 'Modal Coin Bank Balance');
 
   // Close on Escape key
   useEffect(() => {
@@ -122,7 +124,7 @@ export const CoinBankModal: React.FC<CoinBankModalProps> = ({
             </div>
             <div className="flex items-center justify-center gap-2.5">
               <span className="text-2xl animate-bounce">🪙</span>
-              <span className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#FFE600] tracking-tight">
+              <span ref={bankCoinRef} className="font-['Press_Start_2P'] text-xl sm:text-2xl text-[#FFE600] tracking-tight">
                 {coins.toLocaleString()}
               </span>
               <span className="font-['Press_Start_2P'] text-[10px] text-[#00F5D4]">COINS</span>

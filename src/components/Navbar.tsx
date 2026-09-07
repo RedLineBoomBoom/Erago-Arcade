@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Volume2, VolumeX, Tv, Radio, Sparkles, ChevronDown, Newspaper, Tag, Gamepad2, Trophy, Terminal } from 'lucide-react';
 import { sound } from '../audio/soundEngine';
 import { currencyManager, type CurrencyState } from '../utils/currencyManager';
+import { useAntiTamperText } from '../utils/antiInspectWatchdog';
 
 import type { ViewMode } from '../types/trivia';
 import { useLanguage } from '../utils/i18n';
@@ -64,6 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     playtimeSeconds: 0,
   }));
   const extrasMenuRef = useRef<HTMLDivElement | null>(null);
+  const coinSpanRef = useAntiTamperText(currencyState.coins.toLocaleString(), 'Navbar Arcade Coin Counter');
 
   useEffect(() => {
     const unsubSound = sound.subscribe(() => {
@@ -252,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex h-7 sm:h-8 items-center gap-1 sm:gap-1.5 rounded-sm border-2 border-black bg-[#1A1C26] hover:bg-[#FFE600] text-[#FFE600] hover:text-black px-1.5 sm:px-2 font-['Press_Start_2P'] text-[6px] sm:text-[7px] font-bold transition-all shadow-[1px_1px_0px_#000] sm:shadow-[2px_2px_0px_#000] group shrink-0"
           >
             <span className="text-[11px] sm:text-xs group-hover:scale-110 transition-transform">🪙</span>
-            <span>{currencyState.coins.toLocaleString()}</span>
+            <span ref={coinSpanRef}>{currencyState.coins.toLocaleString()}</span>
             <span className="hidden min-[1900px]:inline text-[6px] text-zinc-400 group-hover:text-black">{t('coins_label')}</span>
           </button>
 

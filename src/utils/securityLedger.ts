@@ -18,8 +18,8 @@ const LEGACY_STORAGE_KEY_POINTS = 'erago_arcade_points_acc';
 const LEGACY_STORAGE_KEY_PLAYTIME = 'erago_arcade_playtime_sec';
 
 export const SAFE_BASELINE_COINS = 2000;
-export const MAX_COIN_CEILING = 1000000; // Plafon kapasitas koin (dinaikkan dari 25.000 agar pemain normal bebas menabung koin)
-export const HOURLY_INSTANT_GAIN_LIMIT = 50000; // Batas lonjakan koin instan dalam < 1 jam
+export const MAX_COIN_CEILING = 25000; // Plafon keras mutlak (mencegah angka ratusan ribu / 999.999)
+export const HOURLY_INSTANT_GAIN_LIMIT = 1500; // Batas lonjakan koin wajar per jam (maks 1.500 koin/jam)
 export const HOURLY_WINDOW_MS = 3600000; // Jendela waktu 1 jam (3.600.000 ms)
 
 export interface VaultStatePayload {

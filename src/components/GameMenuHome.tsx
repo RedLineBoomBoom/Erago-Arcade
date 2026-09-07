@@ -21,6 +21,7 @@ import {
 import { sound } from '../audio/soundEngine';
 import { useLanguage } from '../utils/i18n';
 import { useOnlinePlayersCount, type ArcadeSectionId } from '../utils/onlinePlayersService';
+import { useAntiTamperText } from '../utils/antiInspectWatchdog';
 import type { ViewMode } from '../types/trivia';
 
 interface GameMenuHomeProps {
@@ -91,6 +92,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
   const sectionPlayerCounts = propSectionPlayerCounts ?? fallbackPresence.sectionPlayerCounts;
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [isLaunching, setIsLaunching] = useState<boolean>(false);
+  const homeCoinRef = useAntiTamperText<HTMLDivElement>(`${coins.toLocaleString()} COINS`, 'Game Menu Credits Widget');
 
   // Define all 12 website sections as interactive game menu options
   const menuItems: MenuItemDef[] = useMemo(
@@ -385,7 +387,7 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
               <Coins className="w-4 h-4 text-black animate-spin-slow" />
               <div className="text-left">
                 <div className="font-['Press_Start_2P'] text-[6px] opacity-75">CREDITS</div>
-                <div className="font-['Press_Start_2P'] text-[9px] font-bold">
+                <div ref={homeCoinRef} className="font-['Press_Start_2P'] text-[9px] font-bold">
                   {coins.toLocaleString()} COINS
                 </div>
               </div>

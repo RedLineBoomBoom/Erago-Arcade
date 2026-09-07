@@ -1,4 +1,5 @@
 import { sound } from '../audio/soundEngine';
+import { arcadeBlockchain } from './arcadeBlockchain';
 import {
   securityLedger,
   SAFE_BASELINE_COINS,
@@ -181,6 +182,12 @@ class CurrencyManager {
       this.#installGlobalTraps();
     }
 
+    // 4. Initialize Bitcoin-grade Cryptographic Blockchain Ledger
+    arcadeBlockchain.initAsync().catch(() => {});
+    arcadeBlockchain.onTamperAlert((reason) => {
+      this.tripTamper(reason);
+    });
+
     this.#startPlaytimeTracker();
   }
 
@@ -190,7 +197,19 @@ class CurrencyManager {
    */
   #installGlobalTraps() {
     try {
-      const traps = ['coins', 'currencyManager', 'securityLedger', 'setCoins'];
+      const traps = [
+        'coins',
+        'currencyManager',
+        'securityLedger',
+        'setCoins',
+        '__ERAGO_CURRENCY_MANAGER__',
+        'addCoins',
+        'mineBlock',
+        'arcadeBlockchain',
+        'vault',
+        'erago',
+        'balance',
+      ];
       for (const trap of traps) {
         if (!(trap in window)) {
           Object.defineProperty(window, trap, {
@@ -462,6 +481,7 @@ class CurrencyManager {
     this.#writeCoins(newTotal);
     this.#lastTrackedCoins = newTotal;
     this.#persist();
+    arcadeBlockchain.mineTransactionBlock('MINIGAME_REWARD', roundedAmount, { metadata: 'Arcade Reward' }).catch(() => {});
     if (playAudio) {
       sound.playCoin();
     }
@@ -487,6 +507,7 @@ class CurrencyManager {
     this.#writeCoins(currentCoins - roundedAmount);
     this.#lastTrackedCoins = currentCoins - roundedAmount;
     this.#persist();
+    arcadeBlockchain.mineTransactionBlock('ROLL', -roundedAmount, { metadata: 'Trivia Roll' }).catch(() => {});
     this.#notify();
     return true;
   }
@@ -527,6 +548,7 @@ class CurrencyManager {
       }
       this.#writeCoins(newTotal);
       this.#lastTrackedCoins = newTotal;
+      arcadeBlockchain.mineTransactionBlock('CONVERT_POINTS', coinsAwarded, { score: earnedPoints }).catch(() => {});
       sound.playCoin();
     }
 
@@ -610,6 +632,7 @@ class CurrencyManager {
             this.#writeCoins(newCoins);
             this.#lastTrackedCoins = newCoins;
             this.#persist();
+            arcadeBlockchain.mineTransactionBlock('TIME_REWARD', TIME_REWARD_COINS, { metadata: '10-minute loyalty reward' }).catch(() => {});
             sound.playCoin();
 
             for (const listener of this.#timeRewardListeners) {
@@ -652,11 +675,16 @@ class CurrencyManager {
     return this.#playtimeSeconds;
   }
 
-  /** Fast-forward playtime for automated test verification */
+  /** Fast-forward playtime for automated test verification (strictly guarded) */
   public advancePlaytimeForTesting(seconds: number) {
-    if (Number.isFinite(seconds) && seconds > 0) {
-      this.#playtimeSeconds += Math.floor(seconds);
-      this.#heartbeatTick();
+    if (
+      typeof window !== 'undefined' &&
+      (window as unknown as { __ERAGO_TESTING_HARNESS__?: boolean }).__ERAGO_TESTING_HARNESS__
+    ) {
+      if (Number.isFinite(seconds) && seconds > 0) {
+        this.#playtimeSeconds += Math.floor(seconds);
+        this.#heartbeatTick();
+      }
     }
   }
 
@@ -670,15 +698,12 @@ class CurrencyManager {
     this.#lastTimeRewardGrantedAtMs = 0;
     this.#lastTrackedCoins = STARTING_COINS;
     this.#persist();
+    arcadeBlockchain.resetToGenesis().catch(() => {});
     this.#notify();
   }
 }
 
-// Freeze and seal prototype and export canonical singleton instance
+// Freeze and seal prototype and export canonical module-scoped singleton instance
 Object.freeze(CurrencyManager.prototype);
-const globalScope = typeof globalThis !== 'undefined' ? (globalThis as unknown as { __ERAGO_CURRENCY_MANAGER__?: CurrencyManager }) : {};
-export const currencyManager = globalScope.__ERAGO_CURRENCY_MANAGER__ || new CurrencyManager();
-if (typeof globalThis !== 'undefined') {
-  globalScope.__ERAGO_CURRENCY_MANAGER__ = currencyManager;
-}
+export const currencyManager = new CurrencyManager();
 Object.seal(currencyManager);
