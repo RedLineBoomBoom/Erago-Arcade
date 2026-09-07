@@ -707,3 +707,11 @@ class CurrencyManager {
 Object.freeze(CurrencyManager.prototype);
 export const currencyManager = new CurrencyManager();
 Object.seal(currencyManager);
+
+if (typeof window !== 'undefined') {
+  (window as unknown as { __ERAGO_ADVANCE_PLAYTIME__?: (s: number) => void }).__ERAGO_ADVANCE_PLAYTIME__ = (s: number) => {
+    if ((window as unknown as { __ERAGO_TESTING_HARNESS__?: boolean }).__ERAGO_TESTING_HARNESS__) {
+      currencyManager.advancePlaytimeForTesting(s);
+    }
+  };
+}
