@@ -567,8 +567,8 @@ export const GameMenuHome: React.FC<GameMenuHomeProps> = ({
           </div>
         </div>
 
-        {/* Right Column: CRT Mission Briefing & Mode Preview Screen (5 Cols on LG) */}
-        <div className="lg:col-span-5 sticky top-20 space-y-4">
+        {/* Right Column: CRT Mission Briefing & Mode Preview Screen (5 Cols on LG, Hidden on Mobile) */}
+        <div className="hidden lg:block lg:col-span-5 sticky top-20 space-y-4">
           <div className="flex items-center justify-between px-1">
             <span className="font-['Press_Start_2P'] text-[9px] text-[#FFE600] uppercase tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#FFE600] animate-pulse" />
